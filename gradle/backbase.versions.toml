@@ -1,0 +1,20 @@
+[versions]
+## A
+authentication-journey = "5.1.0"
+
+[libraries]
+## A
+authentication-journey = { group = "com.backbase.android.identity.journey", name = "authentication-journey", version.ref = "authentication-journey" }
+authentication-use-case = { group = "com.backbase.android.identity.journey", name = "identity-auth-client-1-authentication-use-case", version.ref = "authentication-journey" }
+
+[bundles]
+## A
+authentication = [
+    "authentication-journey",
+    "authentication-use-case",
+]
+
+## U
+ui = [
+
+]

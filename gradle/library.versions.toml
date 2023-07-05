@@ -1,0 +1,99 @@
+[versions]
+## A
+activity-compose = "1.5.1"
+
+## C
+compose = "1.3.2"
+compose-bom = "2022.10.00"
+core-ktx = "1.8.0"
+coroutines = "1.7.1"
+
+## E
+espresso = "3.5.1"
+ext-junit = "1.1.5"
+
+## J
+junit4 = "4.13.2"
+junit4-android = "1.1.5"
+junit5 = "5.9.3"
+junit5-android = "1.9.3.0"
+
+## L
+lifecycle-runtime-ktx = "2.3.1"
+
+## T
+truth = "1.0.1"
+
+[libraries]
+## A
+activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
+
+## C
+compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }
+compose-material3 = { module = "androidx.compose.material3:material3" }
+compose-ui = { group = "androidx.compose.ui", name = "ui" }
+compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
+
+## E
+espresso = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
+
+## J
+junit4 = { module = "junit:junit", version.ref = "junit4" }
+junit4-android = { module = "androidx.test.ext:junit", version.ref = "junit4-android" }
+junit4-compose = { module = "androidx.compose.ui:ui-test-junit4" }
+junit4-engine = { module = "org.junit.vintage:junit-vintage-engine", version.ref = "junit5" }
+junit5-api = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit5" }
+junit5-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit5" }
+junit5-gradle-android = { module = "de.mannodermaus.gradle.plugins:android-junit5", version.ref = "junit5-android" }
+junit5-params = { group = "org.junit.jupiter", name = "junit-jupiter-params", version.ref = "junit5" }
+
+## L
+lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-ktx" }
+
+## T
+truth = { module = "com.google.truth:truth", version.ref = "truth" }
+
+[bundles]
+## A
+# androidTestImplemention
+androidTest = [
+    "junit4-android",
+    "junit4-compose",
+    "espresso",
+]
+
+## C
+# implementation, debugImplementation
+compose = [
+    "compose-material3",
+    "compose-ui",
+    "compose-ui-graphics",
+    "compose-ui-tooling-preview",
+]
+
+# debugImplementation
+composeDebug = [
+    "compose-ui-tooling",
+    "compose-ui-test-manifest",
+]
+
+## I
+# implementation
+implementation = [
+    "activity-compose",
+    "core-ktx",
+    "lifecycle-runtime-ktx",
+]
+
+## T
+# testImplementation
+test = [
+    "junit4",
+    "junit5-api",
+    "truth",
+]
+
