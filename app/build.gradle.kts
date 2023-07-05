@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.detekt)
 }
 
 android {
@@ -59,20 +60,33 @@ android {
     configurations.all {
         resolutionStrategy.force("org.objenesis:objenesis:2.6")
     }
+
+    detekt {
+        toolVersion = libs.versions.detekt.get()
+        buildUponDefaultConfig = true // preconfigure defaults
+        allRules = false // activate all available (even unstable) rules.
+        config.setFrom("../config/golden-sample-app-detekt.yml") // point to your custom config defining rules to run, overwriting default behavior
+        parallel = true
+        autoCorrect = true
+        ignoredVariants = listOf("release")
+    }
+
 }
 
 dependencies {
 
-    implementation(libraries.bundles.implementation)
-    implementation(platform(libraries.compose.bom))
-    implementation(libraries.bundles.compose)
+    implementation(libs.bundles.implementation)
+    implementation(platform(libs.compose.bom))
+    implementation(libs.bundles.compose)
 
-    androidTestImplementation(libraries.bundles.androidTest)
-    androidTestImplementation(platform(libraries.compose.bom))
+    androidTestImplementation(libs.bundles.androidTest)
+    androidTestImplementation(platform(libs.compose.bom))
 
-    debugImplementation(libraries.bundles.composeDebug)
+    debugImplementation(libs.bundles.composeDebug)
 
-    testImplementation(libraries.bundles.test)
+    testImplementation(libs.bundles.test)
+
+    detektPlugins(libs.detekt.formatter)
 
     // Backbase libraries
     implementation(backbase.bundles.authentication)

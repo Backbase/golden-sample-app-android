@@ -8,9 +8,15 @@ compose-bom = "2022.10.00"
 core-ktx = "1.8.0"
 coroutines = "1.7.1"
 
+## D
+detekt = "1.23.0"
+
 ## E
 espresso = "3.5.1"
 ext-junit = "1.1.5"
+
+## G
+gradle-versions-plugin = "0.47.0"
 
 ## J
 junit4 = "4.13.2"
@@ -38,8 +44,15 @@ compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
 
+## D
+detekt = { group = "io.gitlab.arturbosch.detekt", name = "detekt-gradle-plugin", version.ref = "detekt" }
+detekt-formatter = { group = "io.gitlab.arturbosch.detekt", name = "detekt-formatting", version.ref = "detekt" }
+
 ## E
 espresso = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
+
+## G
+gradle-versions-plugin = { module = "com.github.ben-manes:gradle-versions-plugin", version.ref = "gradle-versions-plugin" }
 
 ## J
 junit4 = { module = "junit:junit", version.ref = "junit4" }
@@ -56,6 +69,13 @@ lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", v
 
 ## T
 truth = { module = "com.google.truth:truth", version.ref = "truth" }
+
+[plugins]
+## D
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+
+## G
+gradle-versions-plugin = { id = "com.github.ben-manes.versions", version.ref = "gradle-versions-plugin" }
 
 [bundles]
 ## A

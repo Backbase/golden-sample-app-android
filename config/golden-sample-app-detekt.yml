@@ -1,0 +1,112 @@
+build:
+  maxIssues: 0
+  weights:
+    complexity: 2
+    LongParameterList: 1
+    style: 1
+    comments: 1
+    formatting: 1
+
+output-reports:
+  active: true
+  exclude:
+    - 'TxtOutputReport'
+    - 'XmlOutputReport'
+  # - 'HtmlOutputReport'
+
+complexity:
+  CyclomaticComplexMethod:
+    active: true
+    threshold: 20
+  LongParameterList:
+    active: true
+    ignoreDefaultParameters: true
+  TooManyFunctions:
+    active: false
+    thresholdInFiles: 20
+    thresholdInClasses: 20
+    thresholdInInterfaces: 20
+    thresholdInObjects: 20
+    thresholdInEnums: 20
+    ignoreDeprecated: true
+    ignorePrivate: false
+    ignoreOverridden: false
+
+empty-blocks:
+  EmptyFunctionBlock:
+    active: true
+    ignoreOverridden: true
+
+formatting:
+  active: true
+  android: true
+  ImportOrdering:
+    active: true
+    autoCorrect: true
+    layout: '*,java.**,javax.**,kotlin.**,^'
+  Indentation:
+    active: true
+    autoCorrect: true
+    indentSize: 4
+  MaximumLineLength:
+    active: true
+    maxLineLength: 140
+  MultiLineIfElse:
+    active: false
+  NoEmptyFirstLineInMethodBlock:
+    active: true
+    autoCorrect: true
+  PackageName:
+    active: false
+
+naming:
+  ClassNaming:
+    active: true
+    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
+    classPattern: '[A-Z$][a-zA-Z0-9$]*'
+  PackageNaming:
+    active: true
+    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
+    packagePattern: '^[a-z]+(\.[a-z][A-Za-z0-9_]*)*$'
+  TopLevelPropertyNaming:
+    constantPattern: '[A-Z][A-Za-z0-9]*'
+  FunctionNaming:
+    functionPattern: '([A-Za-z][a-zA-Z0-9]*)|(.)'
+
+style:
+  EqualsNullCall:
+    active: false
+  ForbiddenComment:
+    active: false
+  ForbiddenImport:
+    active: true
+  FunctionOnlyReturningConstant:
+    active: false
+  LoopWithTooManyJumpStatements:
+    active: false
+  MagicNumber:
+    active: false
+  MaxLineLength:
+    maxLineLength: 160
+  ProtectedMemberInFinalClass:
+    active: false
+  ReturnCount:
+    active: false
+  SafeCast:
+    active: false
+  UnnecessaryAbstractClass:
+      active: true
+      ignoreAnnotated: ['Module']
+  UnusedPrivateClass:
+    active: false
+  UnusedPrivateMember:
+    active: true
+    ignoreAnnotated:
+      - 'Preview'
+      - 'FontScalePreviews'
+      - 'DevicePreviews'
+      - 'SimplePreviews'
+  WildcardImport:
+    active: true
+    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
+    excludeImports: ['java.util.*', 'kotlinx.android.synthetic.*']
