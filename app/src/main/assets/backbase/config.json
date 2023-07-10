@@ -1,0 +1,38 @@
+{
+  "development": {
+    "debugEnable": false
+  },
+  "backbase": {
+    "serverURL": "https://app.prd.sdbxaz.azure.backbaseservices.com",
+    "localModelPath": "$(contextRoot)/model.json",
+    "experience": "",
+    "version": "6.1.5",
+    "identity": {
+      "baseURL": "https://identity.prd.sdbxaz.azure.backbaseservices.com",
+      "realm": "customer",
+      "clientId": "mobile-client",
+      "applicationKey": "retail"
+    }
+  },
+  "security": {
+    "allowedDomains": [
+      "*"
+    ]
+  },
+  "custom": {
+    "default-http-headers": {
+      "X-REFERENCE-BAAS": "reference-ret-stable-3a25b548-a2c6-ac02-6497-1ce916e5b958"
+    }
+  },
+  "security": {
+    "sslPinning": {
+      "certificates": [
+        "$(contextRoot)/ssl-certificates/AzureReferenceRETSTABLECert.der",
+        "$(contextRoot)/ssl-certificates/ISRGRootX1CA.der",
+        "$(contextRoot)/ssl-certificates/LetsEncryptR3CA.der"
+      ],
+      "checkChain": true
+    }
+  },
+  "bankTimeZone": "Europe/Amsterdam"
+}

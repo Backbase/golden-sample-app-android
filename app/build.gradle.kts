@@ -58,7 +58,14 @@ android {
     }
 
     configurations.all {
-        resolutionStrategy.force("org.objenesis:objenesis:2.6")
+        resolutionStrategy {
+            // Reverting to an older version of objenesis due to build failure during androidTest using mockK
+            // Issue link => https://github.com/mockk/mockk/issues/281
+            force("org.objenesis:objenesis:2.6")
+            // Excluding to avoid "More than one file was found with OS independent path 'META-INF/AL2.0' & 'META-INF/LGPL2.1'"
+            // Issue link => https://github.com/Kotlin/kotlinx.coroutines/issues/2023
+            exclude(group = "org.jetbrains.kotlinx", module = "kotlinx-coroutines-debug")
+        }
     }
 
     detekt {
@@ -74,10 +81,12 @@ android {
 }
 
 dependencies {
-
+    implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.20"))
     implementation(libs.bundles.implementation)
     implementation(platform(libs.compose.bom))
     implementation(libs.bundles.compose)
+    implementation(libs.bundles.navigation)
+    implementation(libs.bundles.ui)
 
     androidTestImplementation(libs.bundles.androidTest)
     androidTestImplementation(platform(libs.compose.bom))

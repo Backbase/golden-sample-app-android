@@ -1,10 +1,12 @@
 [versions]
 ## A
 activity-compose = "1.5.1"
+appcompat = "1.6.1"
 
 ## C
 compose = "1.3.2"
 compose-bom = "2022.10.00"
+constraintlayout = "2.1.4"
 core-ktx = "1.8.0"
 coroutines = "1.7.1"
 
@@ -24,8 +26,17 @@ junit4-android = "1.1.5"
 junit5 = "5.9.3"
 junit5-android = "1.9.3.0"
 
+## K
+koin = "2.1.6"
+
 ## L
 lifecycle-runtime-ktx = "2.3.1"
+
+## M
+material = "1.9.0"
+
+## N
+navigation-component = "2.6.0"
 
 ## T
 truth = "1.0.1"
@@ -42,6 +53,7 @@ compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
 
 ## D
@@ -64,8 +76,20 @@ junit5-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", ve
 junit5-gradle-android = { module = "de.mannodermaus.gradle.plugins:android-junit5", version.ref = "junit5-android" }
 junit5-params = { group = "org.junit.jupiter", name = "junit-jupiter-params", version.ref = "junit5" }
 
+## K
+koin-android = { group = "org.koin", name = "koin-android", version.ref = "koin" }
+koin-android-viewmodel = { group = "org.koin", name = "koin-android-viewmodel", version.ref = "koin" }
+koin-core = { group = "org.koin", name = "koin-core", version.ref = "koin" }
+
 ## L
 lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-ktx" }
+
+## M
+material = { module = "com.google.android.material:material", version.ref = "material" }
+
+## N
+navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation-component" }
+navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation-component" }
 
 ## T
 truth = { module = "com.google.truth:truth", version.ref = "truth" }
@@ -106,7 +130,17 @@ composeDebug = [
 implementation = [
     "activity-compose",
     "core-ktx",
+    "koin-android",
+    "koin-android-viewmodel",
+    "koin-core",
     "lifecycle-runtime-ktx",
+]
+
+## N
+# implementation
+navigation = [
+    "navigation-fragment-ktx",
+    "navigation-ui-ktx",
 ]
 
 ## T
@@ -117,3 +151,9 @@ test = [
     "truth",
 ]
 
+## U
+# implementation
+ui = [
+    "constraintlayout",
+    "material"
+]

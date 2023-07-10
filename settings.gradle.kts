@@ -29,10 +29,10 @@ dependencyResolutionManagement {
                     password = mvnPass
                 }
             }
-            google()
-            mavenCentral()
-            jcenter()
         }
+        google()
+        mavenCentral()
+        jcenter()
     }
 
     versionCatalogs {
