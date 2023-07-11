@@ -30,12 +30,13 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField(type = "Boolean", name = "DEBUG_MODE", value = "false")
         }
         debug {
             isDebuggable = true
             isMinifyEnabled = false
             isShrinkResources = false
-
+            buildConfigField(type = "Boolean", name = "DEBUG_MODE", value = "true")
         }
     }
     compileOptions {
@@ -47,6 +48,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.3.2"
@@ -81,7 +83,7 @@ android {
 }
 
 dependencies {
-    implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.20"))
+    implementation(platform(libs.kotlin.bom))
     implementation(libs.bundles.implementation)
     implementation(platform(libs.compose.bom))
     implementation(libs.bundles.compose)
