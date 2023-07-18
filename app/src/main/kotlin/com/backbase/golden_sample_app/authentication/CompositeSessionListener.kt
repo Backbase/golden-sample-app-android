@@ -3,6 +3,7 @@ package com.backbase.golden_sample_app.authentication
 import com.backbase.android.core.utils.BBLogger
 import com.backbase.android.listeners.SessionListener
 import com.backbase.android.modules.SessionState
+import com.backbase.android.retail.journey.SessionEmitter
 import com.backbase.android.utils.net.response.Response
 
 /**
@@ -10,16 +11,16 @@ import com.backbase.android.utils.net.response.Response
  *
  * Session listener and emitter
  */
-internal class CompositeSessionListener : SessionListener {
+internal class CompositeSessionListener : SessionListener, SessionEmitter {
 
     private val listeners: MutableCollection<SessionListener> = mutableSetOf()
 
-    fun registerSessionListener(listener: SessionListener) {
+    override fun registerSessionListener(listener: SessionListener) {
         val added = listeners.add(listener)
         if (!added) BBLogger.warning("", "$listener was already included in this CompositeSessionListener")
     }
 
-    fun unregisterSessionListener(listener: SessionListener) {
+    override fun unregisterSessionListener(listener: SessionListener) {
         val removed = listeners.remove(listener)
         if (!removed) BBLogger.warning("", "$listener was already not included in this CompositeSessionListener")
     }

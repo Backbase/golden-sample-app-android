@@ -9,6 +9,7 @@ import com.backbase.android.identity.journey.authentication.identity_auth_client
 import com.backbase.android.identity.journey.oob_transaction.OutOfBandTransactionSigningUseCase
 import com.backbase.android.listeners.NavigationEventListener
 import com.backbase.android.retail.journey.NavigationEventEmitter
+import com.backbase.android.retail.journey.SessionEmitter
 import org.koin.dsl.module
 
 /**
@@ -17,6 +18,7 @@ import org.koin.dsl.module
  */
 internal fun identityAuthModule(
     configuration: AuthenticationConfiguration,
+    sessionEmitter: SessionEmitter,
 ) = module {
 
     single { configuration }
@@ -28,6 +30,8 @@ internal fun identityAuthModule(
     if (Backbase.requireInstance().authClient is BBIdentityAuthClient) {
         factory { Backbase.requireInstance().authClient as BBIdentityAuthClient }
     }
+
+    single<SessionEmitter> { sessionEmitter }
 
     factory<NavigationEventEmitter> { DefaultNavigationEventEmitter(Backbase.requireInstance()) }
 
