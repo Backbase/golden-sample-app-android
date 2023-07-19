@@ -1,4 +1,4 @@
-package com.backbase.android.retail.journey;
+package com.backbase.android.retail.journey
 
 import com.backbase.android.listeners.NavigationEventListener
 

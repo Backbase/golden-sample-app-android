@@ -12,7 +12,7 @@ import com.backbase.android.identity.journey.authentication.initAuthenticationJo
 import com.backbase.android.identity.journey.authentication.stopAuthenticationJourney
 import com.backbase.golden_sample_app.authentication.CompositeSessionListener
 import com.backbase.golden_sample_app.common.TAG
-import com.backbase.golden_sample_app.koin.appDependencies
+import com.backbase.golden_sample_app.koin.appModule
 import com.backbase.golden_sample_app.koin.identityAuthModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.loadKoinModules
@@ -59,7 +59,7 @@ class MainApplication : Application() {
         androidContext(this@MainApplication)
         loadKoinModules(
             listOf(
-                appDependencies(applicationContext),
+                appModule(applicationContext),
                 identityAuthModule(AuthenticationConfiguration { }, sessionEmitter)
             )
         )

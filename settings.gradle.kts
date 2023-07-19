@@ -8,6 +8,7 @@ pluginManagement {
 
 val backbaseRepositories = listOf(
     "android3",
+    "android-business",
     "android-identity",
     "android-retail3",
     "design-android",
@@ -32,6 +33,7 @@ dependencyResolutionManagement {
         }
         google()
         mavenCentral()
+        maven { setUrl("https://jitpack.io") }
         jcenter()
     }
 

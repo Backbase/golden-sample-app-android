@@ -4,8 +4,8 @@ import com.backbase.android.identity.journey.authentication.AuthenticationRouter
 import com.backbase.android.plugins.storage.StorageComponent
 
 internal class AuthenticationRouterImpl(
-    //private val userRepository: UserRepository,
-    //private val appNavigator: AppRouting,
+    // private val userRepository: UserRepository,
+    private val appNavigator: AppRouting,
     private val credentialsStorage: StorageComponent,
 ) : AuthenticationRouter {
 //    private var workspacesModule = WorkspacesJourney.create(
@@ -13,8 +13,9 @@ internal class AuthenticationRouterImpl(
 //    )
 
     override fun onAuthenticated() {
+        println("onAuthenticated")
         val username = credentialsStorage.getItem("Authentication Journey username") ?: ""
-        //userRepository.saveUsername(username.toCharArray())
+        // userRepository.saveUsername(username.toCharArray())
 
 //        unloadKoinModules(workspacesModule)
 

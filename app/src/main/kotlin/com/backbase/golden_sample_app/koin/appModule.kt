@@ -6,19 +6,23 @@ import com.backbase.android.identity.journey.authentication.AuthenticationDeregi
 import com.backbase.android.identity.journey.authentication.AuthenticationRouter
 import com.backbase.android.plugins.storage.StorageComponent
 import com.backbase.android.plugins.storage.persistent.EncryptedStorage
+import com.backbase.golden_sample_app.router.AppRouter
+import com.backbase.golden_sample_app.router.AppRouting
 import com.backbase.golden_sample_app.router.AuthenticationDeregistrationListenerImpl
 import com.backbase.golden_sample_app.router.AuthenticationRouterImpl
 import org.koin.dsl.module
 
-internal fun appDependencies(context: Context) = module {
-//    factory<AuthenticationRouter> {
-//        AuthenticationRouterImpl(get())
-//    }
+internal fun appModule(context: Context) = module {
+    // Single instance AppNavigator
+    single<AppRouting> { AppRouter() }
 
-    factory<EncryptedStorage> { get<Backbase>().getRegisteredPlugin(EncryptedStorage::class.java)!! }
-    factory<StorageComponent> { get<EncryptedStorage>().storageComponent }
+    factory<StorageComponent> { get<Backbase>().getRegisteredPlugin(EncryptedStorage::class.java)!!.storageComponent }
+
+    factory<AuthenticationRouter> {
+        AuthenticationRouterImpl(get(), get())
+    }
 
     factory<AuthenticationDeregistrationListener> {
-        AuthenticationDeregistrationListenerImpl()
+        AuthenticationDeregistrationListenerImpl(get())
     }
 }

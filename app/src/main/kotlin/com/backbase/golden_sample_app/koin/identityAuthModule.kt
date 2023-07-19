@@ -20,7 +20,6 @@ internal fun identityAuthModule(
     configuration: AuthenticationConfiguration,
     sessionEmitter: SessionEmitter,
 ) = module {
-
     single { configuration }
 
     factory { Backbase.requireInstance() }
@@ -37,7 +36,8 @@ internal fun identityAuthModule(
 
     single<AuthenticationUseCase> {
         IdentityAuthClient1AuthenticationUseCase(
-            get(), get(),
+            get(),
+            get(),
             authenticationDeregistrationListener = get()
         )
     }

@@ -2,16 +2,31 @@
 ## A
 authentication-journey = "5.1.0"
 
+## W
+workspaces-journey = "5.1.0"
+
 [libraries]
 ## A
 authentication-journey = { group = "com.backbase.android.identity.journey", name = "authentication-journey", version.ref = "authentication-journey" }
 authentication-use-case = { group = "com.backbase.android.identity.journey", name = "identity-auth-client-1-authentication-use-case", version.ref = "authentication-journey" }
 
+## W
+workspaces-journey = { group = "com.backbase.android.business.journey", name = "workspaces-journey", version.ref = "workspaces-journey" }
+workspaces-use-case = { group = "com.backbase.android.business.journey.workspaces-journey", name = "accesscontrol-client-2-workspaces-use-case", version.ref = "workspaces-journey" }
+
 [bundles]
 ## A
+# implementation
 authentication = [
     "authentication-journey",
     "authentication-use-case",
+]
+
+## W
+# implementation
+workspaces = [
+    "workspaces-journey",
+    "workspaces-use-case",
 ]
 
 ## U

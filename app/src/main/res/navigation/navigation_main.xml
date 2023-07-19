@@ -1,28 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/authentication_journey.xml"
     app:startDestination="@id/authenticationJourney">
 
     <fragment
         android:id="@+id/authenticationJourney"
         android:name="com.backbase.android.identity.journey.authentication.AuthenticationJourney"
-        android:label="Authentication Journey">
-<!--        <action-->
-<!--            android:id="@+id/action_authenticationJourneyFragment_to_workspaceSelector"-->
-<!--            app:destination="@id/workspaces_selector"-->
-<!--            app:popUpTo="@+id/authenticationJourney"-->
-<!--            app:popUpToInclusive="true" />-->
-<!--        <action-->
-<!--            android:id="@+id/action_authenticationJourney_to_appNavHostFragment"-->
-<!--            app:destination="@id/appNavHostFragment"-->
-<!--            app:enterAnim="@anim/anim_enter"-->
-<!--            app:exitAnim="@anim/anim_exit"-->
-<!--            app:popEnterAnim="@anim/anim_pop_enter"-->
-<!--            app:popExitAnim="@anim/anim_pop_exit"-->
-<!--            app:popUpTo="@id/authenticationJourney"-->
-<!--            app:popUpToInclusive="true" />-->
+        android:label="Authentication Journey"
+        tools:layout="@layout/identity_authentication_journey">
+        <action
+            android:id="@+id/action_authenticationJourneyFragment_to_workspaceSelector"
+            app:destination="@id/workspaces_selector"
+            app:popUpTo="@+id/authenticationJourney"
+            app:popUpToInclusive="true" />
     </fragment>
+
+    <fragment
+        android:id="@+id/workspaces_selector"
+        android:name="com.backbase.android.business.journey.workspaces.view.WorkspaceSelectorFragment"
+        android:label="Workspace Selector"
+        tools:layout="@layout/fragment_workspace_selector">
+
+        <argument
+            android:name="configurationName"
+            android:defaultValue="Default_Workspace_Selector_WorkspaceSelectorScreenConfiguration_Config"
+            app:argType="string" />
+    </fragment>
+
     <action
         android:id="@+id/action_global_authenticationJourney"
         app:destination="@id/authenticationJourney" />
