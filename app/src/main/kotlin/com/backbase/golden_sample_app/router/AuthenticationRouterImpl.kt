@@ -14,16 +14,14 @@ internal class AuthenticationRouterImpl(
     private val appNavigator: AppRouting,
     private val credentialsStorage: StorageComponent,
 ) : AuthenticationRouter {
-//    private var workspacesModule = WorkspacesJourney.create(
-//        workspacesJourneyConfiguration = configurationUsa.workspacesJourney
-//    )
+    private var workspacesModule = WorkspacesJourney.create()
 
     override fun onAuthenticated() {
         println("onAuthenticated")
         val username = credentialsStorage.getItem("Authentication Journey username") ?: ""
          userRepository.saveUsername(username.toCharArray())
 
-//        unloadKoinModules(workspacesModule)
+        unloadKoinModules(workspacesModule)
 
         if (userRepository.isServiceAgreementSelected()) {
             val user = userRepository.getUserInfo()
@@ -33,12 +31,11 @@ internal class AuthenticationRouterImpl(
                 description = ""
                 isMaster = false
             }
-//            workspacesModule = WorkspacesJourney.create(
-//                workspacesJourneyConfiguration = configurationUsa.workspacesJourney,
-//                workspace = workspace
-//            )
+            workspacesModule = WorkspacesJourney.create(
+                workspace = workspace
+            )
         }
-//        loadKoinModules(workspacesModule)
+        loadKoinModules(workspacesModule)
         appNavigator.getNavController()?.navigate(R.id.action_authenticationJourneyFragment_to_workspaceSelector)
     }
 }
