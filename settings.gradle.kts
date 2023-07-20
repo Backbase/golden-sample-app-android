@@ -1,4 +1,8 @@
 pluginManagement {
+    plugins {
+       id("org.jetbrains.kotlin.plugin.parcelize") version "1.9.0"
+    }
+
     repositories {
         google()
         gradlePluginPortal()

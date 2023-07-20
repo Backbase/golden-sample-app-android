@@ -1,10 +1,16 @@
 package com.backbase.golden_sample_app.router
 
+import com.backbase.android.business.journey.workspaces.WorkspacesJourney
+import com.backbase.android.business.journey.workspaces.usecase.Workspace
 import com.backbase.android.identity.journey.authentication.AuthenticationRouter
 import com.backbase.android.plugins.storage.StorageComponent
+import com.backbase.golden_sample_app.R
+import com.backbase.golden_sample_app.user.UserRepository
+import org.koin.core.context.loadKoinModules
+import org.koin.core.context.unloadKoinModules
 
 internal class AuthenticationRouterImpl(
-    // private val userRepository: UserRepository,
+    private val userRepository: UserRepository,
     private val appNavigator: AppRouting,
     private val credentialsStorage: StorageComponent,
 ) : AuthenticationRouter {
@@ -15,24 +21,24 @@ internal class AuthenticationRouterImpl(
     override fun onAuthenticated() {
         println("onAuthenticated")
         val username = credentialsStorage.getItem("Authentication Journey username") ?: ""
-        // userRepository.saveUsername(username.toCharArray())
+         userRepository.saveUsername(username.toCharArray())
 
 //        unloadKoinModules(workspacesModule)
 
-//        if (userRepository.isServiceAgreementSelected()) {
-//            val user = userRepository.getUserInfo()
-//            val workspace = Workspace {
-//                id = user.serviceAgreementId
-//                name = user.serviceAgreementName
-//                description = ""
-//                isMaster = false
-//            }
+        if (userRepository.isServiceAgreementSelected()) {
+            val user = userRepository.getUserInfo()
+            val workspace = Workspace {
+                id = user.serviceAgreementId
+                name = user.serviceAgreementName
+                description = ""
+                isMaster = false
+            }
 //            workspacesModule = WorkspacesJourney.create(
 //                workspacesJourneyConfiguration = configurationUsa.workspacesJourney,
 //                workspace = workspace
 //            )
-//        }
+        }
 //        loadKoinModules(workspacesModule)
-//        appNavigator.getNavController()?.navigate(R.id.action_authenticationJourneyFragment_to_workspaceSelector)
+        appNavigator.getNavController()?.navigate(R.id.action_authenticationJourneyFragment_to_workspaceSelector)
     }
 }

@@ -10,6 +10,8 @@ import com.backbase.golden_sample_app.router.AppRouter
 import com.backbase.golden_sample_app.router.AppRouting
 import com.backbase.golden_sample_app.router.AuthenticationDeregistrationListenerImpl
 import com.backbase.golden_sample_app.router.AuthenticationRouterImpl
+import com.backbase.golden_sample_app.user.UserRepository
+import com.backbase.golden_sample_app.user.UserRepositoryImpl
 import org.koin.dsl.module
 
 internal fun appModule(context: Context) = module {
@@ -18,11 +20,14 @@ internal fun appModule(context: Context) = module {
 
     factory<StorageComponent> { get<Backbase>().getRegisteredPlugin(EncryptedStorage::class.java)!!.storageComponent }
 
+    factory<UserRepository> { UserRepositoryImpl(get()) }
+
     factory<AuthenticationRouter> {
-        AuthenticationRouterImpl(get(), get())
+        AuthenticationRouterImpl(get(), get(), get())
     }
 
     factory<AuthenticationDeregistrationListener> {
-        AuthenticationDeregistrationListenerImpl(get())
+        AuthenticationDeregistrationListenerImpl(get(), get())
     }
+
 }
