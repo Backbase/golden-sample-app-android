@@ -6,10 +6,12 @@ import com.backbase.android.identity.journey.authentication.AuthenticationConfig
 import com.backbase.android.identity.journey.authentication.AuthenticationUseCase
 import com.backbase.android.identity.journey.authentication.identity_auth_client_1.IdentityAuthClient1AuthenticationUseCase
 import com.backbase.android.identity.journey.authentication.identity_auth_client_1.OutOfBandTransactionSigningUseCaseImpl
+import com.backbase.android.identity.journey.oob_transaction.OutOfBandTransactionSigningRouter
 import com.backbase.android.identity.journey.oob_transaction.OutOfBandTransactionSigningUseCase
 import com.backbase.android.listeners.NavigationEventListener
 import com.backbase.android.retail.journey.NavigationEventEmitter
 import com.backbase.android.retail.journey.SessionEmitter
+import com.backbase.golden_sample_app.authentication.OutOfBandTransactionSigningRouterImpl
 import org.koin.dsl.module
 
 /**
@@ -41,6 +43,8 @@ internal fun identityAuthModule(
             authenticationDeregistrationListener = get()
         )
     }
+
+    single<OutOfBandTransactionSigningRouter> { OutOfBandTransactionSigningRouterImpl(get()) }
 
     single<OutOfBandTransactionSigningUseCase> { OutOfBandTransactionSigningUseCaseImpl(get()) }
 }

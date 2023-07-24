@@ -1,4 +1,4 @@
-package com.backbase.golden_sample_app.user
+package com.backbase.golden_sample_app.common.user
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

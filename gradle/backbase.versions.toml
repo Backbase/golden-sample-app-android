@@ -2,6 +2,9 @@
 ## A
 authentication-journey = "5.1.0"
 
+## P
+push-notifications = "4.1.0"
+
 ## W
 workspaces-journey = "5.1.0"
 
@@ -9,6 +12,10 @@ workspaces-journey = "5.1.0"
 ## A
 authentication-journey = { group = "com.backbase.android.identity.journey", name = "authentication-journey", version.ref = "authentication-journey" }
 authentication-use-case = { group = "com.backbase.android.identity.journey", name = "identity-auth-client-1-authentication-use-case", version.ref = "authentication-journey" }
+
+## P
+push-notifications-core = { group = "com.backbase.mobilenotifications", name = "core", version.ref = "push-notifications" }
+push-notifications-presentation = { group = "com.backbase.mobilenotifications", name = "presentation", version.ref = "push-notifications" }
 
 ## W
 workspaces-journey = { group = "com.backbase.android.business.journey", name = "workspaces-journey", version.ref = "workspaces-journey" }
@@ -20,6 +27,13 @@ workspaces-use-case = { group = "com.backbase.android.business.journey.workspace
 authentication = [
     "authentication-journey",
     "authentication-use-case",
+]
+
+## P
+# implementation
+push-notifications = [
+    "push-notifications-core",
+    "push-notifications-presentation",
 ]
 
 ## W

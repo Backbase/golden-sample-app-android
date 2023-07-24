@@ -5,7 +5,7 @@ import com.backbase.android.business.journey.workspaces.usecase.Workspace
 import com.backbase.android.identity.journey.authentication.AuthenticationRouter
 import com.backbase.android.plugins.storage.StorageComponent
 import com.backbase.golden_sample_app.R
-import com.backbase.golden_sample_app.user.UserRepository
+import com.backbase.golden_sample_app.common.user.UserRepository
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.unloadKoinModules
 
@@ -19,7 +19,7 @@ internal class AuthenticationRouterImpl(
     override fun onAuthenticated() {
         println("onAuthenticated")
         val username = credentialsStorage.getItem("Authentication Journey username") ?: ""
-         userRepository.saveUsername(username.toCharArray())
+        userRepository.saveUsername(username.toCharArray())
 
         unloadKoinModules(workspacesModule)
 

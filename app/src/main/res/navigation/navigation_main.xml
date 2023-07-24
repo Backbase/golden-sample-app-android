@@ -32,4 +32,9 @@
     <action
         android:id="@+id/action_global_authenticationJourney"
         app:destination="@id/authenticationJourney" />
+    <action
+        android:id="@+id/action_global_appNavHostFragment"
+        app:destination="@id/nav_host_container"
+        app:popUpTo="@id/navigation_main"
+        app:popUpToInclusive="true" />
 </navigation>

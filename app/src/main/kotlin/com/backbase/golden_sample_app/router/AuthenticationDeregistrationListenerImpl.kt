@@ -2,7 +2,7 @@ package com.backbase.golden_sample_app.router
 
 import com.backbase.android.identity.journey.authentication.AuthenticationDeregistrationListener
 import com.backbase.golden_sample_app.R
-import com.backbase.golden_sample_app.user.UserRepository
+import com.backbase.golden_sample_app.common.user.UserRepository
 
 internal class AuthenticationDeregistrationListenerImpl(
     private val appNavigator: AppRouting,

@@ -3,6 +3,7 @@ package com.backbase.golden_sample_app
 import android.app.Application
 import android.content.Context
 import com.backbase.android.Backbase
+import com.backbase.android.core.networking.error.BBChainErrorResponseResolver
 import com.backbase.android.core.utils.BBLogger
 import com.backbase.android.identity.client.BBIdentityAuthClient
 import com.backbase.android.identity.device.BBDeviceAuthenticator
@@ -11,12 +12,15 @@ import com.backbase.android.identity.journey.authentication.AuthenticationConfig
 import com.backbase.android.identity.journey.authentication.initAuthenticationJourney
 import com.backbase.android.identity.journey.authentication.stopAuthenticationJourney
 import com.backbase.golden_sample_app.authentication.CompositeSessionListener
+import com.backbase.golden_sample_app.authentication.createDefaultAuthErrorResponseResolvers
+import com.backbase.golden_sample_app.authentication.pushAuthSessionListener
 import com.backbase.golden_sample_app.common.TAG
 import com.backbase.golden_sample_app.koin.appModule
 import com.backbase.golden_sample_app.koin.identityAuthModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
+import java.net.HttpURLConnection
 
 class MainApplication : Application() {
 
@@ -53,13 +57,24 @@ class MainApplication : Application() {
         val backbase = checkNotNull(Backbase.getInstance())
         backbase.registerAuthClient(authClient)
         backbase.authClient.startSessionObserver(sessionEmitter)
+
+        val authErrorResolvers = createDefaultAuthErrorResponseResolvers(authClient)
+        if (authErrorResolvers.isEmpty()) {
+            BBLogger.warning("session", "No session expiration handling available for <${authClient.javaClass.name}>")
+        } else {
+            backbase.registerErrorResponseResolver(
+                HttpURLConnection.HTTP_UNAUTHORIZED,
+                BBChainErrorResponseResolver(*authErrorResolvers.toTypedArray())
+            )
+        }
+        sessionEmitter.registerSessionListener(pushAuthSessionListener(authClient))
     }
 
     private fun setupDependencies() = startKoin {
         androidContext(this@MainApplication)
         loadKoinModules(
             listOf(
-                appModule(applicationContext),
+                appModule(this@MainApplication),
                 identityAuthModule(AuthenticationConfiguration { }, sessionEmitter)
             )
         )

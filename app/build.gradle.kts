@@ -105,6 +105,7 @@ dependencies {
 
     // Backbase libraries
     implementation(backbase.bundles.authentication)
+    implementation(backbase.bundles.push.notifications)
     implementation(backbase.bundles.workspaces)
     implementation(backbase.bundles.ui)
 }

@@ -1,4 +1,4 @@
-package com.backbase.golden_sample_app.user
+package com.backbase.golden_sample_app.common.user
 
 import java.lang.Exception
 
@@ -79,5 +79,5 @@ interface UserRepository {
      */
     fun isSetupCompleted(): Boolean
 
-    class CorruptedUserDataException: Exception()
+    class CorruptedUserDataException : Exception()
 }
