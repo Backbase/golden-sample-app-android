@@ -11,6 +11,10 @@ import com.backbase.android.identity.fido.FidoUafFacetUtils
 import com.backbase.android.identity.journey.authentication.AuthenticationConfiguration
 import com.backbase.android.identity.journey.authentication.initAuthenticationJourney
 import com.backbase.android.identity.journey.authentication.stopAuthenticationJourney
+import com.backbase.android.listeners.ModelListener
+import com.backbase.android.model.Model
+import com.backbase.android.model.ModelSource
+import com.backbase.android.utils.net.response.Response
 import com.backbase.golden_sample_app.authentication.CompositeSessionListener
 import com.backbase.golden_sample_app.authentication.createDefaultAuthErrorResponseResolvers
 import com.backbase.golden_sample_app.authentication.pushAuthSessionListener
@@ -33,26 +37,35 @@ class MainApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        setup(applicationContext)
-        setupAuthClient()
-        setupDependencies()
-        initAuthenticationJourney()
-    }
-
-    override fun onTerminate() {
-        stopAuthenticationJourney()
-        super.onTerminate()
-    }
-
-    private fun setup(context: Context) {
         if (BuildConfig.DEBUG) {
             BBLogger.setLogLevel(BBLogger.LogLevel.DEBUG)
             BBLogger.debug(TAG, "Facet ID: <${FidoUafFacetUtils.getFacetID(this)}>")
         }
-
-        Backbase.initialize(context, "backbase/config.json", false)
+        initializeBackbase()
+        setupAuthClient()
+        setupDependencies()
+        initAuthenticationJourney()
     }
+    fun Application.initializeBackbase(
+        backbaseConfigAssetPath: String = "backbase/config.json",
+        encrypted: Boolean = false
+    ) {
+        Backbase.initialize(this@MainApplication, backbaseConfigAssetPath, encrypted)
+        with(Backbase.requireInstance()) {
+            // We need to keep a local model in our code so that Authenticators can be injected there at runtime.
+            getModel(object : ModelListener<Model> {
+                override fun onModelReady(model: Model) = BBLogger.debug(TAG, "Model loaded")
 
+                override fun onError(response: Response) = throw IllegalArgumentException(
+                    "backbaseConfigAssetPath must point to a valid model. Instead, ${response.errorMessage}"
+                )
+            }, ModelSource.LOCAL)
+        }
+    }
+    override fun onTerminate() {
+        stopAuthenticationJourney()
+        super.onTerminate()
+    }
     private fun setupAuthClient() {
         val backbase = checkNotNull(Backbase.getInstance())
         backbase.registerAuthClient(authClient)
