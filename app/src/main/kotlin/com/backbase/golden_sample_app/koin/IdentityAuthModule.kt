@@ -5,13 +5,9 @@ import com.backbase.android.identity.client.BBIdentityAuthClient
 import com.backbase.android.identity.journey.authentication.AuthenticationConfiguration
 import com.backbase.android.identity.journey.authentication.AuthenticationUseCase
 import com.backbase.android.identity.journey.authentication.identity_auth_client_1.IdentityAuthClient1AuthenticationUseCase
-import com.backbase.android.identity.journey.authentication.identity_auth_client_1.OutOfBandTransactionSigningUseCaseImpl
-import com.backbase.android.identity.journey.oob_transaction.OutOfBandTransactionSigningRouter
-import com.backbase.android.identity.journey.oob_transaction.OutOfBandTransactionSigningUseCase
 import com.backbase.android.listeners.NavigationEventListener
 import com.backbase.android.retail.journey.NavigationEventEmitter
 import com.backbase.android.retail.journey.SessionEmitter
-import com.backbase.golden_sample_app.authentication.OutOfBandTransactionSigningRouterImpl
 import org.koin.dsl.module
 
 /**
@@ -19,10 +15,9 @@ import org.koin.dsl.module
  *
  */
 internal fun identityAuthModule(
-    configuration: AuthenticationConfiguration,
     sessionEmitter: SessionEmitter,
 ) = module {
-    single { configuration }
+    single { AuthenticationConfiguration { } }
 
     factory { Backbase.requireInstance() }
 
@@ -32,21 +27,16 @@ internal fun identityAuthModule(
         factory { Backbase.requireInstance().authClient as BBIdentityAuthClient }
     }
 
-    single<SessionEmitter> { sessionEmitter }
+    single { sessionEmitter }
 
     factory<NavigationEventEmitter> { DefaultNavigationEventEmitter(Backbase.requireInstance()) }
 
     single<AuthenticationUseCase> {
         IdentityAuthClient1AuthenticationUseCase(
             get(),
-            get(),
-            authenticationDeregistrationListener = get()
+            get()
         )
     }
-
-    single<OutOfBandTransactionSigningRouter> { OutOfBandTransactionSigningRouterImpl(get()) }
-
-    single<OutOfBandTransactionSigningUseCase> { OutOfBandTransactionSigningUseCaseImpl(get()) }
 }
 
 private class DefaultNavigationEventEmitter(

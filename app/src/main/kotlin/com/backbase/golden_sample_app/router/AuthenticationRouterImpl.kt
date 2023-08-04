@@ -17,7 +17,6 @@ internal class AuthenticationRouterImpl(
     private var workspacesModule = WorkspacesJourney.create()
 
     override fun onAuthenticated() {
-        println("onAuthenticated")
         val username = credentialsStorage.getItem("Authentication Journey username") ?: ""
         userRepository.saveUsername(username.toCharArray())
 
@@ -36,6 +35,7 @@ internal class AuthenticationRouterImpl(
             )
         }
         loadKoinModules(workspacesModule)
-        appNavigator.getNavController()?.navigate(R.id.action_authenticationJourneyFragment_to_workspaceSelector)
+        appNavigator.getNavController()?.navigate(R.id.action_authenticationJourney_to_helloFragment)
+//        appNavigator.getNavController()?.navigate(R.id.action_authenticationJourneyFragment_to_workspaceSelector)
     }
 }

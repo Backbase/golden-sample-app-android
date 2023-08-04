@@ -15,6 +15,11 @@
             app:destination="@id/workspaces_selector"
             app:popUpTo="@+id/authenticationJourney"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_authenticationJourney_to_helloFragment"
+            app:destination="@id/helloFragment"
+            app:popUpTo="@+id/authenticationJourney"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -37,4 +42,9 @@
         app:destination="@id/nav_host_container"
         app:popUpTo="@id/navigation_main"
         app:popUpToInclusive="true" />
+    <fragment
+        android:id="@+id/helloFragment"
+        android:name="com.backbase.golden_sample_app.HelloFragment"
+        android:label="fragment_hello"
+        tools:layout="@layout/fragment_hello" />
 </navigation>

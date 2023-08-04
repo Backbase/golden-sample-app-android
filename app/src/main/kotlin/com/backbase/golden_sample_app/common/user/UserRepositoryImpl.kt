@@ -88,6 +88,7 @@ internal class UserRepositoryImpl(
     override fun getPassword(): CharArray? = getItemWithSanityCheck(KEY_PASSWORD)?.toCharArray()
 
     // Get item from storage, clearing all data and throwing an exception if data is corrupted
+    @Suppress("SwallowedException")
     private fun getItemWithSanityCheck(key: String): String? =
         try {
             bbStorage.getItem(key)

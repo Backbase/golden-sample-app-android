@@ -14,7 +14,6 @@ val backbaseRepositories = listOf(
     "android3",
     "android-business",
     "android-identity",
-    "android-mobile-notifications",
     "android-retail3",
     "design-android",
 )
