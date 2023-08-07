@@ -1,7 +1,7 @@
-package com.backbase.golden_sample_app.common.user
+package com.backbase.android.business.journey.common.user
 
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 class User(

@@ -14,8 +14,13 @@ import com.backbase.android.model.ModelSource
 import com.backbase.android.utils.net.response.Response
 import com.backbase.golden_sample_app.authentication.CompositeSessionListener
 import com.backbase.golden_sample_app.common.TAG
+import com.backbase.golden_sample_app.koin.userModule
 import com.backbase.golden_sample_app.koin.appModule
+import com.backbase.golden_sample_app.koin.commonModule
+import com.backbase.golden_sample_app.koin.featureFilterModule
 import com.backbase.golden_sample_app.koin.identityAuthModule
+import com.backbase.golden_sample_app.koin.workspacesModule
+import java.net.URI
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
@@ -36,6 +41,7 @@ class MainApplication : Application() {
             BBLogger.debug(TAG, "Facet ID: <${FidoUafFacetUtils.getFacetID(this)}>")
         }
         initializeBackbase()
+        setupRemoteClients()
         setupAuthClient()
         setupDependencies()
         initAuthenticationJourney()
@@ -61,6 +67,14 @@ class MainApplication : Application() {
         }
     }
 
+    private fun setupRemoteClients() {
+        val baseUri = URI(Sdk.serverUrl + "/api")
+        Sdk.clients(this@MainApplication).forEach { client ->
+            client.setBaseURI(URI("$baseUri${client.baseURI}"))
+            Backbase.getInstance()?.registerClient(client)
+        }
+    }
+
     private fun setupAuthClient() {
         val backbase = checkNotNull(Backbase.getInstance())
         backbase.registerAuthClient(authClient)
@@ -69,10 +83,15 @@ class MainApplication : Application() {
 
     private fun setupDependencies() = startKoin {
         androidContext(this@MainApplication)
+
         loadKoinModules(
             listOf(
+                commonModule,
+                userModule,
+                featureFilterModule,
                 appModule,
-                identityAuthModule(sessionEmitter)
+                identityAuthModule(sessionEmitter),
+                workspacesModule,
             )
         )
     }

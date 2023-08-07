@@ -1,21 +1,28 @@
 [versions]
 ## A
+access-control-client-2-entitlements-use-case = "3.0.0"
 authentication-journey = "5.1.0"
 
-## P
-push-notifications = "4.1.0"
+## F
+feature-filter-use-case = "3.0.0"
+
+## G
+gen-access-control-client-2 = "2.4.0"
 
 ## W
 workspaces-journey = "5.1.0"
 
 [libraries]
 ## A
+access-control-client-2-entitlements-use-case = { group = "com.backbase.android.retail.feature_filter", name = "accesscontrol-client-2-entitlements-use-case", version.ref = "access-control-client-2-entitlements-use-case" }
 authentication-journey = { group = "com.backbase.android.identity.journey", name = "authentication-journey", version.ref = "authentication-journey" }
 authentication-use-case = { group = "com.backbase.android.identity.journey", name = "identity-auth-client-1-authentication-use-case", version.ref = "authentication-journey" }
 
-## P
-push-notifications-core = { group = "com.backbase.mobilenotifications", name = "core", version.ref = "push-notifications" }
-push-notifications-presentation = { group = "com.backbase.mobilenotifications", name = "presentation", version.ref = "push-notifications" }
+## F
+feature-filter-use-case = { group = "com.backbase.android.retail.feature_filter", name = "feature-filter-use-case", version.ref = "feature-filter-use-case" }
+
+## G
+gen-access-control-client-2 = { group = "com.backbase.android.clients", name = "gen-accesscontrol-client-2", version.ref = "gen-access-control-client-2" }
 
 ## W
 workspaces-journey = { group = "com.backbase.android.business.journey", name = "workspaces-journey", version.ref = "workspaces-journey" }
@@ -23,17 +30,22 @@ workspaces-use-case = { group = "com.backbase.android.business.journey.workspace
 
 [bundles]
 ## A
+# implementaiton
+access-control-client = [
+    "access-control-client-2-entitlements-use-case",
+    "gen-access-control-client-2",
+]
+
 # implementation
 authentication = [
     "authentication-journey",
     "authentication-use-case",
 ]
 
-## P
+## F
 # implementation
-push-notifications = [
-    "push-notifications-core",
-    "push-notifications-presentation",
+feature-filter = [
+    "feature-filter-use-case",
 ]
 
 ## W

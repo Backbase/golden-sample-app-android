@@ -1,4 +1,4 @@
-package com.backbase.golden_sample_app.common.user
+package com.backbase.android.business.journey.common.user
 
 import androidx.annotation.VisibleForTesting
 import com.backbase.android.core.errorhandling.EncryptionException

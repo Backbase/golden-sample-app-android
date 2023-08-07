@@ -1,4 +1,4 @@
-package com.backbase.golden_sample_app.common.user
+package com.backbase.android.business.journey.common.user
 
 import java.lang.Exception
 

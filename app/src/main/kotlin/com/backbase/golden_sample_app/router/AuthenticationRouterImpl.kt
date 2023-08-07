@@ -5,7 +5,7 @@ import com.backbase.android.business.journey.workspaces.usecase.Workspace
 import com.backbase.android.identity.journey.authentication.AuthenticationRouter
 import com.backbase.android.plugins.storage.StorageComponent
 import com.backbase.golden_sample_app.R
-import com.backbase.golden_sample_app.common.user.UserRepository
+import com.backbase.android.business.journey.common.user.UserRepository
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.unloadKoinModules
 
@@ -35,7 +35,7 @@ internal class AuthenticationRouterImpl(
             )
         }
         loadKoinModules(workspacesModule)
-        appNavigator.getNavController()?.navigate(R.id.action_authenticationJourney_to_helloFragment)
-//        appNavigator.getNavController()?.navigate(R.id.action_authenticationJourneyFragment_to_workspaceSelector)
+//        appNavigator.getNavController()?.navigate(R.id.action_authenticationJourney_to_helloFragment)
+        appNavigator.getNavController()?.navigate(R.id.action_authenticationJourneyFragment_to_workspaceSelector)
     }
 }
