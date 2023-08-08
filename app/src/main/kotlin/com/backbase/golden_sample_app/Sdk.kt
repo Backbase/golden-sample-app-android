@@ -12,8 +12,8 @@ import com.backbase.android.clients.common.dateTimeAdapter
 import com.backbase.android.dbs.DBSClient
 import com.backbase.android.dbs.DBSDataProvider
 import com.backbase.android.dbs.dataproviders.NetworkDBSDataProvider
-import java.net.URI
 import com.squareup.moshi.Moshi
+import java.net.URI
 
 object Sdk {
 

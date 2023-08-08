@@ -25,11 +25,15 @@ suspend inline fun <reified T : Any> Call<T>.executeAsSuspended(): CallResult<T>
                     }
 
                     else -> {
-                        cont.resume(CallResult.Error(Response().apply {
-                            responseCode = ErrorCodes.GENERAL_TARGETING_ERROR.code
-                            errorMessage =
-                                "Expected ${T::class.java} but got ${payload::class.java}"
-                        }))
+                        cont.resume(
+                            CallResult.Error(
+                                Response().apply {
+                                    responseCode = ErrorCodes.GENERAL_TARGETING_ERROR.code
+                                    errorMessage =
+                                        "Expected ${T::class.java} but got ${payload::class.java}"
+                                }
+                            )
+                        )
                     }
                 }
             }

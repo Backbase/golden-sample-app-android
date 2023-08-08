@@ -6,6 +6,22 @@
     app:startDestination="@id/authenticationJourney">
 
     <fragment
+        android:id="@+id/appNavHostFragment"
+        android:name="com.backbase.golden_sample_app.AppNavHostFragment"
+        android:label="AppNavHostFragment">
+        <action
+            android:id="@+id/action_appNavHostFragment_self"
+            app:destination="@id/appNavHostFragment"
+            app:popUpTo="@+id/appNavHostFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_appNavHostFragment_to_authenticationJourney"
+            app:destination="@id/authenticationJourney"
+            app:popUpTo="@id/appNavHostFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
         android:id="@+id/authenticationJourney"
         android:name="com.backbase.android.identity.journey.authentication.AuthenticationJourney"
         android:label="Authentication Journey"
@@ -13,11 +29,6 @@
         <action
             android:id="@+id/action_authenticationJourneyFragment_to_workspaceSelector"
             app:destination="@id/workspaces_selector"
-            app:popUpTo="@+id/authenticationJourney"
-            app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_authenticationJourney_to_helloFragment"
-            app:destination="@id/helloFragment"
             app:popUpTo="@+id/authenticationJourney"
             app:popUpToInclusive="true" />
     </fragment>
@@ -32,6 +43,15 @@
             android:name="configurationName"
             android:defaultValue="Default_Workspace_Selector_WorkspaceSelectorScreenConfiguration_Config"
             app:argType="string" />
+        <action
+            android:id="@+id/action_workspaces_selector_to_appNavHostFragment"
+            app:destination="@id/helloFragment"
+            app:popUpTo="@id/workspaces_selector"
+            app:popUpToInclusive="true">
+            <argument
+                android:name="workspaceName"
+                app:argType="string" />
+        </action>
     </fragment>
 
     <action
@@ -39,7 +59,7 @@
         app:destination="@id/authenticationJourney" />
     <action
         android:id="@+id/action_global_appNavHostFragment"
-        app:destination="@id/nav_host_container"
+        app:destination="@id/appNavHostFragment"
         app:popUpTo="@id/navigation_main"
         app:popUpToInclusive="true" />
     <fragment

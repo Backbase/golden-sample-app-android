@@ -3,8 +3,8 @@ package com.backbase.android.business.journey.workspaces.navigation
 import android.os.Bundle
 import androidx.annotation.IdRes
 import androidx.navigation.NavController
-import com.backbase.android.business.journey.workspaces.model.WorkspaceInfo
 import com.backbase.android.business.journey.common.navigation.BaseRouting
+import com.backbase.android.business.journey.workspaces.model.WorkspaceInfo
 
 /**
  * Router interface for workspace selector

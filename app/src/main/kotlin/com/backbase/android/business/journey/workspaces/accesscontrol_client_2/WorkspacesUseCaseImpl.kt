@@ -32,12 +32,14 @@ class WorkspacesUseCaseImpl(
         ).executeAsSuspended()
         return when (call) {
             is CallResult.Success -> {
-                userRepository.saveUserInfo(userRepository.getUserInfo().apply {
-                    // Reset service agreement size if request is for the first page
-                    if (page == 0) serviceAgreementSize = 0
+                userRepository.saveUserInfo(
+                    userRepository.getUserInfo().apply {
+                        // Reset service agreement size if request is for the first page
+                        if (page == 0) serviceAgreementSize = 0
 
-                    serviceAgreementSize += call.data.size
-                })
+                        serviceAgreementSize += call.data.size
+                    }
+                )
                 val list = call.data.map(Serviceagreementpartialitem::mapToWorkspace)
                 if (list.isEmpty()) CallState.Empty else CallState.Success(list)
             }
@@ -49,8 +51,10 @@ class WorkspacesUseCaseImpl(
     }
 
     override suspend fun postUserContext(request: PostUserContextRequest): CallState<Nothing> =
-        when (val call =
-            userContextApi.postUserContext(request.mapToUserContext()).executeAsSuspended()) {
+        when (
+            val call =
+                userContextApi.postUserContext(request.mapToUserContext()).executeAsSuspended()
+        ) {
             is CallResult.Success -> {
                 val updatedUserInfo = userRepository.getUserInfo().apply {
                     serviceAgreementId = request.workspace.id

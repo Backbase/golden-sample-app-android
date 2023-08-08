@@ -9,7 +9,5 @@ import org.koin.dsl.module
 
 internal val featureFilterModule = module {
     single<EntitlementsUseCase> { AccessControlClient2EntitlementsUseCase(get()) }
-    single<FeatureFilterUseCase<UserEntitlement>> {
-        UserEntitlementFeatureFilterUseCase(entitlementsUseCase = get())
-    }
+    single<FeatureFilterUseCase<UserEntitlement>> { UserEntitlementFeatureFilterUseCase(get()) }
 }
