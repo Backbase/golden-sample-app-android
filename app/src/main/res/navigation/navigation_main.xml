@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/appNavHostFragment"
-        android:name="com.backbase.golden_sample_app.AppNavHostFragment"
+        android:name="com.backbase.golden_sample_app.host.AppNavHostFragment"
         android:label="AppNavHostFragment">
         <action
             android:id="@+id/action_appNavHostFragment_self"
@@ -64,7 +64,7 @@
         app:popUpToInclusive="true" />
     <fragment
         android:id="@+id/helloFragment"
-        android:name="com.backbase.golden_sample_app.HelloFragment"
+        android:name="com.backbase.golden_sample_app.presentation.HelloFragment"
         android:label="fragment_hello"
         tools:layout="@layout/fragment_hello" />
 </navigation>

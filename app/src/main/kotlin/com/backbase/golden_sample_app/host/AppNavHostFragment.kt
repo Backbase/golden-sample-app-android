@@ -1,4 +1,4 @@
-package com.backbase.golden_sample_app
+package com.backbase.golden_sample_app.host
 
 import android.os.Bundle
 import android.view.LayoutInflater

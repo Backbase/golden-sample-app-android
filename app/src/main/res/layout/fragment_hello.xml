@@ -4,9 +4,8 @@
     android:id="@+id/helloworld"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HelloFragment">
+    tools:context=".presentation.HelloFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
