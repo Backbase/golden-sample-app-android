@@ -6,6 +6,13 @@ plugins {
     alias(libs.plugins.gradle.versions.plugin)
 }
 
+// Old way with Navigation Safe Args
+buildscript {
+    dependencies {
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.6.0")
+    }
+}
+
 fun isNonStable(version: String): Boolean {
     val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { version.uppercase().contains(it) }
     val regex = "^[0-9,.v-]+(-r)?$".toRegex()

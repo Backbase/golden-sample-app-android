@@ -34,6 +34,6 @@ class WorkspaceSelectorRoutingImpl(
 
     override fun onWorkspaceSelectedV2(workspaceInfo: WorkspaceInfo): Int {
         user.userContext = workspaceInfo.workspace.name
-        return R.id.action_global_appNavHostFragment
+        return R.id.helloFragment
     }
 }

@@ -113,6 +113,9 @@ gradle-versions-plugin = { id = "com.github.ben-manes.versions", version.ref = "
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin-parcelize" }
 
+## N
+navigation-safe-args = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigation-component" }
+
 [bundles]
 ## A
 # androidTestImplemention

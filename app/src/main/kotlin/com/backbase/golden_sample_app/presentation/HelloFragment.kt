@@ -5,21 +5,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.backbase.golden_sample_app.R
+import androidx.navigation.fragment.navArgs
+import com.backbase.golden_sample_app.databinding.FragmentHelloBinding
 
 /**
- * A simple [Fragment] subclass.
- * Use the [HelloFragment.newInstance] factory method to
- * create an instance of this fragment.
+ * Just a welcome message to whoever is logged in.
  */
 class HelloFragment : Fragment() {
+
+    private lateinit var binding: FragmentHelloBinding
+
+    private val args: HelloFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_hello, container, false)
+        binding = FragmentHelloBinding.inflate(inflater, container, false)
+        val view = binding.root
+        binding.welcomeText.text = "Welcome ${args.workspaceName}"
+        return view
     }
 }

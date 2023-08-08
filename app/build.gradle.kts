@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id(libs.plugins.kotlin.parcelize.get().pluginId)
+    id(libs.plugins.navigation.safe.args.get().pluginId)
     alias(libs.plugins.detekt)
 }
 
