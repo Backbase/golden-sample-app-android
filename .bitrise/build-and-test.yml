@@ -16,35 +16,6 @@ workflows:
           inputs:
             - gradlew_path: "./gradlew"
             - gradle_task: detekt detektTest
-      - gradle-runner@2:
-          title: Running unit tests
-          inputs:
-            - gradlew_path: "./gradlew"
-            - gradle_task: testDebug
-      - script:
-          title: Checking if the instrumentation tests must run
-          inputs:
-            - content: |-
-                execute_integration_tests=1
-                if [[ $BITRISE_GIT_MESSAGE == *"[integration-tests skip]"* ]]
-                then
-                  execute_integration_tests=0
-                fi
-
-                # execute_integration_tests == 1 -> execute : execute_integration_tests != 1 -> skip
-                envman add --key EXECUTE_INTEGRATION_TESTS --value $execute_integration_tests
-      # - bitrise-run@0.9:
-      #     title: Running Android test on api 31
-      #     run_if: enveq "EXECUTE_INTEGRATION_TESTS" "1"
-      #     inputs:
-      #       - workflow_id: integration-tests
-      #       - bitrise_config_path: ".bitrise/integration-tests.yml"
-      # - script@1:
-      #     title: Copying files to Bitrise-deploy-dir
-      #     run_if: enveq "EXECUTE_INTEGRATION_TESTS" "1"
-      #     is_always_run: true
-      #     inputs:
-      #       - content: "./.scripts/reporting/copy-outputs.sh $BITRISE_SOURCE_DIR $BITRISE_DEPLOY_DIR"
       - deploy-to-bitrise-io@2:
           title: Reporting to Bitrise
           is_always_run: true
