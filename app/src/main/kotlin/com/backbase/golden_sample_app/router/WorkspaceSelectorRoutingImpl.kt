@@ -14,7 +14,7 @@ import com.backbase.golden_sample_app.common.TAG
  */
 class WorkspaceSelectorRoutingImpl(
     private val appRouter: AppRouting,
-    private val user: User,
+    private var user: User,
 ) : WorkspaceSelectorRouting {
 
     private val navController by lazy { appRouter.getNavController() }
@@ -33,7 +33,7 @@ class WorkspaceSelectorRoutingImpl(
     }
 
     override fun onWorkspaceSelectedV2(workspaceInfo: WorkspaceInfo): Int {
-        user.userContext = workspaceInfo.workspace.name
+        user = user.copy(userContext = workspaceInfo.workspace.name)
         return R.id.helloFragment
     }
 }

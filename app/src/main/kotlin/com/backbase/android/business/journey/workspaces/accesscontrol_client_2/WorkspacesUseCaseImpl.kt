@@ -13,6 +13,7 @@ import com.backbase.android.client.accesscontrolclient2.model.UserContextPOST
 import com.backbase.android.clients.common.CallResult
 import com.backbase.android.clients.common.coroutines.executeAsSuspended
 import com.backbase.android.utils.net.response.Response
+import kotlin.properties.Delegates
 
 /**
  * Default [WorkspacesUseCase] implementation
@@ -32,13 +33,12 @@ class WorkspacesUseCaseImpl(
         ).executeAsSuspended()
         return when (call) {
             is CallResult.Success -> {
+                var serviceAgreementSize = userRepository.getUserInfo().serviceAgreementSize
+                // Reset service agreement size if request is for the first page
+                if (page == 0) serviceAgreementSize = 0
+                serviceAgreementSize += call.data.size
                 userRepository.saveUserInfo(
-                    userRepository.getUserInfo().apply {
-                        // Reset service agreement size if request is for the first page
-                        if (page == 0) serviceAgreementSize = 0
-
-                        serviceAgreementSize += call.data.size
-                    }
+                    userRepository.getUserInfo().copy(serviceAgreementSize = serviceAgreementSize)
                 )
                 val list = call.data.map(Serviceagreementpartialitem::mapToWorkspace)
                 if (list.isEmpty()) CallState.Empty else CallState.Success(list)
@@ -56,10 +56,10 @@ class WorkspacesUseCaseImpl(
                 userContextApi.postUserContext(request.mapToUserContext()).executeAsSuspended()
         ) {
             is CallResult.Success -> {
-                val updatedUserInfo = userRepository.getUserInfo().apply {
-                    serviceAgreementId = request.workspace.id
+                val updatedUserInfo = userRepository.getUserInfo().copy(
+                    serviceAgreementId = request.workspace.id,
                     serviceAgreementName = request.workspace.name
-                }
+                )
                 userRepository.saveUserInfo(updatedUserInfo)
                 CallState.Empty
             }

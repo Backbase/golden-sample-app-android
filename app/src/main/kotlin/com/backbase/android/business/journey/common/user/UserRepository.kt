@@ -3,9 +3,7 @@ package com.backbase.android.business.journey.common.user
 import java.lang.Exception
 
 /**
- * Created by Backbase R&D B.V on 2019-08-26.
  * Contract for user repository. Holds the user data collected during enrollment
- * TODO Can be moved to login interface class, will be finalized during full implementation
  */
 interface UserRepository {
 

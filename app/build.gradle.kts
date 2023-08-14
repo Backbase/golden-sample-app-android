@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.backbase.golden_sample_app"
-        minSdk = 23
+        minSdk = 26
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"

@@ -12,7 +12,7 @@ internal val userModule = module {
     single { Backbase.requireInstance().getClient(UserContextApi::class.java) }
     single { Backbase.requireInstance().getClient(UsersApi::class.java) }
 
-    single { User {} }
+    single { User() }
 
     factory<UserRepository> { UserRepositoryImpl(get()) }
 }

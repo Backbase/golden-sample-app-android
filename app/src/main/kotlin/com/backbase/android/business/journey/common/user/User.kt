@@ -1,45 +1,10 @@
 package com.backbase.android.business.journey.common.user
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
-
-@Parcelize
-class User(
-    var isSetupCompleted: Boolean = false,
-    var serviceAgreementId: String? = null,
-    var serviceAgreementName: String? = null,
-    var userContext: String? = null,
-    var isBiometricEnabled: Boolean = false,
-    var serviceAgreementSize: Int = 0
-) : Parcelable {
-
-    /**
-     * A builder for this configuration class
-     *
-     * Should be directly used by Java consumers. Kotlin consumers should use DSL function
-     */
-    class Builder {
-        var isSetupCompleted: Boolean = false
-        var serviceAgreementId: String? = null
-        var serviceAgreementName: String? = null
-        var userContext: String? = null
-        var isBiometricEnabled: Boolean = false
-        var serviceAgreementSize: Int = 0
-
-        fun build() = User(
-            isSetupCompleted,
-            serviceAgreementId,
-            serviceAgreementName,
-            userContext,
-            isBiometricEnabled,
-            serviceAgreementSize,
-        )
-    }
-}
-
-/**
- * DSL to create [User]
- */
-@Suppress("FunctionName") // DSL initializer
-@JvmSynthetic // Hide from Java callers who should use Builder
-fun User(block: User.Builder.() -> Unit) = User.Builder().apply(block).build()
+data class User(
+    val isSetupCompleted: Boolean = false,
+    val serviceAgreementId: String? = null,
+    val serviceAgreementName: String? = null,
+    val userContext: String? = null,
+    val isBiometricEnabled: Boolean = false,
+    val serviceAgreementSize: Int = 0
+)
