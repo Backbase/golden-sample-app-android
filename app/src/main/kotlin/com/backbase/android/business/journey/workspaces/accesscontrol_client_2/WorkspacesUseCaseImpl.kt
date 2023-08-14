@@ -33,9 +33,12 @@ class WorkspacesUseCaseImpl(
         ).executeAsSuspended()
         return when (call) {
             is CallResult.Success -> {
-                var serviceAgreementSize = userRepository.getUserInfo().serviceAgreementSize
                 // Reset service agreement size if request is for the first page
-                if (page == 0) serviceAgreementSize = 0
+                var serviceAgreementSize = if (page == 0) {
+                    0
+                } else {
+                    userRepository.getUserInfo().serviceAgreementSize
+                }
                 serviceAgreementSize += call.data.size
                 userRepository.saveUserInfo(
                     userRepository.getUserInfo().copy(serviceAgreementSize = serviceAgreementSize)
