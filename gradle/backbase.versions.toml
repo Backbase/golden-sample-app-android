@@ -3,11 +3,17 @@
 access-control-client-2-entitlements-use-case = "3.0.0"
 authentication-journey = "5.1.0"
 
+## B
+business-journey-common = "4.0.1"
+
 ## F
 feature-filter-use-case = "3.0.0"
 
 ## G
 gen-access-control-client-2 = "2.4.0"
+
+## R
+retail-journey-common = "4.0.0"
 
 ## W
 workspaces-journey = "5.1.0"
@@ -18,11 +24,17 @@ access-control-client-2-entitlements-use-case = { group = "com.backbase.android.
 authentication-journey = { group = "com.backbase.android.identity.journey", name = "authentication-journey", version.ref = "authentication-journey" }
 authentication-use-case = { group = "com.backbase.android.identity.journey", name = "identity-auth-client-1-authentication-use-case", version.ref = "authentication-journey" }
 
+## B
+business-journey-common = { group = "com.backbase.android.business.journey", name = "journey-common", version.ref = "business-journey-common" }
+
 ## F
 feature-filter-use-case = { group = "com.backbase.android.retail.feature_filter", name = "feature-filter-use-case", version.ref = "feature-filter-use-case" }
 
 ## G
 gen-access-control-client-2 = { group = "com.backbase.android.clients", name = "gen-accesscontrol-client-2", version.ref = "gen-access-control-client-2" }
+
+## R
+retail-journey-common = { group = "com.backbase.android.retail.journey", name = "journey-common", version.ref = "retail-journey-common" }
 
 ## W
 workspaces-journey = { group = "com.backbase.android.business.journey", name = "workspaces-journey", version.ref = "workspaces-journey" }
@@ -40,6 +52,12 @@ access-control-client = [
 authentication = [
     "authentication-journey",
     "authentication-use-case",
+]
+
+## C
+common = [
+    "business-journey-common",
+    "retail-journey-common"
 ]
 
 ## F

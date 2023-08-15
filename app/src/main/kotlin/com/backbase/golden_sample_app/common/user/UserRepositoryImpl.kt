@@ -1,6 +1,8 @@
-package com.backbase.android.business.journey.common.user
+package com.backbase.golden_sample_app.common.user
 
 import androidx.annotation.VisibleForTesting
+import com.backbase.android.business.journey.common.user.User
+import com.backbase.android.business.journey.common.user.UserRepository
 import com.backbase.android.core.errorhandling.EncryptionException
 import com.backbase.android.plugins.storage.StorageComponent
 
@@ -109,7 +111,7 @@ internal class UserRepositoryImpl(
         const val DEFAULT_BIOMETRIC_VALUE = false
         const val DEFAULT_SETUP_COMPLETE = false
     }
-}
 
-private fun StorageComponent.removeItems(vararg keys: String) =
-    keys.forEach(::removeItem)
+    private fun StorageComponent.removeItems(vararg keys: String) =
+        keys.forEach(::removeItem)
+}

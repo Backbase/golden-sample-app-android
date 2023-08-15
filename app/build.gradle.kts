@@ -107,6 +107,7 @@ dependencies {
     // Backbase libraries
     implementation(backbase.bundles.authentication)
     implementation(backbase.bundles.access.control.client)
+    implementation(backbase.bundles.common)
     implementation(backbase.bundles.feature.filter)
     implementation(backbase.bundles.workspaces)
     implementation(backbase.bundles.ui)

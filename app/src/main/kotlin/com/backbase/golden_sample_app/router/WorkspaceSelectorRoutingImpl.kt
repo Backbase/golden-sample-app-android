@@ -33,7 +33,7 @@ class WorkspaceSelectorRoutingImpl(
     }
 
     override fun onWorkspaceSelectedV2(workspaceInfo: WorkspaceInfo): Int {
-        user = user.copy(userContext = workspaceInfo.workspace.name)
+        user.userContext = workspaceInfo.workspace.name
         return R.id.helloFragment
     }
 }
