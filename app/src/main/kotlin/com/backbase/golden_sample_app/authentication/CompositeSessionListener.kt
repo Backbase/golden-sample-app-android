@@ -7,8 +7,6 @@ import com.backbase.android.retail.journey.SessionEmitter
 import com.backbase.android.utils.net.response.Response
 
 /**
- * Created by Backbase R&D B.V on 19/08/2021.
- *
  * Session listener and emitter
  */
 internal class CompositeSessionListener : SessionListener, SessionEmitter {

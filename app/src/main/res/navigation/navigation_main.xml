@@ -65,9 +65,9 @@
 
     <fragment
         android:id="@+id/helloFragment"
-        android:name="com.backbase.golden_sample_app.presentation.HelloFragment"
+        android:name="com.backbase.golden_sample_app.presentation.HomeFragment"
         android:label="fragment_hello"
-        tools:layout="@layout/fragment_hello">
+        tools:layout="@layout/fragment_home">
         <argument
             android:name="workspaceName"
             app:argType="string" />

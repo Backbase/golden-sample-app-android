@@ -3,9 +3,9 @@ package com.backbase.golden_sample_app.koin
 import com.backbase.android.Backbase
 import com.backbase.android.business.journey.common.user.User
 import com.backbase.android.business.journey.common.user.UserRepository
-import com.backbase.golden_sample_app.user.UserRepositoryImpl
 import com.backbase.android.client.accesscontrolclient2.api.UserContextApi
 import com.backbase.android.client.accesscontrolclient2.api.UsersApi
+import com.backbase.golden_sample_app.user.UserRepositoryImpl
 import org.koin.dsl.module
 
 internal val userModule = module {
