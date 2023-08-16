@@ -24,14 +24,13 @@ dependencyResolutionManagement {
     repositories {
         backbaseRepositories.forEach { repoName ->
             maven {
-                val mvnUser: String by settings
-                val mvnPass: String by settings
+                val backbaseRepoUsername: String by settings
+                val backbaseRepoEncryptedPassword: String by settings
 
-                // TODO change to repo
-                setUrl("https://artifacts.backbase.com/$repoName")
+                setUrl("https://repo.backbase.com/$repoName")
                 credentials {
-                    username = mvnUser
-                    password = mvnPass
+                    username = backbaseRepoUsername
+                    password = backbaseRepoEncryptedPassword
                 }
             }
         }
