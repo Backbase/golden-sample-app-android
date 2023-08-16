@@ -48,43 +48,46 @@ workspaces-use-case = { group = "com.backbase.android.business.journey.workspace
 
 [bundles]
 ## A
-# implementaiton
+# implementation(backbase.bundles.access.control.client)
 access-control-client = [
     "access-control-client-2-entitlements-use-case",
     "gen-access-control-client-2",
 ]
 
-# implementation
+# implementation(backbase.bundles.authentication)
 authentication = [
     "authentication-journey",
     "authentication-use-case",
 ]
 
 ## C
+# implementation(backbase.bundles.common)
 common = [
     "business-journey-common",
     "retail-journey-common"
 ]
 
 ## F
-# implementation
+# implementation(backbase.bundles.feature.filter)
 feature-filter = [
     "feature-filter-use-case",
 ]
 
 ## S
+# implementation(backbase.bundles.sdk)
 sdk = [
     "secure-storage",
 ]
 
 ## W
-# implementation
+# implementation(backbase.bundles.workspaces)
 workspaces = [
     "workspaces-journey",
     "workspaces-use-case",
 ]
 
 ## U
+# implementation(backbase.bundles.ui)
 ui = [
 
 ]

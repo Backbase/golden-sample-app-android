@@ -49,12 +49,8 @@ android {
         jvmTarget = "11"
     }
     buildFeatures {
-        compose = true
         viewBinding = true
         buildConfig = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.8"
     }
     packaging {
         resources {
@@ -90,15 +86,10 @@ android {
 dependencies {
     implementation(platform(libs.kotlin.bom))
     implementation(libs.bundles.implementation)
-    implementation(platform(libs.compose.bom))
-    implementation(libs.bundles.compose)
     implementation(libs.bundles.navigation)
     implementation(libs.bundles.ui)
 
     androidTestImplementation(libs.bundles.androidTest)
-    androidTestImplementation(platform(libs.compose.bom))
-
-    debugImplementation(libs.bundles.composeDebug)
 
     testImplementation(libs.bundles.test)
 
