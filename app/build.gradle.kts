@@ -8,14 +8,14 @@ plugins {
 
 android {
     namespace = "com.backbase.golden_sample_app"
-    compileSdk = 33
+    compileSdk = Version.compileSdk
 
     defaultConfig {
         applicationId = "com.backbase.golden_sample_app"
-        minSdk = 26
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = Version.minSdk
+        targetSdk = Version.compileSdk
+        versionCode = Version.versionCode
+        versionName = Version.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
