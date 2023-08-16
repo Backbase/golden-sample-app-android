@@ -14,5 +14,10 @@ internal val userModule = module {
 
     single { User() }
 
-    factory<UserRepository> { UserRepositoryImpl(get()) }
+    factory<UserRepository> {
+        UserRepositoryImpl(
+            secureStorage = get(),
+            coroutineScope = get(),
+        )
+    }
 }

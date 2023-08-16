@@ -15,6 +15,9 @@ gen-access-control-client-2 = "2.4.0"
 ## R
 retail-journey-common = "4.0.0"
 
+## S
+secure-storage = "1.0.0"
+
 ## W
 workspaces-journey = "5.1.0"
 
@@ -35,6 +38,9 @@ gen-access-control-client-2 = { group = "com.backbase.android.clients", name = "
 
 ## R
 retail-journey-common = { group = "com.backbase.android.retail.journey", name = "journey-common", version.ref = "retail-journey-common" }
+
+## S
+secure-storage = { group = "com.backbase.android.sdk", name = "secure-storage", version.ref = "secure-storage" }
 
 ## W
 workspaces-journey = { group = "com.backbase.android.business.journey", name = "workspaces-journey", version.ref = "workspaces-journey" }
@@ -64,6 +70,11 @@ common = [
 # implementation
 feature-filter = [
     "feature-filter-use-case",
+]
+
+## S
+sdk = [
+    "secure-storage",
 ]
 
 ## W
