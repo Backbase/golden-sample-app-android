@@ -11,6 +11,8 @@ import com.backbase.golden_sample_app.common.TAG
 
 /**
  * Workspace selector router implementation
+ *
+ * Created by Backbase R&D B.V on 17/08/2023.
  */
 class WorkspaceSelectorRoutingImpl(
     private val appRouter: AppRouting,

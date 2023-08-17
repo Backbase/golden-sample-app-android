@@ -8,6 +8,8 @@ import com.backbase.android.utils.net.response.Response
 
 /**
  * Session listener and emitter
+ *
+ * Created by Backbase R&D B.V on 17/08/2023.
  */
 internal class CompositeSessionListener : SessionListener, SessionEmitter {
 

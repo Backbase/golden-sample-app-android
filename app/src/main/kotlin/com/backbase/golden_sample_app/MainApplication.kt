@@ -27,6 +27,11 @@ import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
 import java.net.URI
 
+/**
+ * Setup the necessary dependencies and configurations.
+ *
+ * Created by Backbase R&D B.V on 17/08/2023.
+ */
 class MainApplication : Application() {
 
     private val sessionEmitter = CompositeSessionListener()

@@ -9,6 +9,8 @@ import com.backbase.golden_sample_app.databinding.FragmentAppNavHostBinding
 
 /**
  * Primary navigation menu host for journeys
+ *
+ * Created by Backbase R&D B.V on 17/08/2023.
  */
 class AppNavHostFragment : Fragment() {
 

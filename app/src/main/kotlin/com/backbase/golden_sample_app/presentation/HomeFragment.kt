@@ -10,6 +10,8 @@ import com.backbase.golden_sample_app.databinding.FragmentHomeBinding
 
 /**
  * Just a welcome message to whoever is logged in.
+ *
+ * Created by Backbase R&D B.V on 17/08/2023.
  */
 class HomeFragment : Fragment() {
 

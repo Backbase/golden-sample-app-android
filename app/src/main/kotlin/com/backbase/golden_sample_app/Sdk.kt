@@ -15,6 +15,11 @@ import com.backbase.android.dbs.dataproviders.NetworkDBSDataProvider
 import com.squareup.moshi.Moshi
 import java.net.URI
 
+/**
+ * Setup DBClient, server url and API's of the journeys.
+ *
+ * Created by Backbase R&D B.V on 17/08/2023.
+ */
 object Sdk {
 
     val serverUrl: String?
