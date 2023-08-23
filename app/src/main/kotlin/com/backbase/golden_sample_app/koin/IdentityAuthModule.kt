@@ -13,8 +13,9 @@ import com.backbase.golden_sample_app.router.AuthenticationRouterImpl
 import org.koin.dsl.module
 
 /**
- * Created by Backbase R&D B.V on 19/08/2021.
+ * Dependency setup for Identity Authentication.
  *
+ * Created by Backbase R&D B.V on 17/08/2023.
  */
 internal fun identityAuthModule(
     sessionEmitter: SessionEmitter,

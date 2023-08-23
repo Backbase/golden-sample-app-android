@@ -16,7 +16,6 @@ import com.backbase.android.utils.net.response.Response
 import com.backbase.golden_sample_app.authentication.CompositeSessionListener
 import com.backbase.golden_sample_app.common.TAG
 import com.backbase.golden_sample_app.koin.appModule
-import com.backbase.golden_sample_app.koin.commonModule
 import com.backbase.golden_sample_app.koin.featureFilterModule
 import com.backbase.golden_sample_app.koin.identityAuthModule
 import com.backbase.golden_sample_app.koin.securityModule
@@ -94,7 +93,6 @@ class MainApplication : Application() {
         loadKoinModules(
             listOf(
                 securityModule(this@MainApplication),
-                commonModule,
                 userModule,
                 featureFilterModule,
                 appModule,
