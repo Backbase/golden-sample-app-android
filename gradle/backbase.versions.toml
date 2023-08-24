@@ -1,0 +1,93 @@
+[versions]
+## A
+access-control-client-2-entitlements-use-case = "3.0.0"
+authentication-journey = "5.1.0"
+
+## B
+business-journey-common = "4.0.1"
+
+## F
+feature-filter-use-case = "3.0.0"
+
+## G
+gen-access-control-client-2 = "2.4.0"
+
+## M
+msdk = "9.9.0"
+
+## R
+retail-journey-common = "4.0.0"
+
+## W
+workspaces-journey = "5.1.0"
+
+[libraries]
+## A
+access-control-client-2-entitlements-use-case = { group = "com.backbase.android.retail.feature_filter", name = "accesscontrol-client-2-entitlements-use-case", version.ref = "access-control-client-2-entitlements-use-case" }
+authentication-journey = { group = "com.backbase.android.identity.journey", name = "authentication-journey", version.ref = "authentication-journey" }
+authentication-use-case = { group = "com.backbase.android.identity.journey", name = "identity-auth-client-1-authentication-use-case", version.ref = "authentication-journey" }
+
+## B
+business-journey-common = { group = "com.backbase.android.business.journey", name = "journey-common", version.ref = "business-journey-common" }
+
+## F
+feature-filter-use-case = { group = "com.backbase.android.retail.feature_filter", name = "feature-filter-use-case", version.ref = "feature-filter-use-case" }
+
+## G
+gen-access-control-client-2 = { group = "com.backbase.android.clients", name = "gen-accesscontrol-client-2", version.ref = "gen-access-control-client-2" }
+
+## M
+msdk = { group = "com.backbase.android.sdk", name = "backbase", version.ref = "msdk" }
+
+## R
+retail-journey-common = { group = "com.backbase.android.retail.journey", name = "journey-common", version.ref = "retail-journey-common" }
+
+## W
+workspaces-journey = { group = "com.backbase.android.business.journey", name = "workspaces-journey", version.ref = "workspaces-journey" }
+workspaces-use-case = { group = "com.backbase.android.business.journey.workspaces-journey", name = "accesscontrol-client-2-workspaces-use-case", version.ref = "workspaces-journey" }
+
+[bundles]
+## A
+# implementation(backbase.bundles.access.control.client)
+access-control-client = [
+    "access-control-client-2-entitlements-use-case",
+    "gen-access-control-client-2",
+]
+
+# implementation(backbase.bundles.authentication)
+authentication = [
+    "authentication-journey",
+    "authentication-use-case",
+]
+
+## C
+# implementation(backbase.bundles.common)
+common = [
+    "business-journey-common",
+    "retail-journey-common"
+]
+
+## F
+# implementation(backbase.bundles.feature.filter)
+feature-filter = [
+    "feature-filter-use-case",
+]
+
+## S
+# implementation(backbase.bundles.sdk)
+sdk = [
+    "msdk",
+]
+
+## W
+# implementation(backbase.bundles.workspaces)
+workspaces = [
+    "workspaces-journey",
+    "workspaces-use-case",
+]
+
+## U
+# implementation(backbase.bundles.ui)
+ui = [
+
+]
