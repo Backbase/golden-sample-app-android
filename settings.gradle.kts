@@ -46,3 +46,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Golden Sample App Android"
 include(":app")
+include(":accounts-journey")
