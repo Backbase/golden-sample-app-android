@@ -84,6 +84,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":accounts-journey"))
+
     implementation(platform(libs.kotlin.bom))
     implementation(libs.bundles.implementation)
     implementation(libs.bundles.navigation)

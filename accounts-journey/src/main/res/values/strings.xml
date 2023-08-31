@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="accountsAndTransactions.accounts.labels.title">My Accounts</string>
+    <string name="accountsAndTransactions.accounts.labels.section.title.currentAccounts">Current Accounts</string>
+    <string name="accountsAndTransactions.accounts.labels.section.title.savingsAccounts">Savings Accounts</string>
+</resources>

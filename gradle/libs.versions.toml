@@ -38,6 +38,9 @@ material = "1.9.0"
 ## N
 navigation-component = "2.6.0"
 
+## P
+poko = "0.13.1"
+
 ## T
 truth = "1.0.1"
 
@@ -101,6 +104,9 @@ kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref =
 
 ## N
 navigation-safe-args = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigation-component" }
+
+## P
+poko = { id = "dev.drewhamilton.poko", version.ref = "poko" }
 
 [bundles]
 ## A

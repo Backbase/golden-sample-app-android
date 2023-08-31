@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     id(libs.plugins.kotlin.parcelize.get().pluginId)
     id(libs.plugins.navigation.safe.args.get().pluginId)
+    alias(libs.plugins.poko)
     alias(libs.plugins.detekt)
 }
 
@@ -59,5 +60,6 @@ dependencies {
     detektPlugins(libs.detekt.formatter)
 
     // Backbase libraries
+    implementation(backbase.bundles.common)
     implementation(backbase.bundles.ui)
 }
