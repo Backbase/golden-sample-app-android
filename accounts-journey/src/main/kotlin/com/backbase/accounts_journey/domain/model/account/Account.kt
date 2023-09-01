@@ -1,4 +1,4 @@
-package com.backbase.accounts_journey.domain
+package com.backbase.accounts_journey.domain.model.account
 
 import dev.drewhamilton.poko.Poko
 
