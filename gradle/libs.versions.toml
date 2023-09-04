@@ -43,6 +43,7 @@ poko = "0.13.1"
 
 ## T
 truth = "1.0.1"
+androidx-appcompat-appcompat = "1.6.1"
 
 [libraries]
 ## C
@@ -86,6 +87,7 @@ navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx",
 
 ## T
 truth = { module = "com.google.truth:truth", version.ref = "truth" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidx-appcompat-appcompat" }
 
 [plugins]
 ##

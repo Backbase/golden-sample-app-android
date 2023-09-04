@@ -1,9 +1,9 @@
-package com.backbase.accounts_journey.domain.model.product
+package com.backbase.accounts_journey.domain.model.account
 
 import com.backbase.accounts_journey.domain.model.account.current.CurrentAccounts
 import com.backbase.accounts_journey.domain.model.account.savings.SavingsAccounts
 
-class ProductSummary private constructor(
+class AccountSummary private constructor(
     //val customProducts: List<CustomProducts>,
     //val aggregatedBalance: AggregatedBalance?,
     val currentAccounts: CurrentAccounts?,

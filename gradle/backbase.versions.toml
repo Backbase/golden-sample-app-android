@@ -6,11 +6,15 @@ authentication-journey = "5.1.0"
 ## B
 business-journey-common = "4.0.1"
 
+## C
+clients-common-coroutines = "1.0.0"
+
 ## F
 feature-filter-use-case = "3.0.0"
 
 ## G
 gen-access-control-client-2 = "2.4.0"
+gen-arrangements-client-2 = "1.2.0"
 
 ## M
 msdk = "9.9.0"
@@ -30,11 +34,15 @@ authentication-use-case = { group = "com.backbase.android.identity.journey", nam
 ## B
 business-journey-common = { group = "com.backbase.android.business.journey", name = "journey-common", version.ref = "business-journey-common" }
 
+## C
+clients-common-coroutines = { group = "com.backbase.android.clients", name = "clients-common-coroutines", version.ref = "clients-common-coroutines" }
+
 ## F
 feature-filter-use-case = { group = "com.backbase.android.retail.feature_filter", name = "feature-filter-use-case", version.ref = "feature-filter-use-case" }
 
 ## G
 gen-access-control-client-2 = { group = "com.backbase.android.clients", name = "gen-accesscontrol-client-2", version.ref = "gen-access-control-client-2" }
+gen-arrangements-client-2 = { group = "com.backbase.android.clients", name = "gen2-arrangement-client-2", version.ref = "gen-arrangements-client-2" }
 
 ## M
 msdk = { group = "com.backbase.android.sdk", name = "backbase", version.ref = "msdk" }
@@ -54,6 +62,11 @@ access-control-client = [
     "gen-access-control-client-2",
 ]
 
+# implementation(backbase.bundles.arrangements.client)
+arrangements-client = [
+    "gen-arrangements-client-2"
+]
+
 # implementation(backbase.bundles.authentication)
 authentication = [
     "authentication-journey",
@@ -64,7 +77,8 @@ authentication = [
 # implementation(backbase.bundles.common)
 common = [
     "business-journey-common",
-    "retail-journey-common"
+    "clients-common-coroutines",
+    "retail-journey-common",
 ]
 
 ## F

@@ -10,11 +10,11 @@ import com.backbase.accounts_journey.data.model.AccountSummaryResponse
 interface AccountsUseCase {
 
     /**
-     * Method that fetches a list of products/accounts.
+     * Method that fetches a list of accounts.
      *
      * @return an instance of [AccountSummaryResponse]
      */
-    suspend fun getProducts(): AccountSummaryResponse
+    suspend fun getAccounts(): AccountSummaryResponse
 
     /**
      * The status of the response of a request.
