@@ -1,6 +1,6 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
+    id("com.android.application")
+    kotlin("android")
     id(libs.plugins.kotlin.parcelize.get().pluginId)
     id(libs.plugins.navigation.safe.args.get().pluginId)
     alias(libs.plugins.detekt)
@@ -87,11 +87,11 @@ dependencies {
     implementation(project(":accounts-journey"))
 
     implementation(platform(libs.kotlin.bom))
-    implementation(libs.bundles.implementation)
+    implementation(libs.bundles.android.core)
     implementation(libs.bundles.navigation)
     implementation(libs.bundles.ui)
 
-    androidTestImplementation(libs.bundles.androidTest)
+    androidTestImplementation(libs.bundles.test.instrumented)
 
     testImplementation(libs.bundles.test)
 

@@ -54,6 +54,9 @@ retail-journey-common = { group = "com.backbase.android.retail.journey", name = 
 workspaces-journey = { group = "com.backbase.android.business.journey", name = "workspaces-journey", version.ref = "workspaces-journey" }
 workspaces-use-case = { group = "com.backbase.android.business.journey.workspaces-journey", name = "accesscontrol-client-2-workspaces-use-case", version.ref = "workspaces-journey" }
 
+[plugins]
+base-android-library-module = { id = "base-android-library-module" }
+
 [bundles]
 ## A
 # implementation(backbase.bundles.access.control.client)
