@@ -2,7 +2,6 @@ plugins {
     id(backbase.plugins.base.android.library.module.get().pluginId)
     id(libs.plugins.kotlin.parcelize.get().pluginId)
     id(libs.plugins.navigation.safe.args.get().pluginId)
-    alias(libs.plugins.poko)
     id(backbase.plugins.configured.detekt.get().pluginId)
 }
 

@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     kotlin("android")
+    id("dev.drewhamilton.poko")
 //    id("de.mannodermaus.android-junit5")
 }
 
