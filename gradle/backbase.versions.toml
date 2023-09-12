@@ -55,7 +55,11 @@ workspaces-journey = { group = "com.backbase.android.business.journey", name = "
 workspaces-use-case = { group = "com.backbase.android.business.journey.workspaces-journey", name = "accesscontrol-client-2-workspaces-use-case", version.ref = "workspaces-journey" }
 
 [plugins]
+## B
 base-android-library-module = { id = "base-android-library-module" }
+
+## C
+configured-detekt = { id = "configured-detekt" }
 
 [bundles]
 ## A

@@ -8,7 +8,7 @@ constraintlayout = "2.1.4"
 core-ktx = "1.8.0"
 
 ## D
-detekt = "1.23.0"
+detekt = "1.23.1"
 
 ## E
 espresso = "3.5.1"
@@ -52,7 +52,7 @@ core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
 
 ## D
 detekt = { group = "io.gitlab.arturbosch.detekt", name = "detekt-gradle-plugin", version.ref = "detekt" }
-detekt-formatter = { group = "io.gitlab.arturbosch.detekt", name = "detekt-formatting", version.ref = "detekt" }
+detekt-formatting = { group = "io.gitlab.arturbosch.detekt", name = "detekt-formatting", version.ref = "detekt" }
 
 ## E
 espresso = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }

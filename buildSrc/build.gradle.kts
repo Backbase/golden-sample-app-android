@@ -14,4 +14,6 @@ dependencies {
     implementation(libs.gradle)
     implementation(libs.gradle.api)
     implementation(libs.kotlin.gradle.plugin)
+
+    implementation(libs.detekt)
 }
