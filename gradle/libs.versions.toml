@@ -43,9 +43,11 @@ poko = "0.13.1"
 
 ## T
 truth = "1.0.1"
-androidx-appcompat-appcompat = "1.6.1"
 
 [libraries]
+## A
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+
 ## C
 constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
@@ -86,11 +88,11 @@ material = { module = "com.google.android.material:material", version.ref = "mat
 
 ## N
 navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation-component" }
+navigation-safe-args-plugin = { group = "androidx.navigation", name = "navigation-safe-args-gradle-plugin", version.ref = "navigation-component" }
 navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation-component" }
 
 ## T
 truth = { module = "com.google.truth:truth", version.ref = "truth" }
-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidx-appcompat-appcompat" }
 
 [plugins]
 ##

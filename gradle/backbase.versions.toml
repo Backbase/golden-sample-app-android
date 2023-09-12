@@ -61,6 +61,9 @@ base-android-library-module = { id = "base-android-library-module" }
 ## C
 configured-detekt = { id = "configured-detekt" }
 
+## D
+dependency-updates = { id = "dependency-updates" }
+
 [bundles]
 ## A
 # implementation(backbase.bundles.access.control.client)
