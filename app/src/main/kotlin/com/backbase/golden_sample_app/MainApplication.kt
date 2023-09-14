@@ -1,6 +1,7 @@
 package com.backbase.golden_sample_app
 
 import android.app.Application
+import com.backbase.accounts_journey.AccountsJourney
 import com.backbase.android.Backbase
 import com.backbase.android.business.journey.workspaces.WorkspacesJourney
 import com.backbase.android.core.utils.BBLogger
@@ -15,6 +16,7 @@ import com.backbase.android.model.ModelSource
 import com.backbase.android.utils.net.response.Response
 import com.backbase.golden_sample_app.authentication.CompositeSessionListener
 import com.backbase.golden_sample_app.common.TAG
+import com.backbase.golden_sample_app.koin.accountsModule
 import com.backbase.golden_sample_app.koin.appModule
 import com.backbase.golden_sample_app.koin.featureFilterModule
 import com.backbase.golden_sample_app.koin.identityAuthModule
@@ -98,7 +100,9 @@ class MainApplication : Application() {
                 appModule,
                 identityAuthModule(sessionEmitter),
                 workspacesModule,
-                WorkspacesJourney.create()
+                WorkspacesJourney.create(),
+                accountsModule,
+                AccountsJourney.create(),
             )
         )
     }

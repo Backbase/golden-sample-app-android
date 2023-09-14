@@ -46,5 +46,7 @@ class AccountListScreenConfiguration private constructor(
  * DSL function to create a [AccountListScreenConfiguration] in Kotlin.
  */
 @JvmSynthetic
-fun AccountListScreenConfiguration(initializer: AccountListScreenConfiguration.Builder.() -> Unit): AccountListScreenConfiguration =
+fun AccountListScreenConfiguration(
+    initializer: AccountListScreenConfiguration.Builder.() -> Unit
+): AccountListScreenConfiguration =
     AccountListScreenConfiguration.Builder().apply(initializer).build()

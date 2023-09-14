@@ -8,5 +8,4 @@ class SavingsAccounts private constructor(
     val name: String?,
 //    val aggregatedBalance: AggregatedBalance?,
     val additions: Map<String, String>?
-) {
-}
+)

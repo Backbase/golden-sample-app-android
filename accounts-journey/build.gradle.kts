@@ -7,6 +7,10 @@ plugins {
 
 android {
     namespace = "com.backbase.accounts_journey"
+
+    viewBinding {
+        enable = true
+    }
 }
 
 dependencies {

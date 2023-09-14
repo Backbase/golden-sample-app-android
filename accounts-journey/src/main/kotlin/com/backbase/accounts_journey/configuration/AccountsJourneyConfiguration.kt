@@ -17,9 +17,9 @@ class AccountsJourneyConfiguration internal constructor(
         @set:JvmSynthetic
         var accountListScreenConfiguration = AccountListScreenConfiguration { }
 
-        fun build() = AccountsJourneyConfiguration {
+        fun build() = AccountsJourneyConfiguration(
             accountListScreenConfiguration
-        }
+        )
     }
 }
 

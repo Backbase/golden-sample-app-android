@@ -74,6 +74,7 @@ android {
 
 dependencies {
     implementation(project(":accounts-journey"))
+    implementation(project(":accounts-use-case"))
 
     implementation(platform(libs.kotlin.bom))
     implementation(libs.bundles.android.core)
@@ -87,6 +88,7 @@ dependencies {
     // Backbase libraries
     implementation(backbase.bundles.authentication)
     implementation(backbase.bundles.access.control.client)
+    implementation(backbase.bundles.arrangements.client)
     implementation(backbase.bundles.common)
     implementation(backbase.bundles.feature.filter)
     implementation(backbase.bundles.sdk)

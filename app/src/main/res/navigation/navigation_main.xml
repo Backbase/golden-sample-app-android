@@ -45,7 +45,7 @@
             app:argType="string" />
         <action
             android:id="@+id/action_workspaces_selector_to_appNavHostFragment"
-            app:destination="@id/helloFragment"
+            app:destination="@id/accountListFragment"
             app:popUpTo="@id/workspaces_selector"
             app:popUpToInclusive="true">
             <argument
@@ -68,6 +68,14 @@
         android:name="com.backbase.golden_sample_app.presentation.HomeFragment"
         android:label="fragment_hello"
         tools:layout="@layout/fragment_home">
+        <argument
+            android:name="workspaceName"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/accountListFragment"
+        android:name="com.backbase.accounts_journey.presentation.ui.AccountListFragment"
+        android:label="AccountListFragment">
         <argument
             android:name="workspaceName"
             app:argType="string" />
