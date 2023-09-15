@@ -8,6 +8,7 @@ val viewModelModule = module {
     viewModel {
         AccountListViewModel(
             useCase = get(),
+            dispatchers = get()
         )
     }
 

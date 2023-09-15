@@ -8,5 +8,8 @@ import org.koin.dsl.module
 
 val accountsModule = module {
     single { Backbase.requireInstance().getClient(ProductSummaryApi::class.java) }
-    factory<AccountsUseCase> { AccountSummaryUseCaseImpl(get()) }
+    factory<AccountsUseCase> { AccountSummaryUseCaseImpl(
+        productSummaryApi = get(),
+        dispatchers = get(),
+    ) }
 }
