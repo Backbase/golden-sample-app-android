@@ -1,10 +1,9 @@
 package com.backbase.accounts_journey.data.usecase
 
-import com.backbase.accounts_journey.data.model.AccountSummaryResponse
+import com.backbase.accounts_journey.domain.model.account.AccountSummary
+import com.backbase.accounts_journey.common.Result
 
 /**
- * Created by Backbase R&D B.V. on 01/07/2020.
- *
  * The use cases for the accounts/products.
  */
 interface AccountsUseCase {
@@ -12,14 +11,7 @@ interface AccountsUseCase {
     /**
      * Method that fetches a list of accounts.
      *
-     * @return an instance of [AccountSummaryResponse]
+     * @return an instance of [AccountSummary]
      */
-    suspend fun getAccounts(): AccountSummaryResponse
-
-    /**
-     * The status of the response of a request.
-     */
-    enum class AccountsTransactionsResult {
-        FAILURE, SUCCESS
-    }
+    suspend fun getAccounts(): Result<AccountSummary>
 }
