@@ -6,7 +6,7 @@ import com.backbase.accounts_journey.common.NoInternetException
 import com.backbase.accounts_journey.common.NoResponseException
 import com.backbase.accounts_journey.common.Result
 import com.backbase.accounts_journey.data.usecase.AccountsUseCase
-import com.backbase.accounts_journey.domain.model.account.AccountSummary
+import com.backbase.accounts_journey.domain.model.product_summary.AccountSummary
 import com.backbase.accounts_use_case.mapper.AccountMapper
 import com.backbase.android.client.gen2.arrangementclient2.api.ProductSummaryApi
 import com.backbase.android.client.gen2.arrangementclient2.api.ProductSummaryApiParams
@@ -32,6 +32,7 @@ class AccountSummaryUseCaseImpl constructor(
                 println("successful call")
                 // TODO map to AccountSummary
                 val accountSummary = AccountSummary {
+//                    savingsAccounts = callResult.data.savingsAccounts
                     println(callResult.data)
                 }
                 Result.Success(accountSummary)

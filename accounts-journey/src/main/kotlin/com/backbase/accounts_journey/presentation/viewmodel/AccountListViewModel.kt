@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.backbase.accounts_journey.common.DispatcherProvider
 import com.backbase.accounts_journey.common.Result
-import com.backbase.accounts_journey.common.onSuccessValue
 import com.backbase.accounts_journey.data.usecase.AccountsUseCase
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -26,7 +25,6 @@ class AccountListViewModel(
                     }
 
                     is Result.Error -> {
-
                     }
                 }
             }
