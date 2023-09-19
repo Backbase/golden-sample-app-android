@@ -14,6 +14,8 @@ import com.backbase.android.client.gen2.arrangementclient2.model.SavingsAccount 
 import com.backbase.android.client.gen2.arrangementclient2.model.SavingsAccountProductKinds as SavingsAccountsDataModel
 import com.backbase.android.client.gen2.arrangementclient2.model.StateItem as StateItemDataModel
 import com.backbase.android.client.gen2.arrangementclient2.model.SummaryAggregatedBalance as AggregatedBalanceDataModel
+import com.backbase.android.client.gen2.arrangementclient2.model.TermDeposit as TermDepositDataModel
+import com.backbase.android.client.gen2.arrangementclient2.model.TermDepositProductKinds as TermDepositsDataModel
 import com.backbase.android.client.gen2.arrangementclient2.model.TimeUnit as TimeUnitDataModel
 import com.backbase.android.client.gen2.arrangementclient2.model.UserPreferences as UserPreferencesDataModel
 import com.backbase.accounts_journey.domain.model.product_summary.AccountSummary
@@ -32,6 +34,8 @@ import com.backbase.accounts_journey.domain.model.product_summary.custom_product
 import com.backbase.accounts_journey.domain.model.product_summary.custom_products.GeneralAccount
 import com.backbase.accounts_journey.domain.model.product_summary.savings_accounts.SavingsAccount
 import com.backbase.accounts_journey.domain.model.product_summary.savings_accounts.SavingsAccounts
+import com.backbase.accounts_journey.domain.model.product_summary.term_deposits.TermDeposit
+import com.backbase.accounts_journey.domain.model.product_summary.term_deposits.TermDeposits
 
 internal fun ProductSummaryDataModel.mapToDomain(): AccountSummary {
     val data = this@mapToDomain
@@ -39,6 +43,7 @@ internal fun ProductSummaryDataModel.mapToDomain(): AccountSummary {
         customProducts = data.customProductKinds.mapToDomain()
         currentAccounts = data.currentAccounts?.mapToDomain()
         savingsAccounts = data.savingsAccounts?.mapToDomain()
+        termDeposits = data.termDeposits?.mapToDomain()
     }
 }
 
@@ -51,36 +56,6 @@ internal fun List<CustomProductDataModel>.mapToDomain(): List<CustomProducts> {
             aggregatedBalance = it.aggregatedBalance?.mapToDomain()
             products = it.products.mapToDomain()
         }
-    }
-}
-
-@JvmName("CurrentAccountsMapper")
-internal fun CurrentAccountsDataModel.mapToDomain(): CurrentAccounts {
-    val data = this@mapToDomain
-    return CurrentAccounts {
-        products = data.products.mapToDomain()
-        name = data.name
-        aggregatedBalance = data.aggregatedBalance?.mapToDomain()
-        additions = data.additions
-    }
-}
-
-internal fun SavingsAccountsDataModel.mapToDomain(): SavingsAccounts {
-    val data = this@mapToDomain
-    return SavingsAccounts {
-        products = data.products.mapToDomain()
-        name = data.name
-        aggregatedBalance = data.aggregatedBalance?.mapToDomain()
-        additions = data.additions
-    }
-}
-
-internal fun AggregatedBalanceDataModel.mapToDomain(): AggregatedBalance {
-    val data = this@mapToDomain
-    return AggregatedBalance {
-        value = data.value
-        currency = data.currency
-        additions = data.additions
     }
 }
 
@@ -167,6 +142,235 @@ internal fun List<GeneralAccountDataModel>.mapToDomain(): List<GeneralAccount> {
             overdueSince = data.overdueSince
             externalAccountStatus = data.externalAccountStatus
         }
+    }
+}
+
+@JvmName("CurrentAccountsMapper")
+internal fun CurrentAccountsDataModel.mapToDomain(): CurrentAccounts {
+    val data = this@mapToDomain
+    return CurrentAccounts {
+        products = data.products.mapToDomain()
+        name = data.name
+        aggregatedBalance = data.aggregatedBalance?.mapToDomain()
+        additions = data.additions
+    }
+}
+
+@JvmName("CurrentAccountMapper")
+internal fun List<CurrentAccountDataModel>.mapToDomain(): List<CurrentAccount> {
+    return this.map { data ->
+        CurrentAccount {
+            debitCardItems = data.debitCardsItems.mapToDomain()
+            bookedBalance = data.bookedBalance
+            availableBalance = data.availableBalance
+            creditLimit = data.creditLimit
+            IBAN = data.IBAN
+            BBAN = data.BBAN
+            BIC = data.BIC
+            unMaskableAttributes = data.unmaskableAttributes?.mapToDomain()
+            currency = data.currency
+            urgentTransferAllowed = data.urgentTransferAllowed
+            bankBranchCode = data.bankBranchCode
+            bankBranchCode2 = null
+            accountInterestRate = data.accountInterestRate
+            valueDateBalance = data.valueDateBalance
+            creditLimitUsage = data.creditLimitUsage
+            creditLimitInterestRate = data.creditLimitInterestRate
+            creditLimitExpiryDate = data.creditLimitExpiryDate
+            accruedInterest = data.accruedInterest
+            accountHolderNames = data.accountHolderNames
+            startDate = data.startDate
+            minimumRequiredBalance = data.minimumRequiredBalance
+            accountHolderAddressLine1 = data.accountHolderAddressLine1
+            accountHolderAddressLine2 = data.accountHolderAddressLine2
+            accountHolderStreetName = data.accountHolderStreetName
+            town = data.town
+            postCode = data.postCode
+            countrySubDivision = data.countrySubDivision
+            creditAccount = data.creditAccount
+            debitAccount = data.debitAccount
+            accountHolderCountry = data.accountHolderCountry
+            id = data.id
+            name = data.name
+            externalTransferAllowed = data.externalTransferAllowed
+            crossCurrencyAllowed = data.crossCurrencyAllowed
+            productKindName = data.productKindName
+            productTypeName = data.productTypeName
+            bankAlias = data.bankAlias
+            sourceId = data.sourceId
+            accountOpeningDate = data.accountOpeningDate
+            lastUpdateDate = data.lastUpdateDate
+            userPreferences = data.userPreferences?.mapToDomain()
+            state = data.state?.mapToDomain()
+            parentId = data.parentId
+            subArrangements = data.subArrangements?.mapToDomain()
+            financialInstitutionId = data.financialInstitutionId
+            lastSyncDate = data.lastSyncDate
+            additions = data.additions
+            displayName = data.displayName
+            cardDetails = data.cardDetails?.mapToDomain()
+            interestDetails = data.interestDetails?.mapToDomain()
+            reservedAmount = data.reservedAmount
+            remainingPeriodicTransfers = data.remainingPeriodicTransfers
+            nextClosingDate = data.nextClosingDate
+            overdueSince = data.overdueSince
+            externalAccountStatus = data.externalAccountStatus
+        }
+    }
+}
+
+
+internal fun SavingsAccountsDataModel.mapToDomain(): SavingsAccounts {
+    val data = this@mapToDomain
+    return SavingsAccounts {
+        products = data.products.mapToDomain()
+        name = data.name
+        aggregatedBalance = data.aggregatedBalance?.mapToDomain()
+        additions = data.additions
+    }
+}
+
+@JvmName("SavingsAccountMapper")
+internal fun List<SavingsAccountDataModel>.mapToDomain(): List<SavingsAccount> {
+    return this.map { data ->
+        SavingsAccount {
+            bookedBalance = data.bookedBalance
+            availableBalance = data.availableBalance
+            accruedInterest = data.accruedInterest
+            IBAN = data.IBAN
+            BBAN = data.BBAN
+            BIC = data.BIC
+            unMaskableAttributes = data.unmaskableAttributes?.mapToDomain()
+            currency = data.currency
+            urgentTransferAllowed = data.urgentTransferAllowed
+            bankBranchCode = data.bankBranchCode
+            bankBranchCode2 = null
+            accountInterestRate = data.accountInterestRate
+            minimumRequiredBalance = data.minimumRequiredBalance
+            startDate = data.startDate
+            termUnit = data.termUnit?.mapToDomain()
+            termNumber = data.termNumber
+            maturityDate = data.maturityDate
+            maturityAmount = data.maturityAmount
+            autoRenewalIndicator = data.autoRenewalIndicator
+            interestPaymentFrequencyUnit = data.interestPaymentFrequencyUnit?.mapToDomain()
+            interestPaymentFrequencyNumber = data.interestPaymentFrequencyNumber
+            principalAmount = data.principalAmount
+            interestSettlementAccount = data.interestSettlementAccount
+            accountHolderNames = data.accountHolderNames
+            valueDateBalance = data.valueDateBalance
+            accountHolderAddressLine1 = data.accountHolderAddressLine1
+            accountHolderAddressLine2 = data.accountHolderAddressLine2
+            accountHolderStreetName = data.accountHolderStreetName
+            town = data.town
+            postCode = data.postCode
+            countrySubDivision = data.countrySubDivision
+            accountHolderCountry = data.accountHolderCountry
+            creditAccount = data.creditAccount
+            debitAccount = data.debitAccount
+            id = data.id
+            name = data.name
+            externalTransferAllowed = data.externalTransferAllowed
+            crossCurrencyAllowed = data.crossCurrencyAllowed
+            productKindName = data.productKindName
+            productTypeName = data.productTypeName
+            bankAlias = data.bankAlias
+            sourceId = data.sourceId
+            accountOpeningDate = data.accountOpeningDate
+            lastUpdateDate = data.lastUpdateDate
+            userPreferences = data.userPreferences?.mapToDomain()
+            state = data.state?.mapToDomain()
+            parentId = data.parentId
+            subArrangements = data.subArrangements?.mapToDomain()
+            financialInstitutionId = data.financialInstitutionId
+            lastSyncDate = data.lastSyncDate
+            additions = data.additions
+            displayName = data.displayName
+            cardDetails = data.cardDetails?.mapToDomain()
+            interestDetails = data.interestDetails?.mapToDomain()
+            reservedAmount = data.reservedAmount
+            remainingPeriodicTransfers = data.remainingPeriodicTransfers
+            nextClosingDate = data.nextClosingDate
+            overdueSince = data.overdueSince
+            externalAccountStatus = data.externalAccountStatus
+        }
+    }
+}
+
+internal fun TermDepositsDataModel.mapToDomain(): TermDeposits {
+    val data = this@mapToDomain
+    return TermDeposits {
+        products = data.products.mapToDomain()
+        name = data.name
+        aggregatedBalance = data.aggregatedBalance?.mapToDomain()
+        additions = data.additions
+    }
+}
+
+@JvmName("TermDepositMapper")
+internal fun List<TermDepositDataModel>.mapToDomain(): List<TermDeposit> {
+    return this.map { data ->
+        TermDeposit {
+            bookedBalance = data.bookedBalance
+            principalAmount = data.principalAmount
+            accruedInterest = data.accruedInterest
+            IBAN = data.IBAN
+            BBAN = data.BBAN
+            currency = data.currency
+            urgentTransferAllowed = data.urgentTransferAllowed
+            productNumber = data.productNumber
+            accountInterestRate = data.accountInterestRate
+            startDate = data.startDate
+            termUnit = data.termUnit?.mapToDomain()
+            termNumber = data.termNumber
+            maturityDate = data.maturityDate
+            maturityAmount = data.maturityAmount
+            autoRenewalIndicator = data.autoRenewalIndicator
+            interestPaymentFrequencyUnit = data.interestPaymentFrequencyUnit?.mapToDomain()
+            interestPaymentFrequencyNumber = data.interestPaymentFrequencyNumber
+            interestSettlementAccount = data.interestSettlementAccount
+            valueDateBalance = data.valueDateBalance
+            accountHolderNames = data.accountHolderNames
+            outstandingPrincipalAmount = data.outstandingPrincipalAmount
+            creditAccount = data.creditAccount
+            debitAccount = data.debitAccount
+            minimumRequiredBalance = data.minimumRequiredBalance
+            id = data.id
+            name = data.name
+            externalTransferAllowed = data.externalTransferAllowed
+            crossCurrencyAllowed = data.crossCurrencyAllowed
+            productKindName = data.productKindName
+            productTypeName = data.productTypeName
+            bankAlias = data.bankAlias
+            sourceId = data.sourceId
+            accountOpeningDate = data.accountOpeningDate
+            lastUpdateDate = data.lastUpdateDate
+            userPreferences = data.userPreferences?.mapToDomain()
+            state = data.state?.mapToDomain()
+            parentId = data.parentId
+            subArrangements = data.subArrangements?.mapToDomain()
+            financialInstitutionId = data.financialInstitutionId
+            lastSyncDate = data.lastSyncDate
+            additions = data.additions
+            displayName = data.displayName
+            cardDetails = data.cardDetails?.mapToDomain()
+            interestDetails = data.interestDetails?.mapToDomain()
+            reservedAmount = data.reservedAmount
+            remainingPeriodicTransfers = data.remainingPeriodicTransfers
+            nextClosingDate = data.nextClosingDate
+            overdueSince = data.overdueSince
+            externalAccountStatus = data.externalAccountStatus
+            bankBranchCode2 = data.bankBranchCode2
+        }
+    }
+}
+
+internal fun AggregatedBalanceDataModel.mapToDomain(): AggregatedBalance {
+    val data = this@mapToDomain
+    return AggregatedBalance {
+        value = data.value
+        currency = data.currency
+        additions = data.additions
     }
 }
 
@@ -285,132 +489,5 @@ internal fun InterestDetailsDataModel.mapToDomain(): InterestDetails {
     }
 }
 
-@JvmName("CurrentAccountMapper")
-internal fun List<CurrentAccountDataModel>.mapToDomain(): List<CurrentAccount> {
-    return this.map { data ->
-        CurrentAccount {
-            debitCardItems = data.debitCardsItems.mapToDomain()
-            bookedBalance = data.bookedBalance
-            availableBalance = data.availableBalance
-            creditLimit = data.creditLimit
-            IBAN = data.IBAN
-            BBAN = data.BBAN
-            BIC = data.BIC
-            unMaskableAttributes = data.unmaskableAttributes?.mapToDomain()
-            currency = data.currency
-            urgentTransferAllowed = data.urgentTransferAllowed
-            bankBranchCode = data.bankBranchCode
-            bankBranchCode2 = null
-            accountInterestRate = data.accountInterestRate
-            valueDateBalance = data.valueDateBalance
-            creditLimitUsage = data.creditLimitUsage
-            creditLimitInterestRate = data.creditLimitInterestRate
-            creditLimitExpiryDate = data.creditLimitExpiryDate
-            accruedInterest = data.accruedInterest
-            accountHolderNames = data.accountHolderNames
-            startDate = data.startDate
-            minimumRequiredBalance = data.minimumRequiredBalance
-            accountHolderAddressLine1 = data.accountHolderAddressLine1
-            accountHolderAddressLine2 = data.accountHolderAddressLine2
-            accountHolderStreetName = data.accountHolderStreetName
-            town = data.town
-            postCode = data.postCode
-            countrySubDivision = data.countrySubDivision
-            creditAccount = data.creditAccount
-            debitAccount = data.debitAccount
-            accountHolderCountry = data.accountHolderCountry
-            id = data.id
-            name = data.name
-            externalTransferAllowed = data.externalTransferAllowed
-            crossCurrencyAllowed = data.crossCurrencyAllowed
-            productKindName = data.productKindName
-            productTypeName = data.productTypeName
-            bankAlias = data.bankAlias
-            sourceId = data.sourceId
-            accountOpeningDate = data.accountOpeningDate
-            lastUpdateDate = data.lastUpdateDate
-            userPreferences = data.userPreferences?.mapToDomain()
-            state = data.state?.mapToDomain()
-            parentId = data.parentId
-            subArrangements = data.subArrangements?.mapToDomain()
-            financialInstitutionId = data.financialInstitutionId
-            lastSyncDate = data.lastSyncDate
-            additions = data.additions
-            displayName = data.displayName
-            cardDetails = data.cardDetails?.mapToDomain()
-            interestDetails = data.interestDetails?.mapToDomain()
-            reservedAmount = data.reservedAmount
-            remainingPeriodicTransfers = data.remainingPeriodicTransfers
-            nextClosingDate = data.nextClosingDate
-            overdueSince = data.overdueSince
-            externalAccountStatus = data.externalAccountStatus
-        }
-    }
-}
 
-@JvmName("SavingsAccountMapper")
-internal fun List<SavingsAccountDataModel>.mapToDomain(): List<SavingsAccount> {
-    return this.map { data ->
-        SavingsAccount {
-            bookedBalance = data.bookedBalance
-            availableBalance = data.availableBalance
-            accruedInterest = data.accruedInterest
-            IBAN = data.IBAN
-            BBAN = data.BBAN
-            BIC = data.BIC
-            unMaskableAttributes = data.unmaskableAttributes?.mapToDomain()
-            currency = data.currency
-            urgentTransferAllowed = data.urgentTransferAllowed
-            bankBranchCode = data.bankBranchCode
-            bankBranchCode2 = null
-            accountInterestRate = data.accountInterestRate
-            minimumRequiredBalance = data.minimumRequiredBalance
-            startDate = data.startDate
-            termUnit = data.termUnit?.mapToDomain()
-            termNumber = data.termNumber
-            maturityDate = data.maturityDate
-            maturityAmount = data.maturityAmount
-            autoRenewalIndicator = data.autoRenewalIndicator
-            interestPaymentFrequencyUnit = data.interestPaymentFrequencyUnit?.mapToDomain()
-            interestPaymentFrequencyNumber = data.interestPaymentFrequencyNumber
-            principalAmount = data.principalAmount
-            interestSettlementAccount = data.interestSettlementAccount
-            accountHolderNames = data.accountHolderNames
-            valueDateBalance = data.valueDateBalance
-            accountHolderAddressLine1 = data.accountHolderAddressLine1
-            accountHolderAddressLine2 = data.accountHolderAddressLine2
-            accountHolderStreetName = data.accountHolderStreetName
-            town = data.town
-            postCode = data.postCode
-            countrySubDivision = data.countrySubDivision
-            accountHolderCountry = data.accountHolderCountry
-            creditAccount = data.creditAccount
-            debitAccount = data.debitAccount
-            id = data.id
-            name = data.name
-            externalTransferAllowed = data.externalTransferAllowed
-            crossCurrencyAllowed = data.crossCurrencyAllowed
-            productKindName = data.productKindName
-            productTypeName = data.productTypeName
-            bankAlias = data.bankAlias
-            sourceId = data.sourceId
-            accountOpeningDate = data.accountOpeningDate
-            lastUpdateDate = data.lastUpdateDate
-            userPreferences = data.userPreferences?.mapToDomain()
-            state = data.state?.mapToDomain()
-            parentId = data.parentId
-            subArrangements = data.subArrangements?.mapToDomain()
-            financialInstitutionId = data.financialInstitutionId
-            lastSyncDate = data.lastSyncDate
-            additions = data.additions
-            displayName = data.displayName
-            cardDetails = data.cardDetails?.mapToDomain()
-            interestDetails = data.interestDetails?.mapToDomain()
-            reservedAmount = data.reservedAmount
-            remainingPeriodicTransfers = data.remainingPeriodicTransfers
-            nextClosingDate = data.nextClosingDate
-            overdueSince = data.overdueSince
-            externalAccountStatus = data.externalAccountStatus
-        }
-    }
-}
+
