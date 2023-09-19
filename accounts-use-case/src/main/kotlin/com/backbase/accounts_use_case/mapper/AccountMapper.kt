@@ -14,6 +14,8 @@ import com.backbase.android.client.gen2.arrangementclient2.model.GeneralAccount 
 import com.backbase.android.client.gen2.arrangementclient2.model.InterestDetails as InterestDetailsDataModel
 import com.backbase.android.client.gen2.arrangementclient2.model.Loan as LoanDataModel
 import com.backbase.android.client.gen2.arrangementclient2.model.LoanProductKinds as LoansDataModel
+import com.backbase.android.client.gen2.arrangementclient2.model.InvestmentAccount as InvestmentAccountDataModel
+import com.backbase.android.client.gen2.arrangementclient2.model.InvestmentAccountProductKinds as InvestmentAccountsDataModel
 import com.backbase.android.client.gen2.arrangementclient2.model.MaskableAttribute as MaskableAttributeDataModel
 import com.backbase.android.client.gen2.arrangementclient2.model.ProductSummary as ProductSummaryDataModel
 import com.backbase.android.client.gen2.arrangementclient2.model.SavingsAccount as SavingsAccountDataModel
@@ -42,6 +44,8 @@ import com.backbase.accounts_journey.domain.model.product_summary.custom_product
 import com.backbase.accounts_journey.domain.model.product_summary.custom_products.GeneralAccount
 import com.backbase.accounts_journey.domain.model.product_summary.debit_card.DebitCard
 import com.backbase.accounts_journey.domain.model.product_summary.debit_card.DebitCards
+import com.backbase.accounts_journey.domain.model.product_summary.investment_accounts.InvestmentAccount
+import com.backbase.accounts_journey.domain.model.product_summary.investment_accounts.InvestmentAccounts
 import com.backbase.accounts_journey.domain.model.product_summary.loan.Loan
 import com.backbase.accounts_journey.domain.model.product_summary.loan.Loans
 import com.backbase.accounts_journey.domain.model.product_summary.savings_accounts.SavingsAccount
@@ -59,6 +63,7 @@ internal fun ProductSummaryDataModel.mapToDomain(): AccountSummary {
         loans = data.loans?.mapToDomain()
         creditCards = data.creditCards?.mapToDomain()
         debitCards = data.debitCards?.mapToDomain()
+        investmentAccounts = data.investmentAccounts?.mapToDomain()
     }
 }
 
@@ -563,6 +568,55 @@ internal fun AggregatedBalanceDataModel.mapToDomain(): AggregatedBalance {
         value = data.value
         currency = data.currency
         additions = data.additions
+    }
+}
+
+internal fun InvestmentAccountsDataModel.mapToDomain(): InvestmentAccounts {
+    val data = this@mapToDomain
+    return InvestmentAccounts {
+        products = data.products.mapToDomain()
+        name = data.name
+        aggregatedBalance = data.aggregatedBalance?.mapToDomain()
+        additions = data.additions
+    }
+}
+
+@JvmName("InvestmentAccountMapper")
+internal fun List<InvestmentAccountDataModel>.mapToDomain(): List<InvestmentAccount> {
+    return this.map { data ->
+        InvestmentAccount {
+            currentInvestmentValue = data.currentInvestmentValue
+            currency = data.currency
+            urgentTransferAllowed = data.urgentTransferAllowed
+            productNumber = data.productNumber
+            IBAN = data.IBAN
+            BBAN = data.BBAN
+            id = data.id
+            name = data.name
+            externalTransferAllowed = data.externalTransferAllowed
+            crossCurrencyAllowed = data.crossCurrencyAllowed
+            productKindName = data.productKindName
+            productTypeName = data.productTypeName
+            bankAlias = data.bankAlias
+            sourceId = data.sourceId
+            accountOpeningDate = data.accountOpeningDate
+            lastUpdateDate = data.lastUpdateDate
+            userPreferences = data.userPreferences?.mapToDomain()
+            state = data.state?.mapToDomain()
+            parentId = data.parentId
+            subArrangements = data.subArrangements?.mapToDomain()
+            financialInstitutionId = data.financialInstitutionId
+            lastSyncDate = data.lastSyncDate
+            additions = data.additions
+            displayName = data.displayName
+            cardDetails = data.cardDetails?.mapToDomain()
+            interestDetails = data.interestDetails?.mapToDomain()
+            reservedAmount = data.reservedAmount
+            remainingPeriodicTransfers = data.remainingPeriodicTransfers
+            nextClosingDate = data.nextClosingDate
+            overdueSince = data.overdueSince
+            externalAccountStatus = data.externalAccountStatus
+        }
     }
 }
 
