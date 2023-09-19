@@ -19,9 +19,16 @@ class AccountListViewModel(
                 when (val result = useCase.getAccounts()) {
                     is Result.Success -> {
                         val domain = result.value
-                        println(domain.savingsAccounts)
+                        println(domain.customProducts)
                         println(domain.currentAccounts)
-                        // TODO map to UI model
+                        println(domain.savingsAccounts)
+                        println(domain.termDeposits)
+                        println(domain.loans)
+                        println(domain.creditCards)
+                        println(domain.debitCards)
+                        println(domain.investmentAccounts)
+                        println(domain.aggregatedBalance)
+                        println(domain.additions)
                     }
 
                     is Result.Error -> {

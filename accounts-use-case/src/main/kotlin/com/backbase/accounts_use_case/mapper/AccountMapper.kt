@@ -64,6 +64,8 @@ internal fun ProductSummaryDataModel.mapToDomain(): AccountSummary {
         creditCards = data.creditCards?.mapToDomain()
         debitCards = data.debitCards?.mapToDomain()
         investmentAccounts = data.investmentAccounts?.mapToDomain()
+        aggregatedBalance = data.aggregatedBalance?.mapToDomain()
+        additions = data.additions
     }
 }
 
