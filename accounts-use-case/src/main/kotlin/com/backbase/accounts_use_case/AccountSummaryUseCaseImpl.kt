@@ -7,7 +7,7 @@ import com.backbase.accounts_journey.common.NoResponseException
 import com.backbase.accounts_journey.common.Result
 import com.backbase.accounts_journey.data.usecase.AccountsUseCase
 import com.backbase.accounts_journey.domain.model.product_summary.AccountSummary
-import com.backbase.accounts_use_case.mapper.AccountMapper
+import com.backbase.accounts_use_case.mapper.mapToDomain
 import com.backbase.android.client.gen2.arrangementclient2.api.ProductSummaryApi
 import com.backbase.android.client.gen2.arrangementclient2.api.ProductSummaryApiParams
 import com.backbase.android.clients.common.CallResult
@@ -16,7 +16,6 @@ import kotlinx.coroutines.withContext
 
 class AccountSummaryUseCaseImpl constructor(
     private val productSummaryApi: ProductSummaryApi,
-    private val mapper: AccountMapper,
     private val dispatchers: DispatcherProvider,
 ) : AccountsUseCase {
 
@@ -29,12 +28,8 @@ class AccountSummaryUseCaseImpl constructor(
 
         return when (callResult) {
             is CallResult.Success -> {
-                println("successful call")
-                // TODO map to AccountSummary
-                val accountSummary = AccountSummary {
-//                    savingsAccounts = callResult.data.savingsAccounts
-                    println(callResult.data)
-                }
+                val dataModel = callResult.data
+                val accountSummary = dataModel.mapToDomain()
                 Result.Success(accountSummary)
             }
 
