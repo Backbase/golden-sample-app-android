@@ -8,6 +8,8 @@ import com.backbase.android.client.gen2.arrangementclient2.model.CurrentAccount 
 import com.backbase.android.client.gen2.arrangementclient2.model.CurrentAccountProductKinds as CurrentAccountsDataModel
 import com.backbase.android.client.gen2.arrangementclient2.model.CustomProductKind as CustomProductDataModel
 import com.backbase.android.client.gen2.arrangementclient2.model.DebitCardItem as DebitCardItemDataModel
+import com.backbase.android.client.gen2.arrangementclient2.model.DebitCard as DebitCardDataModel
+import com.backbase.android.client.gen2.arrangementclient2.model.DebitCardProductKinds as DebitCardsDataModel
 import com.backbase.android.client.gen2.arrangementclient2.model.GeneralAccount as GeneralAccountDataModel
 import com.backbase.android.client.gen2.arrangementclient2.model.InterestDetails as InterestDetailsDataModel
 import com.backbase.android.client.gen2.arrangementclient2.model.Loan as LoanDataModel
@@ -38,6 +40,8 @@ import com.backbase.accounts_journey.domain.model.product_summary.current_accoun
 import com.backbase.accounts_journey.domain.model.product_summary.current_accounts.CurrentAccounts
 import com.backbase.accounts_journey.domain.model.product_summary.custom_products.CustomProducts
 import com.backbase.accounts_journey.domain.model.product_summary.custom_products.GeneralAccount
+import com.backbase.accounts_journey.domain.model.product_summary.debit_card.DebitCard
+import com.backbase.accounts_journey.domain.model.product_summary.debit_card.DebitCards
 import com.backbase.accounts_journey.domain.model.product_summary.loan.Loan
 import com.backbase.accounts_journey.domain.model.product_summary.loan.Loans
 import com.backbase.accounts_journey.domain.model.product_summary.savings_accounts.SavingsAccount
@@ -54,6 +58,7 @@ internal fun ProductSummaryDataModel.mapToDomain(): AccountSummary {
         termDeposits = data.termDeposits?.mapToDomain()
         loans = data.loans?.mapToDomain()
         creditCards = data.creditCards?.mapToDomain()
+        debitCards = data.debitCards?.mapToDomain()
     }
 }
 
@@ -472,6 +477,57 @@ internal fun List<CreditCardDataModel>.mapToDomain(): List<CreditCard> {
             creditLimitUsage = data.creditLimitUsage
             creditLimitInterestRate = data.creditLimitInterestRate
             accruedInterest = data.accruedInterest
+            id = data.id
+            name = data.name
+            externalTransferAllowed = data.externalTransferAllowed
+            crossCurrencyAllowed = data.crossCurrencyAllowed
+            productKindName = data.productKindName
+            productTypeName = data.productTypeName
+            bankAlias = data.bankAlias
+            sourceId = data.sourceId
+            accountOpeningDate = data.accountOpeningDate
+            lastUpdateDate = data.lastUpdateDate
+            userPreferences = data.userPreferences?.mapToDomain()
+            state = data.state?.mapToDomain()
+            parentId = data.parentId
+            subArrangements = data.subArrangements?.mapToDomain()
+            financialInstitutionId = data.financialInstitutionId
+            lastSyncDate = data.lastSyncDate
+            additions = data.additions
+            displayName = data.displayName
+            cardDetails = data.cardDetails?.mapToDomain()
+            interestDetails = data.interestDetails?.mapToDomain()
+            reservedAmount = data.reservedAmount
+            remainingPeriodicTransfers = data.remainingPeriodicTransfers
+            nextClosingDate = data.nextClosingDate
+            overdueSince = data.overdueSince
+            externalAccountStatus = data.externalAccountStatus
+        }
+    }
+}
+
+internal fun DebitCardsDataModel.mapToDomain(): DebitCards {
+    val data = this@mapToDomain
+    return DebitCards {
+        products = data.products.mapToDomain()
+        name = data.name
+        aggregatedBalance = data.aggregatedBalance?.mapToDomain()
+        additions = data.additions
+    }
+}
+
+@JvmName("DebitCardMapper")
+internal fun List<DebitCardDataModel>.mapToDomain(): List<DebitCard> {
+    return this.map { data ->
+        DebitCard {
+            debitCardsItems = data.debitCardsItems.mapToDomain()
+            number = data.number
+            urgentTransferAllowed = data.urgentTransferAllowed
+            cardNumber = data.cardNumber
+            accountInterestRate = data.accountInterestRate
+            accountHolderNames = data.accountHolderNames
+            startDate = data.startDate
+            validThru = data.validThru
             id = data.id
             name = data.name
             externalTransferAllowed = data.externalTransferAllowed
