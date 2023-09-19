@@ -8,6 +8,8 @@ import com.backbase.android.client.gen2.arrangementclient2.model.CustomProductKi
 import com.backbase.android.client.gen2.arrangementclient2.model.DebitCardItem as DebitCardItemDataModel
 import com.backbase.android.client.gen2.arrangementclient2.model.GeneralAccount as GeneralAccountDataModel
 import com.backbase.android.client.gen2.arrangementclient2.model.InterestDetails as InterestDetailsDataModel
+import com.backbase.android.client.gen2.arrangementclient2.model.Loan as LoanDataModel
+import com.backbase.android.client.gen2.arrangementclient2.model.LoanProductKinds as LoansDataModel
 import com.backbase.android.client.gen2.arrangementclient2.model.MaskableAttribute as MaskableAttributeDataModel
 import com.backbase.android.client.gen2.arrangementclient2.model.ProductSummary as ProductSummaryDataModel
 import com.backbase.android.client.gen2.arrangementclient2.model.SavingsAccount as SavingsAccountDataModel
@@ -32,6 +34,8 @@ import com.backbase.accounts_journey.domain.model.product_summary.current_accoun
 import com.backbase.accounts_journey.domain.model.product_summary.current_accounts.CurrentAccounts
 import com.backbase.accounts_journey.domain.model.product_summary.custom_products.CustomProducts
 import com.backbase.accounts_journey.domain.model.product_summary.custom_products.GeneralAccount
+import com.backbase.accounts_journey.domain.model.product_summary.loan.Loan
+import com.backbase.accounts_journey.domain.model.product_summary.loan.Loans
 import com.backbase.accounts_journey.domain.model.product_summary.savings_accounts.SavingsAccount
 import com.backbase.accounts_journey.domain.model.product_summary.savings_accounts.SavingsAccounts
 import com.backbase.accounts_journey.domain.model.product_summary.term_deposits.TermDeposit
@@ -44,6 +48,7 @@ internal fun ProductSummaryDataModel.mapToDomain(): AccountSummary {
         currentAccounts = data.currentAccounts?.mapToDomain()
         savingsAccounts = data.savingsAccounts?.mapToDomain()
         termDeposits = data.termDeposits?.mapToDomain()
+        loans = data.loans?.mapToDomain()
     }
 }
 
@@ -219,7 +224,6 @@ internal fun List<CurrentAccountDataModel>.mapToDomain(): List<CurrentAccount> {
     }
 }
 
-
 internal fun SavingsAccountsDataModel.mapToDomain(): SavingsAccounts {
     val data = this@mapToDomain
     return SavingsAccounts {
@@ -335,6 +339,70 @@ internal fun List<TermDepositDataModel>.mapToDomain(): List<TermDeposit> {
             creditAccount = data.creditAccount
             debitAccount = data.debitAccount
             minimumRequiredBalance = data.minimumRequiredBalance
+            id = data.id
+            name = data.name
+            externalTransferAllowed = data.externalTransferAllowed
+            crossCurrencyAllowed = data.crossCurrencyAllowed
+            productKindName = data.productKindName
+            productTypeName = data.productTypeName
+            bankAlias = data.bankAlias
+            sourceId = data.sourceId
+            accountOpeningDate = data.accountOpeningDate
+            lastUpdateDate = data.lastUpdateDate
+            userPreferences = data.userPreferences?.mapToDomain()
+            state = data.state?.mapToDomain()
+            parentId = data.parentId
+            subArrangements = data.subArrangements?.mapToDomain()
+            financialInstitutionId = data.financialInstitutionId
+            lastSyncDate = data.lastSyncDate
+            additions = data.additions
+            displayName = data.displayName
+            cardDetails = data.cardDetails?.mapToDomain()
+            interestDetails = data.interestDetails?.mapToDomain()
+            reservedAmount = data.reservedAmount
+            remainingPeriodicTransfers = data.remainingPeriodicTransfers
+            nextClosingDate = data.nextClosingDate
+            overdueSince = data.overdueSince
+            externalAccountStatus = data.externalAccountStatus
+            bankBranchCode2 = data.bankBranchCode2
+        }
+    }
+}
+
+internal fun LoansDataModel.mapToDomain(): Loans {
+    val data = this@mapToDomain
+    return Loans {
+        products = data.products?.mapToDomain()
+        displayName = data.name
+        aggregatedBalance = data.aggregatedBalance?.mapToDomain()
+        additions = data.additions
+    }
+}
+
+@JvmName("LoanMapper")
+internal fun List<LoanDataModel>.mapToDomain(): List<Loan> {
+    return this.map { data ->
+        Loan {
+            bookedBalance = data.bookedBalance
+            principalAmount = data.principalAmount
+            currency = data.currency
+            urgentTransferAllowed = data.urgentTransferAllowed
+            productNumber = data.productNumber
+            accountInterestRate = data.accountInterestRate
+            termUnit = data.termUnit?.mapToDomain()
+            termNumber = data.termNumber
+            outstandingPrincipalAmount = data.outstandingPrincipalAmount
+            monthlyInstalmentAmount = data.monthlyInstalmentAmount
+            amountInArrear = data.amountInArrear
+            interestSettlementAccount = data.interestSettlementAccount
+            accruedInterest = data.accruedInterest
+            accountHolderNames = data.accountHolderNames
+            maturityDate = data.maturityDate
+            valueDateBalance = data.valueDateBalance
+            creditAccount = data.creditAccount
+            debitAccount = data.debitAccount
+            IBAN = data.IBAN
+            BBAN = data.BBAN
             id = data.id
             name = data.name
             externalTransferAllowed = data.externalTransferAllowed
