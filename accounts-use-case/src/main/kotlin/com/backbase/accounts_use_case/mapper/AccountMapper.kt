@@ -2,6 +2,8 @@ package com.backbase.accounts_use_case.mapper
 
 import com.backbase.android.client.gen2.arrangementclient2.model.BaseProduct as BaseProductDataModel
 import com.backbase.android.client.gen2.arrangementclient2.model.CardDetails as CardDetailsDataModel
+import com.backbase.android.client.gen2.arrangementclient2.model.CurrentAccount as CurrentAccountDataModel
+import com.backbase.android.client.gen2.arrangementclient2.model.CurrentAccountProductKinds as CurrentAccountsDataModel
 import com.backbase.android.client.gen2.arrangementclient2.model.CustomProductKind as CustomProductDataModel
 import com.backbase.android.client.gen2.arrangementclient2.model.DebitCardItem as DebitCardItemDataModel
 import com.backbase.android.client.gen2.arrangementclient2.model.GeneralAccount as GeneralAccountDataModel
@@ -22,6 +24,8 @@ import com.backbase.accounts_journey.domain.model.product_summary.common.DebitCa
 import com.backbase.accounts_journey.domain.model.product_summary.common.InterestDetails
 import com.backbase.accounts_journey.domain.model.product_summary.common.ProductState
 import com.backbase.accounts_journey.domain.model.product_summary.common.TimeUnit
+import com.backbase.accounts_journey.domain.model.product_summary.current_accounts.CurrentAccount
+import com.backbase.accounts_journey.domain.model.product_summary.current_accounts.CurrentAccounts
 import com.backbase.accounts_journey.domain.model.product_summary.custom_products.CustomProducts
 import com.backbase.accounts_journey.domain.model.product_summary.custom_products.GeneralAccount
 
@@ -29,6 +33,7 @@ internal fun ProductSummaryDataModel.mapToDomain(): AccountSummary {
     val data = this@mapToDomain
     return AccountSummary {
         customProducts = data.customProductKinds.mapToDomain()
+        currentAccounts = data.currentAccounts?.mapToDomain()
     }
 }
 
@@ -41,6 +46,17 @@ internal fun List<CustomProductDataModel>.mapToDomain(): List<CustomProducts> {
             aggregatedBalance = it.aggregatedBalance?.mapToDomain()
             products = it.products.mapToDomain()
         }
+    }
+}
+
+@JvmName("CurrentAccountsMapper")
+internal fun CurrentAccountsDataModel.mapToDomain(): CurrentAccounts {
+    val data = this@mapToDomain
+    return CurrentAccounts {
+        products = data.products.mapToDomain()
+        name = data.name
+        aggregatedBalance = data.aggregatedBalance?.mapToDomain()
+        additions = data.additions
     }
 }
 
@@ -251,5 +267,68 @@ internal fun InterestDetailsDataModel.mapToDomain(): InterestDetails {
         cashAdvanceInterestRate = data.cashAdvanceInterestRate
         penaltyInterestRate = data.penaltyInterestRate
         additions = data.additions
+    }
+}
+
+@JvmName("CurrentAccountMapper")
+internal fun List<CurrentAccountDataModel>.mapToDomain(): List<CurrentAccount> {
+    return this.map {data ->
+        CurrentAccount {
+            debitCardItems = data.debitCardsItems.mapToDomain()
+            bookedBalance = data.bookedBalance
+            availableBalance = data.availableBalance
+            creditLimit = data.creditLimit
+            IBAN = data.IBAN
+            BBAN = data.BBAN
+            BIC = data.BIC
+            unMaskableAttributes = data.unmaskableAttributes?.mapToDomain()
+            currency = data.currency
+            urgentTransferAllowed = data.urgentTransferAllowed
+            bankBranchCode = data.bankBranchCode
+            bankBranchCode2 = null
+            accountInterestRate = data.accountInterestRate
+            valueDateBalance = data.valueDateBalance
+            creditLimitUsage = data.creditLimitUsage
+            creditLimitInterestRate = data.creditLimitInterestRate
+            creditLimitExpiryDate = data.creditLimitExpiryDate
+            accruedInterest = data.accruedInterest
+            accountHolderNames = data.accountHolderNames
+            startDate = data.startDate
+            minimumRequiredBalance = data.minimumRequiredBalance
+            accountHolderAddressLine1 = data.accountHolderAddressLine1
+            accountHolderAddressLine2 = data.accountHolderAddressLine2
+            accountHolderStreetName = data.accountHolderStreetName
+            town = data.town
+            postCode = data.postCode
+            countrySubDivision = data.countrySubDivision
+            creditAccount = data.creditAccount
+            debitAccount = data.debitAccount
+            accountHolderCountry = data.accountHolderCountry
+            id = data.id
+            name = data.name
+            externalTransferAllowed = data.externalTransferAllowed
+            crossCurrencyAllowed = data.crossCurrencyAllowed
+            productKindName = data.productKindName
+            productTypeName = data.productTypeName
+            bankAlias = data.bankAlias
+            sourceId = data.sourceId
+            accountOpeningDate = data.accountOpeningDate
+            lastUpdateDate = data.lastUpdateDate
+            userPreferences = data.userPreferences?.mapToDomain()
+            state = data.state?.mapToDomain()
+            parentId = data.parentId
+            subArrangements = data.subArrangements?.mapToDomain()
+            financialInstitutionId = data.financialInstitutionId
+            lastSyncDate = data.lastSyncDate
+            additions = data.additions
+            displayName = data.displayName
+            cardDetails = data.cardDetails?.mapToDomain()
+            interestDetails = data.interestDetails?.mapToDomain()
+            reservedAmount = data.reservedAmount
+            remainingPeriodicTransfers = data.remainingPeriodicTransfers
+            nextClosingDate = data.nextClosingDate
+            overdueSince = data.overdueSince
+            externalAccountStatus = data.externalAccountStatus
+        }
     }
 }
