@@ -1,5 +1,10 @@
 package com.backbase.accounts_journey.common
 
+/**
+ * Keeps the state of an object. It can be success or error.
+ *
+ * Created by Backbase R&D B.V on 19/09/2023.
+ */
 sealed interface Result<out T : Any?> {
     data class Success<out T : Any>(val value: T) : Result<T>
 

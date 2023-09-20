@@ -53,6 +53,11 @@ import com.backbase.accounts_journey.domain.model.product_summary.savings_accoun
 import com.backbase.accounts_journey.domain.model.product_summary.term_deposits.TermDeposit
 import com.backbase.accounts_journey.domain.model.product_summary.term_deposits.TermDeposits
 
+/**
+ * Created by Backbase R&D B.V on 19/09/2023.
+ *
+ * A ProductSummary mapper from data models to domain models.
+ */
 internal fun ProductSummaryDataModel.mapToDomain(): AccountSummary {
     val data = this@mapToDomain
     return AccountSummary {
@@ -81,7 +86,7 @@ internal fun List<CustomProductDataModel>.mapToDomain(): List<CustomProducts> {
     }
 }
 
-@JvmName("generalAccountMapper")
+@JvmName("GeneralAccountMapper")
 internal fun List<GeneralAccountDataModel>.mapToDomain(): List<GeneralAccount> {
     return this.map { data ->
         GeneralAccount {
@@ -389,7 +394,7 @@ internal fun List<TermDepositDataModel>.mapToDomain(): List<TermDeposit> {
 internal fun LoansDataModel.mapToDomain(): Loans {
     val data = this@mapToDomain
     return Loans {
-        products = data.products?.mapToDomain()
+        products = data.products.mapToDomain()
         displayName = data.name
         aggregatedBalance = data.aggregatedBalance?.mapToDomain()
         additions = data.additions

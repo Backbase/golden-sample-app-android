@@ -15,8 +15,8 @@ dependencies {
     implementation(libs.gradle.api)
     implementation(libs.kotlin.gradle.plugin)
 
-    implementation(libs.detekt)
-    implementation(libs.gradle.versions.plugin)
-    implementation(libs.navigation.safe.args.plugin)
+    implementation(libs.detekt.gradle.plugin)
+    implementation(libs.gradle.versions.gradle.plugin)
+    implementation(libs.navigation.safe.args.gradle.plugin)
     implementation(libs.poko.gradle.plugin)
 }

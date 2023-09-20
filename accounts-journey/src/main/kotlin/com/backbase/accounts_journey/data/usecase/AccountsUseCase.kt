@@ -5,6 +5,8 @@ import com.backbase.accounts_journey.domain.model.product_summary.AccountSummary
 
 /**
  * The use cases for the accounts/products.
+ *
+ * Created by Backbase R&D B.V on 19/09/2023.
  */
 interface AccountsUseCase {
 

@@ -14,6 +14,11 @@ import com.backbase.android.clients.common.CallResult
 import com.backbase.android.core.errorhandling.ErrorCodes
 import kotlinx.coroutines.withContext
 
+/**
+ * An implementation of [AccountsUseCase] based on [ProductSummaryApi].
+ *
+ * Created by Backbase R&D B.V on 19/09/2023.
+ */
 class AccountSummaryUseCaseImpl constructor(
     private val productSummaryApi: ProductSummaryApi,
     private val dispatchers: DispatcherProvider,

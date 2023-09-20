@@ -53,7 +53,7 @@ constraintlayout = { module = "androidx.constraintlayout:constraintlayout", vers
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
 
 ## D
-detekt = { group = "io.gitlab.arturbosch.detekt", name = "detekt-gradle-plugin", version.ref = "detekt" }
+detekt-gradle-plugin = { group = "io.gitlab.arturbosch.detekt", name = "detekt-gradle-plugin", version.ref = "detekt" }
 detekt-formatting = { group = "io.gitlab.arturbosch.detekt", name = "detekt-formatting", version.ref = "detekt" }
 
 ## E
@@ -62,7 +62,7 @@ espresso = { module = "androidx.test.espresso:espresso-core", version.ref = "esp
 ## G
 gradle = { group = "com.android.tools.build", name = "gradle", version.ref = "gradle" }
 gradle-api = { group = "com.android.tools.build", name = "gradle-api", version.ref = "gradle" }
-gradle-versions-plugin = { module = "com.github.ben-manes:gradle-versions-plugin", version.ref = "gradle-versions-plugin" }
+gradle-versions-gradle-plugin = { module = "com.github.ben-manes:gradle-versions-plugin", version.ref = "gradle-versions-plugin" }
 
 ## J
 junit4 = { module = "junit:junit", version.ref = "junit4" }
@@ -88,7 +88,7 @@ material = { module = "com.google.android.material:material", version.ref = "mat
 
 ## N
 navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation-component" }
-navigation-safe-args-plugin = { group = "androidx.navigation", name = "navigation-safe-args-gradle-plugin", version.ref = "navigation-component" }
+navigation-safe-args-gradle-plugin = { group = "androidx.navigation", name = "navigation-safe-args-gradle-plugin", version.ref = "navigation-component" }
 navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation-component" }
 
 ## P
