@@ -1,6 +1,6 @@
 [versions]
 ## A
-access-control-client-2-entitlements-use-case = "3.0.0"
+access-control-client-2-entitlements-use-case = "2.4.1"
 authentication-journey = "5.1.0"
 
 ## B
@@ -10,7 +10,7 @@ business-journey-common = "4.0.1"
 clients-common-coroutines = "1.0.0"
 
 ## F
-feature-filter-use-case = "3.0.0"
+feature-filter-use-case = "2.4.1"
 
 ## G
 gen-access-control-client-2 = "2.4.0"

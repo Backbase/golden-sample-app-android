@@ -23,10 +23,10 @@ dependencyResolutionManagement {
                 val backbaseRepoUsername: String by settings
                 val backbaseRepoEncryptedPassword: String by settings
 
-                setUrl("https://artifacts.backbase.com/$repoName")
+                setUrl("https://repo.backbase.com/$repoName")
                 credentials {
-                    username = "kawing@backbase.com"
-                    password = "AKCp8ohUb1Wkfi1BhbCTcUPoYFgH6SYR6GFUmYoR7NMZmXsVCDyzHxqvmmpQ4Nfok9nEyScdP"
+                    username = backbaseRepoUsername
+                    password = backbaseRepoEncryptedPassword
                 }
             }
         }
