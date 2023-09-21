@@ -395,6 +395,7 @@ internal fun LoansDataModel.mapToDomain(): Loans {
     val data = this@mapToDomain
     return Loans {
         products = data.products.mapToDomain()
+        name = data.name
         displayName = data.name
         aggregatedBalance = data.aggregatedBalance?.mapToDomain()
         additions = data.additions
