@@ -15,7 +15,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AccountListFragment : Fragment() {
 
-    private lateinit var binding: FragmentAccountListBinding
+    private var _binding: FragmentAccountListBinding? = null
+    private val binding get() = _binding!!
 
     private val viewModel: AccountListViewModel by viewModel()
 
@@ -24,7 +25,7 @@ class AccountListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentAccountListBinding.inflate(inflater, container, false)
+        _binding = FragmentAccountListBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
@@ -37,5 +38,11 @@ class AccountListFragment : Fragment() {
             }
         }
         viewModel.onEvent(AccountListEvent.OnGetAccounts)
+
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
