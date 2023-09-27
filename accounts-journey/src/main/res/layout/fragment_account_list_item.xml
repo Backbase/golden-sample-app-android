@@ -34,7 +34,8 @@
         android:gravity="start"
         android:maxLines="1"
         app:layout_constrainedWidth="true"
-        app:layout_constraintEnd_toStartOf="@id/barrier2"
+        app:layout_constraintEnd_toStartOf="@id/account_balance"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toEndOf="@id/barrier1"
         tools:text="Sara's account long message that it should be cut off" />
@@ -43,10 +44,14 @@
         android:id="@+id/account_state"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:ellipsize="end"
         android:gravity="start"
         android:maxLines="1"
-        android:textAlignment="viewStart"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toEndOf="@id/account_name"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="@id/account_name"
         app:layout_constraintTop_toBottomOf="@id/account_name"
         tools:text="***3456" />
@@ -56,19 +61,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="end"
-        app:constraint_referenced_ids="account_name, account_state" />
+        app:constraint_referenced_ids="account_name" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/account_balance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="?spacerMedium"
-        android:ellipsize="end"
-        android:gravity="start"
-        android:textAlignment="viewStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintStart_toEndOf="@id/account_name"
         app:layout_constraintTop_toTopOf="@id/account_icon"
         tools:text="€25,000.00" />
 </androidx.constraintlayout.widget.ConstraintLayout>
