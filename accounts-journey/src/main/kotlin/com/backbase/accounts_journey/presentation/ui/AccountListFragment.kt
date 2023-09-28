@@ -36,8 +36,8 @@ class AccountListFragment : Fragment() {
     ): View? {
         _binding = FragmentAccountListBinding.inflate(inflater, container, false)
         val view = binding.root
-        val recylerView = binding.accountlist
-        recylerView.apply {
+        val recyclerView = binding.accountlist
+        recyclerView.apply {
             setHasFixedSize(true)
             adapter = accountListAdapter
             recycledViewPool.setMaxRecycledViews(R.layout.account_list_item, MAX_POOL_SIZE)
