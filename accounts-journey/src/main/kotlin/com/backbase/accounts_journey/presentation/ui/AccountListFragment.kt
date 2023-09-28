@@ -25,7 +25,9 @@ class AccountListFragment : Fragment() {
     @Suppress("VariableNaming")
     private val MAX_POOL_SIZE: Int = 15
 
-    private val accountListAdapter: AccountListAdapter = AccountListAdapter()
+    private val accountListAdapter: AccountListAdapter = AccountListAdapter(
+        onClick = { itemClicked(it) }
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -67,6 +69,11 @@ class AccountListFragment : Fragment() {
 
             }
         }
+    }
+
+    private fun itemClicked(id: String) {
+        // TODO: navigate to details screen
+        println("tapped on $id")
     }
 
     override fun onDestroyView() {

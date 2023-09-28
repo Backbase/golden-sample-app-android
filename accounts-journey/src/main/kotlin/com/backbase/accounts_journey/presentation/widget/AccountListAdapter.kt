@@ -15,11 +15,10 @@ import com.backbase.accounts_journey.presentation.model.ViewType
 import java.io.InvalidClassException
 
 class AccountListAdapter(
-
+    private val onClick: (String) -> Unit
 ) : ListAdapter<ListItem, RecyclerView.ViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        println("viewType: $viewType")
         val viewHolder = when (viewType) {
             ViewType.HEADER.value -> {
                 val binding = AccountListHeaderBinding.inflate(
@@ -46,8 +45,6 @@ class AccountListAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val uiModel = getItem(position)
-        holder.itemViewType
-        uiModel.viewType
         holder.apply {
             when (uiModel.viewType) {
                 ViewType.HEADER -> {
@@ -59,7 +56,6 @@ class AccountListAdapter(
                 }
 
                 ViewType.ITEM -> {
-                    println(uiModel)
                     uiModel as AccountUiModel
                     holder as ListItemViewHolder
                     holder.binding.apply {
@@ -67,9 +63,11 @@ class AccountListAdapter(
                         accountBalance.text = uiModel.balance
                         accountState.text = uiModel.state
                     }
+                    itemView.setOnClickListener {
+                        onClick(uiModel.id)
+                    }
                 }
             }
-
         }
     }
 
@@ -85,11 +83,11 @@ class AccountListAdapter(
 
     class DiffCallback : DiffUtil.ItemCallback<ListItem>() {
         override fun areItemsTheSame(oldItem: ListItem, newItem: ListItem): Boolean {
-            return false
+            return oldItem == newItem
         }
 
         override fun areContentsTheSame(oldItem: ListItem, newItem: ListItem): Boolean {
-            return false
+            return oldItem == newItem
         }
     }
 }
