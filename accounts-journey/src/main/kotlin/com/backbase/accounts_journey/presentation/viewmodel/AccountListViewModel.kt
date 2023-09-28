@@ -7,7 +7,7 @@ import com.backbase.accounts_journey.common.Result
 import com.backbase.accounts_journey.common.mutable
 import com.backbase.accounts_journey.common.onErrorValue
 import com.backbase.accounts_journey.data.usecase.AccountsUseCase
-import com.backbase.accounts_journey.presentation.mapErrorToMessage
+import com.backbase.accounts_journey.presentation.mapper.mapErrorToMessage
 import com.backbase.accounts_journey.presentation.mapper.mapToUi
 import com.backbase.accounts_journey.presentation.ui.AccountListEvent
 import com.backbase.accounts_journey.presentation.ui.AccountListScreenState

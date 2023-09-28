@@ -9,6 +9,7 @@ import com.backbase.accounts_journey.domain.model.product_summary.investment_acc
 import com.backbase.accounts_journey.domain.model.product_summary.loan.Loans
 import com.backbase.accounts_journey.domain.model.product_summary.savings_accounts.SavingsAccounts
 import com.backbase.accounts_journey.domain.model.product_summary.term_deposits.TermDeposits
+import com.backbase.accounts_journey.presentation.model.AccountHeaderUiModel
 import com.backbase.accounts_journey.presentation.model.AccountSummaryUiModel
 import com.backbase.accounts_journey.presentation.model.AccountUiModel
 import com.backbase.accounts_journey.presentation.model.AccountsUiModel
@@ -31,8 +32,7 @@ internal fun List<CustomProducts>.mapToUi(): List<AccountsUiModel> {
 
     return this.map { domain ->
         AccountsUiModel(
-            name = domain.name!!,
-            id = domain.id,
+            AccountHeaderUiModel(name = domain.name!!),
             products = domain.products.map { generalAccount ->
                 AccountUiModel(
                     id = generalAccount.id!!,
@@ -51,7 +51,7 @@ internal fun CurrentAccounts.mapToUi(): AccountsUiModel? {
     if (this.products.isEmpty()) return null
 
     return AccountsUiModel(
-        name = this.name!!,
+        AccountHeaderUiModel(name = this.name!!),
         products = this.products.map { domain ->
             AccountUiModel(
                 id = domain.id!!,
@@ -69,7 +69,7 @@ internal fun SavingsAccounts.mapToUi(): AccountsUiModel? {
     if (this.products.isEmpty()) return null
 
     return AccountsUiModel(
-        name = this.name!!,
+        AccountHeaderUiModel(name = this.name!!),
         products = this.products.map { domain ->
             AccountUiModel(
                 id = domain.id!!,
@@ -88,7 +88,7 @@ internal fun TermDeposits.mapToUi(): AccountsUiModel? {
     if (this.products.isEmpty()) return null
 
     return AccountsUiModel(
-        name = this.name!!,
+        AccountHeaderUiModel(name = this.name!!),
         products = this.products.map { domain ->
             AccountUiModel(
                 id = domain.id!!,
@@ -106,7 +106,7 @@ internal fun Loans.mapToUi(): AccountsUiModel? {
     if (this.products.isEmpty()) return null
 
     return AccountsUiModel(
-        name = this.name!!,
+        AccountHeaderUiModel(name = this.name!!),
         products = this.products.map { domain ->
             AccountUiModel(
                 id = domain.id!!,
@@ -124,7 +124,7 @@ internal fun CreditCards.mapToUi(): AccountsUiModel? {
     if (this.products.isEmpty()) return null
 
     return AccountsUiModel(
-        name = this.name!!,
+        AccountHeaderUiModel(name = this.name!!),
         products = this.products.map { domain ->
             AccountUiModel(
                 id = domain.id!!,
@@ -142,7 +142,7 @@ internal fun DebitCards.mapToUi(): AccountsUiModel? {
     if (this.products.isEmpty()) return null
 
     return AccountsUiModel(
-        name = this.name!!,
+        AccountHeaderUiModel(name = this.name!!),
         products = this.products.map { domain ->
             AccountUiModel(
                 id = domain.id!!,
@@ -160,7 +160,7 @@ internal fun InvestmentAccounts.mapToUi(): AccountsUiModel? {
     if (this.products.isEmpty()) return null
 
     return AccountsUiModel(
-        name = this.name!!,
+        AccountHeaderUiModel(name = this.name!!),
         products = this.products.map { domain ->
             AccountUiModel(
                 id = domain.id!!,

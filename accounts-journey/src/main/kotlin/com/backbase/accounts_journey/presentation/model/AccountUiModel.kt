@@ -6,5 +6,6 @@ data class AccountUiModel(
     val currency: String,
     val balance: String,
     val state: String?,
-    val isVisible: Boolean
-)
+    val isVisible: Boolean,
+    override val viewType: ViewType = ViewType.ITEM
+) : ListItem

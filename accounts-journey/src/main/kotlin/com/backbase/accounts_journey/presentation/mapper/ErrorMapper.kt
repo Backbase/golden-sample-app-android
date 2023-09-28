@@ -1,4 +1,4 @@
-package com.backbase.accounts_journey.presentation
+package com.backbase.accounts_journey.presentation.mapper
 
 import com.backbase.accounts_journey.R
 import com.backbase.accounts_journey.common.FailedGetDataException
