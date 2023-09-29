@@ -1,8 +1,4 @@
 pluginManagement {
-    plugins {
-        id("org.jetbrains.kotlin.plugin.parcelize") version "1.9.0"
-    }
-
     repositories {
         google()
         gradlePluginPortal()
@@ -46,3 +42,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Golden Sample App Android"
 include(":app")
+include(":accounts-journey")
+include(":accounts-use-case")

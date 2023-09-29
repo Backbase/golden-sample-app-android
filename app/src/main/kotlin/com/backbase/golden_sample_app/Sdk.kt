@@ -4,6 +4,7 @@ import android.content.Context
 import com.backbase.android.Backbase
 import com.backbase.android.client.accesscontrolclient2.api.UserContextApi
 import com.backbase.android.client.accesscontrolclient2.api.UsersApi
+import com.backbase.android.client.gen2.arrangementclient2.api.ProductSummaryApi
 import com.backbase.android.clients.common.MoshiResponseBodyParser
 import com.backbase.android.clients.common.base64Adapter
 import com.backbase.android.clients.common.bigDecimalAdapter
@@ -36,7 +37,12 @@ object Sdk {
                 context,
                 NetworkDBSDataProvider(context),
                 ACCESS_CONTROL_ENDPOINT
-            )
+            ),
+            getProductSummaryApi(
+                context,
+                NetworkDBSDataProvider(context),
+                ARRANGEMENT_MANAGER_ENDPOINT
+            ),
         )
     }
 
@@ -73,5 +79,19 @@ object Sdk {
         backbase = Backbase.requireInstance()
     )
 
+    private fun getProductSummaryApi(
+        context: Context,
+        dataProvider: DBSDataProvider,
+        serverUrl: String
+    ) = ProductSummaryApi(
+        context = context,
+        moshi = moshi,
+        parser = MoshiResponseBodyParser(moshi),
+        serverUri = URI(serverUrl),
+        provider = dataProvider,
+        backbase = Backbase.requireInstance()
+    )
+
     private const val ACCESS_CONTROL_ENDPOINT = "/access-control"
+    private const val ARRANGEMENT_MANAGER_ENDPOINT = "/arrangement-manager"
 }
