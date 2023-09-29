@@ -10,7 +10,6 @@ import androidx.lifecycle.lifecycleScope
 import com.backbase.accounts_journey.R
 import com.backbase.accounts_journey.databinding.FragmentAccountListBinding
 import com.backbase.accounts_journey.presentation.viewmodel.AccountListViewModel
-import com.backbase.accounts_journey.presentation.widget.AccountListAdapter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.koin.androidx.viewmodel.ext.android.viewModel

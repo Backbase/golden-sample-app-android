@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="?spacerMedium"
-    android:layout_marginVertical="?spacerMedium">
+    android:background="?attr/selectableItemBackground"
+    android:paddingHorizontal="?spacerMedium"
+    android:paddingVertical="?spacerMedium">
 
     <com.backbase.android.design.icon.IconView
         android:id="@+id/account_icon"
@@ -49,7 +50,7 @@
         android:ellipsize="end"
         android:gravity="start"
         android:maxLines="1"
-        android:textColor="?colorNeutral_60"
+        android:textColor="?colorOnSurfaceSecondary"
         app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toEndOf="@id/account_name"
         app:layout_constraintHorizontal_bias="0.0"

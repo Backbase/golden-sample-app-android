@@ -1,11 +1,10 @@
-package com.backbase.accounts_journey.presentation.widget
+package com.backbase.accounts_journey.presentation.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewbinding.ViewBinding
 import com.backbase.accounts_journey.databinding.AccountListHeaderBinding
 import com.backbase.accounts_journey.databinding.AccountListItemBinding
 import com.backbase.accounts_journey.presentation.model.AccountHeaderUiModel

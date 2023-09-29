@@ -13,6 +13,7 @@ import com.backbase.accounts_journey.presentation.model.AccountHeaderUiModel
 import com.backbase.accounts_journey.presentation.model.AccountSummaryUiModel
 import com.backbase.accounts_journey.presentation.model.AccountUiModel
 import com.backbase.accounts_journey.presentation.model.AccountsUiModel
+import com.backbase.android.design.amount.AmountFormat
 
 internal fun AccountSummary.mapToUi(): AccountSummaryUiModel {
     return AccountSummaryUiModel(
@@ -30,17 +31,16 @@ internal fun AccountSummary.mapToUi(): AccountSummaryUiModel {
 internal fun List<CustomProducts>.mapToUi(): List<AccountsUiModel> {
     if (this.isEmpty()) return emptyList()
 
-    return this.map { domain ->
+    return this.map { customProducts ->
         AccountsUiModel(
-            AccountHeaderUiModel(name = domain.name!!),
-            products = domain.products.map { generalAccount ->
+            AccountHeaderUiModel(name = customProducts.name!!),
+            products = customProducts.products.map { domain ->
                 AccountUiModel(
-                    id = generalAccount.id!!,
-                    name = generalAccount.displayName!!,
-                    currency = generalAccount.currency!!,
-                    balance = generalAccount.availableBalance!!,
-                    state = generalAccount.state?.state,
-                    isVisible = generalAccount.userPreferences!!.visible!!
+                    id = domain.id!!,
+                    name = domain.displayName!!,
+                    balance = formatCurrency(domain.currency!!, domain.availableBalance!!),
+                    state = formatState(domain.state?.state, domain.BBAN),
+                    isVisible = domain.userPreferences?.visible
                 )
             }
         )
@@ -56,10 +56,9 @@ internal fun CurrentAccounts.mapToUi(): AccountsUiModel? {
             AccountUiModel(
                 id = domain.id!!,
                 name = domain.displayName!!,
-                currency = domain.currency!!,
-                balance = domain.availableBalance!!,
-                state = domain.state?.state,
-                isVisible = domain.userPreferences!!.visible!!
+                balance = formatCurrency(domain.currency!!, domain.availableBalance!!),
+                state = formatState(domain.state?.state, domain.BBAN),
+                isVisible = domain.userPreferences?.visible
             )
         }
     )
@@ -74,10 +73,9 @@ internal fun SavingsAccounts.mapToUi(): AccountsUiModel? {
             AccountUiModel(
                 id = domain.id!!,
                 name = domain.displayName!!,
-                currency = domain.currency!!,
-                balance = domain.availableBalance!!,
-                state = domain.state?.state,
-                isVisible = domain.userPreferences!!.visible!!
+                balance = formatCurrency(domain.currency!!, domain.availableBalance!!),
+                state = formatState(domain.state?.state, domain.BBAN),
+                isVisible = domain.userPreferences?.visible
             )
         }
     )
@@ -93,10 +91,9 @@ internal fun TermDeposits.mapToUi(): AccountsUiModel? {
             AccountUiModel(
                 id = domain.id!!,
                 name = domain.displayName!!,
-                currency = domain.currency!!,
-                balance = domain.availableBalance!!,
-                state = domain.state?.state,
-                isVisible = domain.userPreferences!!.visible!!
+                balance = formatCurrency(domain.currency!!, domain.availableBalance!!),
+                state = formatState(domain.state?.state, domain.BBAN),
+                isVisible = domain.userPreferences?.visible
             )
         }
     )
@@ -111,10 +108,9 @@ internal fun Loans.mapToUi(): AccountsUiModel? {
             AccountUiModel(
                 id = domain.id!!,
                 name = domain.displayName!!,
-                currency = domain.currency!!,
-                balance = domain.availableBalance!!,
-                state = domain.state?.state,
-                isVisible = domain.userPreferences!!.visible!!
+                balance = formatCurrency(domain.currency!!, domain.availableBalance!!),
+                state = formatState(domain.state?.state, domain.BBAN),
+                isVisible = domain.userPreferences?.visible
             )
         }
     )
@@ -129,10 +125,9 @@ internal fun CreditCards.mapToUi(): AccountsUiModel? {
             AccountUiModel(
                 id = domain.id!!,
                 name = domain.displayName!!,
-                currency = domain.currency!!,
-                balance = domain.availableBalance!!,
-                state = domain.state?.state,
-                isVisible = domain.userPreferences!!.visible!!
+                balance = formatCurrency(domain.currency!!, domain.availableBalance!!),
+                state = formatState(domain.state?.state, domain.creditCardAccountNumber),
+                isVisible = domain.userPreferences?.visible
             )
         }
     )
@@ -147,10 +142,9 @@ internal fun DebitCards.mapToUi(): AccountsUiModel? {
             AccountUiModel(
                 id = domain.id!!,
                 name = domain.displayName!!,
-                currency = "",
                 balance = "",
-                state = domain.state?.state,
-                isVisible = domain.userPreferences!!.visible!!
+                state = formatState(domain.state?.state, domain.cardNumber.toString()),
+                isVisible = domain.userPreferences?.visible
             )
         }
     )
@@ -165,11 +159,23 @@ internal fun InvestmentAccounts.mapToUi(): AccountsUiModel? {
             AccountUiModel(
                 id = domain.id!!,
                 name = domain.displayName!!,
-                currency = domain.currency!!,
-                balance = domain.currentInvestmentValue!!,
-                state = domain.state?.state,
-                isVisible = domain.userPreferences!!.visible!!
+                balance = formatCurrency(domain.currency!!, domain.currentInvestmentValue!!),
+                state = formatState(domain.state?.state, domain.BBAN),
+                isVisible = domain.userPreferences?.visible
             )
         }
     )
+}
+
+private fun formatCurrency(currency: String, amount: String): String {
+    return AmountFormat().apply {
+        enableAbbreviation = true
+        currencyCode = currency
+    }.format(amount.toBigDecimal())
+}
+
+private fun formatState(state: String?, number: String?): String? {
+    if (state == null || number == null) return null
+    return if (state == "Active") number
+    else state
 }
