@@ -78,6 +78,12 @@ class AccountListFragment : Fragment() {
             uiState.accountSummary.isNotEmpty() -> {
                 accountListAdapter.submitList(uiState.accountSummary)
                 swipeContainer.isRefreshing = false
+                binding.noAccountsGroup.visibility = View.GONE
+            }
+
+            uiState.accountSummary.isEmpty() && !uiState.isLoading -> {
+                accountListAdapter.submitList(emptyList())
+                binding.noAccountsGroup.visibility = View.VISIBLE
             }
 
             uiState.error != null -> {

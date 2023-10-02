@@ -10,25 +10,28 @@ data class AccountSummaryUiModel(
     val debitCards: AccountsUiModel?,
     val investmentAccounts: AccountsUiModel?,
 ) {
-    fun generateList(): List<ListItem> {
+    fun generateList(query: String = ""): List<ListItem> {
         val list = mutableListOf<ListItem>()
-        list.addAll(safeCast(currentAccounts))
-        list.addAll(safeCast(savingAccounts))
-        list.addAll(safeCast(termDeposits))
-        list.addAll(safeCast(loans))
-        list.addAll(safeCast(creditCards))
-        list.addAll(safeCast(debitCards))
-        list.addAll(safeCast(investmentAccounts))
+        list.addAll(safeCast(currentAccounts, query))
+        list.addAll(safeCast(savingAccounts, query))
+        list.addAll(safeCast(termDeposits, query))
+        list.addAll(safeCast(loans, query))
+        list.addAll(safeCast(creditCards, query))
+        list.addAll(safeCast(debitCards, query))
+        list.addAll(safeCast(investmentAccounts, query))
         customProducts.forEach {
-            list.addAll(safeCast(it))
+            list.addAll(safeCast(it, query))
         }
         return list
     }
 
-    private fun safeCast(accounts: AccountsUiModel?): List<ListItem> {
+    private fun safeCast(accounts: AccountsUiModel?, query: String = ""): List<ListItem> {
         val header = accounts?.header as? ListItem
+        val query = query.lowercase().trim()
         val products = accounts?.products?.takeIf {
             it.isNotEmpty()
+        }?.filter {
+            it.name.lowercase().contains(query)
         } as? Collection<ListItem>
 
         if (header == null || products.isNullOrEmpty()) return emptyList()
