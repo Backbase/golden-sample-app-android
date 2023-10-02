@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.backbase.accounts_journey.common.DispatcherProvider
 import com.backbase.accounts_journey.common.Result
-import com.backbase.accounts_journey.common.mutable
 import com.backbase.accounts_journey.common.onErrorValue
 import com.backbase.accounts_journey.data.usecase.AccountsUseCase
 import com.backbase.accounts_journey.presentation.mapper.mapErrorToMessage
@@ -22,21 +21,23 @@ class AccountListViewModel(
     private val dispatchers: DispatcherProvider,
 ) : ViewModel() {
 
-    val uiState: StateFlow<AccountListScreenState> = MutableStateFlow(AccountListScreenState())
+    private val _uiState = MutableStateFlow(AccountListScreenState())
+    val uiState: StateFlow<AccountListScreenState> = _uiState
 
     fun onEvent(event: AccountListEvent) {
         when (event) {
-            AccountListEvent.OnGetAccounts -> getAccounts()
+            AccountListEvent.OnGetAccounts -> getAccountSummary()
+            is AccountListEvent.OnSearch -> searchAccounts()
         }
     }
 
-    private fun getAccounts() {
+    private fun getAccountSummary() {
         viewModelScope.launch {
             withContext(dispatchers.default()) {
                 when (val result = useCase.getAccounts()) {
                     is Result.Success -> {
                         val domain = result.value
-                        uiState.mutable().update {
+                        _uiState.update {
                             it.copy(
                                 isLoading = false,
                                 accountSummary = domain.mapToUi(),
@@ -47,7 +48,7 @@ class AccountListViewModel(
 
                     is Result.Error -> {
                         val error = result.onErrorValue().exception.mapErrorToMessage()
-                        uiState.mutable().update {
+                        _uiState.update {
                             it.copy(
                                 isLoading = false,
                                 error = error
@@ -55,6 +56,13 @@ class AccountListViewModel(
                         }
                     }
                 }
+            }
+        }
+    }
+
+    private fun searchAccounts() {
+        viewModelScope.launch {
+            withContext(dispatchers.default()) {
             }
         }
     }

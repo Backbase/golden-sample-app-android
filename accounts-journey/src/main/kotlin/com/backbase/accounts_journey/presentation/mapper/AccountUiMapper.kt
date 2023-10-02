@@ -81,7 +81,6 @@ internal fun SavingsAccounts.mapToUi(): AccountsUiModel? {
     )
 }
 
-
 internal fun TermDeposits.mapToUi(): AccountsUiModel? {
     if (this.products.isEmpty()) return null
 
