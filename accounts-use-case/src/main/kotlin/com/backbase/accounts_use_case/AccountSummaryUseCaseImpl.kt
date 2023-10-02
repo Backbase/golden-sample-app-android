@@ -24,7 +24,7 @@ class AccountSummaryUseCaseImpl constructor(
     private val dispatchers: DispatcherProvider,
 ) : AccountsUseCase {
 
-    override suspend fun getAccounts(): Result<AccountSummary> {
+    override suspend fun getAccountSummary(): Result<AccountSummary> {
         val callResult = withContext(dispatchers.io()) {
             productSummaryApi
                 .getProductSummary(ProductSummaryApiParams.GetProductSummary { })

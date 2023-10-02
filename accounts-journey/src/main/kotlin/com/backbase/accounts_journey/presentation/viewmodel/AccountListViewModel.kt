@@ -34,13 +34,13 @@ class AccountListViewModel(
     private fun getAccountSummary() {
         viewModelScope.launch {
             withContext(dispatchers.default()) {
-                when (val result = useCase.getAccounts()) {
+                when (val result = useCase.getAccountSummary()) {
                     is Result.Success -> {
                         val domain = result.value
                         _uiState.update {
                             it.copy(
                                 isLoading = false,
-                                accountSummary = domain.mapToUi(),
+                                accountSummary = domain.mapToUi().generateList(),
                                 error = null
                             )
                         }

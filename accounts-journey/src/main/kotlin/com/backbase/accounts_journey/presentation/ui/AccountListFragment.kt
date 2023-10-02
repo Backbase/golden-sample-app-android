@@ -75,8 +75,8 @@ class AccountListFragment : Fragment() {
                 println("is loading, show a shimmer")
             }
 
-            uiState.accountSummary != null -> {
-                accountListAdapter.submitList(uiState.accountSummary.generateList())
+            uiState.accountSummary.isNotEmpty() -> {
+                accountListAdapter.submitList(uiState.accountSummary)
                 swipeContainer.isRefreshing = false
             }
 
