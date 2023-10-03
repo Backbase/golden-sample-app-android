@@ -24,7 +24,13 @@ class AccountSummaryUseCaseImpl constructor(
     private val dispatchers: DispatcherProvider,
 ) : AccountsUseCase {
 
-    override suspend fun getAccountSummary(): Result<AccountSummary> {
+    private var cache: AccountSummary? = null
+
+    override suspend fun getAccountSummary(useCache: Boolean): Result<AccountSummary> {
+        if (useCache && cache != null) {
+            return Result.Success(cache!!)
+        }
+
         val callResult = withContext(dispatchers.io()) {
             productSummaryApi
                 .getProductSummary(ProductSummaryApiParams.GetProductSummary { })
@@ -34,8 +40,9 @@ class AccountSummaryUseCaseImpl constructor(
         return when (callResult) {
             is CallResult.Success -> {
                 val dataModel = callResult.data
-                val accountSummary = dataModel.mapToDomain()
-                Result.Success(accountSummary)
+                val domainModel = dataModel.mapToDomain()
+                cache = domainModel
+                Result.Success(domainModel)
             }
 
             is CallResult.Error -> {

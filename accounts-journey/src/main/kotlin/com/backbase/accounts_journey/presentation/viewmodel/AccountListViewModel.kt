@@ -27,53 +27,21 @@ class AccountListViewModel(
     fun onEvent(event: AccountListEvent) {
         when (event) {
             AccountListEvent.OnGetAccounts -> getAccountSummary()
-            is AccountListEvent.OnSearch -> searchAccounts(event.query)
+            AccountListEvent.OnRefresh -> getAccountSummary(useCache = false)
+            is AccountListEvent.OnSearch -> getAccountSummary(event.query)
         }
     }
 
-    private fun getAccountSummary() {
+    private fun getAccountSummary(query: String = "", useCache: Boolean = true) {
         viewModelScope.launch {
             withContext(dispatchers.default()) {
-                when (val result = useCase.getAccountSummary()) {
+                when (val result = useCase.getAccountSummary(useCache)) {
                     is Result.Success -> {
                         val domain = result.value
                         _uiState.update {
                             it.copy(
                                 isLoading = false,
-                                accountSummary = domain.mapToUi().generateList(),
-                                error = null
-                            )
-                        }
-                    }
-
-                    is Result.Error -> {
-                        val error = result.onErrorValue().exception.mapErrorToMessage()
-                        _uiState.update {
-                            it.copy(
-                                isLoading = false,
-                                error = error
-                            )
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    // TODO remove this and use getAccountSummary
-    private fun searchAccounts(query: String) {
-        viewModelScope.launch {
-            withContext(dispatchers.default()) {
-                _uiState.update { it.copy(isLoading = true) }
-                when (val result = useCase.getAccountSummary()) {
-                    is Result.Success -> {
-                        val domain = result.value
-                        _uiState.update {
-                            val s = domain.mapToUi().generateList(query)
-                            println(s)
-                            it.copy(
-                                isLoading = false,
-                                accountSummary = s,
+                                accountSummary = domain.mapToUi().generateList(query),
                                 error = null
                             )
                         }

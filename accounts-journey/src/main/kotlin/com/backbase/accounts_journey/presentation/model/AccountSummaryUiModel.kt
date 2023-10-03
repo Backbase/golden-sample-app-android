@@ -12,20 +12,20 @@ data class AccountSummaryUiModel(
 ) {
     fun generateList(query: String = ""): List<ListItem> {
         val list = mutableListOf<ListItem>()
-        list.addAll(safeCast(currentAccounts, query))
-        list.addAll(safeCast(savingAccounts, query))
-        list.addAll(safeCast(termDeposits, query))
-        list.addAll(safeCast(loans, query))
-        list.addAll(safeCast(creditCards, query))
-        list.addAll(safeCast(debitCards, query))
-        list.addAll(safeCast(investmentAccounts, query))
+        list.addAll(filter(currentAccounts, query))
+        list.addAll(filter(savingAccounts, query))
+        list.addAll(filter(termDeposits, query))
+        list.addAll(filter(loans, query))
+        list.addAll(filter(creditCards, query))
+        list.addAll(filter(debitCards, query))
+        list.addAll(filter(investmentAccounts, query))
         customProducts.forEach {
-            list.addAll(safeCast(it, query))
+            list.addAll(filter(it, query))
         }
         return list
     }
 
-    private fun safeCast(accounts: AccountsUiModel?, query: String = ""): List<ListItem> {
+    private fun filter(accounts: AccountsUiModel?, query: String): List<ListItem> {
         val header = accounts?.header as? ListItem
         val query = query.lowercase().trim()
         val products = accounts?.products?.takeIf {

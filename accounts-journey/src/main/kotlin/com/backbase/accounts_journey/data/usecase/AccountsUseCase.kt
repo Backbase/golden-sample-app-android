@@ -15,5 +15,5 @@ interface AccountsUseCase {
      *
      * @return an instance of [AccountSummary]
      */
-    suspend fun getAccountSummary(): Result<AccountSummary>
+    suspend fun getAccountSummary(useCache: Boolean = true): Result<AccountSummary>
 }
