@@ -78,28 +78,30 @@
                 android:id="@+id/no_account_image"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
-                app:icon="@drawable/backbase_ic_no_accounts"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:icon="@drawable/backbase_ic_no_accounts" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/no_accounts_found_text"
+                android:id="@+id/accounts_result_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="No accounts found"
+                android:layout_marginTop="?spacerMedium"
+                android:gravity="center"
                 android:textAppearance="?textAppearanceHeadline6"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/no_account_image" />
+                app:layout_constraintTop_toBottomOf="@id/no_account_image"
+                tools:text="It seems that you're not online. Try again." />
 
             <androidx.constraintlayout.widget.Group
                 android:id="@+id/no_accounts_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:constraint_referenced_ids="no_account_image,no_accounts_found_text"
                 android:visibility="gone"
+                app:constraint_referenced_ids="no_account_image,accounts_result_text"
                 tools:visibility="gone" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

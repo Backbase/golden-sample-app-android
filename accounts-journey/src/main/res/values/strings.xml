@@ -7,5 +7,5 @@
     <string name="no_response">No response</string>
     <string name="failed_get_data">Failed to get data</string>
     <string name="failed_unknown">Something went wrong</string>
-    <string name="hello_blank_fragment">Check logcat if the domain models are logged.</string>
+    <string name="no_accounts">No accounts found.</string>
 </resources>

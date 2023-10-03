@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.flowWithLifecycle
@@ -64,24 +65,28 @@ class AccountListFragment : Fragment() {
     }
 
     private fun handleUiState(uiState: AccountListScreenState) {
-        binding.accountlistSwipeContainer.isRefreshing = false
-        when {
-            uiState.isLoading -> {
-                println("is loading, show a shimmer")
-            }
+        binding.accountlistSwipeContainer.isRefreshing = uiState.isLoading
 
-            uiState.accountSummary.isNotEmpty() -> {
-                binding.noAccountsGroup.visibility = View.GONE
-                accountListAdapter.submitList(uiState.accountSummary)
-            }
+        if (uiState.accountSummary.isNotEmpty()) {
+            binding.noAccountsGroup.visibility = View.GONE
+            accountListAdapter.submitList(uiState.accountSummary)
+        } else if (uiState.accountSummary.isEmpty() && uiState.error == null) {
+            accountListAdapter.submitList(emptyList())
+            binding.noAccountImage.icon = ContextCompat.getDrawable(
+                requireContext(),
+                com.backbase.android.design.R.drawable.backbase_ic_no_accounts
+            )
+            binding.accountsResultText.text = requireContext().getText(R.string.no_accounts)
+            binding.noAccountsGroup.visibility = View.VISIBLE
+        }
 
-            uiState.accountSummary.isEmpty() && !uiState.isLoading -> {
-                accountListAdapter.submitList(emptyList())
-                binding.noAccountsGroup.visibility = View.VISIBLE
-            }
-
-            uiState.error != null -> {
-            }
+        if (uiState.error != null) {
+            binding.noAccountImage.icon = ContextCompat.getDrawable(
+                requireContext(),
+                com.backbase.android.design.R.drawable.backbase_ic_error
+            )
+            binding.accountsResultText.text = requireContext().getText(uiState.error)
+            binding.noAccountsGroup.visibility = View.VISIBLE
         }
     }
 
