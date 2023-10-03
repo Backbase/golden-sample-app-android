@@ -81,6 +81,7 @@ class AccountListFragment : Fragment() {
         }
 
         if (uiState.error != null) {
+            accountListAdapter.submitList(emptyList())
             binding.noAccountImage.icon = ContextCompat.getDrawable(
                 requireContext(),
                 com.backbase.android.design.R.drawable.backbase_ic_error
