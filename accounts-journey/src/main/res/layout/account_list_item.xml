@@ -14,11 +14,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="?spacerMedium"
-        app:icon="@drawable/accounts_transactions_journey_ic_account_type_current_v2"
         app:layout_constraintEnd_toStartOf="@id/barrier1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:icon="@drawable/accounts_transactions_journey_ic_account_type_current_v2" />
+        tools:icon="@drawable/ic_account_type_current_v2" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier1"

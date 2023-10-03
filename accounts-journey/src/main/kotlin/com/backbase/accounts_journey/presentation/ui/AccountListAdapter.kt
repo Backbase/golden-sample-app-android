@@ -61,6 +61,7 @@ class AccountListAdapter(
                         accountName.text = uiModel.name
                         accountBalance.text = uiModel.balance
                         accountState.text = uiModel.state
+                        accountIcon.icon = holder.itemView.context.getDrawable(uiModel.icon)
                     }
                     itemView.setOnClickListener {
                         onClick(uiModel.id)

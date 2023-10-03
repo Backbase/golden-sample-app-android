@@ -1,5 +1,6 @@
 package com.backbase.accounts_journey.presentation.mapper
 
+import com.backbase.accounts_journey.R
 import com.backbase.accounts_journey.domain.model.product_summary.AccountSummary
 import com.backbase.accounts_journey.domain.model.product_summary.credit_card.CreditCards
 import com.backbase.accounts_journey.domain.model.product_summary.current_accounts.CurrentAccounts
@@ -40,6 +41,7 @@ internal fun List<CustomProducts>.mapToUi(): List<AccountsUiModel> {
                     name = domain.displayName!!,
                     balance = formatCurrency(domain.currency!!, domain.availableBalance!!),
                     state = formatState(domain.state?.state, domain.BBAN),
+                    icon = R.drawable.ic_account_type_card_v2,
                     isVisible = domain.userPreferences?.visible
                 )
             }
@@ -58,6 +60,7 @@ internal fun CurrentAccounts.mapToUi(): AccountsUiModel? {
                 name = domain.displayName!!,
                 balance = formatCurrency(domain.currency!!, domain.availableBalance!!),
                 state = formatState(domain.state?.state, domain.BBAN),
+                icon = R.drawable.ic_account_type_current_v2,
                 isVisible = domain.userPreferences?.visible
             )
         }
@@ -75,6 +78,7 @@ internal fun SavingsAccounts.mapToUi(): AccountsUiModel? {
                 name = domain.displayName!!,
                 balance = formatCurrency(domain.currency!!, domain.availableBalance!!),
                 state = formatState(domain.state?.state, domain.BBAN),
+                icon = R.drawable.ic_account_type_savings_term_deposits_v2,
                 isVisible = domain.userPreferences?.visible
             )
         }
@@ -92,6 +96,7 @@ internal fun TermDeposits.mapToUi(): AccountsUiModel? {
                 name = domain.displayName!!,
                 balance = formatCurrency(domain.currency!!, domain.availableBalance!!),
                 state = formatState(domain.state?.state, domain.BBAN),
+                icon = R.drawable.ic_account_type_savings_term_deposits_v2,
                 isVisible = domain.userPreferences?.visible
             )
         }
@@ -109,6 +114,7 @@ internal fun Loans.mapToUi(): AccountsUiModel? {
                 name = domain.displayName!!,
                 balance = formatCurrency(domain.currency!!, domain.availableBalance!!),
                 state = formatState(domain.state?.state, domain.BBAN),
+                icon = R.drawable.ic_account_type_loan_v2,
                 isVisible = domain.userPreferences?.visible
             )
         }
@@ -126,6 +132,7 @@ internal fun CreditCards.mapToUi(): AccountsUiModel? {
                 name = domain.displayName!!,
                 balance = formatCurrency(domain.currency!!, domain.availableBalance!!),
                 state = formatState(domain.state?.state, domain.creditCardAccountNumber),
+                icon = R.drawable.ic_account_type_credit_debit_card_v2,
                 isVisible = domain.userPreferences?.visible
             )
         }
@@ -143,6 +150,7 @@ internal fun DebitCards.mapToUi(): AccountsUiModel? {
                 name = domain.displayName!!,
                 balance = "",
                 state = formatState(domain.state?.state, domain.cardNumber.toString()),
+                icon = R.drawable.ic_account_type_credit_debit_card_v2,
                 isVisible = domain.userPreferences?.visible
             )
         }
@@ -160,6 +168,7 @@ internal fun InvestmentAccounts.mapToUi(): AccountsUiModel? {
                 name = domain.displayName!!,
                 balance = formatCurrency(domain.currency!!, domain.currentInvestmentValue!!),
                 state = formatState(domain.state?.state, domain.BBAN),
+                icon = R.drawable.ic_account_type_investment_v2,
                 isVisible = domain.userPreferences?.visible
             )
         }

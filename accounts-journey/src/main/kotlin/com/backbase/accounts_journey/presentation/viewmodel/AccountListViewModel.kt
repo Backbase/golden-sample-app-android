@@ -21,19 +21,25 @@ class AccountListViewModel(
     private val dispatchers: DispatcherProvider,
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(AccountListScreenState(isLoading = true))
+    private val _uiState = MutableStateFlow(AccountListScreenState())
     val uiState: StateFlow<AccountListScreenState> = _uiState
 
     fun onEvent(event: AccountListEvent) {
         when (event) {
-            AccountListEvent.OnGetAccounts -> getAccountSummary()
-            AccountListEvent.OnRefresh -> getAccountSummary(useCache = false)
-            is AccountListEvent.OnSearch -> getAccountSummary(event.query)
+            AccountListEvent.OnGetAccounts -> getAccountSummary(showLoading = true)
+            AccountListEvent.OnRefresh -> getAccountSummary(useCache = false, showLoading = true)
+            is AccountListEvent.OnSearch -> getAccountSummary(query = event.query)
         }
     }
 
-    private fun getAccountSummary(query: String = "", useCache: Boolean = true) {
+    private fun getAccountSummary(
+        query: String = "",
+        useCache: Boolean = true,
+        showLoading: Boolean = false
+    ) {
         viewModelScope.launch {
+            if (showLoading) _uiState.update { it.copy(isLoading = true) }
+
             withContext(dispatchers.default()) {
                 when (val result = useCase.getAccountSummary(useCache)) {
                     is Result.Success -> {

@@ -70,7 +70,7 @@ class AccountListFragment : Fragment() {
         if (uiState.accountSummary.isNotEmpty()) {
             binding.noAccountsGroup.visibility = View.GONE
             accountListAdapter.submitList(uiState.accountSummary)
-        } else if (uiState.accountSummary.isEmpty() && uiState.error == null) {
+        } else if (uiState.accountSummary.isEmpty() && !uiState.isLoading) {
             accountListAdapter.submitList(emptyList())
             binding.noAccountImage.icon = ContextCompat.getDrawable(
                 requireContext(),
