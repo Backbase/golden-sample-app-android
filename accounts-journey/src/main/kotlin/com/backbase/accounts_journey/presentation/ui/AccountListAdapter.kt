@@ -13,6 +13,11 @@ import com.backbase.accounts_journey.presentation.model.ListItem
 import com.backbase.accounts_journey.presentation.model.ViewType
 import java.io.InvalidClassException
 
+/**
+ * A list adapter to show the account list with headers.
+ *
+ * Created by Backbase R&D B.V on 04/10/2023.
+ */
 class AccountListAdapter(
     private val onClick: (String) -> Unit
 ) : ListAdapter<ListItem, RecyclerView.ViewHolder>(DiffCallback()) {

@@ -1,5 +1,10 @@
 package com.backbase.accounts_journey.presentation.model
 
+/**
+ * The UI model for AccountSummary. It can generate a list that is ready to be used in the UI.
+ *
+ * Created by Backbase R&D B.V on 04/10/2023.
+ */
 data class AccountSummaryUiModel(
     val customProducts: List<AccountsUiModel>,
     val currentAccounts: AccountsUiModel?,

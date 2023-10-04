@@ -16,6 +16,11 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+/**
+ * The Fragment of the account list.
+ *
+ * Created by Backbase R&D B.V on 04/10/2023.
+ */
 class AccountListFragment : Fragment() {
 
     private var _binding: FragmentAccountListBinding? = null

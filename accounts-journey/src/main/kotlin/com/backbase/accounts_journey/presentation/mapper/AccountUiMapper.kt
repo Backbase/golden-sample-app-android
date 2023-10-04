@@ -16,6 +16,11 @@ import com.backbase.accounts_journey.presentation.model.AccountUiModel
 import com.backbase.accounts_journey.presentation.model.AccountsUiModel
 import com.backbase.android.design.amount.AmountFormat
 
+/**
+ * An AccountSummary mapper from domain models to UI models.
+ *
+ * Created by Backbase R&D B.V on 04/10/2023.
+ */
 internal fun AccountSummary.mapToUi(): AccountSummaryUiModel {
     return AccountSummaryUiModel(
         customProducts = this.customProducts.mapToUi(),
