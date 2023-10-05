@@ -30,25 +30,21 @@ class UserPreferences internal constructor(
         /**
          * See [UserPreferences.alias]
          */
-        @set:JvmSynthetic
         var alias: String? = null
 
         /**
          * See [UserPreferences.visible]
          */
-        @set:JvmSynthetic
         var visible: Boolean? = null
 
         /**
          * See [UserPreferences.favorite]
          */
-        @set:JvmSynthetic
         var favorite: Boolean? = null
 
         /**
          * See [UserPreferences.additions]
          */
-        @set:JvmSynthetic
         var additions: Map<String, String>? = null
 
         /**
@@ -94,5 +90,4 @@ class UserPreferences internal constructor(
 /**
  * DSL to create [UserPreferences]
  */
-@JvmSynthetic
 fun UserPreferences(block: UserPreferences.Builder.() -> Unit) = UserPreferences.Builder().apply(block).build()

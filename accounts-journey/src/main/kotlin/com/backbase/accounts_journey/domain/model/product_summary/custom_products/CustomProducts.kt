@@ -34,31 +34,26 @@ class CustomProducts private constructor(
         /**
          * See [CustomProducts.products]
          */
-        @set:JvmSynthetic
         var products: List<GeneralAccount>? = null
 
         /**
          * See [CustomProducts.name]
          */
-        @set:JvmSynthetic
         var name: String? = null
 
         /**
          * See [CustomProducts.id]
          */
-        @set:JvmSynthetic
         var id: Int? = null
 
         /**
          * See [CustomProducts.aggregatedBalance]
          */
-        @set:JvmSynthetic
         var aggregatedBalance: AggregatedBalance? = null
 
         /**
          * See [CustomProducts.additions]
          */
-        @set:JvmSynthetic
         var additions: Map<String, String>? = null
 
         /**
@@ -112,6 +107,5 @@ class CustomProducts private constructor(
 /**
  * DSL to create [CustomProducts]
  */
-@JvmSynthetic
 fun CustomProducts(block: CustomProducts.Builder.() -> Unit) =
     CustomProducts.Builder().apply(block).build()

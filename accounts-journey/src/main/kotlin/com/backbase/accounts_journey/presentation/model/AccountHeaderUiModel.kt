@@ -6,6 +6,6 @@ package com.backbase.accounts_journey.presentation.model
  * Created by Backbase R&D B.V on 04/10/2023.
  */
 class AccountHeaderUiModel(
-    val name: String,
+    val name: String?,
     override val viewType: ViewType = ViewType.HEADER
 ) : ListItem

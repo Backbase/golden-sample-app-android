@@ -122,5 +122,4 @@ class CardDetails internal constructor(
 /**
  * DSL to create [CardDetails]
  */
-@JvmSynthetic
 fun CardDetails(block: CardDetails.Builder.() -> Unit) = CardDetails.Builder().apply(block).build()

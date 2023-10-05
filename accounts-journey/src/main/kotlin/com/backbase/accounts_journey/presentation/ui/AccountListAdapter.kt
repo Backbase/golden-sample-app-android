@@ -69,7 +69,7 @@ class AccountListAdapter(
                         accountIcon.icon = holder.itemView.context.getDrawable(uiModel.icon)
                     }
                     itemView.setOnClickListener {
-                        onClick(uiModel.id)
+                        uiModel.id?.let(onClick)
                     }
                 }
             }

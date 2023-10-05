@@ -1,6 +1,5 @@
 package com.backbase.accounts_journey.data.usecase
 
-import com.backbase.accounts_journey.common.Result
 import com.backbase.accounts_journey.domain.model.product_summary.AccountSummary
 
 /**

@@ -15,8 +15,7 @@ val accountsModule = module {
     single { Backbase.requireInstance().getClient(ProductSummaryApi::class.java) }
     factory<AccountsUseCase> {
         AccountSummaryUseCaseImpl(
-            productSummaryApi = get(),
-            dispatchers = get(),
+            productSummaryApi = get()
         )
     }
 }

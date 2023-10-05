@@ -37,43 +37,36 @@ class DebitCardItem internal constructor(
         /**
          * See [com.backbase.android.retail.journey.accounts_and_transactions.accounts.product_summary_dtos.common.DebitCardItem.number]
          */
-        @set:JvmSynthetic
         var number: String? = null
 
         /**
          * See [com.backbase.android.retail.journey.accounts_and_transactions.accounts.product_summary_dtos.common.DebitCardItem.expiryDate]
          */
-        @set:JvmSynthetic
         var expiryDate: String? = null
 
         /**
          * See [com.backbase.android.retail.journey.accounts_and_transactions.accounts.product_summary_dtos.common.DebitCardItem.cardId]
          */
-        @set:JvmSynthetic
         var cardId: String? = null
 
         /**
          * See [com.backbase.android.retail.journey.accounts_and_transactions.accounts.product_summary_dtos.common.DebitCardItem.cardHolderName]
          */
-        @set:JvmSynthetic
         var cardHolderName: String? = null
 
         /**
          * See [com.backbase.android.retail.journey.accounts_and_transactions.accounts.product_summary_dtos.common.DebitCardItem.cardType]
          */
-        @set:JvmSynthetic
         var cardType: String? = null
 
         /**
          * See [com.backbase.android.retail.journey.accounts_and_transactions.accounts.product_summary_dtos.common.DebitCardItem.cardStatus]
          */
-        @set:JvmSynthetic
         var cardStatus: String? = null
 
         /**
          * See [com.backbase.android.retail.journey.accounts_and_transactions.accounts.product_summary_dtos.common.DebitCardItem.additions]
          */
-        @set:JvmSynthetic
         var additions: Map<String, String>? = null
 
         /**
@@ -143,5 +136,4 @@ class DebitCardItem internal constructor(
 /**
  * DSL to create [DebitCardItem]
  */
-@JvmSynthetic
 fun DebitCardItem(block: DebitCardItem.Builder.() -> Unit) = DebitCardItem.Builder().apply(block).build()

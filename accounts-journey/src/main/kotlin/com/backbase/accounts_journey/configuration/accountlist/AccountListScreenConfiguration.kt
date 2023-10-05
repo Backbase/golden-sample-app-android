@@ -17,20 +17,15 @@ class AccountListScreenConfiguration private constructor(
 ) {
     /**
      * A builder for this configuration class.
-     *
-     * Should be used directly by Java callers. Kotlin callers should use the DSL function instead.
      */
     class Builder {
 
-        @set:JvmSynthetic
         var screenTitle: DeferredText =
             DeferredText.Resource(R.string.accountsAndTransactions_accounts_labels_title)
 
-        @set:JvmSynthetic
         var currentAccountTitle: DeferredText =
             DeferredText.Resource(R.string.accountsAndTransactions_accounts_labels_section_title_currentAccounts)
 
-        @set:JvmSynthetic
         var savingsAccountTitle: DeferredText =
             DeferredText.Resource(R.string.accountsAndTransactions_accounts_labels_section_title_savingsAccounts)
 
@@ -45,7 +40,6 @@ class AccountListScreenConfiguration private constructor(
 /**
  * DSL function to create a [AccountListScreenConfiguration] in Kotlin.
  */
-@JvmSynthetic
 fun AccountListScreenConfiguration(
     initializer: AccountListScreenConfiguration.Builder.() -> Unit
 ): AccountListScreenConfiguration =

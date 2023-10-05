@@ -144,339 +144,283 @@ class TermDeposit internal constructor(
         /**
          * See [TermDeposit.bookedBalance].
          */
-        @set:JvmSynthetic
         var bookedBalance: String? = null
 
         /**
          * See [TermDeposit.principalAmount].
          */
-        @set:JvmSynthetic
         var principalAmount: BigDecimal? = null
 
         /**
          * See [TermDeposit.accruedInterest].
          */
-        @set:JvmSynthetic
         var accruedInterest: BigDecimal? = null
 
         /**
          * See [TermDeposit.IBAN].
          */
         @SuppressWarnings("VariableNaming")
-        @set:JvmSynthetic
         var IBAN: String? = null
 
         /**
          * See [TermDeposit.BBAN].
          */
         @SuppressWarnings("VariableNaming")
-        @set:JvmSynthetic
         var BBAN: String? = null
 
         /**
          * See [TermDeposit.unMaskableAttributes].
          */
-        @set:JvmSynthetic
         var unMaskableAttributes: Set<MaskableAttribute>? = null
 
         /**
          * See [TermDeposit.currency].
          */
-        @set:JvmSynthetic
         var currency: String? = null
 
         /**
          * See [TermDeposit.urgentTransferAllowed].
          */
-        @set:JvmSynthetic
         var urgentTransferAllowed: Boolean? = null
 
         /**
          * See [TermDeposit.productNumber].
          */
-        @set:JvmSynthetic
         var productNumber: String? = null
 
         /**
          * See [TermDeposit.accountInterestRate].
          */
-        @set:JvmSynthetic
         var accountInterestRate: BigDecimal? = null
 
         /**
          * See [TermDeposit.startDate].
          */
-        @set:JvmSynthetic
         var startDate: OffsetDateTime? = null
 
         /**
          * See [TermDeposit.termUnit].
          */
-        @set:JvmSynthetic
         var termUnit: TimeUnit? = null
 
         /**
          * See [TermDeposit.termNumber].
          */
-        @set:JvmSynthetic
         var termNumber: BigDecimal? = null
 
         /**
          * See [TermDeposit.maturityDate].
          */
-        @set:JvmSynthetic
         var maturityDate: OffsetDateTime? = null
 
         /**
          * See [TermDeposit.maturityAmount].
          */
-        @set:JvmSynthetic
         var maturityAmount: BigDecimal? = null
 
         /**
          * See [TermDeposit.autoRenewalIndicator].
          */
-        @set:JvmSynthetic
         var autoRenewalIndicator: Boolean? = null
 
         /**
          * See [TermDeposit.interestPaymentFrequencyUnit].
          */
-        @set:JvmSynthetic
         var interestPaymentFrequencyUnit: TimeUnit? = null
 
         /**
          * See [TermDeposit.interestPaymentFrequencyNumber].
          */
-        @set:JvmSynthetic
         var interestPaymentFrequencyNumber: BigDecimal? = null
 
         /**
          * See [TermDeposit.interestSettlementAccount].
          */
-        @set:JvmSynthetic
         var interestSettlementAccount: String? = null
 
         /**
          * See [TermDeposit.valueDateBalance].
          */
-        @set:JvmSynthetic
         var valueDateBalance: BigDecimal? = null
 
         /**
          * See [TermDeposit.accountHolderNames].
          */
-        @set:JvmSynthetic
         var accountHolderNames: String? = null
 
         /**
          * See [TermDeposit.outstandingPrincipalAmount].
          */
-        @set:JvmSynthetic
         var outstandingPrincipalAmount: BigDecimal? = null
 
         /**
          * See [TermDeposit.creditAccount].
          */
-        @set:JvmSynthetic
         var creditAccount: Boolean? = null
 
         /**
          * See [TermDeposit.debitAccount].
          */
-        @set:JvmSynthetic
         var debitAccount: Boolean? = null
 
         /**
          * See [TermDeposit.minimumRequiredBalance].
          */
-        @set:JvmSynthetic
         var minimumRequiredBalance: BigDecimal? = null
 
         /**
          * See [TermDeposit.id].
          */
-        @set:JvmSynthetic
         var id: String? = null
 
         /**
          * See [TermDeposit.name].
          */
-        @set:JvmSynthetic
         var name: String? = null
 
         /**
          * See [TermDeposit.externalTransferAllowed].
          */
-        @set:JvmSynthetic
         var externalTransferAllowed: Boolean? = null
 
         /**
          * See [TermDeposit.crossCurrencyAllowed].
          */
-        @set:JvmSynthetic
         var crossCurrencyAllowed: Boolean? = null
 
         /**
          * See [TermDeposit.productKindName].
          */
-        @set:JvmSynthetic
         var productKindName: String? = null
 
         /**
          * See [TermDeposit.productTypeName].
          */
-        @set:JvmSynthetic
         var productTypeName: String? = null
 
         /**
          * See [TermDeposit.bankAlias].
          */
-        @set:JvmSynthetic
         var bankAlias: String? = null
 
         /**
          * See [TermDeposit.sourceId].
          */
-        @set:JvmSynthetic
         var sourceId: String? = null
 
         /**
          * See [TermDeposit.accountOpeningDate].
          */
-        @set:JvmSynthetic
         var accountOpeningDate: OffsetDateTime? = null
 
         /**
          * See [TermDeposit.lastUpdateDate].
          */
-        @set:JvmSynthetic
         var lastUpdateDate: OffsetDateTime? = null
 
         /**
          * See [TermDeposit.userPreferences].
          */
-        @set:JvmSynthetic
         var userPreferences: UserPreferences? = null
 
         /**
          * See [TermDeposit.state].
          */
-        @set:JvmSynthetic
         var state: ProductState? = null
 
         /**
          * See [TermDeposit.subArrangements].
          */
-        @set:JvmSynthetic
         var subArrangements: List<BaseProduct>? = null
 
         /**
          * See [TermDeposit.parentId].
          */
-        @set:JvmSynthetic
         var parentId: String? = null
 
         /**
          * See [TermDeposit.financialInstitutionId].
          */
-        @set:JvmSynthetic
         var financialInstitutionId: Long? = null
 
         /**
          * See [TermDeposit.lastSyncDate].
          */
-        @set:JvmSynthetic
         var lastSyncDate: OffsetDateTime? = null
 
         /**
          * See [TermDeposit.additions].
          */
-        @set:JvmSynthetic
         var additions: Map<String, String>? = null
 
         /**
          * See [TermDeposit.displayName].
          */
-        @set:JvmSynthetic
         var displayName: String? = null
 
         /**
          * See [TermDeposit.cardDetails].
          */
-        @set:JvmSynthetic
         var cardDetails: CardDetails? = null
 
         /**
          * See [TermDeposit.interestDetails].
          */
-        @set:JvmSynthetic
         var interestDetails: InterestDetails? = null
 
         /**
          * See [TermDeposit.reservedAmount].
          */
-        @set:JvmSynthetic
         var reservedAmount: BigDecimal? = null
 
         /**
          * See [TermDeposit.remainingPeriodicTransfers].
          */
-        @set:JvmSynthetic
         var remainingPeriodicTransfers: BigDecimal? = null
 
         /**
          * See [TermDeposit.nextClosingDate].
          */
-        @set:JvmSynthetic
         var nextClosingDate: LocalDate? = null
 
         /**
          * See [TermDeposit.overdueSince].
          */
-        @set:JvmSynthetic
         var overdueSince: LocalDate? = null
 
         /**
          * See [TermDeposit.externalAccountStatus].
          */
-        @set:JvmSynthetic
         var externalAccountStatus: String? = null
 
         /**
          * See [TermDeposit.bankBranchCode].
          */
-        @set:JvmSynthetic
         var bankBranchCode: String? = null
 
         /**
          * See [TermDeposit.bankBranchCode2].
          */
-        @set:JvmSynthetic
         var bankBranchCode2: String? = null
 
         /**
          * See [TermDeposit.availableBalance].
          */
-        @set:JvmSynthetic
         var availableBalance: String? = null
 
         /**
          * See [TermDeposit.creditLimit].
          */
-        @set:JvmSynthetic
         var creditLimit: String? = null
 
         /**
          * See [TermDeposit.minimumPayment].
          */
-        @set:JvmSynthetic
         var minimumPayment: BigDecimal? = null
 
         /**
          * See [TermDeposit.minimumPaymentDueDate].
          */
-        @set:JvmSynthetic
         var minimumPaymentDueDate: OffsetDateTime? = null
 
         /**
@@ -871,7 +815,6 @@ class TermDeposit internal constructor(
  * Builds an instance of [TermDeposit] with the [initializer] parameters.
  */
 @Suppress("FunctionName") // DSL initializer
-@JvmSynthetic // Hide from Java callers who should use Builder
 fun TermDeposit(initializer: TermDeposit.Builder.() -> Unit): TermDeposit {
     return TermDeposit.Builder().apply(initializer).build()
 }

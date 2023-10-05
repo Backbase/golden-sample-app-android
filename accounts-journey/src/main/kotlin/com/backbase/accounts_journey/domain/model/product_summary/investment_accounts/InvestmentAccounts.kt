@@ -31,25 +31,21 @@ class InvestmentAccounts private constructor(
         /**
          * See [InvestmentAccounts.products]
          */
-        @set:JvmSynthetic
         var products: List<InvestmentAccount>? = null
 
         /**
          * See [InvestmentAccounts.name]
          */
-        @set:JvmSynthetic
         var name: String? = null
 
         /**
          * See [InvestmentAccounts.aggregatedBalance]
          */
-        @set:JvmSynthetic
         var aggregatedBalance: AggregatedBalance? = null
 
         /**
          * See [InvestmentAccounts.additions]
          */
-        @set:JvmSynthetic
         var additions: Map<String, String>? = null
 
         /**
@@ -95,7 +91,6 @@ class InvestmentAccounts private constructor(
 /**
  * DSL to create [InvestmentAccounts]
  */
-@JvmSynthetic
 fun InvestmentAccounts(block: InvestmentAccounts.Builder.() -> Unit) = InvestmentAccounts.Builder().apply(block).build()
 
 internal fun InvestmentAccounts?.allProducts(): List<InvestmentAccount> = this?.products ?: emptyList()

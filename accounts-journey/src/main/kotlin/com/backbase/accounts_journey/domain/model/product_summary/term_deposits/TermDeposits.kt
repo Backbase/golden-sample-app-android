@@ -31,25 +31,21 @@ class TermDeposits private constructor(
         /**
          * See [TermDeposits.products]
          */
-        @set:JvmSynthetic
         var products: List<TermDeposit>? = null
 
         /**
          * See [TermDeposits.products]
          */
-        @set:JvmSynthetic
         var name: String? = null
 
         /**
          * See [TermDeposits.aggregatedBalance]
          */
-        @set:JvmSynthetic
         var aggregatedBalance: AggregatedBalance? = null
 
         /**
          * See [TermDeposits.additions]
          */
-        @set:JvmSynthetic
         var additions: Map<String, String>? = null
 
         /**
@@ -95,7 +91,6 @@ class TermDeposits private constructor(
 /**
  * DSL to create [TermDeposits]
  */
-@JvmSynthetic
 fun TermDeposits(block: TermDeposits.Builder.() -> Unit) = TermDeposits.Builder().apply(block).build()
 
 internal fun TermDeposits?.allProducts(): List<TermDeposit> = this?.products ?: emptyList()

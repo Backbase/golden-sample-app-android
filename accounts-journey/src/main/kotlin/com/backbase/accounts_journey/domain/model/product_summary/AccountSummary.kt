@@ -52,61 +52,51 @@ class AccountSummary private constructor(
         /**
          * See [AccountSummary.customProducts]
          */
-        @set:JvmSynthetic
         var customProducts: List<CustomProducts> = emptyList()
 
         /**
          * See [AccountSummary.aggregatedBalance]
          */
-        @set:JvmSynthetic
         var aggregatedBalance: AggregatedBalance? = null
 
         /**
          * See [AccountSummary.currentAccounts]
          */
-        @set:JvmSynthetic
         var currentAccounts: CurrentAccounts? = null
 
         /**
          * See [AccountSummary.savingsAccounts]
          */
-        @set:JvmSynthetic
         var savingsAccounts: SavingsAccounts? = null
 
         /**
          * See [AccountSummary.termDeposits]
          */
-        @set:JvmSynthetic
         var termDeposits: TermDeposits? = null
 
         /**
          * See [AccountSummary.loans]
          */
-        @set:JvmSynthetic
         var loans: Loans? = null
 
         /**
          * See [AccountSummary.creditCards]
          */
-        @set:JvmSynthetic
         var creditCards: CreditCards? = null
 
         /**
          * See [AccountSummary.debitCards]
          */
-        @set:JvmSynthetic
         var debitCards: DebitCards? = null
 
         /**
          * See [AccountSummary.investmentAccounts]
          */
-        @set:JvmSynthetic
         var investmentAccounts: InvestmentAccounts? = null
 
         /**
          * See [AccountSummary.additions]
          */
-        @set:JvmSynthetic
         var additions: Map<String, String>? = null
 
         /**
@@ -200,5 +190,4 @@ class AccountSummary private constructor(
 /**
  * DSL to create [AccountSummary]
  */
-@JvmSynthetic
 fun AccountSummary(block: AccountSummary.Builder.() -> Unit) = AccountSummary.Builder().apply(block).build()

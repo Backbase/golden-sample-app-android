@@ -15,6 +15,7 @@ import com.backbase.accounts_journey.presentation.model.AccountSummaryUiModel
 import com.backbase.accounts_journey.presentation.model.AccountUiModel
 import com.backbase.accounts_journey.presentation.model.AccountsUiModel
 import com.backbase.android.design.amount.AmountFormat
+import java.math.BigDecimal
 
 /**
  * An AccountSummary mapper from domain models to UI models.
@@ -39,12 +40,12 @@ internal fun List<CustomProducts>.mapToUi(): List<AccountsUiModel> {
 
     return this.map { customProducts ->
         AccountsUiModel(
-            AccountHeaderUiModel(name = customProducts.name!!),
+            AccountHeaderUiModel(name = customProducts.name),
             products = customProducts.products.map { domain ->
                 AccountUiModel(
-                    id = domain.id!!,
-                    name = domain.displayName!!,
-                    balance = formatCurrency(domain.currency!!, domain.availableBalance!!),
+                    id = domain.id,
+                    name = domain.displayName,
+                    balance = formatCurrency(domain.currency, domain.availableBalance),
                     state = formatState(domain.state?.state, domain.BBAN),
                     icon = R.drawable.ic_account_type_card_v2,
                     isVisible = domain.userPreferences?.visible
@@ -58,12 +59,12 @@ internal fun CurrentAccounts.mapToUi(): AccountsUiModel? {
     if (this.products.isEmpty()) return null
 
     return AccountsUiModel(
-        AccountHeaderUiModel(name = this.name!!),
+        AccountHeaderUiModel(name = this.name),
         products = this.products.map { domain ->
             AccountUiModel(
-                id = domain.id!!,
-                name = domain.displayName!!,
-                balance = formatCurrency(domain.currency!!, domain.availableBalance!!),
+                id = domain.id,
+                name = domain.displayName,
+                balance = formatCurrency(domain.currency, domain.availableBalance),
                 state = formatState(domain.state?.state, domain.BBAN),
                 icon = R.drawable.ic_account_type_current_v2,
                 isVisible = domain.userPreferences?.visible
@@ -76,12 +77,12 @@ internal fun SavingsAccounts.mapToUi(): AccountsUiModel? {
     if (this.products.isEmpty()) return null
 
     return AccountsUiModel(
-        AccountHeaderUiModel(name = this.name!!),
+        AccountHeaderUiModel(name = this.name),
         products = this.products.map { domain ->
             AccountUiModel(
-                id = domain.id!!,
-                name = domain.displayName!!,
-                balance = formatCurrency(domain.currency!!, domain.availableBalance!!),
+                id = domain.id,
+                name = domain.displayName,
+                balance = formatCurrency(domain.currency, domain.availableBalance),
                 state = formatState(domain.state?.state, domain.BBAN),
                 icon = R.drawable.ic_account_type_savings_term_deposits_v2,
                 isVisible = domain.userPreferences?.visible
@@ -94,12 +95,12 @@ internal fun TermDeposits.mapToUi(): AccountsUiModel? {
     if (this.products.isEmpty()) return null
 
     return AccountsUiModel(
-        AccountHeaderUiModel(name = this.name!!),
+        AccountHeaderUiModel(name = this.name),
         products = this.products.map { domain ->
             AccountUiModel(
-                id = domain.id!!,
-                name = domain.displayName!!,
-                balance = formatCurrency(domain.currency!!, domain.availableBalance!!),
+                id = domain.id,
+                name = domain.displayName,
+                balance = formatCurrency(domain.currency, domain.availableBalance),
                 state = formatState(domain.state?.state, domain.BBAN),
                 icon = R.drawable.ic_account_type_savings_term_deposits_v2,
                 isVisible = domain.userPreferences?.visible
@@ -112,12 +113,12 @@ internal fun Loans.mapToUi(): AccountsUiModel? {
     if (this.products.isEmpty()) return null
 
     return AccountsUiModel(
-        AccountHeaderUiModel(name = this.name!!),
+        AccountHeaderUiModel(name = this.name),
         products = this.products.map { domain ->
             AccountUiModel(
-                id = domain.id!!,
-                name = domain.displayName!!,
-                balance = formatCurrency(domain.currency!!, domain.availableBalance!!),
+                id = domain.id,
+                name = domain.displayName,
+                balance = formatCurrency(domain.currency, domain.availableBalance),
                 state = formatState(domain.state?.state, domain.BBAN),
                 icon = R.drawable.ic_account_type_loan_v2,
                 isVisible = domain.userPreferences?.visible
@@ -130,12 +131,12 @@ internal fun CreditCards.mapToUi(): AccountsUiModel? {
     if (this.products.isEmpty()) return null
 
     return AccountsUiModel(
-        AccountHeaderUiModel(name = this.name!!),
+        AccountHeaderUiModel(name = this.name),
         products = this.products.map { domain ->
             AccountUiModel(
-                id = domain.id!!,
-                name = domain.displayName!!,
-                balance = formatCurrency(domain.currency!!, domain.availableBalance!!),
+                id = domain.id,
+                name = domain.displayName,
+                balance = formatCurrency(domain.currency, domain.availableBalance),
                 state = formatState(domain.state?.state, domain.creditCardAccountNumber),
                 icon = R.drawable.ic_account_type_credit_debit_card_v2,
                 isVisible = domain.userPreferences?.visible
@@ -148,11 +149,11 @@ internal fun DebitCards.mapToUi(): AccountsUiModel? {
     if (this.products.isEmpty()) return null
 
     return AccountsUiModel(
-        AccountHeaderUiModel(name = this.name!!),
+        AccountHeaderUiModel(name = this.name),
         products = this.products.map { domain ->
             AccountUiModel(
-                id = domain.id!!,
-                name = domain.displayName!!,
+                id = domain.id,
+                name = domain.displayName,
                 balance = "",
                 state = formatState(domain.state?.state, domain.cardNumber.toString()),
                 icon = R.drawable.ic_account_type_credit_debit_card_v2,
@@ -166,12 +167,12 @@ internal fun InvestmentAccounts.mapToUi(): AccountsUiModel? {
     if (this.products.isEmpty()) return null
 
     return AccountsUiModel(
-        AccountHeaderUiModel(name = this.name!!),
+        AccountHeaderUiModel(name = this.name),
         products = this.products.map { domain ->
             AccountUiModel(
-                id = domain.id!!,
-                name = domain.displayName!!,
-                balance = formatCurrency(domain.currency!!, domain.currentInvestmentValue!!),
+                id = domain.id,
+                name = domain.displayName,
+                balance = formatCurrency(domain.currency, domain.currentInvestmentValue),
                 state = formatState(domain.state?.state, domain.BBAN),
                 icon = R.drawable.ic_account_type_investment_v2,
                 isVisible = domain.userPreferences?.visible
@@ -180,11 +181,11 @@ internal fun InvestmentAccounts.mapToUi(): AccountsUiModel? {
     )
 }
 
-private fun formatCurrency(currency: String, amount: String): String {
+private fun formatCurrency(currency: String?, amount: String?): String {
     return AmountFormat().apply {
         enableAbbreviation = true
         currencyCode = currency
-    }.format(amount.toBigDecimal())
+    }.format(amount?.toBigDecimal() ?: BigDecimal.ZERO)
 }
 
 private fun formatState(state: String?, number: String?): String? {

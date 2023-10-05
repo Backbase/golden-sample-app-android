@@ -36,7 +36,7 @@ data class AccountSummaryUiModel(
         val products = accounts?.products?.takeIf {
             it.isNotEmpty()
         }?.filter {
-            it.name.lowercase().contains(query)
+            it.name?.lowercase()?.contains(query) ?: false
         } as? Collection<ListItem>
 
         if (header == null || products.isNullOrEmpty()) return emptyList()

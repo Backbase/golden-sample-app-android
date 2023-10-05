@@ -100,205 +100,171 @@ class DebitCard internal constructor(
         /**
          * See [DebitCard.debitCardsItems].
          */
-        @set:JvmSynthetic
         var debitCardsItems: Set<DebitCardItem>? = null
 
         /**
          * See [DebitCard.number].
          */
-        @set:JvmSynthetic
         var number: String? = null
 
         /**
          * See [DebitCard.urgentTransferAllowed].
          */
-        @set:JvmSynthetic
         var urgentTransferAllowed: Boolean? = null
 
         /**
          * See [DebitCard.cardNumber].
          */
-        @set:JvmSynthetic
         var cardNumber: BigDecimal? = null
 
         /**
          * See [DebitCard.accountInterestRate].
          */
-        @set:JvmSynthetic
         var accountInterestRate: BigDecimal? = null
 
         /**
          * See [DebitCard.accountHolderNames].
          */
-        @set:JvmSynthetic
         var accountHolderNames: String? = null
 
         /**
          * See [DebitCard.startDate].
          */
-        @set:JvmSynthetic
         var startDate: OffsetDateTime? = null
 
         /**
          * See [DebitCard.validThru].
          */
-        @set:JvmSynthetic
         var validThru: OffsetDateTime? = null
 
         /**
          * See [DebitCard.id].
          */
-        @set:JvmSynthetic
         var id: String? = null
 
         /**
          * See [DebitCard.name].
          */
-        @set:JvmSynthetic
         var name: String? = null
 
         /**
          * See [DebitCard.externalTransferAllowed].
          */
-        @set:JvmSynthetic
         var externalTransferAllowed: Boolean? = null
 
         /**
          * See [DebitCard.crossCurrencyAllowed].
          */
-        @set:JvmSynthetic
         var crossCurrencyAllowed: Boolean? = null
 
         /**
          * See [DebitCard.productKindName].
          */
-        @set:JvmSynthetic
         var productKindName: String? = null
 
         /**
          * See [DebitCard.productTypeName].
          */
-        @set:JvmSynthetic
         var productTypeName: String? = null
 
         /**
          * See [DebitCard.bankAlias].
          */
-        @set:JvmSynthetic
         var bankAlias: String? = null
 
         /**
          * See [DebitCard.sourceId].
          */
-        @set:JvmSynthetic
         var sourceId: String? = null
 
         /**
          * See [DebitCard.accountOpeningDate].
          */
-        @set:JvmSynthetic
         var accountOpeningDate: OffsetDateTime? = null
 
         /**
          * See [DebitCard.lastUpdateDate].
          */
-        @set:JvmSynthetic
         var lastUpdateDate: OffsetDateTime? = null
 
         /**
          * See [DebitCard.userPreferences].
          */
-        @set:JvmSynthetic
         var userPreferences: UserPreferences? = null
 
         /**
          * See [DebitCard.subArrangements].
          */
-        @set:JvmSynthetic
         var subArrangements: List<BaseProduct>? = null
 
         /**
          * See [DebitCard.state].
          */
-        @set:JvmSynthetic
         var state: ProductState? = null
 
         /**
          * See [DebitCard.parentId].
          */
-        @set:JvmSynthetic
         var parentId: String? = null
 
         /**
          * See [DebitCard.financialInstitutionId].
          */
-        @set:JvmSynthetic
         var financialInstitutionId: Long? = null
 
         /**
          * See [DebitCard.lastSyncDate].
          */
-        @set:JvmSynthetic
         var lastSyncDate: OffsetDateTime? = null
 
         /**
          * See [com.backbase.android.retail.journey.accounts_and_transactions.accounts.product_summary_dtos.debit_card.DebitCard.unMaskableAttributes].
          */
-        @set:JvmSynthetic
         var unMaskableAttributes: Set<MaskableAttribute>? = null
 
         /**
          * See [DebitCard.additions].
          */
-        @set:JvmSynthetic
         var additions: Map<String, String>? = null
 
         /**
          * See [DebitCard.displayName].
          */
-        @set:JvmSynthetic
         var displayName: String? = null
 
         /**
          * See [DebitCard.cardDetails].
          */
-        @set:JvmSynthetic
         var cardDetails: CardDetails? = null
 
         /**
          * See [DebitCard.interestDetails].
          */
-        @set:JvmSynthetic
         var interestDetails: InterestDetails? = null
 
         /**
          * See [DebitCard.reservedAmount].
          */
-        @set:JvmSynthetic
         var reservedAmount: BigDecimal? = null
 
         /**
          * See [DebitCard.remainingPeriodicTransfers].
          */
-        @set:JvmSynthetic
         var remainingPeriodicTransfers: BigDecimal? = null
 
         /**
          * See [DebitCard.nextClosingDate].
          */
-        @set:JvmSynthetic
         var nextClosingDate: LocalDate? = null
 
         /**
          * See [DebitCard.overdueSince].
          */
-        @set:JvmSynthetic
         var overdueSince: LocalDate? = null
 
         /**
          * See [DebitCard.externalAccountStatus].
          */
-        @set:JvmSynthetic
         var externalAccountStatus: String? = null
 
         /**
@@ -538,7 +504,6 @@ class DebitCard internal constructor(
  * Builds an instance of [DebitCard] with the [initializer] parameters.
  */
 @Suppress("FunctionName") // DSL initializer
-@JvmSynthetic // Hide from Java callers who should use Builder
 fun DebitCard(initializer: DebitCard.Builder.() -> Unit): DebitCard {
     return DebitCard.Builder().apply(initializer).build()
 }

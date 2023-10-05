@@ -1,14 +1,12 @@
 package com.backbase.accounts_journey
 
 import com.backbase.accounts_journey.configuration.AccountsJourneyConfiguration
-import com.backbase.accounts_journey.koin.commonModule
 import com.backbase.accounts_journey.koin.viewModelModule
 import org.koin.core.context.loadKoinModules
 import org.koin.dsl.module
 
 object AccountsJourney {
 
-    @JvmOverloads
     fun create(
         routerName: String = ACCOUNTS_JOURNEY,
         configuration: AccountsJourneyConfiguration = AccountsJourneyConfiguration { },
@@ -22,7 +20,6 @@ object AccountsJourney {
         // mapper module
         loadKoinModules(
             listOf(
-                commonModule,
                 viewModelModule,
             )
         )

@@ -103,219 +103,183 @@ class InvestmentAccount internal constructor(
         /**
          * See [InvestmentAccount.currentInvestmentValue].
          */
-        @set:JvmSynthetic
         var currentInvestmentValue: String? = null
 
         /**
          * See [InvestmentAccount.currency].
          */
-        @set:JvmSynthetic
         var currency: String? = null
 
         /**
          * See [InvestmentAccount.urgentTransferAllowed].
          */
-        @set:JvmSynthetic
         var urgentTransferAllowed: Boolean? = null
 
         /**
          * See [InvestmentAccount.productNumber].
          */
-        @set:JvmSynthetic
         var productNumber: String? = null
 
         /**
          * See [InvestmentAccount.IBAN].
          */
         @SuppressWarnings("VariableNaming")
-        @set:JvmSynthetic
         var IBAN: String? = null
 
         /**
          * See [InvestmentAccount.BBAN].
          */
         @SuppressWarnings("VariableNaming")
-        @set:JvmSynthetic
         var BBAN: String? = null
 
         /**
          * See [InvestmentAccount.id].
          */
-        @set:JvmSynthetic
         var id: String? = null
 
         /**
          * See [InvestmentAccount.name].
          */
-        @set:JvmSynthetic
         var name: String? = null
 
         /**
          * See [InvestmentAccount.externalTransferAllowed].
          */
-        @set:JvmSynthetic
         var externalTransferAllowed: Boolean? = null
 
         /**
          * See [InvestmentAccount.crossCurrencyAllowed].
          */
-        @set:JvmSynthetic
         var crossCurrencyAllowed: Boolean? = null
 
         /**
          * See [InvestmentAccount.productKindName].
          */
-        @set:JvmSynthetic
         var productKindName: String? = null
 
         /**
          * See [InvestmentAccount.productTypeName].
          */
-        @set:JvmSynthetic
         var productTypeName: String? = null
 
         /**
          * See [InvestmentAccount.bankAlias].
          */
-        @set:JvmSynthetic
         var bankAlias: String? = null
 
         /**
          * See [InvestmentAccount.sourceId].
          */
-        @set:JvmSynthetic
         var sourceId: String? = null
 
         /**
          * See [InvestmentAccount.accountOpeningDate].
          */
-        @set:JvmSynthetic
         var accountOpeningDate: OffsetDateTime? = null
 
         /**
          * See [InvestmentAccount.lastUpdateDate].
          */
-        @set:JvmSynthetic
         var lastUpdateDate: OffsetDateTime? = null
 
         /**
          * See [InvestmentAccount.userPreferences].
          */
-        @set:JvmSynthetic
         var userPreferences: UserPreferences? = null
 
         /**
          * See [InvestmentAccount.state].
          */
-        @set:JvmSynthetic
         var state: ProductState? = null
 
         /**
          * See [InvestmentAccount.parentId].
          */
-        @set:JvmSynthetic
         var parentId: String? = null
 
         /**
          * See [InvestmentAccount.financialInstitutionId].
          */
-        @set:JvmSynthetic
         var financialInstitutionId: Long? = null
 
         /**
          * See [InvestmentAccount.lastSyncDate].
          */
-        @set:JvmSynthetic
         var lastSyncDate: OffsetDateTime? = null
 
         /**
          * See [InvestmentAccount.subArrangements].
          */
-        @set:JvmSynthetic
         var subArrangements: List<BaseProduct>? = null
 
         /**
          * See [com.backbase.android.retail.journey.accounts_and_transactions.accounts.product_summary_dtos.investment_accounts.InvestmentAccount.unMaskableAttributes].
          */
-        @set:JvmSynthetic
         var unMaskableAttributes: Set<MaskableAttribute>? = null
 
         /**
          * See [InvestmentAccount.additions].
          */
-        @set:JvmSynthetic
         var additions: Map<String, String>? = null
 
         /**
          * See [InvestmentAccount.displayName].
          */
-        @set:JvmSynthetic
         var displayName: String? = null
 
         /**
          * See [InvestmentAccount.cardDetails].
          */
-        @set:JvmSynthetic
         var cardDetails: CardDetails? = null
 
         /**
          * See [InvestmentAccount.interestDetails].
          */
-        @set:JvmSynthetic
         var interestDetails: InterestDetails? = null
 
         /**
          * See [InvestmentAccount.reservedAmount].
          */
-        @set:JvmSynthetic
         var reservedAmount: BigDecimal? = null
 
         /**
          * See [InvestmentAccount.remainingPeriodicTransfers].
          */
-        @set:JvmSynthetic
         var remainingPeriodicTransfers: BigDecimal? = null
 
         /**
          * See [InvestmentAccount.nextClosingDate].
          */
-        @set:JvmSynthetic
         var nextClosingDate: LocalDate? = null
 
         /**
          * See [InvestmentAccount.overdueSince].
          */
-        @set:JvmSynthetic
         var overdueSince: LocalDate? = null
 
         /**
          * See [InvestmentAccount.externalAccountStatus].
          */
-        @set:JvmSynthetic
         var externalAccountStatus: String? = null
 
         /**
          * See [InvestmentAccount.accruedInterest].
          */
-        @set:JvmSynthetic
         var accruedInterest: BigDecimal? = null
 
         /**
          * See [InvestmentAccount.creditLimitExpiryDate].
          */
-        @set:JvmSynthetic
         var creditLimitExpiryDate: OffsetDateTime? = null
 
         /**
          * See [InvestmentAccount.valueDateBalance].
          */
-        @set:JvmSynthetic
         var valueDateBalance: BigDecimal? = null
 
         /**
          * See [InvestmentAccount.accountHolderNames].
          */
-        @set:JvmSynthetic
         var accountHolderNames: String? = null
 
         /**
@@ -576,7 +540,6 @@ class InvestmentAccount internal constructor(
  * Builds an instance of [InvestmentAccount] with the [initializer] parameters.
  */
 @Suppress("FunctionName") // DSL initializer
-@JvmSynthetic // Hide from Java callers who should use Builder
 fun InvestmentAccount(initializer: InvestmentAccount.Builder.() -> Unit): InvestmentAccount {
     return InvestmentAccount.Builder().apply(initializer).build()
 }

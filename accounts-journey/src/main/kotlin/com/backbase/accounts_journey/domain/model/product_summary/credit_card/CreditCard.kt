@@ -123,277 +123,231 @@ class CreditCard internal constructor(
         /**
          * See [CreditCard.bookedBalance].
          */
-        @set:JvmSynthetic
         var bookedBalance: String? = null
 
         /**
          * See [CreditCard.availableBalance].
          */
-        @set:JvmSynthetic
         var availableBalance: String? = null
 
         /**
          * See [CreditCard.creditLimit].
          */
-        @set:JvmSynthetic
         var creditLimit: String? = null
 
         /**
          * See [CreditCard.number].
          */
-        @set:JvmSynthetic
         var number: String? = null
 
         /**
          * See [CreditCard.unMaskableAttributes].
          */
-        @set:JvmSynthetic
         var unMaskableAttributes: Set<MaskableAttribute>? = null
 
         /**
          * See [CreditCard.currency].
          */
-        @set:JvmSynthetic
         var currency: String? = null
 
         /**
          * See [CreditCard.bankBranchCode2].
          */
-        @set:JvmSynthetic
         var bankBranchCode2: String? = null
 
         /**
          * See [CreditCard.urgentTransferAllowed].
          */
-        @set:JvmSynthetic
         var urgentTransferAllowed: Boolean? = null
 
         /**
          * See [CreditCard.cardNumber].
          */
-        @set:JvmSynthetic
         var cardNumber: BigDecimal? = null
 
         /**
          * See [CreditCard.creditCardAccountNumber].
          */
-        @set:JvmSynthetic
         var creditCardAccountNumber: String? = null
 
         /**
          * See [CreditCard.validThru].
          */
-        @set:JvmSynthetic
         var validThru: OffsetDateTime? = null
 
         /**
          * See [CreditCard.applicableInterestRate].
          */
-        @set:JvmSynthetic
         var applicableInterestRate: BigDecimal? = null
 
         /**
          * See [CreditCard.remainingCredit].
          */
-        @set:JvmSynthetic
         var remainingCredit: BigDecimal? = null
 
         /**
          * See [CreditCard.outstandingPayment].
          */
-        @set:JvmSynthetic
         var outstandingPayment: BigDecimal? = null
 
         /**
          * See [CreditCard.minimumPayment].
          */
-        @set:JvmSynthetic
         var minimumPayment: BigDecimal? = null
 
         /**
          * See [CreditCard.minimumPaymentDueDate].
          */
-        @set:JvmSynthetic
         var minimumPaymentDueDate: OffsetDateTime? = null
 
         /**
          * See [CreditCard.accountInterestRate].
          */
-        @set:JvmSynthetic
         var accountInterestRate: BigDecimal? = null
 
         /**
          * See [CreditCard.accountHolderNames].
          */
-        @set:JvmSynthetic
         var accountHolderNames: String? = null
 
         /**
          * See [CreditCard.creditLimitUsage].
          */
-        @set:JvmSynthetic
         var creditLimitUsage: BigDecimal? = null
 
         /**
          * See [CreditCard.creditLimitInterestRate].
          */
-        @set:JvmSynthetic
         var creditLimitInterestRate: BigDecimal? = null
 
         /**
          * See [CreditCard.accruedInterest].
          */
-        @set:JvmSynthetic
         var accruedInterest: BigDecimal? = null
 
         /**
          * See [CreditCard.id].
          */
-        @set:JvmSynthetic
         var id: String? = null
 
         /**
          * See [CreditCard.name].
          */
-        @set:JvmSynthetic
         var name: String? = null
 
         /**
          * See [CreditCard.externalTransferAllowed].
          */
-        @set:JvmSynthetic
         var externalTransferAllowed: Boolean? = null
 
         /**
          * See [CreditCard.crossCurrencyAllowed].
          */
-        @set:JvmSynthetic
         var crossCurrencyAllowed: Boolean? = null
 
         /**
          * See [CreditCard.productKindName].
          */
-        @set:JvmSynthetic
         var productKindName: String? = null
 
         /**
          * See [CreditCard.productTypeName].
          */
-        @set:JvmSynthetic
         var productTypeName: String? = null
 
         /**
          * See [CreditCard.bankAlias].
          */
-        @set:JvmSynthetic
         var bankAlias: String? = null
 
         /**
          * See [CreditCard.sourceId].
          */
-        @set:JvmSynthetic
         var sourceId: String? = null
 
         /**
          * See [CreditCard.accountOpeningDate].
          */
-        @set:JvmSynthetic
         var accountOpeningDate: OffsetDateTime? = null
 
         /**
          * See [CreditCard.lastUpdateDate].
          */
-        @set:JvmSynthetic
         var lastUpdateDate: OffsetDateTime? = null
 
         /**
          * See [CreditCard.userPreferences].
          */
-        @set:JvmSynthetic
         var userPreferences: UserPreferences? = null
 
         /**
          * See [CreditCard.state].
          */
-        @set:JvmSynthetic
         var state: ProductState? = null
 
         /**
          * See [CreditCard.parentId].
          */
-        @set:JvmSynthetic
         var parentId: String? = null
 
         /**
          * See [CreditCard.subArrangements].
          */
-        @set:JvmSynthetic
         var subArrangements: List<BaseProduct>? = null
 
         /**
          * See [CreditCard.financialInstitutionId].
          */
-        @set:JvmSynthetic
         var financialInstitutionId: Long? = null
 
         /**
          * See [CreditCard.lastSyncDate].
          */
-        @set:JvmSynthetic
         var lastSyncDate: OffsetDateTime? = null
 
         /**
          * See [CreditCard.additions].
          */
-        @set:JvmSynthetic
         var additions: Map<String, String>? = null
 
         /**
          * See [CreditCard.displayName].
          */
-        @set:JvmSynthetic
         var displayName: String? = null
 
         /**
          * See [CreditCard.cardDetails].
          */
-        @set:JvmSynthetic
         var cardDetails: CardDetails? = null
 
         /**
          * See [CreditCard.interestDetails].
          */
-        @set:JvmSynthetic
         var interestDetails: InterestDetails? = null
 
         /**
          * See [CreditCard.reservedAmount].
          */
-        @set:JvmSynthetic
         var reservedAmount: BigDecimal? = null
 
         /**
          * See [CreditCard.remainingPeriodicTransfers].
          */
-        @set:JvmSynthetic
         var remainingPeriodicTransfers: BigDecimal? = null
 
         /**
          * See [CreditCard.nextClosingDate].
          */
-        @set:JvmSynthetic
         var nextClosingDate: LocalDate? = null
 
         /**
          * See [CreditCard.overdueSince].
          */
-        @set:JvmSynthetic
         var overdueSince: LocalDate? = null
 
         /**
          * See [CreditCard.externalAccountStatus].
          */
-        @set:JvmSynthetic
         var externalAccountStatus: String? = null
 
         /**
@@ -712,7 +666,6 @@ class CreditCard internal constructor(
  * Builds an instance of [CreditCard] with the [initializer] parameters.
  */
 @Suppress("FunctionName") // DSL initializer
-@JvmSynthetic // Hide from Java callers who should use Builder
 fun CreditCard(initializer: CreditCard.Builder.() -> Unit): CreditCard {
     return CreditCard.Builder().apply(initializer).build()
 }

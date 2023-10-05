@@ -9,9 +9,9 @@ import androidx.annotation.DrawableRes
  * Created by Backbase R&D B.V on 04/10/2023.
  */
 data class AccountUiModel(
-    val id: String,
-    val name: String,
-    val balance: String,
+    val id: String?,
+    val name: String?,
+    val balance: String?,
     val state: String?,
     val isVisible: Boolean?,
     @DrawableRes val icon: Int,

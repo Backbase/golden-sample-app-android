@@ -31,25 +31,21 @@ class SavingsAccounts private constructor(
         /**
          * See [SavingsAccounts.products]
          */
-        @set:JvmSynthetic
         var products: List<SavingsAccount>? = null
 
         /**
          * See [SavingsAccounts.name]
          */
-        @set:JvmSynthetic
         var name: String? = null
 
         /**
          * See [SavingsAccounts.aggregatedBalance]
          */
-        @set:JvmSynthetic
         var aggregatedBalance: AggregatedBalance? = null
 
         /**
          * See [SavingsAccounts.additions]
          */
-        @set:JvmSynthetic
         var additions: Map<String, String>? = null
 
         /**
@@ -95,7 +91,6 @@ class SavingsAccounts private constructor(
 /**
  * DSL to create [SavingsAccounts]
  */
-@JvmSynthetic
 fun SavingsAccounts(block: SavingsAccounts.Builder.() -> Unit) = SavingsAccounts.Builder().apply(block).build()
 
 internal fun SavingsAccounts?.allProducts(): List<SavingsAccount> = this?.products ?: emptyList()

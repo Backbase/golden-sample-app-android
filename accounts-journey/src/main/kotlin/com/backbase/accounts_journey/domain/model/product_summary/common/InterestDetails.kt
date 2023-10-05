@@ -81,5 +81,4 @@ class InterestDetails internal constructor(
 /**
  * DSL to create [InterestDetails]
  */
-@JvmSynthetic
 fun InterestDetails(block: InterestDetails.Builder.() -> Unit) = InterestDetails.Builder().apply(block).build()
