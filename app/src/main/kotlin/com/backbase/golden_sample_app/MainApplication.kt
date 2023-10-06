@@ -2,6 +2,8 @@ package com.backbase.golden_sample_app
 
 import android.app.Application
 import com.backbase.accounts_journey.AccountsJourney
+import com.backbase.accounts_journey.configuration.AccountsJourneyConfiguration
+import com.backbase.accounts_journey.configuration.accountlist.AccountListScreenConfiguration
 import com.backbase.android.Backbase
 import com.backbase.android.business.journey.workspaces.WorkspacesJourney
 import com.backbase.android.core.utils.BBLogger
@@ -89,6 +91,14 @@ class MainApplication : Application() {
         backbase.authClient.startSessionObserver(sessionEmitter)
     }
 
+    private fun setupAccountsJourneyConfiguration(): AccountsJourneyConfiguration {
+        return AccountsJourneyConfiguration {
+            this.accountListScreenConfiguration = AccountListScreenConfiguration {
+                this.screenTitle = R.string.accounts_screen_title
+            }
+        }
+    }
+
     private fun setupDependencies() = startKoin {
         androidContext(this@MainApplication)
 
@@ -102,7 +112,7 @@ class MainApplication : Application() {
                 workspacesModule,
                 WorkspacesJourney.create(),
                 accountsModule,
-                AccountsJourney.create(),
+                AccountsJourney.create(configuration = setupAccountsJourneyConfiguration()),
             )
         )
     }

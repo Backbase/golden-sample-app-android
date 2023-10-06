@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="accountsAndTransactions.accounts.labels.title">My Accounts</string>
-    <string name="accountsAndTransactions.accounts.labels.section.title.currentAccounts">Current Accounts</string>
-    <string name="accountsAndTransactions.accounts.labels.section.title.savingsAccounts">Savings Accounts</string>
+    <string name="accounts_screen_title">My Accounts</string>
     <string name="no_internet_connection">It seems that you\'re not online. Try again.</string>
     <string name="no_response">No response</string>
     <string name="failed_get_data">Failed to get data</string>

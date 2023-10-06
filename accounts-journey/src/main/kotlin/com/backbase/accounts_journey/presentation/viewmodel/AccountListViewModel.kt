@@ -3,8 +3,8 @@ package com.backbase.accounts_journey.presentation.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.backbase.accounts_journey.data.usecase.AccountsUseCase
+import com.backbase.accounts_journey.presentation.mapper.AccountUiMapper
 import com.backbase.accounts_journey.presentation.mapper.mapErrorToMessage
-import com.backbase.accounts_journey.presentation.mapper.mapToUi
 import com.backbase.accounts_journey.presentation.ui.AccountListEvent
 import com.backbase.accounts_journey.presentation.ui.AccountListScreenState
 import kotlinx.coroutines.CoroutineDispatcher
@@ -23,6 +23,7 @@ import kotlinx.coroutines.withContext
  */
 class AccountListViewModel(
     private val useCase: AccountsUseCase,
+    private val mapper: AccountUiMapper,
     private val defaultDispatcher: CoroutineDispatcher = Dispatchers.Default,
 ) : ViewModel() {
 
@@ -51,7 +52,7 @@ class AccountListViewModel(
                     _uiState.update {
                         it.copy(
                             isLoading = false,
-                            accountSummary = domain.mapToUi().generateList(query),
+                            accountSummary = mapper.mapToUi(domain).generateList(query),
                             error = null
                         )
                     }

@@ -12,7 +12,8 @@ import org.koin.dsl.module
 val viewModelModule = module {
     viewModel {
         AccountListViewModel(
-            useCase = get()
+            useCase = get(),
+            mapper = get(),
         )
     }
 }

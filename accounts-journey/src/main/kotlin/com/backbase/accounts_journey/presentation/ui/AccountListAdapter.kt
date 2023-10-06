@@ -49,28 +49,26 @@ class AccountListAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val uiModel = getItem(position)
-        holder.apply {
-            when (uiModel.viewType) {
-                ViewType.HEADER -> {
-                    uiModel as AccountHeaderUiModel
-                    holder as HeaderViewHolder
-                    holder.binding.apply {
-                        accountHeader.text = uiModel.name
-                    }
+        when (uiModel.viewType) {
+            ViewType.HEADER -> {
+                uiModel as AccountHeaderUiModel
+                holder as HeaderViewHolder
+                holder.binding.apply {
+                    accountHeader.text = uiModel.name
                 }
+            }
 
-                ViewType.ITEM -> {
-                    uiModel as AccountUiModel
-                    holder as ListItemViewHolder
-                    holder.binding.apply {
-                        accountName.text = uiModel.name
-                        accountBalance.text = uiModel.balance
-                        accountState.text = uiModel.state
-                        accountIcon.icon = holder.itemView.context.getDrawable(uiModel.icon)
-                    }
-                    itemView.setOnClickListener {
-                        uiModel.id?.let(onClick)
-                    }
+            ViewType.ITEM -> {
+                uiModel as AccountUiModel
+                holder as ListItemViewHolder
+                holder.binding.apply {
+                    accountName.text = uiModel.name
+                    accountBalance.text = uiModel.balance
+                    accountState.text = uiModel.state
+                    accountIcon.icon = holder.itemView.context.getDrawable(uiModel.icon)
+                }
+                holder.itemView.setOnClickListener {
+                    uiModel.id?.let(onClick)
                 }
             }
         }
