@@ -19,6 +19,9 @@ feature-filter-use-case = "2.4.1"
 gen-access-control-client-2 = "2.4.0"
 gen-arrangements-client-2 = "1.2.0"
 
+## J
+journey-test = "4.0.0"
+
 ## M
 msdk = "9.9.0"
 
@@ -49,6 +52,9 @@ feature-filter-use-case = { group = "com.backbase.android.retail.feature_filter"
 ## G
 gen-access-control-client-2 = { group = "com.backbase.android.clients", name = "gen-accesscontrol-client-2", version.ref = "gen-access-control-client-2" }
 gen-arrangements-client-2 = { group = "com.backbase.android.clients", name = "gen2-arrangement-client-2", version.ref = "gen-arrangements-client-2" }
+
+## J
+journey-test = { group = "com.backbase.android.retail.journey", name = "journey-test", version.ref = "journey-test"}
 
 ## M
 msdk = { group = "com.backbase.android.sdk", name = "backbase", version.ref = "msdk" }
@@ -98,6 +104,7 @@ common = [
     "business-journey-common",
     "clients-common-coroutines",
     "retail-journey-common",
+    "journey-test",
 ]
 
 ## F

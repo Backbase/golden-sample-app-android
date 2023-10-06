@@ -82,6 +82,8 @@ dependencies {
     implementation(libs.bundles.ui)
 
     androidTestImplementation(libs.bundles.test.instrumented)
+    androidTestImplementation(project(":fake-accounts-use-case"))
+
 
     testImplementation(libs.bundles.test)
 
