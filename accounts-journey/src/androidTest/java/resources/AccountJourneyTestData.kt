@@ -1,4 +1,4 @@
-package testdata
+package resources
 
 import com.backbase.accounts_journey.domain.model.product_summary.AccountSummary
 import com.backbase.accounts_journey.domain.model.product_summary.MaskableAttribute
@@ -16,7 +16,7 @@ val TEST_ACCOUNTS = AccountSummary {
             CurrentAccount {
                 debitCardItems = emptySet()
                 bookedBalance = "-78861.9800000000"
-                availableBalance = "472434.2200000000"
+                availableBalance = "45.89"
                 creditLimit = "551055.50000"
                 BBAN = "*********************0025"
                 BIC = "WFBIUS6S"
