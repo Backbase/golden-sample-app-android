@@ -20,7 +20,3 @@ internal fun provideAccountsJourneyDependencies(
         }, AccountsJourney.create(configuration = configuration)
     )
 )
-
-
-
-
