@@ -31,25 +31,21 @@ class CurrentAccounts private constructor(
         /**
          * See [CurrentAccounts.products]
          */
-        @set:JvmSynthetic
         var products: List<CurrentAccount>? = null
 
         /**
          * See [CurrentAccounts.name]
          */
-        @set:JvmSynthetic
         var name: String? = null
 
         /**
          * See [CurrentAccounts.aggregatedBalance]
          */
-        @set:JvmSynthetic
         var aggregatedBalance: AggregatedBalance? = null
 
         /**
          * See [CurrentAccounts.additions]
          */
-        @set:JvmSynthetic
         var additions: Map<String, String>? = null
 
         /**
@@ -95,7 +91,6 @@ class CurrentAccounts private constructor(
 /**
  * DSL to create [CurrentAccounts]
  */
-@JvmSynthetic
 fun CurrentAccounts(block: CurrentAccounts.Builder.() -> Unit) = CurrentAccounts.Builder().apply(block).build()
 
 internal fun CurrentAccounts?.allProducts(): List<CurrentAccount> = this?.products ?: emptyList()

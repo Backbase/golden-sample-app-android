@@ -33,31 +33,26 @@ class DebitCards private constructor(
         /**
          * See [DebitCards.products]
          */
-        @set:JvmSynthetic
         var products: List<DebitCard>? = null
 
         /**
          * See [DebitCards.name]
          */
-        @set:JvmSynthetic
         var name: String? = null
 
         /**
          * See [DebitCards.displayName]
          */
-        @set:JvmSynthetic
         var displayName: String? = null
 
         /**
          * See [DebitCards.aggregatedBalance]
          */
-        @set:JvmSynthetic
         var aggregatedBalance: AggregatedBalance? = null
 
         /**
          * See [DebitCards.additions]
          */
-        @set:JvmSynthetic
         var additions: Map<String, String>? = null
 
         /**
@@ -111,7 +106,6 @@ class DebitCards private constructor(
 /**
  * DSL to create [DebitCards]
  */
-@JvmSynthetic
 fun DebitCards(block: DebitCards.Builder.() -> Unit) = DebitCards.Builder().apply(block).build()
 
 internal fun DebitCards?.allProducts(): List<DebitCard> = this?.products ?: emptyList()

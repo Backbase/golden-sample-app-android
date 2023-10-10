@@ -191,472 +191,395 @@ class GeneralAccount internal constructor(
         /**
          * See [GeneralAccount.debitCardItems].
          */
-        @set:JvmSynthetic
         var debitCardItems: Set<DebitCardItem>? = null
 
         /**
          * See [GeneralAccount.bookedBalance].
          */
-        @set:JvmSynthetic
         var bookedBalance: String? = null
 
         /**
          * See [GeneralAccount.availableBalance].
          */
-        @set:JvmSynthetic
         var availableBalance: String? = null
 
         /**
          * See [GeneralAccount.creditLimit].
          */
-        @set:JvmSynthetic
         var creditLimit: String? = null
 
         /**
          * See [GeneralAccount.IBAN].
          */
         @SuppressWarnings("VariableNaming")
-        @set:JvmSynthetic
         var IBAN: String? = null
 
         /**
          * See [GeneralAccount.BBAN].
          */
         @SuppressWarnings("VariableNaming")
-        @set:JvmSynthetic
         var BBAN: String? = null
 
         /**
          * See [GeneralAccount.BIC].
          */
         @SuppressWarnings("VariableNaming")
-        @set:JvmSynthetic
         var BIC: String? = null
 
         /**
          * See  [GeneralAccount.unMaskableAttributes].
          */
-        @set:JvmSynthetic
         var unMaskableAttributes: Set<MaskableAttribute>? = null
 
         /**
          * See [GeneralAccount.currency].
          */
-        @set:JvmSynthetic
         var currency: String? = null
 
         /**
          * See [GeneralAccount.urgentTransferAllowed].
          */
-        @set:JvmSynthetic
         var urgentTransferAllowed: Boolean? = null
 
         /**
          * See [GeneralAccount.bankBranchCode].
          */
-        @set:JvmSynthetic
         var bankBranchCode: String? = null
 
         /**
          * See [GeneralAccount.bankBranchCode2].
          */
-        @set:JvmSynthetic
         var bankBranchCode2: String? = null
 
         /**
          * See [GeneralAccount.accountInterestRate].
          */
-        @set:JvmSynthetic
         var accountInterestRate: BigDecimal? = null
 
         /**
          * See [GeneralAccount.valueDateBalance].
          */
-        @set:JvmSynthetic
         var valueDateBalance: BigDecimal? = null
 
         /**
          * See [GeneralAccount.creditLimitUsage].
          */
-        @set:JvmSynthetic
+
         var creditLimitUsage: BigDecimal? = null
 
         /**
          * See [GeneralAccount.creditLimitInterestRate].
          */
-        @set:JvmSynthetic
         var creditLimitInterestRate: BigDecimal? = null
 
         /**
          * See [GeneralAccount.creditLimitExpiryDate].
          */
-        @set:JvmSynthetic
         var creditLimitExpiryDate: OffsetDateTime? = null
 
         /**
          * See [GeneralAccount.accruedInterest].
          */
-        @set:JvmSynthetic
         var accruedInterest: BigDecimal? = null
 
         /**
          * See [GeneralAccount.startDate].
          */
-        @set:JvmSynthetic
         var startDate: OffsetDateTime? = null
 
         /**
          * See [GeneralAccount.minimumRequiredBalance].
          */
-        @set:JvmSynthetic
         var minimumRequiredBalance: BigDecimal? = null
 
         /**
          * See [GeneralAccount.accountHolderAddressLine1].
          */
-        @set:JvmSynthetic
         var accountHolderAddressLine1: String? = null
 
         /**
          * See [GeneralAccount.accountHolderAddressLine2].
          */
-        @set:JvmSynthetic
         var accountHolderAddressLine2: String? = null
 
         /**
          * See [GeneralAccount.accountHolderStreetName].
          */
-        @set:JvmSynthetic
         var accountHolderStreetName: String? = null
 
         /**
          * See [GeneralAccount.town].
          */
-        @set:JvmSynthetic
         var town: String? = null
 
         /**
          * See [GeneralAccount.postCode].
          */
-        @set:JvmSynthetic
         var postCode: String? = null
 
         /**
          * See [GeneralAccount.countrySubDivision].
          */
-        @set:JvmSynthetic
         var countrySubDivision: String? = null
 
         /**
          * See [GeneralAccount.accountHolderNames].
          */
-        @set:JvmSynthetic
         var accountHolderNames: String? = null
 
         /**
          * See [GeneralAccount.accountHolderCountry].
          */
-        @set:JvmSynthetic
         var accountHolderCountry: String? = null
 
         /**
          * See [GeneralAccount.number].
          */
-        @set:JvmSynthetic
         var number: String? = null
 
         /**
          * See [GeneralAccount.cardNumber].
          */
-        @set:JvmSynthetic
         var cardNumber: BigDecimal? = null
 
         /**
          * See [GeneralAccount.creditCardAccountNumber].
          */
-        @set:JvmSynthetic
         var creditCardAccountNumber: String? = null
 
         /**
          * See [GeneralAccount.validThru].
          */
-        @set:JvmSynthetic
         var validThru: OffsetDateTime? = null
 
         /**
          * See [GeneralAccount.applicableInterestRate].
          */
-        @set:JvmSynthetic
         var applicableInterestRate: BigDecimal? = null
 
         /**
          * See [GeneralAccount.remainingCredit].
          */
-        @set:JvmSynthetic
         var remainingCredit: BigDecimal? = null
 
         /**
          * See [GeneralAccount.outstandingPayment].
          */
-        @set:JvmSynthetic
         var outstandingPayment: BigDecimal? = null
 
         /**
          * See [GeneralAccount.minimumPayment].
          */
-        @set:JvmSynthetic
         var minimumPayment: BigDecimal? = null
 
         /**
          * See [GeneralAccount.minimumPaymentDueDate].
          */
-        @set:JvmSynthetic
         var minimumPaymentDueDate: OffsetDateTime? = null
 
         /**
          * See [GeneralAccount.currentInvestmentValue].
          */
-        @set:JvmSynthetic
         var currentInvestmentValue: String? = null
 
         /**
          * See [GeneralAccount.productNumber].
          */
-        @set:JvmSynthetic
         var productNumber: String? = null
 
         /**
          * See [GeneralAccount.interestSettlementAccount].
          */
-        @set:JvmSynthetic
         var interestSettlementAccount: String? = null
 
         /**
          * See [GeneralAccount.principalAmount].
          */
-        @set:JvmSynthetic
         var principalAmount: BigDecimal? = null
 
         /**
          * See [GeneralAccount.termNumber].
          */
-        @set:JvmSynthetic
         var termNumber: BigDecimal? = null
 
         /**
          * See [GeneralAccount.outstandingPrincipalAmount].
          */
-        @set:JvmSynthetic
         var outstandingPrincipalAmount: BigDecimal? = null
 
         /**
          * See [GeneralAccount.monthlyInstalmentAmount].
          */
-        @set:JvmSynthetic
         var monthlyInstalmentAmount: BigDecimal? = null
 
         /**
          * See [GeneralAccount.amountInArrear].
          */
-        @set:JvmSynthetic
         var amountInArrear: BigDecimal? = null
 
         /**
          * See [GeneralAccount.maturityAmount].
          */
-        @set:JvmSynthetic
         var maturityAmount: BigDecimal? = null
 
         /**
          * See [GeneralAccount.termUnit].
          */
-        @set:JvmSynthetic
         var termUnit: TimeUnit? = null
 
         /**
          * See [GeneralAccount.interestPaymentFrequencyUnit].
          */
-        @set:JvmSynthetic
         var interestPaymentFrequencyUnit: TimeUnit? = null
 
         /**
          * See [GeneralAccount.autoRenewalIndicator].
          */
-        @set:JvmSynthetic
         var autoRenewalIndicator: Boolean? = null
 
         /**
          * See [GeneralAccount.creditAccount].
          */
-        @set:JvmSynthetic
         var creditAccount: Boolean? = null
 
         /**
          * See [GeneralAccount.debitAccount].
          */
-        @set:JvmSynthetic
         var debitAccount: Boolean? = null
 
         /**
          * See [GeneralAccount.externalTransferAllowed].
          */
-        @set:JvmSynthetic
         var externalTransferAllowed: Boolean? = null
 
         /**
          * See [GeneralAccount.crossCurrencyAllowed].
          */
-        @set:JvmSynthetic
         var crossCurrencyAllowed: Boolean? = null
 
         /**
          * See [GeneralAccount.id].
          */
-        @set:JvmSynthetic
         var id: String? = null
 
         /**
          * See [GeneralAccount.name].
          */
-        @set:JvmSynthetic
         var name: String? = null
 
         /**
          * See [GeneralAccount.productKindName].
          */
-        @set:JvmSynthetic
         var productKindName: String? = null
 
         /**
          * See [GeneralAccount.productTypeName].
          */
-        @set:JvmSynthetic
         var productTypeName: String? = null
 
         /**
          * See [GeneralAccount.bankAlias].
          */
-        @set:JvmSynthetic
         var bankAlias: String? = null
 
         /**
          * See [GeneralAccount.sourceId].
          */
-        @set:JvmSynthetic
         var sourceId: String? = null
 
         /**
          * See [GeneralAccount.parentId].
          */
-        @set:JvmSynthetic
         var parentId: String? = null
 
         /**
          * See [GeneralAccount.subArrangements].
          */
-        @set:JvmSynthetic
         var subArrangements: List<BaseProduct>? = null
 
         /**
          * See [GeneralAccount.maturityDate].
          */
-        @set:JvmSynthetic
         var maturityDate: OffsetDateTime? = null
 
         /**
          * See [GeneralAccount.accountOpeningDate].
          */
-        @set:JvmSynthetic
         var accountOpeningDate: OffsetDateTime? = null
 
         /**
          * See [GeneralAccount.lastUpdateDate].
          */
-        @set:JvmSynthetic
         var lastUpdateDate: OffsetDateTime? = null
 
         /**
          * See [GeneralAccount.lastSyncDate].
          */
-        @set:JvmSynthetic
         var lastSyncDate: OffsetDateTime? = null
 
         /**
          * See [GeneralAccount.interestPaymentFrequencyNumber].
          */
-        @set:JvmSynthetic
         var interestPaymentFrequencyNumber: BigDecimal? = null
 
         /**
          * See [GeneralAccount.userPreferences].
          */
-        @set:JvmSynthetic
         var userPreferences: UserPreferences? = null
 
         /**
          * See [GeneralAccount.state].
          */
-        @set:JvmSynthetic
         var state: ProductState? = null
 
         /**
          * See [GeneralAccount.financialInstitutionId].
          */
-        @set:JvmSynthetic
         var financialInstitutionId: Long? = null
 
         /**
          * See [GeneralAccount.additions].
          */
-        @set:JvmSynthetic
         var additions: Map<String, String>? = null
 
         /**
          * See [GeneralAccount.displayName].
          */
-        @set:JvmSynthetic
         var displayName: String? = null
 
         /**
          * See [GeneralAccount.cardDetails].
          */
-        @set:JvmSynthetic
         var cardDetails: CardDetails? = null
 
         /**
          * See [GeneralAccount.interestDetails].
          */
-        @set:JvmSynthetic
         var interestDetails: InterestDetails? = null
 
         /**
          * See [GeneralAccount.reservedAmount].
          */
-        @set:JvmSynthetic
         var reservedAmount: BigDecimal? = null
 
         /**
          * See [GeneralAccount.remainingPeriodicTransfers].
          */
-        @set:JvmSynthetic
         var remainingPeriodicTransfers: BigDecimal? = null
 
         /**
          * See [GeneralAccount.nextClosingDate].
          */
-        @set:JvmSynthetic
         var nextClosingDate: LocalDate? = null
 
         /**
          * See [GeneralAccount.overdueSince].
          */
-        @set:JvmSynthetic
         var overdueSince: LocalDate? = null
 
         /**
          * See [GeneralAccount.externalAccountStatus].
          */
-        @set:JvmSynthetic
         var externalAccountStatus: String? = null
 
         /**
@@ -1290,5 +1213,4 @@ class GeneralAccount internal constructor(
 /**
  * DSL to create [GeneralAccount]
  */
-@JvmSynthetic
 fun GeneralAccount(block: GeneralAccount.Builder.() -> Unit) = GeneralAccount.Builder().apply(block).build()

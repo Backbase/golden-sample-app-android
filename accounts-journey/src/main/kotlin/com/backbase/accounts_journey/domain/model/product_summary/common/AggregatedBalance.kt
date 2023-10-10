@@ -32,25 +32,21 @@ class AggregatedBalance internal constructor(
         /**
          * See [AggregatedBalance.currency]
          */
-        @set:JvmSynthetic
         var currency: String? = null
 
         /**
          * See [AggregatedBalance.value]
          */
-        @set:JvmSynthetic
         var value: String? = null
 
         /**
          * See [AggregatedBalance.productKindAggregateBalanceItem]
          */
-        @set:JvmSynthetic
         var productKindAggregateBalanceItem: List<ProductKindAggregateBalanceItem>? = null
 
         /**
          * See [AggregatedBalance.additions]
          */
-        @set:JvmSynthetic
         var additions: Map<String, String>? = null
 
         /**
@@ -99,5 +95,4 @@ class AggregatedBalance internal constructor(
 /**
  * DSL to create [AggregatedBalance]
  */
-@JvmSynthetic
 fun AggregatedBalance(block: AggregatedBalance.Builder.() -> Unit) = AggregatedBalance.Builder().apply(block).build()

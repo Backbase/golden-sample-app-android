@@ -31,25 +31,21 @@ class CreditCards private constructor(
         /**
          * See [CreditCards.products]
          */
-        @set:JvmSynthetic
         var products: List<CreditCard>? = null
 
         /**
          * See [CreditCards.name]
          */
-        @set:JvmSynthetic
         var name: String? = null
 
         /**
          * See [CreditCards.aggregatedBalance]
          */
-        @set:JvmSynthetic
         var aggregatedBalance: AggregatedBalance? = null
 
         /**
          * See [CreditCards.additions]
          */
-        @set:JvmSynthetic
         var additions: Map<String, String>? = null
 
         /**
@@ -95,7 +91,6 @@ class CreditCards private constructor(
 /**
  * DSL to create [CreditCards]
  */
-@JvmSynthetic
 fun CreditCards(block: CreditCards.Builder.() -> Unit) = CreditCards.Builder().apply(block).build()
 
 internal fun CreditCards?.allProducts(): List<CreditCard> = this?.products ?: emptyList()

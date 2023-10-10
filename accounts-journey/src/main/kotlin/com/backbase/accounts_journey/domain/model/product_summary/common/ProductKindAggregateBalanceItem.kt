@@ -56,5 +56,4 @@ class ProductKindAggregateBalanceItem private constructor(
 }
 
 @Suppress("FunctionName") // DSL initializer
-@JvmSynthetic // Hide from Java callers who should use Builder
 fun ProductKindAggregateBalanceItem(initializer: Builder.() -> Unit) = Builder().apply(initializer).build()

@@ -149,358 +149,299 @@ class SavingsAccount internal constructor(
         /**
          * See [SavingsAccount.bookedBalance].
          */
-        @set:JvmSynthetic
         var bookedBalance: String? = null
 
         /**
          * See [SavingsAccount.availableBalance].
          */
-        @set:JvmSynthetic
         var availableBalance: String? = null
 
         /**
          * See [SavingsAccount.accruedInterest].
          */
-        @set:JvmSynthetic
         var accruedInterest: BigDecimal? = null
 
         /**
          * See [SavingsAccount.IBAN].
          */
         @SuppressWarnings("VariableNaming")
-        @set:JvmSynthetic
         var IBAN: String? = null
 
         /**
          * See [SavingsAccount.BBAN].
          */
         @SuppressWarnings("VariableNaming")
-        @set:JvmSynthetic
         var BBAN: String? = null
 
         /**
          * See [SavingsAccount.BIC].
          */
         @SuppressWarnings("VariableNaming")
-        @set:JvmSynthetic
         var BIC: String? = null
 
         /**
          * See [SavingsAccount.unMaskableAttributes].
          */
-        @set:JvmSynthetic
         var unMaskableAttributes: Set<MaskableAttribute>? = null
 
         /**
          * See [SavingsAccount.currency].
          */
-        @set:JvmSynthetic
         var currency: String? = null
 
         /**
          * See [SavingsAccount.urgentTransferAllowed].
          */
-        @set:JvmSynthetic
         var urgentTransferAllowed: Boolean? = null
 
         /**
          * See [SavingsAccount.bankBranchCode].
          */
-        @set:JvmSynthetic
         var bankBranchCode: String? = null
 
         /**
          * See [SavingsAccount.bankBranchCode2].
          */
-        @set:JvmSynthetic
         var bankBranchCode2: String? = null
 
         /**
          * See [SavingsAccount.accountInterestRate].
          */
-        @set:JvmSynthetic
         var accountInterestRate: BigDecimal? = null
 
         /**
          * See [SavingsAccount.minimumRequiredBalance].
          */
-        @set:JvmSynthetic
         var minimumRequiredBalance: BigDecimal? = null
 
         /**
          * See [SavingsAccount.startDate].
          */
-        @set:JvmSynthetic
         var startDate: java.time.OffsetDateTime? = null
 
         /**
          * See [SavingsAccount.termUnit].
          */
-        @set:JvmSynthetic
         var termUnit: TimeUnit? = null
 
         /**
          * See [SavingsAccount.termNumber].
          */
-        @set:JvmSynthetic
         var termNumber: BigDecimal? = null
 
         /**
          * See [SavingsAccount.maturityDate].
          */
-        @set:JvmSynthetic
         var maturityDate: java.time.OffsetDateTime? = null
 
         /**
          * See [SavingsAccount.maturityAmount].
          */
-        @set:JvmSynthetic
         var maturityAmount: BigDecimal? = null
 
         /**
          * See [SavingsAccount.autoRenewalIndicator].
          */
-        @set:JvmSynthetic
         var autoRenewalIndicator: Boolean? = null
 
         /**
          * See [SavingsAccount.interestPaymentFrequencyUnit].
          */
-        @set:JvmSynthetic
         var interestPaymentFrequencyUnit: TimeUnit? = null
 
         /**
          * See [SavingsAccount.interestPaymentFrequencyNumber].
          */
-        @set:JvmSynthetic
         var interestPaymentFrequencyNumber: BigDecimal? = null
 
         /**
          * See [SavingsAccount.principalAmount].
          */
-        @set:JvmSynthetic
         var principalAmount: BigDecimal? = null
 
         /**
          * See [SavingsAccount.interestSettlementAccount].
          */
-        @set:JvmSynthetic
         var interestSettlementAccount: String? = null
 
         /**
          * See [SavingsAccount.accountHolderNames].
          */
-        @set:JvmSynthetic
         var accountHolderNames: String? = null
 
         /**
          * See [SavingsAccount.valueDateBalance].
          */
-        @set:JvmSynthetic
         var valueDateBalance: BigDecimal? = null
 
         /**
          * See [SavingsAccount.accountHolderAddressLine1].
          */
-        @set:JvmSynthetic
         var accountHolderAddressLine1: String? = null
 
         /**
          * See [SavingsAccount.accountHolderAddressLine2].
          */
-        @set:JvmSynthetic
         var accountHolderAddressLine2: String? = null
 
         /**
          * See [SavingsAccount.accountHolderStreetName].
          */
-        @set:JvmSynthetic
         var accountHolderStreetName: String? = null
 
         /**
          * See [SavingsAccount.town].
          */
-        @set:JvmSynthetic
         var town: String? = null
 
         /**
          * See [SavingsAccount.postCode].
          */
-        @set:JvmSynthetic
         var postCode: String? = null
 
         /**
          * See [SavingsAccount.countrySubDivision].
          */
-        @set:JvmSynthetic
         var countrySubDivision: String? = null
 
         /**
          * See [SavingsAccount.accountHolderCountry].
          */
-        @set:JvmSynthetic
         var accountHolderCountry: String? = null
 
         /**
          * See [SavingsAccount.creditAccount].
          */
-        @set:JvmSynthetic
         var creditAccount: Boolean? = null
 
         /**
          * See [SavingsAccount.debitAccount].
          */
-        @set:JvmSynthetic
         var debitAccount: Boolean? = null
 
         /**
          * See [SavingsAccount.id].
          */
-        @set:JvmSynthetic
         var id: String? = null
 
         /**
          * See [SavingsAccount.name].
          */
-        @set:JvmSynthetic
         var name: String? = null
 
         /**
          * See [SavingsAccount.externalTransferAllowed].
          */
-        @set:JvmSynthetic
         var externalTransferAllowed: Boolean? = null
 
         /**
          * See [SavingsAccount.crossCurrencyAllowed].
          */
-        @set:JvmSynthetic
         var crossCurrencyAllowed: Boolean? = null
 
         /**
          * See [SavingsAccount.productKindName].
          */
-        @set:JvmSynthetic
         var productKindName: String? = null
 
         /**
          * See [SavingsAccount.productTypeName].
          */
-        @set:JvmSynthetic
         var productTypeName: String? = null
 
         /**
          * See [SavingsAccount.bankAlias].
          */
-        @set:JvmSynthetic
         var bankAlias: String? = null
 
         /**
          * See [SavingsAccount.sourceId].
          */
-        @set:JvmSynthetic
         var sourceId: String? = null
 
         /**
          * See [SavingsAccount.accountOpeningDate].
          */
-        @set:JvmSynthetic
         var accountOpeningDate: java.time.OffsetDateTime? = null
 
         /**
          * See [SavingsAccount.lastUpdateDate].
          */
-        @set:JvmSynthetic
         var lastUpdateDate: java.time.OffsetDateTime? = null
 
         /**
          * See [SavingsAccount.userPreferences].
          */
-        @set:JvmSynthetic
         var userPreferences: UserPreferences? = null
 
         /**
          * See [SavingsAccount.state].
          */
-        @set:JvmSynthetic
         var state: ProductState? = null
 
         /**
          * See [SavingsAccount.parentId].
          */
-        @set:JvmSynthetic
         var parentId: String? = null
 
         /**
          * See [SavingsAccount.subArrangements].
          */
-        @set:JvmSynthetic
         var subArrangements: List<BaseProduct>? = null
 
         /**
          * See [SavingsAccount.financialInstitutionId].
          */
-        @set:JvmSynthetic
         var financialInstitutionId: Long? = null
 
         /**
          * See [SavingsAccount.lastSyncDate].
          */
-        @set:JvmSynthetic
         var lastSyncDate: java.time.OffsetDateTime? = null
 
         /**
          * See [SavingsAccount.additions].
          */
-        @set:JvmSynthetic
         var additions: Map<String, String>? = null
 
         /**
          * See [SavingsAccount.displayName].
          */
-        @set:JvmSynthetic
         var displayName: String? = null
 
         /**
          * See [SavingsAccount.cardDetails].
          */
-        @set:JvmSynthetic
         var cardDetails: CardDetails? = null
 
         /**
          * See [SavingsAccount.interestDetails].
          */
-        @set:JvmSynthetic
         var interestDetails: InterestDetails? = null
 
         /**
          * See [SavingsAccount.reservedAmount].
          */
-        @set:JvmSynthetic
         var reservedAmount: BigDecimal? = null
 
         /**
          * See [SavingsAccount.remainingPeriodicTransfers].
          */
-        @set:JvmSynthetic
         var remainingPeriodicTransfers: BigDecimal? = null
 
         /**
          * See [SavingsAccount.nextClosingDate].
          */
-        @set:JvmSynthetic
         var nextClosingDate: LocalDate? = null
 
         /**
          * See [SavingsAccount.overdueSince].
          */
-        @set:JvmSynthetic
         var overdueSince: LocalDate? = null
 
         /**
          * See [SavingsAccount.externalAccountStatus].
          */
-        @set:JvmSynthetic
         var externalAccountStatus: String? = null
 
         /**
@@ -906,7 +847,6 @@ class SavingsAccount internal constructor(
  * Builds an instance of [SavingsAccount] with the [initializer] parameters.
  */
 @Suppress("FunctionName") // DSL initializer
-@JvmSynthetic // Hide from Java callers who should use Builder
 fun SavingsAccount(initializer: SavingsAccount.Builder.() -> Unit): SavingsAccount {
     return SavingsAccount.Builder().apply(initializer).build()
 }

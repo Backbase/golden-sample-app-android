@@ -1,43 +1,80 @@
 package com.backbase.accounts_journey.configuration.accountlist
 
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import com.backbase.accounts_journey.R
-import com.backbase.deferredresources.DeferredText
 import dev.drewhamilton.poko.Poko
 
 /**
+ * Configuration for account list screen.
+ *
  * @param screenTitle Text to display on top of the account list screen. Defaults to "My Accounts".
- * @param currentAccountTitle Section title to show on top of current accounts.
- * @param savingsAccountTitle Section title to show on top of saving accounts.
+ * @param iconCustomProduct Icon to display on custom products.
+ * @param iconCurrentAccount Icon to display on current accounts.
+ * @param iconSavingsAccount Icon to display on savings accounts.
+ * @param iconTermDeposit Icon to display on term deposits.
+ * @param iconLoan Icon to display on loans.
+ * @param iconCreditCard Icon to display on credit cards.
+ * @param iconDebitCard Icon to display on debit cards.
+ * @param iconInvestmentAccount Icon to display on investment accounts.
+ *
+ * Created by Backbase R&D B.V on 04/10/2023.
  */
+@Suppress("LongParameterList")
 @Poko
 class AccountListScreenConfiguration private constructor(
-    val screenTitle: DeferredText,
-    val currentAccountTitle: DeferredText,
-    val savingsAccountTitle: DeferredText,
+    @StringRes val screenTitle: Int,
+    @DrawableRes val iconCustomProduct: Int,
+    @DrawableRes val iconCurrentAccount: Int,
+    @DrawableRes val iconSavingsAccount: Int,
+    @DrawableRes val iconTermDeposit: Int,
+    @DrawableRes val iconLoan: Int,
+    @DrawableRes val iconCreditCard: Int,
+    @DrawableRes val iconDebitCard: Int,
+    @DrawableRes val iconInvestmentAccount: Int,
 ) {
     /**
      * A builder for this configuration class.
-     *
-     * Should be used directly by Java callers. Kotlin callers should use the DSL function instead.
      */
     class Builder {
 
-        @set:JvmSynthetic
-        var screenTitle: DeferredText =
-            DeferredText.Resource(R.string.accountsAndTransactions_accounts_labels_title)
+        @StringRes
+        var screenTitle: Int = R.string.accounts_screen_title
 
-        @set:JvmSynthetic
-        var currentAccountTitle: DeferredText =
-            DeferredText.Resource(R.string.accountsAndTransactions_accounts_labels_section_title_currentAccounts)
+        @DrawableRes
+        var iconCustomProduct: Int = R.drawable.ic_account_type_card_v2
 
-        @set:JvmSynthetic
-        var savingsAccountTitle: DeferredText =
-            DeferredText.Resource(R.string.accountsAndTransactions_accounts_labels_section_title_savingsAccounts)
+        @DrawableRes
+        var iconCurrentAccount: Int = R.drawable.ic_account_type_current_v2
+
+        @DrawableRes
+        var iconSavingsAccount: Int = R.drawable.ic_account_type_savings_term_deposits_v2
+
+        @DrawableRes
+        var iconTermDeposit: Int = R.drawable.ic_account_type_savings_term_deposits_v2
+
+        @DrawableRes
+        var iconLoan: Int = R.drawable.ic_account_type_loan_v2
+
+        @DrawableRes
+        var iconCreditCard: Int = R.drawable.ic_account_type_credit_debit_card_v2
+
+        @DrawableRes
+        var iconDebitCard: Int = R.drawable.ic_account_type_credit_debit_card_v2
+
+        @DrawableRes
+        var iconInvestmentAccount: Int = R.drawable.ic_account_type_investment_v2
 
         fun build() = AccountListScreenConfiguration(
             screenTitle = screenTitle,
-            currentAccountTitle = currentAccountTitle,
-            savingsAccountTitle = savingsAccountTitle,
+            iconCustomProduct = iconCustomProduct,
+            iconCurrentAccount = iconCurrentAccount,
+            iconSavingsAccount = iconSavingsAccount,
+            iconTermDeposit = iconTermDeposit,
+            iconLoan = iconLoan,
+            iconCreditCard = iconCreditCard,
+            iconDebitCard = iconDebitCard,
+            iconInvestmentAccount = iconInvestmentAccount
         )
     }
 }
@@ -45,7 +82,6 @@ class AccountListScreenConfiguration private constructor(
 /**
  * DSL function to create a [AccountListScreenConfiguration] in Kotlin.
  */
-@JvmSynthetic
 fun AccountListScreenConfiguration(
     initializer: AccountListScreenConfiguration.Builder.() -> Unit
 ): AccountListScreenConfiguration =

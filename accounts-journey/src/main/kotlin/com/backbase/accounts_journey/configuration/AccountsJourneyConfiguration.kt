@@ -4,9 +4,11 @@ import com.backbase.accounts_journey.configuration.accountlist.AccountListScreen
 import dev.drewhamilton.poko.Poko
 
 /**
- * A builder for this configuration class
+ * Configuration for Accounts Journey.
  *
- * Should be directly used by Java consumers. Kotlin consumers should use DSL function
+ * @param accountListScreenConfiguration Configuration for account list screen.
+ *
+ * Created by Backbase R&D B.V on 04/10/2023.
  */
 @Poko
 class AccountsJourneyConfiguration internal constructor(
@@ -14,7 +16,6 @@ class AccountsJourneyConfiguration internal constructor(
 ) {
     class Builder {
 
-        @set:JvmSynthetic
         var accountListScreenConfiguration = AccountListScreenConfiguration { }
 
         fun build() = AccountsJourneyConfiguration(

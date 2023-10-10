@@ -246,7 +246,6 @@ class BaseProduct internal constructor(
  * Builds an instance of [BaseProduct] with the [initializer] parameters.
  */
 @Suppress("FunctionName") // DSL initializer
-@JvmSynthetic // Hide from Java callers who should use Builder
 fun BaseProduct(initializer: BaseProduct.Builder.() -> Unit): BaseProduct {
     return BaseProduct.Builder().apply(initializer).build()
 }

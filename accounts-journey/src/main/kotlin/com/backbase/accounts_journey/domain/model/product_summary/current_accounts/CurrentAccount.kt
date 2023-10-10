@@ -144,334 +144,279 @@ class CurrentAccount internal constructor(
         /**
          * See [CurrentAccount.debitCardItems].
          */
-        @set:JvmSynthetic
         var debitCardItems: Set<DebitCardItem>? = null
 
         /**
          * See [CurrentAccount.bookedBalance].
          */
-        @set:JvmSynthetic
         var bookedBalance: String? = null
 
         /**
          * See [CurrentAccount.availableBalance].
          */
-        @set:JvmSynthetic
         var availableBalance: String? = null
 
         /**
          * See [CurrentAccount.creditLimit].
          */
-        @set:JvmSynthetic
         var creditLimit: String? = null
 
         /**
          * See [CurrentAccount.IBAN].
          */
         @SuppressWarnings("VariableNaming")
-        @set:JvmSynthetic
         var IBAN: String? = null
 
         /**
          * See [CurrentAccount.BBAN].
          */
         @SuppressWarnings("VariableNaming")
-        @set:JvmSynthetic
         var BBAN: String? = null
 
         /**
          * See [CurrentAccount.BIC].
          */
         @SuppressWarnings("VariableNaming")
-        @set:JvmSynthetic
         var BIC: String? = null
 
         /**
          * See [CurrentAccount.unMaskableAttributes].
          */
-        @set:JvmSynthetic
         var unMaskableAttributes: Set<MaskableAttribute>? = null
 
         /**
          * See [CurrentAccount.currency].
          */
-        @set:JvmSynthetic
         var currency: String? = null
 
         /**
          * See [CurrentAccount.urgentTransferAllowed].
          */
-        @set:JvmSynthetic
         var urgentTransferAllowed: Boolean? = null
 
         /**
          * See [CurrentAccount.bankBranchCode].
          */
-        @set:JvmSynthetic
         var bankBranchCode: String? = null
 
         /**
          * See [CurrentAccount.bankBranchCode2].
          */
-        @set:JvmSynthetic
         var bankBranchCode2: String? = null
 
         /**
          * See [CurrentAccount.accountInterestRate].
          */
-        @set:JvmSynthetic
         var accountInterestRate: BigDecimal? = null
 
         /**
          * See [CurrentAccount.valueDateBalance].
          */
-        @set:JvmSynthetic
         var valueDateBalance: BigDecimal? = null
 
         /**
          * See [CurrentAccount.creditLimitUsage].
          */
-        @set:JvmSynthetic
         var creditLimitUsage: BigDecimal? = null
 
         /**
          * See [CurrentAccount.creditLimitInterestRate].
          */
-        @set:JvmSynthetic
         var creditLimitInterestRate: BigDecimal? = null
 
         /**
          * See [CurrentAccount.creditLimitExpiryDate].
          */
-        @set:JvmSynthetic
         var creditLimitExpiryDate: OffsetDateTime? = null
 
         /**
          * See [CurrentAccount.accruedInterest].
          */
-        @set:JvmSynthetic
         var accruedInterest: BigDecimal? = null
 
         /**
          * See [CurrentAccount.startDate].
          */
-        @set:JvmSynthetic
         var startDate: OffsetDateTime? = null
 
         /**
          * See [CurrentAccount.minimumRequiredBalance].
          */
-        @set:JvmSynthetic
         var minimumRequiredBalance: BigDecimal? = null
 
         /**
          * See [CurrentAccount.accountHolderAddressLine1].
          */
-        @set:JvmSynthetic
         var accountHolderAddressLine1: String? = null
 
         /**
          * See [CurrentAccount.accountHolderAddressLine2].
          */
-        @set:JvmSynthetic
         var accountHolderAddressLine2: String? = null
 
         /**
          * See [CurrentAccount.accountHolderStreetName].
          */
-        @set:JvmSynthetic
         var accountHolderStreetName: String? = null
 
         /**
          * See [CurrentAccount.town].
          */
-        @set:JvmSynthetic
         var town: String? = null
 
         /**
          * See [CurrentAccount.postCode].
          */
-        @set:JvmSynthetic
         var postCode: String? = null
 
         /**
          * See [CurrentAccount.countrySubDivision].
          */
-        @set:JvmSynthetic
         var countrySubDivision: String? = null
 
         /**
          * See [CurrentAccount.accountHolderNames].
          */
-        @set:JvmSynthetic
         var accountHolderNames: String? = null
 
         /**
          * See [CurrentAccount.accountHolderCountry].
          */
-        @set:JvmSynthetic
         var accountHolderCountry: String? = null
 
         /**
          * See [CurrentAccount.creditAccount].
          */
-        @set:JvmSynthetic
         var creditAccount: Boolean? = null
 
         /**
          * See [CurrentAccount.debitAccount].
          */
-        @set:JvmSynthetic
         var debitAccount: Boolean? = null
 
         /**
          * See [CurrentAccount.externalTransferAllowed].
          */
-        @set:JvmSynthetic
         var externalTransferAllowed: Boolean? = null
 
         /**
          * See [CurrentAccount.crossCurrencyAllowed].
          */
-        @set:JvmSynthetic
         var crossCurrencyAllowed: Boolean? = null
 
         /**
          * See [CurrentAccount.id].
          */
-        @set:JvmSynthetic
         var id: String? = null
 
         /**
          * See [CurrentAccount.name].
          */
-        @set:JvmSynthetic
         var name: String? = null
 
         /**
          * See [CurrentAccount.productKindName].
          */
-        @set:JvmSynthetic
         var productKindName: String? = null
 
         /**
          * See [CurrentAccount.productTypeName].
          */
-        @set:JvmSynthetic
         var productTypeName: String? = null
 
         /**
          * See [CurrentAccount.bankAlias].
          */
-        @set:JvmSynthetic
         var bankAlias: String? = null
 
         /**
          * See [CurrentAccount.sourceId].
          */
-        @set:JvmSynthetic
         var sourceId: String? = null
 
         /**
          * See [CurrentAccount.parentId].
          */
-        @set:JvmSynthetic
         var parentId: String? = null
 
         /**
          * See [CurrentAccount.accountOpeningDate].
          */
-        @set:JvmSynthetic
         var accountOpeningDate: OffsetDateTime? = null
 
         /**
          * See [CurrentAccount.lastUpdateDate].
          */
-        @set:JvmSynthetic
         var lastUpdateDate: OffsetDateTime? = null
 
         /**
          * See [CurrentAccount.lastSyncDate].
          */
-        @set:JvmSynthetic
         var lastSyncDate: OffsetDateTime? = null
 
         /**
          * See [CurrentAccount.userPreferences].
          */
-        @set:JvmSynthetic
         var userPreferences: UserPreferences? = null
 
         /**
          * See [CurrentAccount.state].
          */
-        @set:JvmSynthetic
         var state: ProductState? = null
 
         /**
          * See [CurrentAccount.subArrangements].
          */
-        @set:JvmSynthetic
         var subArrangements: List<BaseProduct>? = null
 
         /**
          * See [CurrentAccount.financialInstitutionId].
          */
-        @set:JvmSynthetic
         var financialInstitutionId: Long? = null
 
         /**
          * See [CurrentAccount.additions].
          */
-        @set:JvmSynthetic
         var additions: Map<String, String>? = null
 
         /**
          * See [CurrentAccount.displayName].
          */
-        @set:JvmSynthetic
         var displayName: String? = null
 
         /**
          * See [CurrentAccount.cardDetails].
          */
-        @set:JvmSynthetic
         var cardDetails: CardDetails? = null
 
         /**
          * See [CurrentAccount.interestDetails].
          */
-        @set:JvmSynthetic
         var interestDetails: InterestDetails? = null
 
         /**
          * See [CurrentAccount.reservedAmount].
          */
-        @set:JvmSynthetic
         var reservedAmount: BigDecimal? = null
 
         /**
          * See [CurrentAccount.remainingPeriodicTransfers].
          */
-        @set:JvmSynthetic
         var remainingPeriodicTransfers: BigDecimal? = null
 
         /**
          * See [CurrentAccount.nextClosingDate].
          */
-        @set:JvmSynthetic
         var nextClosingDate: LocalDate? = null
 
         /**
          * See [CurrentAccount.overdueSince].
          */
-        @set:JvmSynthetic
         var overdueSince: LocalDate? = null
 
         /**
          * See [CurrentAccount.externalAccountStatus].
          */
-        @set:JvmSynthetic
         var externalAccountStatus: String? = null
 
         /**
@@ -921,5 +866,4 @@ class CurrentAccount internal constructor(
 /**
  * DSL to create [CurrentAccount]
  */
-@JvmSynthetic
 fun CurrentAccount(block: CurrentAccount.Builder.() -> Unit) = CurrentAccount.Builder().apply(block).build()

@@ -32,31 +32,26 @@ class Loans private constructor(
         /**
          * See [Loans.products]
          */
-        @set:JvmSynthetic
         var products: List<Loan>? = null
 
         /**
          * See [Loans.name]
          */
-        @set:JvmSynthetic
         var name: String? = null
 
         /**
          * See [Loans.displayName]
          */
-        @set:JvmSynthetic
         var displayName: String? = null
 
         /**
          * See [Loans.aggregatedBalance]
          */
-        @set:JvmSynthetic
         var aggregatedBalance: AggregatedBalance? = null
 
         /**
          * See [Loans.additions]
          */
-        @set:JvmSynthetic
         var additions: Map<String, String>? = null
 
         /**
@@ -110,7 +105,6 @@ class Loans private constructor(
 /**
  * DSL to create [Loans]
  */
-@JvmSynthetic
 fun Loans(block: Loans.Builder.() -> Unit) = Loans.Builder().apply(block).build()
 
 internal fun Loans?.allProducts(): List<Loan> = this?.products ?: emptyList()

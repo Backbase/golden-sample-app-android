@@ -28,19 +28,16 @@ class ProductState internal constructor(
         /**
          * See [com.backbase.android.retail.journey.accounts_and_transactions.accounts.product_summary_dtos.common.ProductState.externalStateId]
          */
-        @set:JvmSynthetic
         var externalStateId: String? = null
 
         /**
          * See [com.backbase.android.retail.journey.accounts_and_transactions.accounts.product_summary_dtos.common.ProductState.state]
          */
-        @set:JvmSynthetic
         var state: String? = null
 
         /**
          * See [com.backbase.android.retail.journey.accounts_and_transactions.accounts.product_summary_dtos.common.ProductState.additions]
          */
-        @set:JvmSynthetic
         var additions: Map<String, String>? = null
 
         /**
@@ -78,5 +75,4 @@ class ProductState internal constructor(
 /**
  * DSL to create [ProductState]
  */
-@JvmSynthetic
 fun ProductState(block: ProductState.Builder.() -> Unit) = ProductState.Builder().apply(block).build()

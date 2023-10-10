@@ -136,315 +136,263 @@ class Loan internal constructor(
         /**
          * See [Loan.bookedBalance].
          */
-        @set:JvmSynthetic
         var bookedBalance: String? = null
 
         /**
          * See [Loan.principalAmount].
          */
-        @set:JvmSynthetic
         var principalAmount: BigDecimal? = null
 
         /**
          * See [Loan.currency].
          */
-        @set:JvmSynthetic
         var currency: String? = null
 
         /**
          * See [Loan.urgentTransferAllowed].
          */
-        @set:JvmSynthetic
         var urgentTransferAllowed: Boolean? = null
 
         /**
          * See [Loan.productNumber].
          */
-        @set:JvmSynthetic
         var productNumber: String? = null
 
         /**
          * See [Loan.accountInterestRate].
          */
-        @set:JvmSynthetic
         var accountInterestRate: BigDecimal? = null
 
         /**
          * See [Loan.termUnit].
          */
-        @set:JvmSynthetic
         var termUnit: TimeUnit? = null
 
         /**
          * See [Loan.termNumber].
          */
-        @set:JvmSynthetic
         var termNumber: BigDecimal? = null
 
         /**
          * See [Loan.outstandingPrincipalAmount].
          */
-        @set:JvmSynthetic
         var outstandingPrincipalAmount: BigDecimal? = null
 
         /**
          * See [Loan.monthlyInstalmentAmount].
          */
-        @set:JvmSynthetic
         var monthlyInstalmentAmount: BigDecimal? = null
 
         /**
          * See [Loan.amountInArrear].
          */
-        @set:JvmSynthetic
         var amountInArrear: BigDecimal? = null
 
         /**
          * See [Loan.interestSettlementAccount].
          */
-        @set:JvmSynthetic
         var interestSettlementAccount: String? = null
 
         /**
          * See [Loan.accruedInterest].
          */
-        @set:JvmSynthetic
         var accruedInterest: BigDecimal? = null
 
         /**
          * See [Loan.accountHolderNames].
          */
-        @set:JvmSynthetic
         var accountHolderNames: String? = null
 
         /**
          * See [Loan.maturityDate].
          */
-        @set:JvmSynthetic
         var maturityDate: OffsetDateTime? = null
 
         /**
          * See [Loan.valueDateBalance].
          */
-        @set:JvmSynthetic
         var valueDateBalance: BigDecimal? = null
 
         /**
          * See [Loan.creditAccount].
          */
-        @set:JvmSynthetic
         var creditAccount: Boolean? = null
 
         /**
          * See [Loan.debitAccount].
          */
-        @set:JvmSynthetic
         var debitAccount: Boolean? = null
 
         /**
          * See [Loan.IBAN].
          */
         @SuppressWarnings("VariableNaming")
-        @set:JvmSynthetic
         var IBAN: String? = null
 
         /**
          * See [Loan.BBAN].
          */
         @SuppressWarnings("VariableNaming")
-        @set:JvmSynthetic
         var BBAN: String? = null
 
         /**
          * See [Loan.unMaskableAttributes].
          */
-        @set:JvmSynthetic
         var unMaskableAttributes: Set<MaskableAttribute>? = null
 
         /**
          * See [Loan.id].
          */
-        @set:JvmSynthetic
         var id: String? = null
 
         /**
          * See [Loan.name].
          */
-        @set:JvmSynthetic
         var name: String? = null
 
         /**
          * See [Loan.externalTransferAllowed].
          */
-        @set:JvmSynthetic
         var externalTransferAllowed: Boolean? = null
 
         /**
          * See [Loan.crossCurrencyAllowed].
          */
-        @set:JvmSynthetic
         var crossCurrencyAllowed: Boolean? = null
 
         /**
          * See [Loan.productKindName].
          */
-        @set:JvmSynthetic
         var productKindName: String? = null
 
         /**
          * See [Loan.productTypeName].
          */
-        @set:JvmSynthetic
         var productTypeName: String? = null
 
         /**
          * See [Loan.bankAlias].
          */
-        @set:JvmSynthetic
         var bankAlias: String? = null
 
         /**
          * See [Loan.sourceId].
          */
-        @set:JvmSynthetic
         var sourceId: String? = null
 
         /**
          * See [Loan.accountOpeningDate].
          */
-        @set:JvmSynthetic
         var accountOpeningDate: OffsetDateTime? = null
 
         /**
          * See [Loan.lastUpdateDate].
          */
-        @set:JvmSynthetic
         var lastUpdateDate: OffsetDateTime? = null
 
         /**
          * See [Loan.userPreferences].
          */
-        @set:JvmSynthetic
         var userPreferences: UserPreferences? = null
 
         /**
          * See [Loan.state].
          */
-        @set:JvmSynthetic
         var state: ProductState? = null
 
         /**
          * See [Loan.parentId].
          */
-        @set:JvmSynthetic
         var parentId: String? = null
 
         /**
          * See [Loan.financialInstitutionId].
          */
-        @set:JvmSynthetic
         var financialInstitutionId: Long? = null
 
         /**
          * See [Loan.subArrangements].
          */
-        @set:JvmSynthetic
         var subArrangements: List<BaseProduct>? = null
 
         /**
          * See [Loan.lastSyncDate].
          */
-        @set:JvmSynthetic
         var lastSyncDate: OffsetDateTime? = null
 
         /**
          * See [Loan.additions].
          */
-        @set:JvmSynthetic
         var additions: Map<String, String>? = null
 
         /**
          * See [Loan.displayName].
          */
-        @set:JvmSynthetic
         var displayName: String? = null
 
         /**
          * See [Loan.cardDetails].
          */
-        @set:JvmSynthetic
         var cardDetails: CardDetails? = null
 
         /**
          * See [Loan.interestDetails].
          */
-        @set:JvmSynthetic
         var interestDetails: InterestDetails? = null
 
         /**
          * See [Loan.reservedAmount].
          */
-        @set:JvmSynthetic
         var reservedAmount: BigDecimal? = null
 
         /**
          * See [Loan.remainingPeriodicTransfers].
          */
-        @set:JvmSynthetic
         var remainingPeriodicTransfers: BigDecimal? = null
 
         /**
          * See [Loan.nextClosingDate].
          */
-        @set:JvmSynthetic
         var nextClosingDate: LocalDate? = null
 
         /**
          * See [Loan.overdueSince].
          */
-        @set:JvmSynthetic
         var overdueSince: LocalDate? = null
 
         /**
          * See [Loan.externalAccountStatus].
          */
-        @set:JvmSynthetic
         var externalAccountStatus: String? = null
 
         /**
          * See [Loan.bankBranchCode].
          */
-        @set:JvmSynthetic
         var bankBranchCode: String? = null
 
         /**
          * See [Loan.bankBranchCode2].
          */
-        @set:JvmSynthetic
         var bankBranchCode2: String? = null
 
         /**
          * See [Loan.availableBalance].
          */
-        @set:JvmSynthetic
         var availableBalance: String? = null
 
         /**
          * See [Loan.creditLimit].
          */
-        @set:JvmSynthetic
         var creditLimit: String? = null
 
         /**
          * See [Loan.minimumPayment].
          */
-        @set:JvmSynthetic
         var minimumPayment: BigDecimal? = null
 
         /**
          * See [Loan.minimumPaymentDueDate].
          */
-        @set:JvmSynthetic
         var minimumPaymentDueDate: OffsetDateTime? = null
 
         /**
@@ -804,7 +752,6 @@ class Loan internal constructor(
  * Builds an instance of [Loan] with the [initializer] parameters.
  */
 @Suppress("FunctionName") // DSL initializer
-@JvmSynthetic // Hide from Java callers who should use Builder
 fun Loan(initializer: Loan.Builder.() -> Unit): Loan {
     return Loan.Builder().apply(initializer).build()
 }

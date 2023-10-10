@@ -13,5 +13,4 @@ dependencies {
 
     // Backbase libraries
     implementation(backbase.bundles.arrangements.client)
-    implementation(backbase.bundles.sdk)
 }

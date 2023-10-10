@@ -1,31 +1,5 @@
 package com.backbase.accounts_use_case.mapper
 
-import com.backbase.android.client.gen2.arrangementclient2.model.BaseProduct as BaseProductDataModel
-import com.backbase.android.client.gen2.arrangementclient2.model.CardDetails as CardDetailsDataModel
-import com.backbase.android.client.gen2.arrangementclient2.model.CreditCard as CreditCardDataModel
-import com.backbase.android.client.gen2.arrangementclient2.model.CreditCardProductKinds as CreditCardsDataModel
-import com.backbase.android.client.gen2.arrangementclient2.model.CurrentAccount as CurrentAccountDataModel
-import com.backbase.android.client.gen2.arrangementclient2.model.CurrentAccountProductKinds as CurrentAccountsDataModel
-import com.backbase.android.client.gen2.arrangementclient2.model.CustomProductKind as CustomProductDataModel
-import com.backbase.android.client.gen2.arrangementclient2.model.DebitCardItem as DebitCardItemDataModel
-import com.backbase.android.client.gen2.arrangementclient2.model.DebitCard as DebitCardDataModel
-import com.backbase.android.client.gen2.arrangementclient2.model.DebitCardProductKinds as DebitCardsDataModel
-import com.backbase.android.client.gen2.arrangementclient2.model.GeneralAccount as GeneralAccountDataModel
-import com.backbase.android.client.gen2.arrangementclient2.model.InterestDetails as InterestDetailsDataModel
-import com.backbase.android.client.gen2.arrangementclient2.model.Loan as LoanDataModel
-import com.backbase.android.client.gen2.arrangementclient2.model.LoanProductKinds as LoansDataModel
-import com.backbase.android.client.gen2.arrangementclient2.model.InvestmentAccount as InvestmentAccountDataModel
-import com.backbase.android.client.gen2.arrangementclient2.model.InvestmentAccountProductKinds as InvestmentAccountsDataModel
-import com.backbase.android.client.gen2.arrangementclient2.model.MaskableAttribute as MaskableAttributeDataModel
-import com.backbase.android.client.gen2.arrangementclient2.model.ProductSummary as ProductSummaryDataModel
-import com.backbase.android.client.gen2.arrangementclient2.model.SavingsAccount as SavingsAccountDataModel
-import com.backbase.android.client.gen2.arrangementclient2.model.SavingsAccountProductKinds as SavingsAccountsDataModel
-import com.backbase.android.client.gen2.arrangementclient2.model.StateItem as StateItemDataModel
-import com.backbase.android.client.gen2.arrangementclient2.model.SummaryAggregatedBalance as AggregatedBalanceDataModel
-import com.backbase.android.client.gen2.arrangementclient2.model.TermDeposit as TermDepositDataModel
-import com.backbase.android.client.gen2.arrangementclient2.model.TermDepositProductKinds as TermDepositsDataModel
-import com.backbase.android.client.gen2.arrangementclient2.model.TimeUnit as TimeUnitDataModel
-import com.backbase.android.client.gen2.arrangementclient2.model.UserPreferences as UserPreferencesDataModel
 import com.backbase.accounts_journey.domain.model.product_summary.AccountSummary
 import com.backbase.accounts_journey.domain.model.product_summary.MaskableAttribute
 import com.backbase.accounts_journey.domain.model.product_summary.UserPreferences
@@ -52,6 +26,32 @@ import com.backbase.accounts_journey.domain.model.product_summary.savings_accoun
 import com.backbase.accounts_journey.domain.model.product_summary.savings_accounts.SavingsAccounts
 import com.backbase.accounts_journey.domain.model.product_summary.term_deposits.TermDeposit
 import com.backbase.accounts_journey.domain.model.product_summary.term_deposits.TermDeposits
+import com.backbase.android.client.gen2.arrangementclient2.model.BaseProduct as BaseProductDataModel
+import com.backbase.android.client.gen2.arrangementclient2.model.CardDetails as CardDetailsDataModel
+import com.backbase.android.client.gen2.arrangementclient2.model.CreditCard as CreditCardDataModel
+import com.backbase.android.client.gen2.arrangementclient2.model.CreditCardProductKinds as CreditCardsDataModel
+import com.backbase.android.client.gen2.arrangementclient2.model.CurrentAccount as CurrentAccountDataModel
+import com.backbase.android.client.gen2.arrangementclient2.model.CurrentAccountProductKinds as CurrentAccountsDataModel
+import com.backbase.android.client.gen2.arrangementclient2.model.CustomProductKind as CustomProductDataModel
+import com.backbase.android.client.gen2.arrangementclient2.model.DebitCard as DebitCardDataModel
+import com.backbase.android.client.gen2.arrangementclient2.model.DebitCardItem as DebitCardItemDataModel
+import com.backbase.android.client.gen2.arrangementclient2.model.DebitCardProductKinds as DebitCardsDataModel
+import com.backbase.android.client.gen2.arrangementclient2.model.GeneralAccount as GeneralAccountDataModel
+import com.backbase.android.client.gen2.arrangementclient2.model.InterestDetails as InterestDetailsDataModel
+import com.backbase.android.client.gen2.arrangementclient2.model.InvestmentAccount as InvestmentAccountDataModel
+import com.backbase.android.client.gen2.arrangementclient2.model.InvestmentAccountProductKinds as InvestmentAccountsDataModel
+import com.backbase.android.client.gen2.arrangementclient2.model.Loan as LoanDataModel
+import com.backbase.android.client.gen2.arrangementclient2.model.LoanProductKinds as LoansDataModel
+import com.backbase.android.client.gen2.arrangementclient2.model.MaskableAttribute as MaskableAttributeDataModel
+import com.backbase.android.client.gen2.arrangementclient2.model.ProductSummary as ProductSummaryDataModel
+import com.backbase.android.client.gen2.arrangementclient2.model.SavingsAccount as SavingsAccountDataModel
+import com.backbase.android.client.gen2.arrangementclient2.model.SavingsAccountProductKinds as SavingsAccountsDataModel
+import com.backbase.android.client.gen2.arrangementclient2.model.StateItem as StateItemDataModel
+import com.backbase.android.client.gen2.arrangementclient2.model.SummaryAggregatedBalance as AggregatedBalanceDataModel
+import com.backbase.android.client.gen2.arrangementclient2.model.TermDeposit as TermDepositDataModel
+import com.backbase.android.client.gen2.arrangementclient2.model.TermDepositProductKinds as TermDepositsDataModel
+import com.backbase.android.client.gen2.arrangementclient2.model.TimeUnit as TimeUnitDataModel
+import com.backbase.android.client.gen2.arrangementclient2.model.UserPreferences as UserPreferencesDataModel
 
 /**
  * Created by Backbase R&D B.V on 19/09/2023.
@@ -86,6 +86,7 @@ internal fun List<CustomProductDataModel>.mapToDomain(): List<CustomProducts> {
     }
 }
 
+@Suppress("LongMethod")
 @JvmName("GeneralAccountMapper")
 internal fun List<GeneralAccountDataModel>.mapToDomain(): List<GeneralAccount> {
     return this.map { data ->
@@ -183,6 +184,7 @@ internal fun CurrentAccountsDataModel.mapToDomain(): CurrentAccounts {
     }
 }
 
+@Suppress("LongMethod")
 @JvmName("CurrentAccountMapper")
 internal fun List<CurrentAccountDataModel>.mapToDomain(): List<CurrentAccount> {
     return this.map { data ->
@@ -256,6 +258,7 @@ internal fun SavingsAccountsDataModel.mapToDomain(): SavingsAccounts {
     }
 }
 
+@Suppress("LongMethod")
 @JvmName("SavingsAccountMapper")
 internal fun List<SavingsAccountDataModel>.mapToDomain(): List<SavingsAccount> {
     return this.map { data ->
@@ -395,6 +398,7 @@ internal fun LoansDataModel.mapToDomain(): Loans {
     val data = this@mapToDomain
     return Loans {
         products = data.products.mapToDomain()
+        name = data.name
         displayName = data.name
         aggregatedBalance = data.aggregatedBalance?.mapToDomain()
         additions = data.additions

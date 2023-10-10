@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Golden Sample App Android</string>
+    <string name="accounts_screen_title">My finances</string>
 </resources>
