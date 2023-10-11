@@ -14,11 +14,27 @@ fun ViewInteraction.shouldMatchText(stringResource: Int): ViewInteraction = chec
     )
 )
 
+fun ViewInteraction.shouldMatchText(expectedText: String): ViewInteraction = check(
+    ViewAssertions.matches(
+        ViewMatchers.withText(expectedText)
+    )
+)
+
+fun ViewInteraction.shouldBeClickable(): ViewInteraction =
+    check(ViewAssertions.matches(ViewMatchers.isClickable()))
+
 fun ViewInteraction.shouldContainText(expectedText: String): ViewInteraction = check(
     ViewAssertions.matches(
         ViewMatchers.withSubstring(expectedText)
     )
 )
+
+fun ViewInteraction.shouldNotExist(): ViewInteraction = check(
+    ViewAssertions.doesNotExist()
+)
+
+fun ViewInteraction.shouldBeEnabled(): ViewInteraction =
+    check(ViewAssertions.matches(ViewMatchers.isEnabled()))
 
 fun ViewInteraction.typeText(text: String): ViewInteraction =
     perform(ViewActions.typeText(text)).perform(ViewActions.closeSoftKeyboard())

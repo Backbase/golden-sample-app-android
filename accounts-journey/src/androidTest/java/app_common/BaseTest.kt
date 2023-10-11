@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.test.platform.app.InstrumentationRegistry
 import org.junit.Before
 import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 
 abstract class BaseTest {
@@ -12,9 +13,9 @@ abstract class BaseTest {
         get() = InstrumentationRegistry.getInstrumentation().targetContext
 
     @Before
-    fun startKoin() {
+    fun startKoinBeforeTest() {
         stopKoin()
-        org.koin.core.context.startKoin {
+        startKoin {
             androidContext(targetContext.applicationContext)
             setUp()
         }
