@@ -1,6 +1,6 @@
 package com.backbase.accounts_journey.koin
 
-import com.backbase.accounts_journey.presentation.mapper.AccountUiMapper
+import com.backbase.presentation.mapper.AccountUiMapper
 import org.koin.dsl.module
 
 /**

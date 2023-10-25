@@ -6,13 +6,13 @@ plugins {
 }
 
 android {
-    namespace = "com.backbase.accounts_journey"
+    namespace = "com.backbase.presentation"
 }
 
 dependencies {
-    api(project(":accounts-journey:domain"))
-    api(project(":accounts-journey:data"))
-    api(project(":accounts-journey:presentation"))
+    implementation(project(":accounts-journey:domain"))
+    implementation(project(":accounts-journey:common"))
+    implementation(project(":accounts-journey:common-android"))
 
     // Backbase libraries
     implementation(backbase.bundles.common)

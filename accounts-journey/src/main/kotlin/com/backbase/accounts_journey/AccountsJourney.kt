@@ -1,6 +1,6 @@
 package com.backbase.accounts_journey
 
-import com.backbase.accounts_journey.configuration.AccountsJourneyConfiguration
+import com.backbase.configuration.AccountsJourneyConfiguration
 import com.backbase.accounts_journey.koin.mapperModule
 import com.backbase.accounts_journey.koin.viewModelModule
 import org.koin.core.context.loadKoinModules
