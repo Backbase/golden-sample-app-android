@@ -9,9 +9,9 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import com.backbase.presentation.R
 import com.backbase.configuration.AccountsJourneyConfiguration
 import com.backbase.configuration.accountlist.AccountListScreenConfiguration
+import com.backbase.presentation.R
 import com.backbase.presentation.databinding.FragmentAccountListBinding
 import com.backbase.presentation.viewmodel.AccountListViewModel
 import kotlinx.coroutines.flow.launchIn

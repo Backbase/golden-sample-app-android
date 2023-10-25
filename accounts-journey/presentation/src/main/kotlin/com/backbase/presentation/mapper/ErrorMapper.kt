@@ -1,9 +1,9 @@
 package com.backbase.presentation.mapper
 
-import com.backbase.presentation.R
 import com.backbase.common.FailedGetDataException
 import com.backbase.common.NoInternetException
 import com.backbase.common.NoResponseException
+import com.backbase.presentation.R
 
 /**
  * A error mapper from Throwable to String Resource.

@@ -1,8 +1,5 @@
 plugins {
-    id(backbase.plugins.feature.android.module.get().pluginId)
-    id(libs.plugins.kotlin.parcelize.get().pluginId)
-    id(libs.plugins.navigation.safe.args.get().pluginId)
-    id(backbase.plugins.configured.detekt.get().pluginId)
+    id(backbase.plugins.base.android.library.module.get().pluginId)
 }
 
 android {
@@ -13,7 +10,4 @@ dependencies {
     api(project(":accounts-journey:domain"))
     api(project(":accounts-journey:data"))
     api(project(":accounts-journey:presentation"))
-
-    // Backbase libraries
-    implementation(backbase.bundles.common)
 }

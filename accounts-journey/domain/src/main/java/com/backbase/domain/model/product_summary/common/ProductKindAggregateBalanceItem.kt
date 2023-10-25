@@ -52,5 +52,7 @@ class ProductKindAggregateBalanceItem private constructor(
 }
 
 @Suppress("FunctionName") // DSL initializer
-fun ProductKindAggregateBalanceItem(initializer: ProductKindAggregateBalanceItem.Builder.() -> Unit) = ProductKindAggregateBalanceItem.Builder()
+fun ProductKindAggregateBalanceItem(
+    initializer: ProductKindAggregateBalanceItem.Builder.() -> Unit
+) = ProductKindAggregateBalanceItem.Builder()
     .apply(initializer).build()

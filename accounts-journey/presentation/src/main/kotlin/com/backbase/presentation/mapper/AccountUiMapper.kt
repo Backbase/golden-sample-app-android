@@ -1,12 +1,8 @@
 package com.backbase.presentation.mapper
 
+import com.backbase.android.design.amount.AmountFormat
 import com.backbase.configuration.AccountsJourneyConfiguration
 import com.backbase.configuration.accountlist.AccountListScreenConfiguration
-import com.backbase.presentation.model.AccountHeaderUiModel
-import com.backbase.presentation.model.AccountSummaryUiModel
-import com.backbase.presentation.model.AccountUiModel
-import com.backbase.presentation.model.AccountsUiModel
-import com.backbase.android.design.amount.AmountFormat
 import com.backbase.domain.model.product_summary.AccountSummary
 import com.backbase.domain.model.product_summary.credit_card.CreditCards
 import com.backbase.domain.model.product_summary.current_accounts.CurrentAccounts
@@ -16,6 +12,10 @@ import com.backbase.domain.model.product_summary.investment_accounts.InvestmentA
 import com.backbase.domain.model.product_summary.loan.Loans
 import com.backbase.domain.model.product_summary.savings_accounts.SavingsAccounts
 import com.backbase.domain.model.product_summary.term_deposits.TermDeposits
+import com.backbase.presentation.model.AccountHeaderUiModel
+import com.backbase.presentation.model.AccountSummaryUiModel
+import com.backbase.presentation.model.AccountUiModel
+import com.backbase.presentation.model.AccountsUiModel
 import java.math.BigDecimal
 
 class AccountUiMapper(accountsJourneyConfiguration: AccountsJourneyConfiguration) {

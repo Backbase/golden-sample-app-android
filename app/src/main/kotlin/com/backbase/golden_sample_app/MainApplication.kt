@@ -18,17 +18,16 @@ import com.backbase.configuration.AccountsJourneyConfiguration
 import com.backbase.configuration.accountlist.AccountListScreenConfiguration
 import com.backbase.golden_sample_app.authentication.CompositeSessionListener
 import com.backbase.golden_sample_app.common.TAG
-import com.backbase.golden_sample_app.koin.accountsModule
 import com.backbase.golden_sample_app.koin.appModule
 import com.backbase.golden_sample_app.koin.featureFilterModule
 import com.backbase.golden_sample_app.koin.identityAuthModule
 import com.backbase.golden_sample_app.koin.securityModule
 import com.backbase.golden_sample_app.koin.userModule
 import com.backbase.golden_sample_app.koin.workspacesModule
-import java.net.URI
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
+import java.net.URI
 
 /**
  * Setup the necessary dependencies and configurations.
@@ -112,7 +111,6 @@ class MainApplication : Application() {
                 identityAuthModule(sessionEmitter),
                 workspacesModule,
                 WorkspacesJourney.create(),
-                accountsModule,
                 AccountsJourney.create(configuration = setupAccountsJourneyConfiguration()),
             )
         )

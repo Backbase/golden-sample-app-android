@@ -18,7 +18,7 @@ class AggregatedBalance internal constructor(
     val value: String?,
     val productKindAggregateBalanceItem: List<ProductKindAggregateBalanceItem>?,
     val additions: Map<String, String>?
-)  {
+) {
 
     /**
      * A builder for this configuration class

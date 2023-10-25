@@ -1,8 +1,8 @@
 package com.backbase.accounts_journey
 
+import com.backbase.accounts_use_case.koin.dataModule
 import com.backbase.configuration.AccountsJourneyConfiguration
-import com.backbase.accounts_journey.koin.mapperModule
-import com.backbase.accounts_journey.koin.viewModelModule
+import com.backbase.koin.presentationModule
 import org.koin.core.context.loadKoinModules
 import org.koin.dsl.module
 
@@ -21,8 +21,8 @@ object AccountsJourney {
 
         loadKoinModules(
             listOf(
-                viewModelModule,
-                mapperModule,
+                dataModule,
+                presentationModule,
             )
         )
     }
