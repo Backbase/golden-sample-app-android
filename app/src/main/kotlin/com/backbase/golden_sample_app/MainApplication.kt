@@ -94,7 +94,7 @@ class MainApplication : Application() {
         return AccountsJourneyConfiguration {
             this.accountListScreenConfiguration =
                 AccountListScreenConfiguration {
-                    this.screenTitle = R.string.accounts_screen_title
+                    this.screenTitle = R.string.screen_title
                 }
         }
     }
