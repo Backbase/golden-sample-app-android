@@ -4,10 +4,14 @@ plugins {
 
 android {
     namespace = "com.backbase.accounts_journey"
+    defaultConfig {
+        minSdk = Version.minSdk
+        version = "1.0.0"
+    }
 }
 
 dependencies {
-    api(project(":accounts-journey:domain"))
-    api(project(":accounts-journey:data"))
+    implementation(project(":accounts-journey:domain"))
+    implementation(project(":accounts-journey:data"))
     api(project(":accounts-journey:presentation"))
 }
