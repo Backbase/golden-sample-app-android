@@ -5,13 +5,9 @@ plugins {
 }
 
 android {
-    namespace = "com.backbase.accounts_use_case"
+    namespace = "com.backbase.network"
 }
 
 dependencies {
-    implementation(project(":accounts-journey"))
-    implementation(project(":accounts-journey:domain"))
-
-    // Backbase libraries
-    implementation(backbase.bundles.arrangements.client)
+    implementation(libs.bundles.network)
 }

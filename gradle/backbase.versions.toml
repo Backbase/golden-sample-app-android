@@ -73,6 +73,9 @@ dependency-updates = { id = "dependency-updates" }
 ## F
 feature-android-module = { id = "feature-android-module" }
 
+## K
+kotlin-library-module = { id = "kotlin-library-module" }
+
 [bundles]
 ## A
 # implementation(backbase.bundles.access.control.client)

@@ -2,20 +2,20 @@ package com.backbase.accounts_journey.presentation.mapper
 
 import com.backbase.accounts_journey.configuration.AccountsJourneyConfiguration
 import com.backbase.accounts_journey.configuration.accountlist.AccountListScreenConfiguration
-import com.backbase.accounts_journey.domain.model.product_summary.AccountSummary
-import com.backbase.accounts_journey.domain.model.product_summary.credit_card.CreditCards
-import com.backbase.accounts_journey.domain.model.product_summary.current_accounts.CurrentAccounts
-import com.backbase.accounts_journey.domain.model.product_summary.custom_products.CustomProducts
-import com.backbase.accounts_journey.domain.model.product_summary.debit_card.DebitCards
-import com.backbase.accounts_journey.domain.model.product_summary.investment_accounts.InvestmentAccounts
-import com.backbase.accounts_journey.domain.model.product_summary.loan.Loans
-import com.backbase.accounts_journey.domain.model.product_summary.savings_accounts.SavingsAccounts
-import com.backbase.accounts_journey.domain.model.product_summary.term_deposits.TermDeposits
 import com.backbase.accounts_journey.presentation.model.AccountHeaderUiModel
 import com.backbase.accounts_journey.presentation.model.AccountSummaryUiModel
 import com.backbase.accounts_journey.presentation.model.AccountUiModel
 import com.backbase.accounts_journey.presentation.model.AccountsUiModel
 import com.backbase.android.design.amount.AmountFormat
+import com.backbase.domain.model.product_summary.AccountSummary
+import com.backbase.domain.model.product_summary.credit_card.CreditCards
+import com.backbase.domain.model.product_summary.current_accounts.CurrentAccounts
+import com.backbase.domain.model.product_summary.custom_products.CustomProducts
+import com.backbase.domain.model.product_summary.debit_card.DebitCards
+import com.backbase.domain.model.product_summary.investment_accounts.InvestmentAccounts
+import com.backbase.domain.model.product_summary.loan.Loans
+import com.backbase.domain.model.product_summary.savings_accounts.SavingsAccounts
+import com.backbase.domain.model.product_summary.term_deposits.TermDeposits
 import java.math.BigDecimal
 
 class AccountUiMapper(accountsJourneyConfiguration: AccountsJourneyConfiguration) {

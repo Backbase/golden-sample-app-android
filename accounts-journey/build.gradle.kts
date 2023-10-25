@@ -10,6 +10,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":accounts-journey:domain"))
+
     // Backbase libraries
     implementation(backbase.bundles.common)
 }

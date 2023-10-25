@@ -1,31 +1,5 @@
 package com.backbase.accounts_use_case.mapper
 
-import com.backbase.accounts_journey.domain.model.product_summary.AccountSummary
-import com.backbase.accounts_journey.domain.model.product_summary.MaskableAttribute
-import com.backbase.accounts_journey.domain.model.product_summary.UserPreferences
-import com.backbase.accounts_journey.domain.model.product_summary.common.AggregatedBalance
-import com.backbase.accounts_journey.domain.model.product_summary.common.BaseProduct
-import com.backbase.accounts_journey.domain.model.product_summary.common.CardDetails
-import com.backbase.accounts_journey.domain.model.product_summary.common.DebitCardItem
-import com.backbase.accounts_journey.domain.model.product_summary.common.InterestDetails
-import com.backbase.accounts_journey.domain.model.product_summary.common.ProductState
-import com.backbase.accounts_journey.domain.model.product_summary.common.TimeUnit
-import com.backbase.accounts_journey.domain.model.product_summary.credit_card.CreditCard
-import com.backbase.accounts_journey.domain.model.product_summary.credit_card.CreditCards
-import com.backbase.accounts_journey.domain.model.product_summary.current_accounts.CurrentAccount
-import com.backbase.accounts_journey.domain.model.product_summary.current_accounts.CurrentAccounts
-import com.backbase.accounts_journey.domain.model.product_summary.custom_products.CustomProducts
-import com.backbase.accounts_journey.domain.model.product_summary.custom_products.GeneralAccount
-import com.backbase.accounts_journey.domain.model.product_summary.debit_card.DebitCard
-import com.backbase.accounts_journey.domain.model.product_summary.debit_card.DebitCards
-import com.backbase.accounts_journey.domain.model.product_summary.investment_accounts.InvestmentAccount
-import com.backbase.accounts_journey.domain.model.product_summary.investment_accounts.InvestmentAccounts
-import com.backbase.accounts_journey.domain.model.product_summary.loan.Loan
-import com.backbase.accounts_journey.domain.model.product_summary.loan.Loans
-import com.backbase.accounts_journey.domain.model.product_summary.savings_accounts.SavingsAccount
-import com.backbase.accounts_journey.domain.model.product_summary.savings_accounts.SavingsAccounts
-import com.backbase.accounts_journey.domain.model.product_summary.term_deposits.TermDeposit
-import com.backbase.accounts_journey.domain.model.product_summary.term_deposits.TermDeposits
 import com.backbase.android.client.gen2.arrangementclient2.model.BaseProduct as BaseProductDataModel
 import com.backbase.android.client.gen2.arrangementclient2.model.CardDetails as CardDetailsDataModel
 import com.backbase.android.client.gen2.arrangementclient2.model.CreditCard as CreditCardDataModel
@@ -52,6 +26,32 @@ import com.backbase.android.client.gen2.arrangementclient2.model.TermDeposit as 
 import com.backbase.android.client.gen2.arrangementclient2.model.TermDepositProductKinds as TermDepositsDataModel
 import com.backbase.android.client.gen2.arrangementclient2.model.TimeUnit as TimeUnitDataModel
 import com.backbase.android.client.gen2.arrangementclient2.model.UserPreferences as UserPreferencesDataModel
+import com.backbase.domain.model.product_summary.AccountSummary
+import com.backbase.domain.model.product_summary.MaskableAttribute
+import com.backbase.domain.model.product_summary.UserPreferences
+import com.backbase.domain.model.product_summary.common.AggregatedBalance
+import com.backbase.domain.model.product_summary.common.BaseProduct
+import com.backbase.domain.model.product_summary.common.CardDetails
+import com.backbase.domain.model.product_summary.common.DebitCardItem
+import com.backbase.domain.model.product_summary.common.InterestDetails
+import com.backbase.domain.model.product_summary.common.ProductState
+import com.backbase.domain.model.product_summary.common.TimeUnit
+import com.backbase.domain.model.product_summary.credit_card.CreditCard
+import com.backbase.domain.model.product_summary.credit_card.CreditCards
+import com.backbase.domain.model.product_summary.current_accounts.CurrentAccount
+import com.backbase.domain.model.product_summary.current_accounts.CurrentAccounts
+import com.backbase.domain.model.product_summary.custom_products.CustomProducts
+import com.backbase.domain.model.product_summary.custom_products.GeneralAccount
+import com.backbase.domain.model.product_summary.debit_card.DebitCard
+import com.backbase.domain.model.product_summary.debit_card.DebitCards
+import com.backbase.domain.model.product_summary.investment_accounts.InvestmentAccount
+import com.backbase.domain.model.product_summary.investment_accounts.InvestmentAccounts
+import com.backbase.domain.model.product_summary.loan.Loan
+import com.backbase.domain.model.product_summary.loan.Loans
+import com.backbase.domain.model.product_summary.savings_accounts.SavingsAccount
+import com.backbase.domain.model.product_summary.savings_accounts.SavingsAccounts
+import com.backbase.domain.model.product_summary.term_deposits.TermDeposit
+import com.backbase.domain.model.product_summary.term_deposits.TermDeposits
 
 /**
  * Created by Backbase R&D B.V on 19/09/2023.

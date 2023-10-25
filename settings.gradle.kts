@@ -44,3 +44,4 @@ rootProject.name = "Golden Sample App Android"
 include(":app")
 include(":accounts-journey")
 include(":accounts-use-case")
+include(":accounts-journey:domain")
