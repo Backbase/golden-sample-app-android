@@ -1,5 +1,3 @@
-import org.gradle.kotlin.dsl.dependencies
-
 plugins {
     kotlin("jvm")
     id("dev.drewhamilton.poko")
