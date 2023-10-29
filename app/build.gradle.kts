@@ -83,7 +83,6 @@ dependencies {
 
     androidTestImplementation(libs.bundles.test.instrumented)
 
-
     testImplementation(libs.bundles.test)
 
     // Backbase libraries

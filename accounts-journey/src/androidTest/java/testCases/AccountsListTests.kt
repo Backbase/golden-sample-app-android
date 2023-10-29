@@ -7,7 +7,7 @@ import com.backbase.accounts_journey.presentation.ui.AccountListFragment
 import org.junit.Test
 import com.backbase.android.retail.journey.test.launchScreen
 import org.junit.Before
-import screens.accountListPage
+import screens.accountListScreen
 import com.backbase.accounts_journey.R
 
 class AccountsListTests: BaseTest() {
@@ -20,7 +20,7 @@ class AccountsListTests: BaseTest() {
 
     @Test
     fun accountIsDisplayedInTheList() {
-        accountListPage {
+        accountListScreen {
             headerWithTextIsDisplayed(R.string.accounts_screen_title)
             currentAccountsTitle.shouldBeDisplayed()
 
@@ -33,7 +33,7 @@ class AccountsListTests: BaseTest() {
 
     @Test
     fun emptySearchResultIsDisplayed() {
-        accountListPage {
+        accountListScreen {
             typeSearchQuery("Search query without result")
             emptySearchResultViewIsDisplayed()
         }

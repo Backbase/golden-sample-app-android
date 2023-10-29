@@ -3,17 +3,17 @@ package screens
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.ViewInteraction
 import androidx.test.espresso.matcher.ViewMatchers.withId
-import app_common.BasePage
+import app_common.BaseScreen
 import app_common.shouldBeDisplayed
 import app_common.shouldMatchText
 import app_common.typeText
 import com.backbase.accounts_journey.R
 import screens.components.AccountComponent
 
-fun accountListPage(func: AccountListPage.() -> Unit): AccountListPage {
-    return AccountListPage().apply(func)
+fun accountListScreen(func: AccountListScreen.() -> Unit): AccountListScreen {
+    return AccountListScreen().apply(func)
 }
-class AccountListPage: BasePage() {
+class AccountListScreen: BaseScreen() {
 
     val currentAccountsTitle: ViewInteraction = onView(withId(R.id.account_header))
     val searchInput: ViewInteraction = onView(withId(R.id.searchTextInput))

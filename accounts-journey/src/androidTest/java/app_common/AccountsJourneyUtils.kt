@@ -13,10 +13,7 @@ internal fun provideAccountsJourneyDependencies(
     useCase: AccountsUseCase = FakeContactsUseCase(TEST_ACCOUNTS)
 ) = loadKoinModules(
     listOf(
-        module {
-            factory {
-                useCase
-            }
-        }, AccountsJourney.create(configuration = configuration)
+        module { factory { useCase } },
+        AccountsJourney.create(configuration = configuration)
     )
 )
