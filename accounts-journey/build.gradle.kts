@@ -14,4 +14,9 @@ dependencies {
     implementation(project(":accounts-journey:domain"))
     implementation(project(":accounts-journey:data"))
     api(project(":accounts-journey:presentation"))
+    androidTestImplementation(project(":fake-accounts-use-case"))
+    androidTestImplementation(project(":accounts-journey:presentation"))
+
+    // Backbase libraries
+    implementation(backbase.bundles.common)
 }
