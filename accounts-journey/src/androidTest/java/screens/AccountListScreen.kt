@@ -6,7 +6,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import app_common.BaseScreen
 import app_common.shouldBeDisplayed
 import app_common.shouldMatchText
-import app_common.typeText
+import app_common.typeTextInInput
 import com.backbase.accounts_journey.R
 import screens.components.AccountComponent
 
@@ -24,7 +24,7 @@ class AccountListScreen: BaseScreen() {
         return AccountComponent(accountName).apply(func)
     }
     fun typeSearchQuery(query: String){
-        searchInput.typeText(query)
+        searchInput.typeTextInInput(query)
     }
 
     fun emptySearchResultViewIsDisplayed() {

@@ -3,6 +3,7 @@ package app_common
 import androidx.test.espresso.ViewInteraction
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
+import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isClickable
@@ -30,5 +31,5 @@ fun ViewInteraction.shouldNotExist(): ViewInteraction = check(doesNotExist())
 
 fun ViewInteraction.shouldBeEnabled(): ViewInteraction = check(matches(isEnabled()))
 
-fun ViewInteraction.typeText(text: String): ViewInteraction =
-    perform(ViewActions.typeText(text)).perform(closeSoftKeyboard())
+fun ViewInteraction.typeTextInInput(text: String): ViewInteraction =
+    perform(typeText(text)).perform(closeSoftKeyboard())

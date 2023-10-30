@@ -6,6 +6,7 @@ import androidx.test.espresso.ViewInteraction
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.hasSibling
 import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import app_common.shouldBeDisplayed
 import app_common.shouldContainText
 import com.backbase.accounts_journey.R
@@ -18,7 +19,7 @@ import org.hamcrest.Matcher
  */
 class AccountComponent(accountName: String) {
 
-    private val accountNameMatcher: Matcher<View> = allOf(withId(R.id.account_name), ViewMatchers.withText(accountName))
+    private val accountNameMatcher: Matcher<View> = allOf(withId(R.id.account_name), withText(accountName))
 
     private val accountNameTxt: ViewInteraction = onView(accountNameMatcher)
 
