@@ -1,6 +1,6 @@
 package com.backbase.accounts_journey.data.usecase
 
-import com.backbase.accounts_journey.domain.model.product_summary.AccountSummary
+import com.backbase.accounts_journey.domain.model.account_summary.AccountSummary
 
 /**
  * The use cases for the accounts/products.

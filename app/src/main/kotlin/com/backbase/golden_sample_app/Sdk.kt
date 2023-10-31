@@ -4,6 +4,7 @@ import android.content.Context
 import com.backbase.android.Backbase
 import com.backbase.android.client.accesscontrolclient2.api.UserContextApi
 import com.backbase.android.client.accesscontrolclient2.api.UsersApi
+import com.backbase.android.client.gen2.arrangementclient2.api.ArrangementsApi
 import com.backbase.android.client.gen2.arrangementclient2.api.ProductSummaryApi
 import com.backbase.android.clients.common.MoshiResponseBodyParser
 import com.backbase.android.clients.common.base64Adapter
@@ -43,6 +44,11 @@ object Sdk {
                 NetworkDBSDataProvider(context),
                 ARRANGEMENT_MANAGER_ENDPOINT
             ),
+            getArrangementsApi(
+                context,
+                NetworkDBSDataProvider(context),
+                ARRANGEMENT_MANAGER_ENDPOINT
+            )
         )
     }
 
@@ -84,6 +90,19 @@ object Sdk {
         dataProvider: DBSDataProvider,
         serverUrl: String
     ) = ProductSummaryApi(
+        context = context,
+        moshi = moshi,
+        parser = MoshiResponseBodyParser(moshi),
+        serverUri = URI(serverUrl),
+        provider = dataProvider,
+        backbase = Backbase.requireInstance()
+    )
+
+    private fun getArrangementsApi(
+        context: Context,
+        dataProvider: DBSDataProvider,
+        serverUrl: String
+    ) = ArrangementsApi(
         context = context,
         moshi = moshi,
         parser = MoshiResponseBodyParser(moshi),

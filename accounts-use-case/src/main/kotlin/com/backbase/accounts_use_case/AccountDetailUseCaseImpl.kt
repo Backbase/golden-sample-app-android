@@ -3,45 +3,36 @@ package com.backbase.accounts_use_case
 import com.backbase.accounts_journey.common.FailedGetDataException
 import com.backbase.accounts_journey.common.NoInternetException
 import com.backbase.accounts_journey.common.NoResponseException
-import com.backbase.accounts_journey.data.usecase.AccountsUseCase
-import com.backbase.accounts_journey.domain.model.account_summary.AccountSummary
+import com.backbase.accounts_journey.data.usecase.AccountDetailUseCase
+import com.backbase.accounts_journey.domain.model.account_detail.AccountDetail
 import com.backbase.accounts_use_case.mapper.mapToDomain
-import com.backbase.android.client.gen2.arrangementclient2.api.ProductSummaryApi
-import com.backbase.android.client.gen2.arrangementclient2.api.ProductSummaryApiParams
+import com.backbase.android.client.gen2.arrangementclient2.api.ArrangementsApi
+import com.backbase.android.client.gen2.arrangementclient2.api.ArrangementsApiParams
 import com.backbase.android.clients.common.CallResult
 import com.backbase.android.core.errorhandling.ErrorCodes
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-/**
- * An implementation of [AccountsUseCase] based on [ProductSummaryApi].
- *
- * Created by Backbase R&D B.V on 19/09/2023.
- */
-class AccountSummaryUseCaseImpl constructor(
-    private val productSummaryApi: ProductSummaryApi,
-    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
-) : AccountsUseCase {
+class AccountDetailUseCaseImpl(
+    private val arrangementsApi: ArrangementsApi,
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
+) : AccountDetailUseCase {
 
-    private var cache: AccountSummary? = null
-
-    override suspend fun getAccountSummary(useCache: Boolean): Result<AccountSummary> {
-        if (useCache && cache != null) {
-            return Result.success(cache!!)
-        }
-
-        val callResult = withContext(ioDispatcher) {
-            productSummaryApi
-                .getProductSummary(ProductSummaryApiParams.GetProductSummary { })
-                .parseExecute()
-        }
+    // TODO: to params class and then map to api class
+    override suspend fun getAccountDetail(id: String): Result<AccountDetail> {
+        val callResult = withContext(dispatcher) {
+            arrangementsApi.getArrangementById(
+                ArrangementsApiParams.GetArrangementById {
+                    arrangementId = id
+                }
+            )
+        }.parseExecute()
 
         return when (callResult) {
             is CallResult.Success -> {
                 val dataModel = callResult.data
                 val domainModel = dataModel.mapToDomain()
-                cache = domainModel
                 Result.success(domainModel)
             }
 

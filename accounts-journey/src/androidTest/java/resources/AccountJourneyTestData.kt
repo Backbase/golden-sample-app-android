@@ -1,11 +1,11 @@
 package resources
 
-import com.backbase.accounts_journey.domain.model.product_summary.AccountSummary
-import com.backbase.accounts_journey.domain.model.product_summary.MaskableAttribute
-import com.backbase.accounts_journey.domain.model.product_summary.UserPreferences
-import com.backbase.accounts_journey.domain.model.product_summary.common.ProductState
-import com.backbase.accounts_journey.domain.model.product_summary.current_accounts.CurrentAccount
-import com.backbase.accounts_journey.domain.model.product_summary.current_accounts.CurrentAccounts
+import com.backbase.accounts_journey.domain.model.account_summary.AccountSummary
+import com.backbase.accounts_journey.domain.model.account_summary.MaskableAttribute
+import com.backbase.accounts_journey.domain.model.account_summary.UserPreferences
+import com.backbase.accounts_journey.domain.model.account_summary.current_accounts.CurrentAccount
+import com.backbase.accounts_journey.domain.model.account_summary.current_accounts.CurrentAccounts
+import com.backbase.accounts_journey.domain.model.common.ProductState
 import java.math.BigDecimal
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
@@ -27,7 +27,7 @@ val TEST_ACCOUNTS = AccountSummary {
                 accountInterestRate = BigDecimal.ONE
                 creditLimitUsage = BigDecimal.TEN
                 creditLimitInterestRate = BigDecimal.ONE
-                creditLimitExpiryDate = OffsetDateTime.of(2029,12,21, 0,0,0,0, ZoneOffset.UTC)
+                creditLimitExpiryDate = OffsetDateTime.of(2029, 12, 21, 0, 0, 0, 0, ZoneOffset.UTC)
                 accruedInterest = BigDecimal.ZERO
                 accountHolderNames = "Paolo Doe"
                 startDate = OffsetDateTime.now()
