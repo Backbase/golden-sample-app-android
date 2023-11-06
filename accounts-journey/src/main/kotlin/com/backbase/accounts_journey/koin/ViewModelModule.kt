@@ -1,6 +1,6 @@
 package com.backbase.accounts_journey.koin
 
-import com.backbase.accounts_journey.presentation.viewmodel.AccountListViewModel
+import com.backbase.accounts_journey.presentation.accountlist.AccountListViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

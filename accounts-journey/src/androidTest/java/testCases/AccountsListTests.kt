@@ -4,7 +4,7 @@ import app_common.BaseTest
 import app_common.provideAccountsJourneyDependencies
 import app_common.shouldBeDisplayed
 import com.backbase.accounts_journey.R
-import com.backbase.accounts_journey.presentation.ui.accountlist.AccountListFragment
+import com.backbase.accounts_journey.presentation.accountlist.AccountListFragment
 import com.backbase.android.retail.journey.test.launchScreen
 import org.junit.Before
 import org.junit.Test

@@ -1,4 +1,4 @@
-package com.backbase.accounts_journey.presentation.ui.accountlist
+package com.backbase.accounts_journey.presentation.accountlist
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,7 +14,6 @@ import com.backbase.accounts_journey.configuration.AccountsJourneyConfiguration
 import com.backbase.accounts_journey.configuration.accountlist.AccountListScreenConfiguration
 import com.backbase.accounts_journey.data.usecase.AccountDetailUseCase
 import com.backbase.accounts_journey.databinding.FragmentAccountListBinding
-import com.backbase.accounts_journey.presentation.viewmodel.AccountListViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

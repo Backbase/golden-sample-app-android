@@ -1,4 +1,4 @@
-package com.backbase.accounts_journey.presentation.ui.accountlist
+package com.backbase.accounts_journey.presentation.accountlist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

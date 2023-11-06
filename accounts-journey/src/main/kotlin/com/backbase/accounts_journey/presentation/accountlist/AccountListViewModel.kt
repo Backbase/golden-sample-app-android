@@ -1,12 +1,10 @@
-package com.backbase.accounts_journey.presentation.viewmodel
+package com.backbase.accounts_journey.presentation.accountlist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.backbase.accounts_journey.data.usecase.AccountsUseCase
 import com.backbase.accounts_journey.presentation.mapper.AccountUiMapper
 import com.backbase.accounts_journey.presentation.mapper.mapErrorToMessage
-import com.backbase.accounts_journey.presentation.ui.accountlist.AccountListEvent
-import com.backbase.accounts_journey.presentation.ui.accountlist.AccountListScreenState
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

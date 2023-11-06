@@ -1,4 +1,4 @@
-package com.backbase.accounts_journey.presentation.ui.accountlist
+package com.backbase.accounts_journey.presentation.accountlist
 
 import androidx.annotation.StringRes
 import com.backbase.accounts_journey.presentation.model.ListItem
