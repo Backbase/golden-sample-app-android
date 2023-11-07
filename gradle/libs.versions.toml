@@ -38,8 +38,14 @@ material = "1.9.0"
 ## N
 navigation-component = "2.6.0"
 
+## O
+okhttp3 = "4.11.0"
+
 ## P
 poko = "0.13.1"
+
+## R
+retrofit = "2.9.0"
 
 ## S
 swiperefreshlayout = "1.1.0"
@@ -94,8 +100,15 @@ navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fr
 navigation-safe-args-gradle-plugin = { group = "androidx.navigation", name = "navigation-safe-args-gradle-plugin", version.ref = "navigation-component" }
 navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation-component" }
 
+## O
+okhttp3 = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp3" }
+
 ## P
 poko-gradle-plugin = { group = "dev.drewhamilton.poko", name = "dev.drewhamilton.poko.gradle.plugin", version.ref = "poko" }
+
+## R
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-converter-moshi = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "retrofit" }
 
 ## S
 swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
@@ -144,6 +157,12 @@ koin = [
 navigation = [
     "navigation-fragment-ktx",
     "navigation-ui-ktx",
+]
+
+network = [
+    "okhttp3",
+    "retrofit",
+    "retrofit-converter-moshi",
 ]
 
 ## T

@@ -9,7 +9,10 @@ android {
 }
 
 dependencies {
+    implementation(project(":network"))
     implementation(project(":accounts-journey"))
+
+    implementation(libs.bundles.network)
 
     // Backbase libraries
     implementation(backbase.bundles.arrangements.client)

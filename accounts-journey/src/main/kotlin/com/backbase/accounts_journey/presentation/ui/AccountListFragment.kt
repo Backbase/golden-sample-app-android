@@ -72,6 +72,7 @@ class AccountListFragment : Fragment() {
             .flowWithLifecycle(lifecycle)
             .onEach { handleUiState(it) }
             .launchIn(lifecycleScope)
+
         viewModel.onEvent(AccountListEvent.OnGetAccounts)
     }
 

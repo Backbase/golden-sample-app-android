@@ -73,6 +73,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":network"))
     implementation(project(":accounts-journey"))
     implementation(project(":accounts-use-case"))
 
@@ -80,6 +81,7 @@ dependencies {
     implementation(libs.bundles.android.core)
     implementation(libs.bundles.navigation)
     implementation(libs.bundles.ui)
+    implementation(libs.bundles.network)
 
     androidTestImplementation(libs.bundles.test.instrumented)
 
