@@ -1,16 +1,22 @@
 plugins {
-    id(backbase.plugins.feature.android.module.get().pluginId)
-    id(libs.plugins.kotlin.parcelize.get().pluginId)
-    id(libs.plugins.navigation.safe.args.get().pluginId)
-    id(backbase.plugins.configured.detekt.get().pluginId)
+    id(backbase.plugins.base.android.library.module.get().pluginId)
 }
 
 android {
     namespace = "com.backbase.accounts_journey"
+    defaultConfig {
+        minSdk = Version.minSdk
+        version = "1.0.0"
+    }
 }
 
 dependencies {
+    implementation(project(":accounts-journey:domain"))
+    implementation(project(":accounts-journey:data"))
+    api(project(":accounts-journey:presentation"))
+    androidTestImplementation(project(":fake-accounts-use-case"))
+    androidTestImplementation(project(":accounts-journey:presentation"))
+
     // Backbase libraries
     implementation(backbase.bundles.common)
-    androidTestImplementation(project("path" to ":fake-accounts-use-case"))
 }

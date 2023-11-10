@@ -7,7 +7,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 
-abstract class BaseTest {
+open class BaseTest {
 
     private val targetContext: Context
         get() = InstrumentationRegistry.getInstrumentation().targetContext

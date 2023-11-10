@@ -2,8 +2,6 @@ package com.backbase.golden_sample_app
 
 import android.app.Application
 import com.backbase.accounts_journey.AccountsJourney
-import com.backbase.accounts_journey.configuration.AccountsJourneyConfiguration
-import com.backbase.accounts_journey.configuration.accountlist.AccountListScreenConfiguration
 import com.backbase.android.Backbase
 import com.backbase.android.business.journey.workspaces.WorkspacesJourney
 import com.backbase.android.core.utils.BBLogger
@@ -16,9 +14,10 @@ import com.backbase.android.listeners.ModelListener
 import com.backbase.android.model.Model
 import com.backbase.android.model.ModelSource
 import com.backbase.android.utils.net.response.Response
+import com.backbase.configuration.AccountsJourneyConfiguration
+import com.backbase.configuration.accountlist.AccountListScreenConfiguration
 import com.backbase.golden_sample_app.authentication.CompositeSessionListener
 import com.backbase.golden_sample_app.common.TAG
-import com.backbase.golden_sample_app.koin.accountsModule
 import com.backbase.golden_sample_app.koin.appModule
 import com.backbase.golden_sample_app.koin.featureFilterModule
 import com.backbase.golden_sample_app.koin.identityAuthModule
@@ -93,9 +92,10 @@ class MainApplication : Application() {
 
     private fun setupAccountsJourneyConfiguration(): AccountsJourneyConfiguration {
         return AccountsJourneyConfiguration {
-            this.accountListScreenConfiguration = AccountListScreenConfiguration {
-                this.screenTitle = R.string.accounts_screen_title
-            }
+            this.accountListScreenConfiguration =
+                AccountListScreenConfiguration {
+                    this.screenTitle = R.string.screen_title
+                }
         }
     }
 
@@ -111,7 +111,6 @@ class MainApplication : Application() {
                 identityAuthModule(sessionEmitter),
                 workspacesModule,
                 WorkspacesJourney.create(),
-                accountsModule,
                 AccountsJourney.create(configuration = setupAccountsJourneyConfiguration()),
             )
         )

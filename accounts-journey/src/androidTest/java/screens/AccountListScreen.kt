@@ -7,13 +7,13 @@ import app_common.BaseScreen
 import app_common.shouldBeDisplayed
 import app_common.shouldMatchText
 import app_common.typeTextInInput
-import com.backbase.accounts_journey.R
+import com.backbase.presentation.R
 import screens.components.AccountComponent
 
 fun accountListScreen(func: AccountListScreen.() -> Unit): AccountListScreen {
     return AccountListScreen().apply(func)
 }
-class AccountListScreen: BaseScreen() {
+class AccountListScreen : BaseScreen() {
 
     val currentAccountsTitle: ViewInteraction = onView(withId(R.id.account_header))
     val searchInput: ViewInteraction = onView(withId(R.id.searchTextInput))
@@ -23,7 +23,7 @@ class AccountListScreen: BaseScreen() {
     fun accountWithName(accountName: String, func: AccountComponent.() -> Unit): AccountComponent {
         return AccountComponent(accountName).apply(func)
     }
-    fun typeSearchQuery(query: String){
+    fun typeSearchQuery(query: String) {
         searchInput.typeTextInInput(query)
     }
 

@@ -2,6 +2,7 @@ plugins {
     id("com.android.library")
     kotlin("android")
     id("dev.drewhamilton.poko")
+    id("configured-detekt")
 }
 
 internal val Project.libs: VersionCatalog

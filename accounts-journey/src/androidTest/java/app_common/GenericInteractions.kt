@@ -1,7 +1,6 @@
 package app_common
 
 import androidx.test.espresso.ViewInteraction
-import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
 import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.doesNotExist

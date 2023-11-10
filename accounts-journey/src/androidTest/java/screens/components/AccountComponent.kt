@@ -3,13 +3,12 @@ package screens.components
 import android.view.View
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.ViewInteraction
-import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.hasSibling
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import app_common.shouldBeDisplayed
 import app_common.shouldContainText
-import com.backbase.accounts_journey.R
+import com.backbase.presentation.R
 import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.Matcher
 
