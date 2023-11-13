@@ -46,7 +46,7 @@ class AccountDetailFragment : Fragment() {
         if (uiState.accountDetail != null) {
             val uiModel = uiState.accountDetail
             binding.apply {
-                accountDetailName.text = uiModel.name
+                headerAccount.text = uiModel.name
             }
         } else {
             // TODO: show error
