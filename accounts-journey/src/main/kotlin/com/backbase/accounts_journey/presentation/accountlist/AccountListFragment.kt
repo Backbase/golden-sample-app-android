@@ -9,16 +9,13 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.backbase.accounts_journey.R
 import com.backbase.accounts_journey.configuration.AccountsJourneyConfiguration
 import com.backbase.accounts_journey.configuration.accountlist.AccountListScreenConfiguration
-import com.backbase.accounts_journey.data.usecase.AccountDetailUseCase
 import com.backbase.accounts_journey.databinding.FragmentAccountListBinding
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -36,8 +33,6 @@ class AccountListFragment : Fragment() {
     private val screenConfiguration: AccountListScreenConfiguration by lazy {
         journeyConfiguration.accountListScreenConfiguration
     }
-
-    private val accountDetailUseCase: AccountDetailUseCase by inject()
 
     private val viewModel: AccountListViewModel by viewModel()
 
@@ -108,14 +103,9 @@ class AccountListFragment : Fragment() {
     }
 
     private fun itemClicked(id: String) {
-        // TODO: navigate to details screen
-        println("tapped on $id")
-        runBlocking {
-            withContext(Dispatchers.IO) {
-                val result = accountDetailUseCase.getAccountDetail(id)
-                println(result)
-            }
-        }
+        val navController = findNavController()
+        val action = AccountListFragmentDirections.actionAccountListFragmentToAccountDetailFragment(id)
+        navController.navigate(action)
     }
 
     override fun onDestroyView() {

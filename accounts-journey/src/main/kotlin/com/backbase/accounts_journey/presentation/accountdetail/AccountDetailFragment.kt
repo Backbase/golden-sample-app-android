@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
 import com.backbase.accounts_journey.databinding.FragmentAccountDetailBinding
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -18,6 +19,8 @@ class AccountDetailFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: AccountDetailViewModel by inject()
+
+    private val args: AccountDetailFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,14 +39,19 @@ class AccountDetailFragment : Fragment() {
             .onEach { handleUiState(it) }
             .launchIn(lifecycleScope)
 
-        viewModel.onEvent(AccountDetailEvent.OnGetAccountDetail(""))
+        viewModel.onEvent(AccountDetailEvent.OnGetAccountDetail(args.id))
     }
 
     private fun handleUiState(uiState: AccountDetailScreenState) {
         if (uiState.accountDetail != null) {
-
+            val uiModel = uiState.accountDetail
+            binding.apply {
+                accountDetailName.text = uiModel.name
+            }
         } else {
             // TODO: show error
+            println("some error")
+            println(uiState.error)
         }
     }
 

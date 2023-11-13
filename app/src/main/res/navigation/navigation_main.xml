@@ -74,10 +74,21 @@
     </fragment>
     <fragment
         android:id="@+id/accountListFragment"
-        android:name="com.backbase.accounts_journey.presentation.ui.accountlist.AccountListFragment"
+        android:name="com.backbase.accounts_journey.presentation.accountlist.AccountListFragment"
         android:label="AccountListFragment">
         <argument
             android:name="workspaceName"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_accountListFragment_to_accountDetailFragment"
+            app:destination="@id/accountDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/accountDetailFragment"
+        android:name="com.backbase.accounts_journey.presentation.accountdetail.AccountDetailFragment"
+        android:label="AccountDetailFragment">
+        <argument
+            android:name="accountId"
             app:argType="string" />
     </fragment>
 </navigation>

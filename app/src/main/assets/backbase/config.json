@@ -3,12 +3,12 @@
     "debugEnable": true
   },
   "backbase": {
-    "serverURL": "https://app.prd.sdbxaz.azure.backbaseservices.com",
+    "serverURL": "https://app.dev.sdbxaz.azure.backbaseservices.com",
     "localModelPath": "$(contextRoot)/model.json",
     "experience": "",
     "version": "6.1.5",
     "identity": {
-      "baseURL": "https://identity.prd.sdbxaz.azure.backbaseservices.com",
+      "baseURL": "https://identity.dev.sdbxaz.azure.backbaseservices.com",
       "realm": "customer",
       "clientId": "mobile-client",
       "applicationKey": "retail"
