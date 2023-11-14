@@ -9,6 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clipToPadding="false"
         android:orientation="vertical"
         android:paddingHorizontal="?spacerMedium"
         android:paddingVertical="?spacerMedium">
@@ -69,13 +70,13 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="?spacerMedium"
             android:layout_marginTop="?spacerLarge"
+            android:text="@string/header_account_details"
             android:textAllCaps="true"
             android:textColor="?colorOnSurfaceSecondary"
             android:textSize="12sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/header_balance"
-            tools:text="Account details" />
+            app:layout_constraintTop_toBottomOf="@id/header_balance" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/content_account_details"
@@ -97,11 +98,11 @@
                     android:id="@+id/account_details_account_holder_names_label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/account_details_account_holder_names_label"
                     android:textStyle="bold"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Account Holder Name(s)" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/account_details_account_holder_names"
@@ -118,11 +119,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="?spacerMedium"
+                    android:text="@string/account_details_account_number_label"
                     android:textStyle="bold"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/account_details_account_holder_names"
-                    tools:text="Account Number" />
+                    app:layout_constraintTop_toBottomOf="@id/account_details_account_holder_names" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/account_details_account_number"
@@ -142,13 +143,13 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="?spacerMedium"
             android:layout_marginTop="?spacerLarge"
+            android:text="@string/header_general"
             android:textAllCaps="true"
             android:textColor="?colorOnSurfaceSecondary"
             android:textSize="12sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/content_account_details"
-            tools:text="General" />
+            app:layout_constraintTop_toBottomOf="@id/content_account_details" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/content_general"
@@ -170,32 +171,32 @@
                     android:id="@+id/general_account_type_label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/general_account_type_label"
                     android:textStyle="bold"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Account Type" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/general_account_type"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/general_account_name_label"
                     android:textColor="?colorOnSurfaceSecondary"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/general_account_type_label"
-                    tools:text="Current Account" />
+                    app:layout_constraintTop_toBottomOf="@id/general_account_type_label" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/general_account_name_label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="?spacerMedium"
+                    android:text="@string/general_account_name_label"
                     android:textStyle="bold"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/general_account_type"
-                    tools:text="Account Name" />
+                    app:layout_constraintTop_toBottomOf="@id/general_account_type" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/general_account_name"
@@ -212,11 +213,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="?spacerMedium"
+                    android:text="@string/general_aba_routing_number_label"
                     android:textStyle="bold"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/general_account_name"
-                    tools:text="ABA Routing Number" />
+                    app:layout_constraintTop_toBottomOf="@id/general_account_name" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/general_aba_routing_number"
@@ -233,11 +234,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="?spacerMedium"
+                    android:text="@string/general_time_of_last_update_label"
                     android:textStyle="bold"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/general_aba_routing_number"
-                    tools:text="Time of Last Update" />
+                    app:layout_constraintTop_toBottomOf="@id/general_aba_routing_number" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/general_time_of_last_update"
@@ -257,13 +258,13 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="?spacerMedium"
             android:layout_marginTop="?spacerLarge"
+            android:text="@string/header_interest_details"
             android:textAllCaps="true"
             android:textColor="?colorOnSurfaceSecondary"
             android:textSize="12sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/content_general"
-            tools:text="Interest Details" />
+            app:layout_constraintTop_toBottomOf="@id/content_general" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/content_interest_details"
@@ -285,11 +286,11 @@
                     android:id="@+id/interest_details_interest_rate_label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/interest_details_interest_rate_label"
                     android:textStyle="bold"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Interest Rate" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/interest_details_interest_rate"
@@ -306,11 +307,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="?spacerMedium"
+                    android:text="@string/interest_details_accured_interest_label"
                     android:textStyle="bold"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/interest_details_interest_rate"
-                    tools:text="Accrued Interest" />
+                    app:layout_constraintTop_toBottomOf="@id/interest_details_interest_rate" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/interest_details_accured_interest"
@@ -330,13 +331,13 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="?spacerMedium"
             android:layout_marginTop="?spacerLarge"
+            android:text="@string/header_overdraft_details"
             android:textAllCaps="true"
             android:textColor="?colorOnSurfaceSecondary"
             android:textSize="12sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/content_interest_details"
-            tools:text="Overdraft details" />
+            app:layout_constraintTop_toBottomOf="@id/content_interest_details" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/content_overdraft_details"
@@ -358,11 +359,11 @@
                     android:id="@+id/overdraft_details_overdraft_limit_label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/overdraft_details_overdraft_limit_label"
                     android:textStyle="bold"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Overdraft Limit" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/overdraft_details_overdraft_limit"
@@ -381,22 +382,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="?spacerMedium"
-            android:layout_marginTop="?spacerLarge"
+            android:layout_marginTop="?spacerSmall"
+            android:text="@string/header_other"
             android:textAllCaps="true"
             android:textColor="?colorOnSurfaceSecondary"
             android:textSize="12sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/content_overdraft_details"
-            tools:text="Other" />
+            app:layout_constraintTop_toBottomOf="@id/content_overdraft_details" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/content_other"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="?spacerSmall"
+            android:layout_marginTop="?spacerLarge"
             app:cardCornerRadius="?radiusLarge"
             app:contentPadding="?spacerMedium"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/header_other">
@@ -410,11 +412,11 @@
                     android:id="@+id/other_account_opening_date_label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/other_account_opening_date_label"
                     android:textStyle="bold"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Account Opening Date" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/other_account_opening_date"

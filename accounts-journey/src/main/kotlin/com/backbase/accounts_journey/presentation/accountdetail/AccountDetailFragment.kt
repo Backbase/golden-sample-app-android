@@ -46,7 +46,25 @@ class AccountDetailFragment : Fragment() {
         if (uiState.accountDetail != null) {
             val uiModel = uiState.accountDetail
             binding.apply {
+                // TODO icon
                 headerAccount.text = uiModel.name
+                headerBban.text = uiModel.BBAN
+                headerBalance.text = uiModel.availableBalance
+
+                accountDetailsAccountHolderNames.text = uiModel.accountHolderNames
+                accountDetailsAccountNumber.text = uiModel.BBAN
+
+                generalAccountType.text = uiModel.productTypeName
+                generalAccountName.text = uiModel.name
+                generalAbaRoutingNumber.text = uiModel.bankBranchCode
+                generalTimeOfLastUpdate.text = uiModel.lastUpdateDate
+
+                interestDetailsInterestRate.text = uiModel.accountInterestRate
+                interestDetailsAccuredInterest.text = uiModel.accruedInterest
+
+                overdraftDetailsOverdraftLimit.text = uiModel.creditLimit
+
+                otherAccountOpeningDate.text = uiModel.accountOpeningDate
             }
         } else {
             // TODO: show error
