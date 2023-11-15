@@ -1,6 +1,5 @@
 package com.backbase.accounts_journey.presentation.accountdetail
 
-import android.graphics.drawable.Icon
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -56,9 +55,16 @@ class AccountDetailFragment : Fragment() {
                 accountDetailsAccountHolderNames.text = uiModel.accountHolderNames
                 accountDetailsAccountNumber.text = uiModel.BBAN
 
-                generalAccountType.text = uiModel.productTypeName
+                generalAccountType.text = uiModel.productKindName
                 generalAccountName.text = uiModel.name
-                generalAbaRoutingNumber.text = uiModel.bankBranchCode
+
+                uiModel.bankBranchCode?.let {
+                    generalAbaRoutingNumber.text = uiModel.bankBranchCode
+                } ?: run {
+                    generalAbaRoutingNumberLabel.visibility = View.GONE
+                    generalAbaRoutingNumber.visibility = View.GONE
+                }
+
                 generalTimeOfLastUpdate.text = uiModel.lastUpdateDate
 
                 uiModel.accountInterestRate?.let {

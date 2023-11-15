@@ -5,11 +5,12 @@ import androidx.annotation.DrawableRes
 data class AccountDetailUiModel(
     val id: String,
     val name: String,
+    @Suppress("ConstructorParameterNaming")
     val BBAN: String,
     val availableBalance: String,
     val accountHolderNames: String,
-    val productTypeName: String,
-    val bankBranchCode: String,
+    val productKindName: String,
+    val bankBranchCode: String?,
     val lastUpdateDate: String,
     val accountInterestRate: String?,
     val accruedInterest: String,

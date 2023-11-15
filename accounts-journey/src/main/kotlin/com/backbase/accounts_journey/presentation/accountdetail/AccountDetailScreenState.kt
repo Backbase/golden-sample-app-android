@@ -2,7 +2,6 @@ package com.backbase.accounts_journey.presentation.accountdetail
 
 import androidx.annotation.StringRes
 import com.backbase.accounts_journey.presentation.model.AccountDetailUiModel
-import com.backbase.accounts_journey.presentation.model.ListItem
 
 /**
  * The UI state for the account list screen.
