@@ -181,11 +181,11 @@
                     android:id="@+id/general_account_type"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/general_account_name_label"
                     android:textColor="?colorOnSurfaceSecondary"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/general_account_type_label" />
+                    app:layout_constraintTop_toBottomOf="@id/general_account_type_label"
+                    tools:text="Credit Card" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/general_account_name_label"
@@ -272,7 +272,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="?spacerSmall"
             app:cardCornerRadius="?radiusLarge"
-            app:contentPadding="?spacerMedium"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/header_interest_details">
@@ -311,7 +310,8 @@
                     android:textStyle="bold"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/interest_details_interest_rate" />
+                    app:layout_constraintTop_toBottomOf="@id/interest_details_interest_rate"
+                    app:layout_goneMarginTop="0dp" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/interest_details_accured_interest"
@@ -382,7 +382,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="?spacerMedium"
-            android:layout_marginTop="?spacerSmall"
+            android:layout_marginTop="?spacerLarge"
             android:text="@string/header_other"
             android:textAllCaps="true"
             android:textColor="?colorOnSurfaceSecondary"
@@ -395,7 +395,7 @@
             android:id="@+id/content_other"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="?spacerLarge"
+            android:layout_marginTop="?spacerSmall"
             app:cardCornerRadius="?radiusLarge"
             app:contentPadding="?spacerMedium"
             app:layout_constraintBottom_toBottomOf="parent"

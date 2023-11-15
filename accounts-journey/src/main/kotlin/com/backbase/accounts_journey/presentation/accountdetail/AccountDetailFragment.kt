@@ -1,5 +1,6 @@
 package com.backbase.accounts_journey.presentation.accountdetail
 
+import android.graphics.drawable.Icon
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -43,10 +44,11 @@ class AccountDetailFragment : Fragment() {
     }
 
     private fun handleUiState(uiState: AccountDetailScreenState) {
+        val context = this.requireContext()
         if (uiState.accountDetail != null) {
             val uiModel = uiState.accountDetail
             binding.apply {
-                // TODO icon
+                accountIcon.icon = context.getDrawable(uiModel.icon)
                 headerAccount.text = uiModel.name
                 headerBban.text = uiModel.BBAN
                 headerBalance.text = uiModel.availableBalance
@@ -59,7 +61,12 @@ class AccountDetailFragment : Fragment() {
                 generalAbaRoutingNumber.text = uiModel.bankBranchCode
                 generalTimeOfLastUpdate.text = uiModel.lastUpdateDate
 
-                interestDetailsInterestRate.text = uiModel.accountInterestRate
+                uiModel.accountInterestRate?.let {
+                    interestDetailsInterestRate.text = uiModel.accountInterestRate
+                } ?: run {
+                    interestDetailsInterestRateLabel.visibility = View.GONE
+                    interestDetailsInterestRate.visibility = View.GONE
+                }
                 interestDetailsAccuredInterest.text = uiModel.accruedInterest
 
                 overdraftDetailsOverdraftLimit.text = uiModel.creditLimit
