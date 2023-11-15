@@ -1,434 +1,509 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.accountdetail.AccountDetailFragment">
 
+    <ScrollView
+        android:id="@+id/content_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:paddingHorizontal="?spacerMedium"
+            android:paddingVertical="?spacerMedium">
+
+            <com.backbase.android.design.icon.IconView
+                android:id="@+id/account_icon"
+                style="?iconNoAlphaStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:icon="@drawable/ic_account_type_current_v2" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/header_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="?spacerSmall"
+                android:gravity="center"
+                android:textAllCaps="true"
+                android:textAppearance="?textAppearanceSubtitle1"
+                android:textColor="?colorOnSurfaceSecondary"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/account_icon"
+                tools:text="Credit Card" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/header_bban"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="?spacerSmall"
+                android:gravity="center"
+                android:textAppearance="?textAppearanceSubtitle2"
+                android:textColor="?colorOnSurfaceSecondary"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/header_account"
+                tools:text="*********2468" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/header_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="?spacerSmall"
+                android:gravity="center"
+                android:textAppearance="?textAppearanceHeadline4"
+                android:textColor="?colorOnSurfaceSecondary"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/header_bban"
+                tools:text="$6,827.90" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/header_account_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="?spacerMedium"
+                android:layout_marginTop="?spacerLarge"
+                android:text="@string/header_account_details"
+                android:textAllCaps="true"
+                android:textColor="?colorOnSurfaceSecondary"
+                android:textSize="12sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/header_balance" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/content_account_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="?spacerSmall"
+                app:cardCornerRadius="?radiusLarge"
+                app:contentPadding="?spacerMedium"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/header_account_details">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/account_details_account_holder_names_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/account_details_account_holder_names_label"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/account_details_account_holder_names"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="?colorOnSurfaceSecondary"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/account_details_account_holder_names_label"
+                        tools:text="Jason &amp; Sons Internalional Holding Ltd" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/account_details_account_number_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="?spacerMedium"
+                        android:text="@string/account_details_account_number_label"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/account_details_account_holder_names" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/account_details_account_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="?colorOnSurfaceSecondary"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/account_details_account_number_label"
+                        tools:text="***********************2468" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/header_general"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="?spacerMedium"
+                android:layout_marginTop="?spacerLarge"
+                android:text="@string/header_general"
+                android:textAllCaps="true"
+                android:textColor="?colorOnSurfaceSecondary"
+                android:textSize="12sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/content_account_details" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/content_general"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="?spacerSmall"
+                app:cardCornerRadius="?radiusLarge"
+                app:contentPadding="?spacerMedium"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/header_general">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/general_account_type_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/general_account_type_label"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/general_account_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="?colorOnSurfaceSecondary"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/general_account_type_label"
+                        tools:text="Credit Card" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/general_account_name_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="?spacerMedium"
+                        android:text="@string/general_account_name_label"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/general_account_type" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/general_account_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="?colorOnSurfaceSecondary"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/general_account_name_label"
+                        tools:text="Checking Account USD 2468" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/general_aba_routing_number_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="?spacerMedium"
+                        android:text="@string/general_aba_routing_number_label"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/general_account_name" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/general_aba_routing_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="?colorOnSurfaceSecondary"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/general_aba_routing_number_label"
+                        tools:text="11103093" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/general_time_of_last_update_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="?spacerMedium"
+                        android:text="@string/general_time_of_last_update_label"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/general_aba_routing_number" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/general_time_of_last_update"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="?colorOnSurfaceSecondary"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/general_time_of_last_update_label"
+                        tools:text="11/9/23 1:26 PM" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/header_interest_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="?spacerMedium"
+                android:layout_marginTop="?spacerLarge"
+                android:text="@string/header_interest_details"
+                android:textAllCaps="true"
+                android:textColor="?colorOnSurfaceSecondary"
+                android:textSize="12sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/content_general" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/content_interest_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="?spacerSmall"
+                app:cardCornerRadius="?radiusLarge"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/header_interest_details">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/interest_details_interest_rate_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/interest_details_interest_rate_label"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/interest_details_interest_rate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="?colorOnSurfaceSecondary"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/interest_details_interest_rate_label"
+                        tools:text="3.00%" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/interest_details_accured_interest_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="?spacerMedium"
+                        android:text="@string/interest_details_accured_interest_label"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/interest_details_interest_rate"
+                        app:layout_goneMarginTop="0dp" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/interest_details_accured_interest"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="?colorOnSurfaceSecondary"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/interest_details_accured_interest_label"
+                        tools:text="$2.91" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/header_overdraft_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="?spacerMedium"
+                android:layout_marginTop="?spacerLarge"
+                android:text="@string/header_overdraft_details"
+                android:textAllCaps="true"
+                android:textColor="?colorOnSurfaceSecondary"
+                android:textSize="12sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/content_interest_details" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/content_overdraft_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="?spacerSmall"
+                app:cardCornerRadius="?radiusLarge"
+                app:contentPadding="?spacerMedium"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/header_overdraft_details">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/overdraft_details_overdraft_limit_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/overdraft_details_overdraft_limit_label"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/overdraft_details_overdraft_limit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="?colorOnSurfaceSecondary"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/overdraft_details_overdraft_limit_label"
+                        tools:text="$2,400.00" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/header_other"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="?spacerMedium"
+                android:layout_marginTop="?spacerLarge"
+                android:text="@string/header_other"
+                android:textAllCaps="true"
+                android:textColor="?colorOnSurfaceSecondary"
+                android:textSize="12sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/content_overdraft_details" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/content_other"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="?spacerSmall"
+                app:cardCornerRadius="?radiusLarge"
+                app:contentPadding="?spacerMedium"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/header_other">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/other_account_opening_date_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/other_account_opening_date_label"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/other_account_opening_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="?colorOnSurfaceSecondary"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/other_account_opening_date_label"
+                        tools:text="October 25, 2023" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/content_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        tools:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/content_error"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:orientation="vertical"
-        android:paddingHorizontal="?spacerMedium"
-        android:paddingVertical="?spacerMedium">
-
-        <com.backbase.android.design.icon.IconView
-            android:id="@+id/account_icon"
-            style="?iconNoAlphaStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:icon="@drawable/ic_account_type_current_v2" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/header_account"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="?spacerSmall"
-            android:gravity="center"
-            android:textAllCaps="true"
-            android:textAppearance="?textAppearanceSubtitle1"
-            android:textColor="?colorOnSurfaceSecondary"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/account_icon"
-            tools:text="Credit Card" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/header_bban"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="?spacerSmall"
-            android:gravity="center"
-            android:textAppearance="?textAppearanceSubtitle2"
-            android:textColor="?colorOnSurfaceSecondary"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/header_account"
-            tools:text="*********2468" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/header_balance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="?spacerSmall"
-            android:gravity="center"
-            android:textAppearance="?textAppearanceHeadline4"
-            android:textColor="?colorOnSurfaceSecondary"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/header_bban"
-            tools:text="$6,827.90" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/header_account_details"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="?spacerMedium"
-            android:layout_marginTop="?spacerLarge"
-            android:text="@string/header_account_details"
-            android:textAllCaps="true"
-            android:textColor="?colorOnSurfaceSecondary"
-            android:textSize="12sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/header_balance" />
+        android:visibility="gone"
+        tools:visibility="gone">
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/content_account_details"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="?spacerSmall"
-            app:cardCornerRadius="?radiusLarge"
-            app:contentPadding="?spacerMedium"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/header_account_details">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/account_details_account_holder_names_label"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/account_details_account_holder_names_label"
-                    android:textStyle="bold"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/account_details_account_holder_names"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="?colorOnSurfaceSecondary"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/account_details_account_holder_names_label"
-                    tools:text="Jason &amp; Sons Internalional Holding Ltd" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/account_details_account_number_label"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="?spacerMedium"
-                    android:text="@string/account_details_account_number_label"
-                    android:textStyle="bold"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/account_details_account_holder_names" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/account_details_account_number"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="?colorOnSurfaceSecondary"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/account_details_account_number_label"
-                    tools:text="***********************2468" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/header_general"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginHorizontal="?spacerMedium"
-            android:layout_marginTop="?spacerLarge"
-            android:text="@string/header_general"
-            android:textAllCaps="true"
-            android:textColor="?colorOnSurfaceSecondary"
-            android:textSize="12sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/content_account_details" />
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/content_general"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="?spacerSmall"
-            app:cardCornerRadius="?radiusLarge"
-            app:contentPadding="?spacerMedium"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/header_general">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/general_account_type_label"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/general_account_type_label"
-                    android:textStyle="bold"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/general_account_type"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="?colorOnSurfaceSecondary"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/general_account_type_label"
-                    tools:text="Credit Card" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/general_account_name_label"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="?spacerMedium"
-                    android:text="@string/general_account_name_label"
-                    android:textStyle="bold"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/general_account_type" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/general_account_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="?colorOnSurfaceSecondary"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/general_account_name_label"
-                    tools:text="Checking Account USD 2468" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/general_aba_routing_number_label"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="?spacerMedium"
-                    android:text="@string/general_aba_routing_number_label"
-                    android:textStyle="bold"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/general_account_name" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/general_aba_routing_number"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="?colorOnSurfaceSecondary"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/general_aba_routing_number_label"
-                    tools:text="11103093" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/general_time_of_last_update_label"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="?spacerMedium"
-                    android:text="@string/general_time_of_last_update_label"
-                    android:textStyle="bold"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/general_aba_routing_number" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/general_time_of_last_update"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="?colorOnSurfaceSecondary"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/general_time_of_last_update_label"
-                    tools:text="11/9/23 1:26 PM" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/header_interest_details"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="?spacerMedium"
-            android:layout_marginTop="?spacerLarge"
-            android:text="@string/header_interest_details"
-            android:textAllCaps="true"
-            android:textColor="?colorOnSurfaceSecondary"
-            android:textSize="12sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/content_general" />
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/content_interest_details"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="?spacerSmall"
-            app:cardCornerRadius="?radiusLarge"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/header_interest_details">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/interest_details_interest_rate_label"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/interest_details_interest_rate_label"
-                    android:textStyle="bold"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/interest_details_interest_rate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="?colorOnSurfaceSecondary"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/interest_details_interest_rate_label"
-                    tools:text="3.00%" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/interest_details_accured_interest_label"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="?spacerMedium"
-                    android:text="@string/interest_details_accured_interest_label"
-                    android:textStyle="bold"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/interest_details_interest_rate"
-                    app:layout_goneMarginTop="0dp" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/interest_details_accured_interest"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="?colorOnSurfaceSecondary"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/interest_details_accured_interest_label"
-                    tools:text="$2.91" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/header_overdraft_details"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="?spacerMedium"
-            android:layout_marginTop="?spacerLarge"
-            android:text="@string/header_overdraft_details"
-            android:textAllCaps="true"
-            android:textColor="?colorOnSurfaceSecondary"
-            android:textSize="12sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/content_interest_details" />
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/content_overdraft_details"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="?spacerSmall"
-            app:cardCornerRadius="?radiusLarge"
-            app:contentPadding="?spacerMedium"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/header_overdraft_details">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/overdraft_details_overdraft_limit_label"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/overdraft_details_overdraft_limit_label"
-                    android:textStyle="bold"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/overdraft_details_overdraft_limit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="?colorOnSurfaceSecondary"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/overdraft_details_overdraft_limit_label"
-                    tools:text="$2,400.00" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/header_other"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="?spacerMedium"
-            android:layout_marginTop="?spacerLarge"
-            android:text="@string/header_other"
-            android:textAllCaps="true"
-            android:textColor="?colorOnSurfaceSecondary"
-            android:textSize="12sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/content_overdraft_details" />
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/content_other"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_marginVertical="?spacerMedium"
             android:layout_marginTop="?spacerSmall"
             app:cardCornerRadius="?radiusLarge"
             app:contentPadding="?spacerMedium"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/header_other">
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/other_account_opening_date_label"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/other_account_opening_date_label"
-                    android:textStyle="bold"
+                <com.backbase.android.design.icon.IconView
+                    android:id="@+id/error_image"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    app:icon="@drawable/backbase_ic_error"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/other_account_opening_date"
-                    android:layout_width="match_parent"
+                    android:id="@+id/error_text"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="?colorOnSurfaceSecondary"
+                    android:layout_marginTop="?spacerMedium"
+                    android:gravity="center"
+                    android:textAppearance="?textAppearanceHeadline6"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/other_account_opening_date_label"
-                    tools:text="October 25, 2023" />
+                    app:layout_constraintTop_toBottomOf="@id/error_image"
+                    tools:text="It seems that you're not online. Try again." />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

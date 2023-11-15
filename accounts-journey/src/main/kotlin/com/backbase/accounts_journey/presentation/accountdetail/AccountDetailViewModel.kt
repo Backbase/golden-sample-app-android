@@ -7,6 +7,7 @@ import com.backbase.accounts_journey.presentation.mapper.AccountDetailUiMapper
 import com.backbase.accounts_journey.presentation.mapper.mapErrorToMessage
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
@@ -30,8 +31,9 @@ class AccountDetailViewModel(
 
     private fun getAccountDetail(id: String) {
         viewModelScope.launch {
+            _uiState.update { it.copy(isLoading = true) }
+
             withContext(defaultDispatcher) {
-                println("account id: $id")
                 val result = useCase.getAccountDetail(id)
                 result.onSuccess { domain ->
                     _uiState.update {

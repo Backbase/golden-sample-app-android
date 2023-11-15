@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -43,6 +45,9 @@ class AccountDetailFragment : Fragment() {
     }
 
     private fun handleUiState(uiState: AccountDetailScreenState) {
+        binding.contentLoading.visibility =
+            if (uiState.isLoading) ProgressBar.VISIBLE else ProgressBar.GONE
+
         val context = this.requireContext()
         if (uiState.accountDetail != null) {
             val uiModel = uiState.accountDetail
@@ -78,11 +83,16 @@ class AccountDetailFragment : Fragment() {
                 overdraftDetailsOverdraftLimit.text = uiModel.creditLimit
 
                 otherAccountOpeningDate.text = uiModel.accountOpeningDate
+
+                contentError.visibility = View.GONE
+                contentMain.visibility = View.VISIBLE
             }
-        } else {
-            // TODO: show error
-            println("some error")
-            println(uiState.error)
+        } else if (uiState.error != null) {
+            binding.apply {
+                contentMain.visibility = View.GONE
+                contentError.visibility = View.VISIBLE
+                errorText.text = requireContext().getText(uiState.error)
+            }
         }
     }
 
