@@ -2,6 +2,7 @@ package com.backbase.accounts_journey.presentation.mapper
 
 import com.backbase.accounts_journey.configuration.AccountsJourneyConfiguration
 import com.backbase.accounts_journey.configuration.accountlist.AccountListScreenConfiguration
+import com.backbase.accounts_journey.configuration.icon.IconsConfiguration
 import com.backbase.accounts_journey.domain.model.account_summary.AccountSummary
 import com.backbase.accounts_journey.domain.model.account_summary.credit_card.CreditCards
 import com.backbase.accounts_journey.domain.model.account_summary.current_accounts.CurrentAccounts
@@ -20,8 +21,8 @@ import java.math.BigDecimal
 
 class AccountUiMapper(accountsJourneyConfiguration: AccountsJourneyConfiguration) {
 
-    private val screenConfiguration: AccountListScreenConfiguration by lazy {
-        accountsJourneyConfiguration.accountListScreenConfiguration
+    private val iconsConfiguration: IconsConfiguration by lazy {
+        accountsJourneyConfiguration.iconsConfiguration
     }
 
     fun mapToUi(domain: AccountSummary): AccountSummaryUiModel {
@@ -54,7 +55,7 @@ class AccountUiMapper(accountsJourneyConfiguration: AccountsJourneyConfiguration
                         name = domain.displayName,
                         balance = formatCurrency(domain.currency, domain.availableBalance),
                         state = formatState(domain.state?.state, domain.BBAN),
-                        icon = screenConfiguration.iconCustomProduct,
+                        icon = iconsConfiguration.iconCustomProduct,
                         isVisible = domain.userPreferences?.visible
                     )
                 }
@@ -73,7 +74,7 @@ class AccountUiMapper(accountsJourneyConfiguration: AccountsJourneyConfiguration
                     name = domain.displayName,
                     balance = formatCurrency(domain.currency, domain.availableBalance),
                     state = formatState(domain.state?.state, domain.BBAN),
-                    icon = screenConfiguration.iconCurrentAccount,
+                    icon = iconsConfiguration.iconCurrentAccount,
                     isVisible = domain.userPreferences?.visible
                 )
             }
@@ -91,7 +92,7 @@ class AccountUiMapper(accountsJourneyConfiguration: AccountsJourneyConfiguration
                     name = domain.displayName,
                     balance = formatCurrency(domain.currency, domain.availableBalance),
                     state = formatState(domain.state?.state, domain.BBAN),
-                    icon = screenConfiguration.iconSavingsAccount,
+                    icon = iconsConfiguration.iconSavingsAccount,
                     isVisible = domain.userPreferences?.visible
                 )
             }
@@ -109,7 +110,7 @@ class AccountUiMapper(accountsJourneyConfiguration: AccountsJourneyConfiguration
                     name = domain.displayName,
                     balance = formatCurrency(domain.currency, domain.availableBalance),
                     state = formatState(domain.state?.state, domain.BBAN),
-                    icon = screenConfiguration.iconTermDeposit,
+                    icon = iconsConfiguration.iconTermDeposit,
                     isVisible = domain.userPreferences?.visible
                 )
             }
@@ -127,7 +128,7 @@ class AccountUiMapper(accountsJourneyConfiguration: AccountsJourneyConfiguration
                     name = domain.displayName,
                     balance = formatCurrency(domain.currency, domain.availableBalance),
                     state = formatState(domain.state?.state, domain.BBAN),
-                    icon = screenConfiguration.iconLoan,
+                    icon = iconsConfiguration.iconLoan,
                     isVisible = domain.userPreferences?.visible
                 )
             }
@@ -145,7 +146,7 @@ class AccountUiMapper(accountsJourneyConfiguration: AccountsJourneyConfiguration
                     name = domain.displayName,
                     balance = formatCurrency(domain.currency, domain.availableBalance),
                     state = formatState(domain.state?.state, domain.creditCardAccountNumber),
-                    icon = screenConfiguration.iconCreditCard,
+                    icon = iconsConfiguration.iconCreditCard,
                     isVisible = domain.userPreferences?.visible
                 )
             }
@@ -163,7 +164,7 @@ class AccountUiMapper(accountsJourneyConfiguration: AccountsJourneyConfiguration
                     name = domain.displayName,
                     balance = "",
                     state = formatState(domain.state?.state, domain.cardNumber.toString()),
-                    icon = screenConfiguration.iconDebitCard,
+                    icon = iconsConfiguration.iconDebitCard,
                     isVisible = domain.userPreferences?.visible
                 )
             }
@@ -181,7 +182,7 @@ class AccountUiMapper(accountsJourneyConfiguration: AccountsJourneyConfiguration
                     name = domain.displayName,
                     balance = formatCurrency(domain.currency, domain.currentInvestmentValue),
                     state = formatState(domain.state?.state, domain.BBAN),
-                    icon = screenConfiguration.iconInvestmentAccount,
+                    icon = iconsConfiguration.iconInvestmentAccount,
                     isVisible = domain.userPreferences?.visible
                 )
             }

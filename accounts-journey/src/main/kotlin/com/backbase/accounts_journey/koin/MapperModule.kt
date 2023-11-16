@@ -11,5 +11,5 @@ import org.koin.dsl.module
  */
 val mapperModule = module {
     factory { AccountUiMapper(accountsJourneyConfiguration = get()) }
-    factory { AccountDetailUiMapper() }
+    factory { AccountDetailUiMapper(accountsJourneyConfiguration = get()) }
 }
