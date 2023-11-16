@@ -79,8 +79,8 @@
                 android:layout_marginTop="?spacerLarge"
                 android:text="@string/header_account_details"
                 android:textAllCaps="true"
+                android:textAppearance="?textAppearanceCaption"
                 android:textColor="?colorOnSurfaceSecondary"
-                android:textSize="12sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/header_balance" />
@@ -152,8 +152,8 @@
                 android:layout_marginTop="?spacerLarge"
                 android:text="@string/header_general"
                 android:textAllCaps="true"
+                android:textAppearance="?textAppearanceCaption"
                 android:textColor="?colorOnSurfaceSecondary"
-                android:textSize="12sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/content_account_details" />
@@ -267,8 +267,8 @@
                 android:layout_marginTop="?spacerLarge"
                 android:text="@string/header_interest_details"
                 android:textAllCaps="true"
+                android:textAppearance="?textAppearanceCaption"
                 android:textColor="?colorOnSurfaceSecondary"
-                android:textSize="12sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/content_general" />
@@ -340,8 +340,8 @@
                 android:layout_marginTop="?spacerLarge"
                 android:text="@string/header_overdraft_details"
                 android:textAllCaps="true"
+                android:textAppearance="?textAppearanceCaption"
                 android:textColor="?colorOnSurfaceSecondary"
-                android:textSize="12sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/content_interest_details" />
@@ -392,8 +392,8 @@
                 android:layout_marginTop="?spacerLarge"
                 android:text="@string/header_other"
                 android:textAllCaps="true"
+                android:textAppearance="?textAppearanceCaption"
                 android:textColor="?colorOnSurfaceSecondary"
-                android:textSize="12sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/content_overdraft_details" />
