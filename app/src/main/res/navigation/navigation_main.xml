@@ -74,7 +74,7 @@
     </fragment>
     <fragment
         android:id="@+id/accountListFragment"
-        android:name="com.backbase.accounts_journey.presentation.accountlist.AccountListFragment"
+        android:name="com.backbase.accounts_journey.presentation.accountlist.ui.AccountListFragment"
         android:label="AccountListFragment">
         <argument
             android:name="workspaceName"
@@ -85,7 +85,7 @@
     </fragment>
     <fragment
         android:id="@+id/accountDetailFragment"
-        android:name="com.backbase.accounts_journey.presentation.accountdetail.AccountDetailFragment"
+        android:name="com.backbase.accounts_journey.presentation.accountdetail.ui.AccountDetailFragment"
         android:label="AccountDetailFragment">
         <argument
             android:name="accountId"

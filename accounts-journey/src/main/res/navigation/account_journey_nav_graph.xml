@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/accountListFragment"
-        android:name="com.backbase.accounts_journey.presentation.accountlist.AccountListFragment"
+        android:name="com.backbase.accounts_journey.presentation.accountlist.ui.AccountListFragment"
         android:label="fragment_account_list"
         tools:layout="@layout/fragment_account_list" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/accountDetailFragment"
-        android:name="com.backbase.accounts_journey.presentation.accountdetail.AccountDetailFragment"
+        android:name="com.backbase.accounts_journey.presentation.accountdetail.ui.AccountDetailFragment"
         android:label="fragment_account_detail"
         tools:layout="@layout/fragment_account_detail" >
         <argument

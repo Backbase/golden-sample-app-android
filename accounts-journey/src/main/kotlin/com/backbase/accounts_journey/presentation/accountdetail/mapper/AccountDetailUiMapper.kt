@@ -1,11 +1,11 @@
-package com.backbase.accounts_journey.presentation.mapper
+package com.backbase.accounts_journey.presentation.accountdetail.mapper
 
 import com.backbase.accounts_journey.common.mapCatching
 import com.backbase.accounts_journey.configuration.AccountsJourneyConfiguration
 import com.backbase.accounts_journey.configuration.icon.IconsConfiguration
 import com.backbase.accounts_journey.domain.model.AccountType
 import com.backbase.accounts_journey.domain.model.account_detail.AccountDetail
-import com.backbase.accounts_journey.presentation.model.AccountDetailUiModel
+import com.backbase.accounts_journey.presentation.accountdetail.model.AccountDetailUiModel
 import com.backbase.android.design.amount.AmountFormat
 import java.math.BigDecimal
 import java.math.RoundingMode

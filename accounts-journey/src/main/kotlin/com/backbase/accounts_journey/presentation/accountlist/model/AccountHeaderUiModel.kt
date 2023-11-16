@@ -1,4 +1,4 @@
-package com.backbase.accounts_journey.presentation.model
+package com.backbase.accounts_journey.presentation.accountlist.model
 
 /**
  * The header of an account type shown in the account list.

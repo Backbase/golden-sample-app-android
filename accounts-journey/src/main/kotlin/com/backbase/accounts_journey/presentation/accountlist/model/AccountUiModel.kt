@@ -1,4 +1,4 @@
-package com.backbase.accounts_journey.presentation.model
+package com.backbase.accounts_journey.presentation.accountlist.model
 
 import androidx.annotation.DrawableRes
 

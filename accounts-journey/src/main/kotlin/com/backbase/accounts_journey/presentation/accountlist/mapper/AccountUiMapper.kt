@@ -1,7 +1,6 @@
-package com.backbase.accounts_journey.presentation.mapper
+package com.backbase.accounts_journey.presentation.accountlist.mapper
 
 import com.backbase.accounts_journey.configuration.AccountsJourneyConfiguration
-import com.backbase.accounts_journey.configuration.accountlist.AccountListScreenConfiguration
 import com.backbase.accounts_journey.configuration.icon.IconsConfiguration
 import com.backbase.accounts_journey.domain.model.account_summary.AccountSummary
 import com.backbase.accounts_journey.domain.model.account_summary.credit_card.CreditCards
@@ -12,10 +11,10 @@ import com.backbase.accounts_journey.domain.model.account_summary.investment_acc
 import com.backbase.accounts_journey.domain.model.account_summary.loan.Loans
 import com.backbase.accounts_journey.domain.model.account_summary.savings_accounts.SavingsAccounts
 import com.backbase.accounts_journey.domain.model.account_summary.term_deposits.TermDeposits
-import com.backbase.accounts_journey.presentation.model.AccountHeaderUiModel
-import com.backbase.accounts_journey.presentation.model.AccountSummaryUiModel
-import com.backbase.accounts_journey.presentation.model.AccountUiModel
-import com.backbase.accounts_journey.presentation.model.AccountsUiModel
+import com.backbase.accounts_journey.presentation.accountlist.model.AccountHeaderUiModel
+import com.backbase.accounts_journey.presentation.accountlist.model.AccountSummaryUiModel
+import com.backbase.accounts_journey.presentation.accountlist.model.AccountUiModel
+import com.backbase.accounts_journey.presentation.accountlist.model.AccountsUiModel
 import com.backbase.android.design.amount.AmountFormat
 import java.math.BigDecimal
 

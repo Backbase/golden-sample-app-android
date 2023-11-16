@@ -1,4 +1,4 @@
-package com.backbase.accounts_journey.presentation.model
+package com.backbase.accounts_journey.presentation.accountlist.model
 
 /**
  * The UI model for AccountSummary. It can generate a list that is ready to be used in the UI.

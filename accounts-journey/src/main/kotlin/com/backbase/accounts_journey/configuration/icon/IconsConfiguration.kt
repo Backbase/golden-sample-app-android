@@ -18,6 +18,7 @@ import dev.drewhamilton.poko.Poko
  *
  * Created by Backbase R&D B.V on 16/11/2023.
  */
+@Suppress("LongParameterList")
 @Poko
 class IconsConfiguration private constructor(
     @DrawableRes val iconCustomProduct: Int,

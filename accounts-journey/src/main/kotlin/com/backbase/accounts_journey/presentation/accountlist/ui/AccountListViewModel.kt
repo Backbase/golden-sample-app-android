@@ -1,9 +1,9 @@
-package com.backbase.accounts_journey.presentation.accountlist
+package com.backbase.accounts_journey.presentation.accountlist.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.backbase.accounts_journey.data.usecase.AccountsUseCase
-import com.backbase.accounts_journey.presentation.mapper.AccountUiMapper
+import com.backbase.accounts_journey.presentation.accountlist.mapper.AccountUiMapper
 import com.backbase.accounts_journey.presentation.mapper.mapErrorToMessage
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers

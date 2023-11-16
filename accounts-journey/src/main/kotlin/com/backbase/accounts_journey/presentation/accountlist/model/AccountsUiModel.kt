@@ -1,4 +1,4 @@
-package com.backbase.accounts_journey.presentation.model
+package com.backbase.accounts_journey.presentation.accountlist.model
 
 /**
  * A AccountSummary mapper from domain models to UI models.

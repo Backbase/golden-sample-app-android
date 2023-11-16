@@ -1,4 +1,4 @@
-package com.backbase.accounts_journey.presentation.model
+package com.backbase.accounts_journey.presentation.accountlist.model
 
 /**
  * The account types on the list are separated with a header. This enum is used to separate this.

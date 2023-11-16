@@ -1,4 +1,4 @@
-package com.backbase.accounts_journey.presentation.accountlist
+package com.backbase.accounts_journey.presentation.accountlist.ui
 
 /**
  * The possible events for the AccountList screen.

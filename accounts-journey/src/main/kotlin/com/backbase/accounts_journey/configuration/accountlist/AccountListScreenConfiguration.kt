@@ -1,6 +1,5 @@
 package com.backbase.accounts_journey.configuration.accountlist
 
-import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.backbase.accounts_journey.R
 import dev.drewhamilton.poko.Poko

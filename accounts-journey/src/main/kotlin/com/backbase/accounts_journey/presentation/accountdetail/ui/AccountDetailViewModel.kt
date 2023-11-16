@@ -1,13 +1,12 @@
-package com.backbase.accounts_journey.presentation.accountdetail
+package com.backbase.accounts_journey.presentation.accountdetail.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.backbase.accounts_journey.data.usecase.AccountDetailUseCase
-import com.backbase.accounts_journey.presentation.mapper.AccountDetailUiMapper
+import com.backbase.accounts_journey.presentation.accountdetail.mapper.AccountDetailUiMapper
 import com.backbase.accounts_journey.presentation.mapper.mapErrorToMessage
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update

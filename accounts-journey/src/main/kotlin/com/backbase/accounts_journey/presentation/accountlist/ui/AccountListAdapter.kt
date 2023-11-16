@@ -1,4 +1,4 @@
-package com.backbase.accounts_journey.presentation.accountlist
+package com.backbase.accounts_journey.presentation.accountlist.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,10 +7,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.backbase.accounts_journey.databinding.AccountListHeaderBinding
 import com.backbase.accounts_journey.databinding.AccountListItemBinding
-import com.backbase.accounts_journey.presentation.model.AccountHeaderUiModel
-import com.backbase.accounts_journey.presentation.model.AccountUiModel
-import com.backbase.accounts_journey.presentation.model.ListItem
-import com.backbase.accounts_journey.presentation.model.ViewType
+import com.backbase.accounts_journey.presentation.accountlist.model.AccountHeaderUiModel
+import com.backbase.accounts_journey.presentation.accountlist.model.AccountUiModel
+import com.backbase.accounts_journey.presentation.accountlist.model.ListItem
+import com.backbase.accounts_journey.presentation.accountlist.model.ViewType
 import java.io.InvalidClassException
 
 /**
