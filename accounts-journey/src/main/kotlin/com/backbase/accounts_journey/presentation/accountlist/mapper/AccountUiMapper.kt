@@ -18,6 +18,11 @@ import com.backbase.accounts_journey.presentation.accountlist.model.AccountsUiMo
 import com.backbase.android.design.amount.AmountFormat
 import java.math.BigDecimal
 
+/**
+ *  A AccountSummary mapper from domain models to UI models.
+ *
+ *  Created by Backbase R&D B.V on 04/10/2023.
+ */
 class AccountUiMapper(accountsJourneyConfiguration: AccountsJourneyConfiguration) {
 
     private val iconsConfiguration: IconsConfiguration by lazy {

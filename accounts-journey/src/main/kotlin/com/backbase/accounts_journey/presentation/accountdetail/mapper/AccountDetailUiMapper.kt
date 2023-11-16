@@ -11,6 +11,11 @@ import java.math.BigDecimal
 import java.math.RoundingMode
 import java.time.format.DateTimeFormatter
 
+/**
+ *  A AccountDetail mapper from domain models to UI model.
+ *
+ *  Created by Backbase R&D B.V on 16/11/2023.
+ */
 class AccountDetailUiMapper(accountsJourneyConfiguration: AccountsJourneyConfiguration) {
 
     private val iconsConfiguration: IconsConfiguration by lazy {

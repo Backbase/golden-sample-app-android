@@ -14,6 +14,11 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
+/**
+ * An implementation of [AccountDetailUseCase] based on [ArrangementsApi].
+ *
+ * Created by Backbase R&D B.V on 16/11/2023.
+ */
 class AccountDetailUseCaseImpl(
     private val arrangementsApi: ArrangementsApi,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO

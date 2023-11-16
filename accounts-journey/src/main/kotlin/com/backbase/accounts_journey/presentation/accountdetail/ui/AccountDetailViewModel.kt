@@ -14,6 +14,12 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+/**
+ * The ViewModel for the account detail. It contains use case to fetch the data and it updates the
+ * UI state that is observed by the UI.
+ *
+ * Created by Backbase R&D B.V on 16/11/2023.
+ */
 class AccountDetailViewModel(
     private val useCase: AccountDetailUseCase,
     private val mapper: AccountDetailUiMapper,

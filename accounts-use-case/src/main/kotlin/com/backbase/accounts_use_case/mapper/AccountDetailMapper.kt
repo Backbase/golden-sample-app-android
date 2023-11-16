@@ -9,6 +9,11 @@ import com.backbase.android.client.gen2.arrangementclient2.model.AccountUserPref
 import com.backbase.android.client.gen2.arrangementclient2.model.ExternalProductItem as ExternalProductItemDataModel
 import com.backbase.android.client.gen2.arrangementclient2.model.ExternalProductKindItem as ExternalProductKindItemDataModel
 
+/**
+ * A AccountDetail mapper from data models to domain models.
+ *
+ * Created by Backbase R&D B.V on 19/09/2023.
+ */
 @Suppress("LongMethod")
 internal fun AccountDetailDataModel.mapToDomain(): AccountDetail {
     val data = this@mapToDomain

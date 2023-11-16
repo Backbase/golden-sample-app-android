@@ -1,7 +1,7 @@
 package com.backbase.accounts_journey.presentation.accountlist.model
 
 /**
- * A AccountSummary mapper from domain models to UI models.
+ * The UI model for Accounts. It holds the header and accounts.
  *
  * Created by Backbase R&D B.V on 04/10/2023.
  */

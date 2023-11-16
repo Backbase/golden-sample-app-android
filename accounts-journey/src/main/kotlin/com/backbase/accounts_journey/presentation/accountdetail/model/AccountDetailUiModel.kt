@@ -2,6 +2,11 @@ package com.backbase.accounts_journey.presentation.accountdetail.model
 
 import androidx.annotation.DrawableRes
 
+/**
+ * The UI model for AccountDetail.
+ *
+ * Created by Backbase R&D B.V on 16/11/2023.
+ */
 data class AccountDetailUiModel(
     val id: String,
     val name: String,

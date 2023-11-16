@@ -14,6 +14,11 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.koin.android.ext.android.inject
 
+/**
+ * The Fragment of the account detail.
+ *
+ * Created by Backbase R&D B.V on 16/11/2023.
+ */
 class AccountDetailFragment : Fragment() {
 
     private var _binding: FragmentAccountDetailBinding? = null
