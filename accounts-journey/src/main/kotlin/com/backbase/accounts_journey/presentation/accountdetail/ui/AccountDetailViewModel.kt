@@ -3,6 +3,7 @@ package com.backbase.accounts_journey.presentation.accountdetail.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.backbase.accounts_journey.data.usecase.AccountDetailUseCase
+import com.backbase.accounts_journey.data.usecase.Params
 import com.backbase.accounts_journey.presentation.accountdetail.mapper.AccountDetailUiMapper
 import com.backbase.accounts_journey.presentation.mapper.mapErrorToMessage
 import kotlinx.coroutines.CoroutineDispatcher
@@ -33,7 +34,7 @@ class AccountDetailViewModel(
             _uiState.update { it.copy(isLoading = true) }
 
             withContext(defaultDispatcher) {
-                val result = useCase.getAccountDetail(id)
+                val result = useCase.getAccountDetail(Params { this.id = id })
                 result.onSuccess { domain ->
                     _uiState.update {
                         it.copy(

@@ -19,12 +19,11 @@ class AccountDetailUseCaseImpl(
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : AccountDetailUseCase {
 
-    // TODO: to params class and then map to api class
-    override suspend fun getAccountDetail(id: String): Result<AccountDetail> {
+    override suspend fun getAccountDetail(params: AccountDetailUseCase.Params): Result<AccountDetail> {
         val callResult = withContext(dispatcher) {
             arrangementsApi.getArrangementById(
                 ArrangementsApiParams.GetArrangementById {
-                    arrangementId = id
+                    arrangementId = params.id
                 }
             )
         }.parseExecute()
