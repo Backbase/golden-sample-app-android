@@ -60,7 +60,7 @@ class AccountDetailUiMapper(accountsJourneyConfiguration: AccountsJourneyConfigu
             AccountType.CREDIT_CARD -> iconsConfiguration.iconCreditCard
             AccountType.DEBIT_CARD -> iconsConfiguration.iconDebitCard
             AccountType.INVESTMENT_ACCOUNT -> iconsConfiguration.iconInvestmentAccount
-            else -> iconsConfiguration.iconInvestmentAccount
+            else -> iconsConfiguration.iconCustomProduct
         }
     }
 }
