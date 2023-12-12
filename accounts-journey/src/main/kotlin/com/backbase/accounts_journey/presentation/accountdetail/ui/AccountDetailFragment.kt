@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.backbase.accounts_journey.databinding.FragmentAccountDetailBinding
 import kotlinx.coroutines.flow.launchIn
@@ -40,6 +42,11 @@ class AccountDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.toolbar.apply {
+            setNavigationIcon(com.backbase.android.design.R.drawable.backbase_ic_arrow_back)
+            setNavigationOnClickListener { findNavController().navigateUp() }
+        }
+
         viewModel.uiState
             .flowWithLifecycle(lifecycle)
             .onEach { handleUiState(it) }
@@ -56,7 +63,7 @@ class AccountDetailFragment : Fragment() {
         if (uiState.accountDetail != null) {
             val uiModel = uiState.accountDetail
             binding.apply {
-                accountIcon.icon = context.getDrawable(uiModel.icon)
+                accountIcon.icon = AppCompatResources.getDrawable(context, uiModel.icon)
                 headerAccount.text = uiModel.name
                 headerBban.text = uiModel.BBAN
                 headerBalance.text = uiModel.availableBalance
