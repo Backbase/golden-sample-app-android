@@ -11,7 +11,7 @@ artifacts on your machine, follow these steps:
 3. Open/create the `gradle.properties` file at `/Users/<username>/.gradle/` (Mac) /
    `C:\Users\<username>\.gradle\` (Windows) / `/home/<username>/.gradle/` (Linux).
 4. Add `backbaseRepoUsername=<your username>` to the file.
-5. Add `backbaseRepoEncryptedPassword=<your encrypted password>` to the file.
+5. Add `backbaseRepoPassword=<your encrypted password>` to the file.
 
 ## Register facet ID
 

@@ -4,14 +4,13 @@ plugins {
 }
 
 repositories {
-    mavenCentral()
     google()
+    mavenCentral()
+    maven { setUrl("https://jitpack.io") }
     maven {
         name = "backbaseRepo"
         url = uri("https://repo.backbase.com/repo")
-        credentials {
-            PasswordCredentials::class
-        }
+        credentials(PasswordCredentials::class)
     }
     gradlePluginPortal()
 }
@@ -27,4 +26,3 @@ dependencies {
     implementation(libs.navigation.safe.args.gradle.plugin)
     implementation(libs.poko.gradle.plugin)
 }
-

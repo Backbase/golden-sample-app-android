@@ -7,17 +7,15 @@ pluginManagement {
 }
 
 dependencyResolutionManagement {
-
     repositories {
+        google()
+        mavenCentral()
+        maven { setUrl("https://jitpack.io") }
         maven {
             name = "backbaseRepo"
             url = uri("https://repo.backbase.com/repo")
-            credentials {
-                PasswordCredentials::class
-            }
+            credentials(PasswordCredentials::class)
         }
-        google()
-        mavenCentral()
     }
 
     versionCatalogs {
@@ -29,4 +27,3 @@ include(":app")
 include(":accounts-journey")
 include(":accounts-use-case")
 include(":fake-accounts-use-case")
-
