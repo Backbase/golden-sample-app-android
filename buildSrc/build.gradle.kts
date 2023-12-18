@@ -6,6 +6,12 @@ plugins {
 repositories {
     google()
     mavenCentral()
+    maven { setUrl("https://jitpack.io") }
+    maven {
+        name = "backbaseRepo"
+        url = uri("https://repo.backbase.com/repo")
+        credentials(PasswordCredentials::class)
+    }
     gradlePluginPortal()
 }
 

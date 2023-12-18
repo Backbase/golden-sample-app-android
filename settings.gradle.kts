@@ -6,34 +6,16 @@ pluginManagement {
     }
 }
 
-val backbaseRepositories = listOf(
-    "android3",
-    "android-business",
-    "android-identity",
-    "android-retail3",
-    "design-android",
-)
-
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-
     repositories {
-        backbaseRepositories.forEach { repoName ->
-            maven {
-                val backbaseRepoUsername: String by settings
-                val backbaseRepoEncryptedPassword: String by settings
-
-                setUrl("https://repo.backbase.com/$repoName")
-                credentials {
-                    username = backbaseRepoUsername
-                    password = backbaseRepoEncryptedPassword
-                }
-            }
-        }
         google()
         mavenCentral()
         maven { setUrl("https://jitpack.io") }
-        jcenter()
+        maven {
+            name = "backbaseRepo"
+            url = uri("https://repo.backbase.com/repo")
+            credentials(PasswordCredentials::class)
+        }
     }
 
     versionCatalogs {
