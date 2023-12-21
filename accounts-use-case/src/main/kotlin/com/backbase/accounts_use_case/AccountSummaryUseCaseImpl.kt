@@ -4,7 +4,7 @@ import com.backbase.accounts_journey.common.FailedGetDataException
 import com.backbase.accounts_journey.common.NoInternetException
 import com.backbase.accounts_journey.common.NoResponseException
 import com.backbase.accounts_journey.data.usecase.AccountsUseCase
-import com.backbase.accounts_journey.domain.model.product_summary.AccountSummary
+import com.backbase.accounts_journey.domain.model.account_summary.AccountSummary
 import com.backbase.accounts_use_case.mapper.mapToDomain
 import com.backbase.android.client.gen2.arrangementclient2.api.ProductSummaryApi
 import com.backbase.android.client.gen2.arrangementclient2.api.ProductSummaryApiParams

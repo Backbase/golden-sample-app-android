@@ -1,6 +1,7 @@
 package com.backbase.accounts_journey.koin
 
-import com.backbase.accounts_journey.presentation.mapper.AccountUiMapper
+import com.backbase.accounts_journey.presentation.accountdetail.mapper.AccountDetailUiMapper
+import com.backbase.accounts_journey.presentation.accountlist.mapper.AccountUiMapper
 import org.koin.dsl.module
 
 /**
@@ -10,4 +11,5 @@ import org.koin.dsl.module
  */
 val mapperModule = module {
     factory { AccountUiMapper(accountsJourneyConfiguration = get()) }
+    factory { AccountDetailUiMapper(accountsJourneyConfiguration = get()) }
 }

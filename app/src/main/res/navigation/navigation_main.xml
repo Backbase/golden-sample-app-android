@@ -6,22 +6,6 @@
     app:startDestination="@id/authenticationJourney">
 
     <fragment
-        android:id="@+id/appNavHostFragment"
-        android:name="com.backbase.golden_sample_app.host.AppNavHostFragment"
-        android:label="AppNavHostFragment">
-        <action
-            android:id="@+id/action_appNavHostFragment_self"
-            app:destination="@id/appNavHostFragment"
-            app:popUpTo="@+id/appNavHostFragment"
-            app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_appNavHostFragment_to_authenticationJourney"
-            app:destination="@id/authenticationJourney"
-            app:popUpTo="@id/appNavHostFragment"
-            app:popUpToInclusive="true" />
-    </fragment>
-
-    <fragment
         android:id="@+id/authenticationJourney"
         android:name="com.backbase.android.identity.journey.authentication.AuthenticationJourney"
         android:label="Authentication Journey"
@@ -44,7 +28,7 @@
             android:defaultValue="Default_Workspace_Selector_WorkspaceSelectorScreenConfiguration_Config"
             app:argType="string" />
         <action
-            android:id="@+id/action_workspaces_selector_to_appNavHostFragment"
+            android:id="@+id/action_workspaces_selector_to_accountListFragment"
             app:destination="@id/accountListFragment"
             app:popUpTo="@id/workspaces_selector"
             app:popUpToInclusive="true">
@@ -57,27 +41,26 @@
     <action
         android:id="@+id/action_global_authenticationJourney"
         app:destination="@id/authenticationJourney" />
-    <action
-        android:id="@+id/action_global_appNavHostFragment"
-        app:destination="@id/appNavHostFragment"
-        app:popUpTo="@id/navigation_main"
-        app:popUpToInclusive="true" />
 
     <fragment
-        android:id="@+id/helloFragment"
-        android:name="com.backbase.golden_sample_app.presentation.HomeFragment"
-        android:label="fragment_hello"
-        tools:layout="@layout/fragment_home">
+        android:id="@+id/accountListFragment"
+        android:name="com.backbase.accounts_journey.presentation.accountlist.ui.AccountListFragment"
+        android:label="AccountListFragment"
+        tools:layout="@layout/fragment_account_list">
         <argument
             android:name="workspaceName"
             app:argType="string" />
+        <action
+            android:id="@+id/action_accountListFragment_to_accountDetailFragment"
+            app:destination="@id/accountDetailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/accountListFragment"
-        android:name="com.backbase.accounts_journey.presentation.ui.AccountListFragment"
-        android:label="AccountListFragment">
+        android:id="@+id/accountDetailFragment"
+        android:name="com.backbase.accounts_journey.presentation.accountdetail.ui.AccountDetailFragment"
+        android:label="AccountDetailFragment"
+        tools:layout="@layout/fragment_account_detail">
         <argument
-            android:name="workspaceName"
+            android:name="accountId"
             app:argType="string" />
     </fragment>
 </navigation>

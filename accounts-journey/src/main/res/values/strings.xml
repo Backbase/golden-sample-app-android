@@ -6,4 +6,21 @@
     <string name="failed_get_data">Failed to get data</string>
     <string name="failed_unknown">Something went wrong</string>
     <string name="no_accounts">No accounts found.</string>
+
+    <string name="header_account_details">Account details</string>
+    <string name="header_general">General</string>
+    <string name="header_interest_details">Interest details</string>
+    <string name="header_overdraft_details">Overdraft details</string>
+    <string name="header_other">Other</string>
+
+    <string name="account_details_account_holder_names_label">Account Holder Name(s)</string>
+    <string name="account_details_account_number_label">Account Number</string>
+    <string name="general_account_type_label">Account Type</string>
+    <string name="general_account_name_label">Account Name</string>
+    <string name="general_aba_routing_number_label">ABA Routing Number</string>
+    <string name="general_time_of_last_update_label">Time of Last Update</string>
+    <string name="interest_details_interest_rate_label">Interest Rate</string>
+    <string name="interest_details_accured_interest_label">Accrued Interest</string>
+    <string name="overdraft_details_overdraft_limit_label">Overdraft Limit</string>
+    <string name="other_account_opening_date_label">Account Opening Date</string>
 </resources>
