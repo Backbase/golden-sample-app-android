@@ -53,7 +53,7 @@ class AccountDetailUiMapper(accountsJourneyConfiguration: AccountsJourneyConfigu
             return iconsConfiguration.iconCustomProduct
         }
 
-        return when (AccountType.getValue(productType)) {
+        return when (AccountType.getValueOrNull(productType)) {
             AccountType.CURRENT_ACCOUNT -> iconsConfiguration.iconCurrentAccount
             AccountType.SAVINGS_ACCOUNT -> iconsConfiguration.iconSavingsAccount
             AccountType.TERM_DEPOSIT -> iconsConfiguration.iconTermDeposit

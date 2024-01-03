@@ -58,6 +58,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
         navigator.bind(navController)
+        binding.bottomNavigation.setOnItemSelectedListener { item ->
+            navController.navigate(item.itemId)
+            true
+        }
     }
 
 }

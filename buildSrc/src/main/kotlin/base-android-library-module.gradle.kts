@@ -9,7 +9,7 @@ internal val Project.libs: VersionCatalog
         project.extensions.getByType<VersionCatalogsExtension>().named("libs")
 
 android {
-    compileSdk = 33
+    compileSdk = 34
     defaultConfig {
         minSdk = 26
 

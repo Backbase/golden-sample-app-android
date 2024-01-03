@@ -14,9 +14,8 @@ import org.koin.dsl.module
 object AccountsJourney {
 
     fun create(
-        configuration: AccountsJourneyConfiguration = AccountsJourneyConfiguration { },
-        override: Boolean = false
-    ) = module(override = override) {
+        configuration: AccountsJourneyConfiguration = AccountsJourneyConfiguration { }
+    ) = module {
         factory { configuration }
 
         loadKoinModules(

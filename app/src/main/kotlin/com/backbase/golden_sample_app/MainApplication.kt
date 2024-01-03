@@ -107,6 +107,7 @@ class MainApplication : Application() {
                 WorkspacesJourney.create(),
                 accountsModule,
                 AccountsJourney.create(configuration = setupAccountsJourneyConfiguration()),
+                moreMenuModule(),
             )
         )
     }

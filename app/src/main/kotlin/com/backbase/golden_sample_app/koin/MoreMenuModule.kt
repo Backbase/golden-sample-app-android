@@ -28,7 +28,7 @@ internal fun moreMenuModule(
             }
         }
 
-        scoped { MoreConfiguration { } }
+        scoped { demoMoreConfig }
     }
 }
 
