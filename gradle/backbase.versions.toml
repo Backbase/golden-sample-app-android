@@ -24,9 +24,10 @@ journey-test = "4.0.0"
 
 ## M
 msdk = "9.9.0"
+more-menu-journey = "5.0.0"
 
 ## R
-retail-journey-common = "4.0.0"
+retail-journey-common = "5.0.3"
 
 ## W
 workspaces-journey = "5.1.0"
@@ -58,9 +59,11 @@ journey-test = { group = "com.backbase.android.retail.journey", name = "journey-
 
 ## M
 msdk = { group = "com.backbase.android.sdk", name = "backbase", version.ref = "msdk" }
+more-menu-journey = { group = "com.backbase.android.retail.journey", name = "more-journey", version.ref = "more-menu-journey" }
 
 ## R
 retail-journey-common = { group = "com.backbase.android.retail.journey", name = "journey-common", version.ref = "retail-journey-common" }
+retail-journey-common-koin = { group = "com.backbase.android.retail.journey", name = "journey-common-koin", version.ref = "retail-journey-common" }
 
 ## W
 workspaces-journey = { group = "com.backbase.android.business.journey", name = "workspaces-journey", version.ref = "workspaces-journey" }
@@ -104,6 +107,7 @@ common = [
     "business-journey-common",
     "clients-common-coroutines",
     "retail-journey-common",
+    "retail-journey-common-koin",
     "journey-test",
 ]
 
@@ -111,6 +115,12 @@ common = [
 # implementation(backbase.bundles.feature.filter)
 feature-filter = [
     "feature-filter-use-case",
+]
+
+## M
+# implementation(backbase.bundles.more)
+more = [
+    "more-menu-journey",
 ]
 
 ## S

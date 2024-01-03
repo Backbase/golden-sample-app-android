@@ -63,4 +63,13 @@
             android:name="accountId"
             app:argType="string" />
     </fragment>
+
+
+    <fragment
+        android:id="@+id/moreMenu"
+        android:name="com.backbase.android.retail.journey.more.MoreJourney"
+        android:label="More menu"
+        tools:layout="@layout/more_journey">
+    </fragment>
+
 </navigation>
