@@ -2,8 +2,8 @@ package com.backbase.golden_sample_app
 
 import android.content.Context
 import com.backbase.android.Backbase
-import com.backbase.android.client.accesscontrolclient2.api.UserContextApi
-import com.backbase.android.client.accesscontrolclient2.api.UsersApi
+import com.backbase.android.client.gen2.accesscontrolclient3.api.UserContextApi
+import com.backbase.android.client.gen2.accesscontrolclient3.api.UsersApi
 import com.backbase.android.client.gen2.arrangementclient2.api.ArrangementsApi
 import com.backbase.android.client.gen2.arrangementclient2.api.ProductSummaryApi
 import com.backbase.android.clients.common.MoshiResponseBodyParser

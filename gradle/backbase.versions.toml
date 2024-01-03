@@ -1,35 +1,35 @@
 [versions]
 ## A
-access-control-client-2-entitlements-use-case = "2.4.1"
-authentication-journey = "5.1.0"
+access-control-client-2-entitlements-use-case = "4.0.0"
+authentication-journey = "6.0.0"
 
 ## B
-business-journey-common = "4.0.1"
+business-journey-common = "5.0.0"
 
 ## C
-clients-common-coroutines = "1.0.0"
+clients-common-coroutines = "2.0.0"
 
 ## D
-design-system = "5.0.0"
+design-system = "5.5.0"
 
 ## F
-feature-filter-use-case = "2.4.1"
+feature-filter-use-case = "4.0.0"
 
 ## G
-gen-access-control-client-2 = "2.4.0"
+gen-access-control-client-3 = "1.0.0"
 gen-arrangements-client-2 = "1.2.0"
 
 ## J
-journey-test = "4.0.0"
+journey-test = "5.0.3"
 
 ## M
-msdk = "9.9.0"
+msdk = "10.0.1"
 
 ## R
-retail-journey-common = "4.0.0"
+retail-journey-common = "5.0.3"
 
 ## W
-workspaces-journey = "5.1.0"
+workspaces-journey = "6.0.0"
 
 [libraries]
 ## A
@@ -50,7 +50,7 @@ design-system = { group = "com.backbase.android.design", name = "design-system",
 feature-filter-use-case = { group = "com.backbase.android.retail.feature_filter", name = "feature-filter-use-case", version.ref = "feature-filter-use-case" }
 
 ## G
-gen-access-control-client-2 = { group = "com.backbase.android.clients", name = "gen-accesscontrol-client-2", version.ref = "gen-access-control-client-2" }
+gen-access-control-client-3 = { group = "com.backbase.android.clients", name = "gen2-accesscontrol-client-3", version.ref = "gen-access-control-client-3" }
 gen-arrangements-client-2 = { group = "com.backbase.android.clients", name = "gen2-arrangement-client-2", version.ref = "gen-arrangements-client-2" }
 
 ## J
@@ -84,7 +84,7 @@ feature-android-module = { id = "feature-android-module" }
 # implementation(backbase.bundles.access.control.client)
 access-control-client = [
     "access-control-client-2-entitlements-use-case",
-    "gen-access-control-client-2",
+    "gen-access-control-client-3",
 ]
 
 # implementation(backbase.bundles.arrangements.client)
