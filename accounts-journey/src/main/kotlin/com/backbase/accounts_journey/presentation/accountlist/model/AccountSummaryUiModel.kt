@@ -32,11 +32,11 @@ data class AccountSummaryUiModel(
 
     private fun filter(accounts: AccountsUiModel?, query: String): List<ListItem> {
         val header = accounts?.header as? ListItem
-        val query = query.lowercase().trim()
+        val lowerCasedQuery = query.lowercase().trim()
         val products = accounts?.products?.takeIf {
             it.isNotEmpty()
         }?.filter {
-            it.name?.lowercase()?.contains(query) ?: false
+            it.name?.lowercase()?.contains(lowerCasedQuery) ?: false
         } as? Collection<ListItem>
 
         if (header == null || products.isNullOrEmpty()) return emptyList()

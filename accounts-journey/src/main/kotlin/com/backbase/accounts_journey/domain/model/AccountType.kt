@@ -11,9 +11,15 @@ enum class AccountType(val id: String) {
     GENERAL_ACCOUNT("general-account");
 
     companion object {
-        fun getValue(id: String): AccountType? {
+
+        /**
+         * Get value by id as type String.
+         *
+         * @param id
+         * @return @[AccountType] or null if not found
+         */
+        fun getValueOrNull(id: String): AccountType? {
             return values().firstOrNull { it.id == id }
-            throw IllegalArgumentException("Value not found, use default")
         }
     }
 }
