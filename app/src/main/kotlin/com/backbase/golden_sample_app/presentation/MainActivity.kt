@@ -11,8 +11,12 @@ import androidx.navigation.Navigation
 import com.backbase.android.Backbase
 import com.backbase.golden_sample_app.R
 import com.backbase.golden_sample_app.databinding.ActivityMainBinding
+import com.backbase.golden_sample_app.koin.moreMenuModule
 import com.backbase.golden_sample_app.router.AppRouting
+import kotlinx.coroutines.selects.select
 import org.koin.android.ext.android.inject
+import org.koin.core.context.loadKoinModules
+import org.koin.dsl.module
 
 /**
  * Single activity approach and the setup of the navigation.
@@ -34,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             bottomMenuIds = getBottomMenuItemIds()
             setupNavigation()
+            loadScopedDependencies()
         }
     }
 
@@ -62,6 +67,12 @@ class MainActivity : AppCompatActivity() {
             navController.navigate(item.itemId)
             true
         }
+    }
+
+    private fun loadScopedDependencies() {
+        loadKoinModules(
+            moreMenuModule(Navigation.findNavController(this@MainActivity, R.id.nav_host_container))
+        )
     }
 
 }

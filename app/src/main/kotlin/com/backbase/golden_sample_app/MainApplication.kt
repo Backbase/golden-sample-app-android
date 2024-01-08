@@ -18,7 +18,14 @@ import com.backbase.android.model.ModelSource
 import com.backbase.android.utils.net.response.Response
 import com.backbase.golden_sample_app.authentication.CompositeSessionListener
 import com.backbase.golden_sample_app.common.TAG
-import com.backbase.golden_sample_app.koin.*
+import com.backbase.golden_sample_app.koin.accountsModule
+import com.backbase.golden_sample_app.koin.appModule
+import com.backbase.golden_sample_app.koin.featureFilterModule
+import com.backbase.golden_sample_app.koin.identityAuthModule
+import com.backbase.golden_sample_app.koin.moreMenuModule
+import com.backbase.golden_sample_app.koin.securityModule
+import com.backbase.golden_sample_app.koin.userModule
+import com.backbase.golden_sample_app.koin.workspacesModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
@@ -107,7 +114,6 @@ class MainApplication : Application() {
                 WorkspacesJourney.create(),
                 accountsModule,
                 AccountsJourney.create(configuration = setupAccountsJourneyConfiguration()),
-                moreMenuModule(),
             )
         )
     }

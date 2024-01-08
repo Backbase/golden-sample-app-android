@@ -1,31 +1,26 @@
 package com.backbase.golden_sample_app.koin
 
 import android.os.Bundle
-import com.backbase.android.retail.journey.more.MoreConfiguration
-import com.backbase.android.retail.journey.more.MoreJourneyScope
-import com.backbase.android.retail.journey.more.MoreRouter
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.findFragment
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import com.backbase.android.retail.journey.more.MenuItem
 import com.backbase.android.retail.journey.more.MenuSection
 import com.backbase.android.retail.journey.more.MenuSections
-import com.backbase.android.retail.journey.more.MoreToolbarNavigationItem
+import com.backbase.android.retail.journey.more.MoreConfiguration
+import com.backbase.android.retail.journey.more.MoreJourneyScope
+import com.backbase.android.retail.journey.more.MoreRouter
 import com.backbase.android.retail.journey.more.OnActionComplete.NavigateTo
 import com.backbase.deferredresources.DeferredColor
 import com.backbase.deferredresources.DeferredDrawable
 import com.backbase.deferredresources.DeferredText
 import com.backbase.golden_sample_app.R
+import com.backbase.golden_sample_app.router.MoreMenuRouterImpl
 import org.koin.dsl.module
 
-internal fun moreMenuModule(
-) = module {
+internal fun moreMenuModule(navController: NavController) = module {
     scope<MoreJourneyScope> {
-        factory {
-            object : MoreRouter {
-                override fun onExit(navigationActionId: Int, args: Bundle?) {
-                    TODO("Not yet implemented")
-                }
-            }
+        factory<MoreRouter> {
+            MoreMenuRouterImpl(get(), navController)
         }
 
         scoped { demoMoreConfig }
@@ -39,16 +34,8 @@ internal fun moreMenuModule(
 val demoMoreConfig = MoreConfiguration {
     showIcons = true
     contentDescription = DeferredText.Constant("More Menu")
-    sections = MenuSections {1
+    sections = MenuSections {
         +logOutSection()
-    }
-}
-
-private fun makeMoreToolbarNavigationItem() = MoreToolbarNavigationItem {
-    contentDescription = DeferredText.Constant("Press Back")
-    icon = DeferredDrawable.Resource(androidx.appcompat.R.drawable.abc_ic_ab_back_material)
-    onMoreToolbarNavigationItemSelected = {
-        it.findFragment<Fragment>().requireActivity().onBackPressed()
     }
 }
 
@@ -69,4 +56,5 @@ private fun logOutSection() = MenuSection {
     }
     title = DeferredText.Constant("Security")
 }
+
 internal object EndSession : NavigateTo(R.id.authenticationJourney)
