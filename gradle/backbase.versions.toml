@@ -25,6 +25,9 @@ journey-test = "5.0.3"
 ## M
 msdk = "10.0.1"
 
+## O
+observability = "3.0.0"
+
 ## R
 retail-journey-common = "5.0.3"
 
@@ -58,6 +61,9 @@ journey-test = { group = "com.backbase.android.retail.journey", name = "journey-
 
 ## M
 msdk = { group = "com.backbase.android.sdk", name = "backbase", version.ref = "msdk" }
+
+## O
+observability = { group = "com.backbase.android.observability", name = "backbase-observability-android", version.ref = "observability" }
 
 ## R
 retail-journey-common = { group = "com.backbase.android.retail.journey", name = "journey-common", version.ref = "retail-journey-common" }

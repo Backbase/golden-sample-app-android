@@ -81,11 +81,17 @@ dependencies {
     implementation(libs.bundles.navigation)
     implementation(libs.bundles.ui)
 
+    implementation(platform(libs.openTelemetry.bom))
+    implementation(libs.openTelemetry.otlp)
+    implementation(libs.openTelemetry.api)
+    implementation(libs.openTelemetry.sdk)
+
     androidTestImplementation(libs.bundles.test.instrumented)
 
     testImplementation(libs.bundles.test)
 
     // Backbase libraries
+    implementation(backbase.observability)
     implementation(backbase.bundles.authentication)
     implementation(backbase.bundles.access.control.client)
     implementation(backbase.bundles.arrangements.client)

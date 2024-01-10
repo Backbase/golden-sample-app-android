@@ -15,6 +15,8 @@ import com.backbase.android.identity.journey.authentication.stopAuthenticationJo
 import com.backbase.android.listeners.ModelListener
 import com.backbase.android.model.Model
 import com.backbase.android.model.ModelSource
+import com.backbase.android.observability.Tracker
+import com.backbase.android.observability.TrackerProvider
 import com.backbase.android.utils.net.response.Response
 import com.backbase.golden_sample_app.authentication.CompositeSessionListener
 import com.backbase.golden_sample_app.common.TAG
@@ -25,9 +27,14 @@ import com.backbase.golden_sample_app.koin.identityAuthModule
 import com.backbase.golden_sample_app.koin.securityModule
 import com.backbase.golden_sample_app.koin.userModule
 import com.backbase.golden_sample_app.koin.workspacesModule
+import com.backbase.golden_sample_app.telemetry.TelemetryManager
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
+import org.koin.dsl.module
 import java.net.URI
 
 /**
@@ -38,6 +45,11 @@ import java.net.URI
 class MainApplication : Application() {
 
     private val sessionEmitter = CompositeSessionListener()
+
+    private val tracker: Tracker = TrackerProvider.create()
+
+    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+
     private val authClient: BBIdentityAuthClient by lazy {
         BBIdentityAuthClient(this, "").apply {
             addAuthenticator(BBDeviceAuthenticator())
@@ -55,6 +67,16 @@ class MainApplication : Application() {
         setupAuthClient()
         setupDependencies()
         initAuthenticationJourney()
+        setOpenTelemetry()
+    }
+
+    private fun setOpenTelemetry() {
+        TelemetryManager(
+            tracker = tracker,
+            scope = scope,
+            endPoint = "https://rum-collector.backbase.io/v1/traces",
+            appKey = "c28c97f4-cef3-4357-b94d-1ae76f684ea5"
+        )
     }
 
     private fun initializeBackbase(
@@ -101,7 +123,6 @@ class MainApplication : Application() {
 
     private fun setupDependencies() = startKoin {
         androidContext(this@MainApplication)
-
         loadKoinModules(
             listOf(
                 securityModule(this@MainApplication),
@@ -113,6 +134,9 @@ class MainApplication : Application() {
                 WorkspacesJourney.create(),
                 accountsModule,
                 AccountsJourney.create(configuration = setupAccountsJourneyConfiguration()),
+                module {
+                    single { tracker }
+                }
             )
         )
     }
