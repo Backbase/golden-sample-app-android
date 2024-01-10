@@ -1,8 +1,6 @@
-package com.backbase.golden_sample_app.koin
+package com.backbase.golden_sample_app.menu
 
-import android.os.Bundle
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import com.backbase.android.retail.journey.more.MenuItem
 import com.backbase.android.retail.journey.more.MenuSection
 import com.backbase.android.retail.journey.more.MenuSections
@@ -20,7 +18,7 @@ import org.koin.dsl.module
 internal fun moreMenuModule(navController: NavController) = module {
     scope<MoreJourneyScope> {
         factory<MoreRouter> {
-            MoreMenuRouterImpl(get(), navController)
+            MoreMenuRouterImpl(get(), navController, get())
         }
 
         scoped { demoMoreConfig }

@@ -1,22 +1,16 @@
 package com.backbase.golden_sample_app.presentation
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.forEach
-import androidx.core.view.iterator
-import androidx.navigation.NavDestination
 import androidx.navigation.Navigation
-import com.backbase.android.Backbase
 import com.backbase.golden_sample_app.R
 import com.backbase.golden_sample_app.databinding.ActivityMainBinding
-import com.backbase.golden_sample_app.koin.moreMenuModule
+import com.backbase.golden_sample_app.menu.moreMenuModule
 import com.backbase.golden_sample_app.router.AppRouting
-import kotlinx.coroutines.selects.select
 import org.koin.android.ext.android.inject
 import org.koin.core.context.loadKoinModules
-import org.koin.dsl.module
 
 /**
  * Single activity approach and the setup of the navigation.
