@@ -10,6 +10,7 @@ import java.util.UUID
 import io.opentelemetry.api.common.AttributeKey
 import io.opentelemetry.api.common.Attributes
 import io.opentelemetry.api.trace.SpanKind
+import io.opentelemetry.api.trace.StatusCode
 import io.opentelemetry.exporter.otlp.http.trace.OtlpHttpSpanExporter
 import io.opentelemetry.sdk.OpenTelemetrySdk
 import io.opentelemetry.sdk.resources.Resource
@@ -34,6 +35,7 @@ class TelemetryManager(
         const val BB_APP_KEY = "BB-App-Key"
         const val SCREEN_VIEW = "screen-view"
         const val USER_ACTION = "user-action"
+        const val VIEW_NAME = "view.name"
     }
 
     init {
@@ -52,7 +54,8 @@ class TelemetryManager(
                 .spanBuilder(SCREEN_VIEW)
                 .setSpanKind(SpanKind.CLIENT)
                 .startSpan()
-                .setAttribute(SCREEN_VIEW, event.name)
+                .setAttribute(VIEW_NAME, event.name)
+                .setStatus(StatusCode.OK)
                 .end()
         }
 
@@ -62,7 +65,8 @@ class TelemetryManager(
                 .spanBuilder(USER_ACTION)
                 .setSpanKind(SpanKind.CLIENT)
                 .startSpan()
-                .setAttribute(USER_ACTION, event.name)
+                .setAttribute(VIEW_NAME, event.name)
+                .setStatus(StatusCode.OK)
                 .end()
         }
     }
