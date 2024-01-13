@@ -2,6 +2,7 @@ package com.backbase.golden_sample_app.koin
 
 import com.backbase.golden_sample_app.router.AppRouter
 import com.backbase.golden_sample_app.router.AppRouting
+import com.backbase.golden_sample_app.session.SessionManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob

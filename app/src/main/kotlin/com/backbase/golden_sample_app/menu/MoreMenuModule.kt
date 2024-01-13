@@ -1,7 +1,7 @@
 package com.backbase.golden_sample_app.menu
 
 import androidx.navigation.NavController
-import com.backbase.android.identity.client.BBIdentityAuthClient
+import com.backbase.android.retail.feature_filter.entitlements.UserEntitlement
 import com.backbase.android.retail.journey.more.MenuItem
 import com.backbase.android.retail.journey.more.MenuSection
 import com.backbase.android.retail.journey.more.MenuSections
@@ -14,15 +14,20 @@ import com.backbase.deferredresources.DeferredDrawable
 import com.backbase.deferredresources.DeferredText
 import com.backbase.golden_sample_app.R
 import com.backbase.golden_sample_app.router.MoreMenuRouterImpl
+import com.backbase.golden_sample_app.session.SessionManager
+import com.backbase.golden_sample_app.user.UserEntitlementsRepository
 import org.koin.dsl.module
 
-internal fun moreMenuModule(navController: NavController) = module {
+internal fun moreMenuModule(
+    navController: NavController
+) = module {
+
     scope<MoreJourneyScope> {
         factory<MoreRouter> {
-            MoreMenuRouterImpl(get(), navController, get(), get())
+            MoreMenuRouterImpl(navController)
         }
 
-        scoped { demoMoreConfig(get()) }
+        scoped { demoMoreConfig(get(), get()) }
     }
 }
 
@@ -30,19 +35,43 @@ internal fun moreMenuModule(navController: NavController) = module {
  * Created by Backbase R&D B.V. on 23/07/2020.
  */
 
-fun demoMoreConfig(authClient: BBIdentityAuthClient) = MoreConfiguration {
+fun demoMoreConfig(
+    sessionManager: SessionManager,
+    userEntitlementsRepository: UserEntitlementsRepository
+) = MoreConfiguration {
     showIcons = true
     contentDescription = DeferredText.Constant("More Menu")
     sections = MenuSections {
-        +logOutSection(authClient)
+        +moreSection(userEntitlementsRepository)
+        +logOutSection(sessionManager)
     }
 }
+
+private fun moreSection(userEntitlementsRepository: UserEntitlementsRepository): MenuSection{
+    return MenuSection {
+        if(userEntitlementsRepository.entitlements.contains(
+                UserEntitlement(
+                    "Contacts",
+                    "Contacts",
+                    "view"
+                ))
+            ){
+            +MenuItem(
+                DeferredText.Constant("Contacts"),
+                icon = DeferredDrawable.Resource(com.backbase.android.design.R.drawable.backbase_ic_contacts)
+            ) {
+                NavigateTo(R.id.action_more_to_contactsJourney)
+            }
+        }
+    }
+}
+
 
 /**
  * A menu section configuration can also be written like this using builders.
  */
 private fun logOutSection(
-    authClient: BBIdentityAuthClient
+    sessionManager: SessionManager
 ) = MenuSection {
     val switchUserBackgroundColor = DeferredColor.Resource(com.backbase.android.design.R.color.bds_danger)
     val switchUserIconColor = DeferredColor.Resource(com.backbase.android.design.R.color.bds_onDanger)
@@ -50,6 +79,7 @@ private fun logOutSection(
         DeferredText.Constant("Log out"),
         icon = DeferredDrawable.Resource(com.backbase.android.design.R.drawable.backbase_ic_logout)
     ) {
+        sessionManager.logOut()
         BackToAuth
     }
     +MenuItem(
@@ -59,7 +89,7 @@ private fun logOutSection(
         },
         iconBackgroundColor = switchUserBackgroundColor
     ) {
-        authClient.reset()
+        sessionManager.switchUser()
         BackToAuth
     }
     title = DeferredText.Constant("Security")

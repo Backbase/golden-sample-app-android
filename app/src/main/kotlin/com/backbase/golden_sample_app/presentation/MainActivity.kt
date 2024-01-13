@@ -9,6 +9,8 @@ import com.backbase.golden_sample_app.R
 import com.backbase.golden_sample_app.databinding.ActivityMainBinding
 import com.backbase.golden_sample_app.menu.moreMenuModule
 import com.backbase.golden_sample_app.router.AppRouting
+import com.backbase.golden_sample_app.session.SessionManager
+import com.backbase.golden_sample_app.session.sessionModule
 import org.koin.android.ext.android.inject
 import org.koin.core.context.loadKoinModules
 
@@ -46,8 +48,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadScopedDependencies() {
+        val navController = Navigation.findNavController(this@MainActivity, R.id.nav_host_container)
         loadKoinModules(
-            moreMenuModule(Navigation.findNavController(this@MainActivity, R.id.nav_host_container))
+            listOf(
+                sessionModule(navController),
+                moreMenuModule(navController)
+            )
         )
     }
 

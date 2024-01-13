@@ -12,17 +12,11 @@ import com.backbase.golden_sample_app.authentication.logOut
 import com.backbase.golden_sample_app.user.UserEntitlementsRepository
 
 class MoreMenuRouterImpl(
-    private val authClient: BBIdentityAuthClient,
-    private val navController: NavController,
-    private val userRepository: UserRepository,
-    private val userEntitlementsRepository: UserEntitlementsRepository
+    private val navController: NavController
 
 ): MoreRouter {
     override fun onExit(navigationActionId: Int, args: Bundle?) {
-        authClient.logOut()
-        userRepository.clearUserInfo()
-        userEntitlementsRepository.entitlements = emptyList()
-        navController.navigate(R.id.authenticationJourney)
+        navController.navigate(navigationActionId)
     }
 
 }

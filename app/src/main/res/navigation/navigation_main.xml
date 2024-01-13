@@ -64,12 +64,18 @@
             app:argType="string" />
     </fragment>
 
+    <fragment
+        android:id="@+id/contactsJourney"
+        android:name="com.backbase.android.retail.journey.contacts.ContactsJourney" />
 
     <fragment
         android:id="@+id/more"
         android:name="com.backbase.android.retail.journey.more.MoreJourney"
         android:label="More menu"
         tools:layout="@layout/more_journey">
+        <action
+            android:id="@+id/action_more_to_contactsJourney"
+            app:destination="@id/contactsJourney" />
     </fragment>
 
 </navigation>

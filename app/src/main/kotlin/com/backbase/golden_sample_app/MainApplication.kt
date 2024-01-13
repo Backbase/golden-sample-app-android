@@ -20,6 +20,7 @@ import com.backbase.golden_sample_app.authentication.CompositeSessionListener
 import com.backbase.golden_sample_app.common.TAG
 import com.backbase.golden_sample_app.koin.accountsModule
 import com.backbase.golden_sample_app.koin.appModule
+import com.backbase.golden_sample_app.koin.contactsModule
 import com.backbase.golden_sample_app.koin.featureFilterModule
 import com.backbase.golden_sample_app.koin.identityAuthModule
 import com.backbase.golden_sample_app.koin.securityModule
@@ -109,6 +110,7 @@ class MainApplication : Application() {
                 featureFilterModule,
                 appModule,
                 identityAuthModule(sessionEmitter),
+                contactsModule(checkNotNull(Backbase.getInstance())),
                 workspacesModule,
                 WorkspacesJourney.create(),
                 accountsModule,

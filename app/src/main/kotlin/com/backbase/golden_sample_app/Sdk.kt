@@ -2,6 +2,7 @@ package com.backbase.golden_sample_app
 
 import android.content.Context
 import com.backbase.android.Backbase
+import com.backbase.android.client.contactmanagerclient2.api.ContactsApi
 import com.backbase.android.client.gen2.accesscontrolclient3.api.UserContextApi
 import com.backbase.android.client.gen2.accesscontrolclient3.api.UsersApi
 import com.backbase.android.client.gen2.arrangementclient2.api.ArrangementsApi
@@ -28,27 +29,13 @@ object Sdk {
         get() = Backbase.getInstance()?.configuration?.experienceConfiguration?.serverURL
 
     val clients: (Context) -> List<DBSClient> = { context ->
+        val networkDBSDataProvider = NetworkDBSDataProvider(context)
         listOf(
-            getUserContextApi(
-                context,
-                NetworkDBSDataProvider(context),
-                ACCESS_CONTROL_ENDPOINT
-            ),
-            getUsersApi(
-                context,
-                NetworkDBSDataProvider(context),
-                ACCESS_CONTROL_ENDPOINT
-            ),
-            getProductSummaryApi(
-                context,
-                NetworkDBSDataProvider(context),
-                ARRANGEMENT_MANAGER_ENDPOINT
-            ),
-            getArrangementsApi(
-                context,
-                NetworkDBSDataProvider(context),
-                ARRANGEMENT_MANAGER_ENDPOINT
-            )
+            getUserContextApi(context, networkDBSDataProvider),
+            getUsersApi(context, networkDBSDataProvider),
+            getProductSummaryApi(context, networkDBSDataProvider),
+            getArrangementsApi(context, networkDBSDataProvider),
+            getContactsApi(context, networkDBSDataProvider)
         )
     }
 
@@ -61,56 +48,65 @@ object Sdk {
 
     private fun getUserContextApi(
         context: Context,
-        dataProvider: DBSDataProvider,
-        serverUrl: String
+        dataProvider: DBSDataProvider
     ) = UserContextApi(
         context = context,
         moshi = moshi,
         parser = MoshiResponseBodyParser(moshi),
-        serverUri = URI(serverUrl),
+        serverUri = URI(ACCESS_CONTROL_ENDPOINT),
         provider = dataProvider,
         backbase = Backbase.requireInstance()
     )
 
     private fun getUsersApi(
         context: Context,
-        dataProvider: DBSDataProvider,
-        serverUrl: String
+        dataProvider: DBSDataProvider
     ) = UsersApi(
         context = context,
         moshi = moshi,
         parser = MoshiResponseBodyParser(moshi),
-        serverUri = URI(serverUrl),
+        serverUri = URI(ACCESS_CONTROL_ENDPOINT),
         provider = dataProvider,
         backbase = Backbase.requireInstance()
     )
 
     private fun getProductSummaryApi(
         context: Context,
-        dataProvider: DBSDataProvider,
-        serverUrl: String
+        dataProvider: DBSDataProvider
     ) = ProductSummaryApi(
         context = context,
         moshi = moshi,
         parser = MoshiResponseBodyParser(moshi),
-        serverUri = URI(serverUrl),
+        serverUri = URI(ARRANGEMENT_MANAGER_ENDPOINT),
         provider = dataProvider,
         backbase = Backbase.requireInstance()
     )
 
     private fun getArrangementsApi(
         context: Context,
-        dataProvider: DBSDataProvider,
-        serverUrl: String
+        dataProvider: DBSDataProvider
     ) = ArrangementsApi(
         context = context,
         moshi = moshi,
         parser = MoshiResponseBodyParser(moshi),
-        serverUri = URI(serverUrl),
+        serverUri = URI(ARRANGEMENT_MANAGER_ENDPOINT),
+        provider = dataProvider,
+        backbase = Backbase.requireInstance()
+    )
+
+    private fun getContactsApi(
+        context: Context,
+        dataProvider: DBSDataProvider
+    ) = ContactsApi(
+        context = context,
+        moshi = moshi,
+        parser = MoshiResponseBodyParser(moshi),
+        serverUri = URI(CONTACT_MANAGER_ENDPOINT),
         provider = dataProvider,
         backbase = Backbase.requireInstance()
     )
 
     private const val ACCESS_CONTROL_ENDPOINT = "/access-control"
     private const val ARRANGEMENT_MANAGER_ENDPOINT = "/arrangement-manager"
+    private const val CONTACT_MANAGER_ENDPOINT = "//contact-manager"
 }

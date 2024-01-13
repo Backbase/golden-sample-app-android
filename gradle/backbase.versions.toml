@@ -27,6 +27,7 @@ more-menu-journey = "5.0.0"
 msdk = "10.0.1"
 
 ## R
+retail-contacts-journey = "6.0.0"
 retail-journey-common = "5.0.3"
 
 ## W
@@ -62,6 +63,8 @@ msdk = { group = "com.backbase.android.sdk", name = "backbase", version.ref = "m
 more-menu-journey = { group = "com.backbase.android.retail.journey", name = "more-journey", version.ref = "more-menu-journey" }
 
 ## R
+retail-contacts-journey = { group = "com.backbase.android.retail.journey", name = "contacts-journey", version.ref = "retail-contacts-journey" }
+retail-contacts-journey-usecase = { group = "com.backbase.android.retail.journey", name = "gen-contactmanager-client-2-contacts-use-case", version.ref = "retail-contacts-journey" }
 retail-journey-common = { group = "com.backbase.android.retail.journey", name = "journey-common", version.ref = "retail-journey-common" }
 retail-journey-common-koin = { group = "com.backbase.android.retail.journey", name = "journey-common-koin", version.ref = "retail-journey-common" }
 
@@ -121,6 +124,13 @@ feature-filter = [
 # implementation(backbase.bundles.more)
 more = [
     "more-menu-journey",
+]
+
+## R
+# implementation(backbase.bundles.retail.contacts)
+retail-contacts = [
+    "retail-contacts-journey",
+    "retail-contacts-journey-usecase"
 ]
 
 ## S
