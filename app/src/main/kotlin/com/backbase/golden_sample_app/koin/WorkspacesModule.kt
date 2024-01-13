@@ -13,5 +13,5 @@ import org.koin.dsl.module
  */
 internal val workspacesModule = module {
     factory<WorkspacesUseCase> { WorkspacesUseCaseImpl(get(), get()) }
-    factory<WorkspaceSelectorRouting> { WorkspaceSelectorRoutingImpl(get(), get()) }
+    factory<WorkspaceSelectorRouting> { WorkspaceSelectorRoutingImpl(get(), get(), get()) }
 }
