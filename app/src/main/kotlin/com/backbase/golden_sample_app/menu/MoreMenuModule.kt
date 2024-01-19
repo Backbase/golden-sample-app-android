@@ -1,7 +1,6 @@
 package com.backbase.golden_sample_app.menu
 
 import androidx.navigation.NavController
-import com.backbase.android.retail.feature_filter.entitlements.UserEntitlement
 import com.backbase.android.retail.journey.more.MenuItem
 import com.backbase.android.retail.journey.more.MenuSection
 import com.backbase.android.retail.journey.more.MenuSections
@@ -16,6 +15,7 @@ import com.backbase.golden_sample_app.R
 import com.backbase.golden_sample_app.router.MoreMenuRouterImpl
 import com.backbase.golden_sample_app.session.SessionManager
 import com.backbase.golden_sample_app.user.UserEntitlementsRepository
+import com.backbase.golden_sample_app.user.UserEntitlements
 import org.koin.dsl.module
 
 internal fun moreMenuModule(
@@ -47,15 +47,9 @@ fun demoMoreConfig(
     }
 }
 
-private fun moreSection(userEntitlementsRepository: UserEntitlementsRepository): MenuSection{
+private fun moreSection(userEntitlementsRepository: UserEntitlementsRepository): MenuSection {
     return MenuSection {
-        if(userEntitlementsRepository.entitlements.contains(
-                UserEntitlement(
-                    "Contacts",
-                    "Contacts",
-                    "view"
-                ))
-            ){
+        if (userEntitlementsRepository.entitlements.contains(UserEntitlements.Contact.view)) {
             +MenuItem(
                 DeferredText.Constant("Contacts"),
                 icon = DeferredDrawable.Resource(com.backbase.android.design.R.drawable.backbase_ic_contacts)
@@ -73,8 +67,10 @@ private fun moreSection(userEntitlementsRepository: UserEntitlementsRepository):
 private fun logOutSection(
     sessionManager: SessionManager
 ) = MenuSection {
-    val switchUserBackgroundColor = DeferredColor.Resource(com.backbase.android.design.R.color.bds_danger)
-    val switchUserIconColor = DeferredColor.Resource(com.backbase.android.design.R.color.bds_onDanger)
+    val switchUserBackgroundColor =
+        DeferredColor.Resource(com.backbase.android.design.R.color.bds_danger)
+    val switchUserIconColor =
+        DeferredColor.Resource(com.backbase.android.design.R.color.bds_onDanger)
     +MenuItem(
         DeferredText.Constant("Log out"),
         icon = DeferredDrawable.Resource(com.backbase.android.design.R.drawable.backbase_ic_logout)

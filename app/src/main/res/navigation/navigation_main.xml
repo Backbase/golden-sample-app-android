@@ -78,4 +78,11 @@
             app:destination="@id/contactsJourney" />
     </fragment>
 
+    <fragment
+        android:id="@+id/move_money"
+        android:name="com.backbase.android.retail.journey.more.MoreJourney"
+        android:label="Move money"
+        tools:layout="@layout/more_journey">
+    </fragment>
+
 </navigation>

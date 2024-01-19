@@ -3,4 +3,16 @@
     <string name="accounts_screen_title">My finances</string>
     <string name="label_menu_dashboard">Dashboard</string>
     <string name="label_menu_more">More</string>
+    <string name="label_menu_move_money">Move Money</string>
+
+    <string name="move_money_title">Move Money</string>
+    <string name="move_money_make_a_transfer">Make a transfer</string>
+    <string name="move_money_make_a_transfer_description">Move money between own accounts</string>
+    <string name="move_money_send_to_someone">Send money to someone</string>
+    <string name="move_money_send_to_someone_description">Send money using phone number or email</string>
+    <string name="move_money_activity">Activity</string>
+    <string name="move_money_activity_description">Scheduled and executed transfers</string>
+    <string name="move_money_bill_pay">Bill Pay</string>
+
+
 </resources>

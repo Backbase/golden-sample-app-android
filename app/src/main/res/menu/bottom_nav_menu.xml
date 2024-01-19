@@ -6,6 +6,11 @@
         android:icon="@drawable/backbase_ic_dashboard"
         android:title="@string/label_menu_dashboard"/>
     <item
+        android:id="@+id/move_money"
+        android:enabled="true"
+        android:icon="@drawable/backbase_ic_payments"
+        android:title="@string/label_menu_move_money"/>
+    <item
         android:id="@+id/more"
         android:enabled="true"
         android:icon="@drawable/backbase_ic_menu"

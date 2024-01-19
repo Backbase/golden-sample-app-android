@@ -8,6 +8,7 @@ import androidx.navigation.Navigation
 import com.backbase.golden_sample_app.R
 import com.backbase.golden_sample_app.databinding.ActivityMainBinding
 import com.backbase.golden_sample_app.menu.moreMenuModule
+import com.backbase.golden_sample_app.payments.paymentsMenuModule
 import com.backbase.golden_sample_app.router.AppRouting
 import com.backbase.golden_sample_app.session.SessionManager
 import com.backbase.golden_sample_app.session.sessionModule
@@ -52,7 +53,8 @@ class MainActivity : AppCompatActivity() {
         loadKoinModules(
             listOf(
                 sessionModule(navController),
-                moreMenuModule(navController)
+                moreMenuModule(navController),
+                paymentsMenuModule(navController)
             )
         )
     }
