@@ -1,12 +1,15 @@
 package com.backbase.golden_sample_app
 
 import android.app.Application
+import androidx.navigation.NavController
 import com.backbase.accounts_journey.AccountsJourney
 import com.backbase.accounts_journey.configuration.AccountsJourneyConfiguration
 import com.backbase.accounts_journey.configuration.accountlist.AccountListScreenConfiguration
 import com.backbase.android.Backbase
 import com.backbase.android.business.journey.workspaces.WorkspacesJourney
 import com.backbase.android.core.utils.BBLogger
+import com.backbase.android.dbs.DBSDataProvider
+import com.backbase.android.dbs.dataproviders.NetworkDBSDataProvider
 import com.backbase.android.identity.client.BBIdentityAuthClient
 import com.backbase.android.identity.device.BBDeviceAuthenticator
 import com.backbase.android.identity.fido.FidoUafFacetUtils
@@ -15,6 +18,7 @@ import com.backbase.android.identity.journey.authentication.stopAuthenticationJo
 import com.backbase.android.listeners.ModelListener
 import com.backbase.android.model.Model
 import com.backbase.android.model.ModelSource
+import com.backbase.android.retail.journey.payments.PaymentRouter
 import com.backbase.android.utils.net.response.Response
 import com.backbase.golden_sample_app.authentication.CompositeSessionListener
 import com.backbase.golden_sample_app.common.TAG
@@ -29,6 +33,7 @@ import com.backbase.golden_sample_app.koin.workspacesModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
+import org.koin.dsl.module
 import java.net.URI
 
 /**
@@ -115,6 +120,10 @@ class MainApplication : Application() {
                 WorkspacesJourney.create(),
                 accountsModule,
                 AccountsJourney.create(configuration = setupAccountsJourneyConfiguration()),
+                module {
+                    val dbsDataProvider: DBSDataProvider = NetworkDBSDataProvider(this@MainApplication)
+                    single { dbsDataProvider}
+                }
             )
         )
     }

@@ -1,6 +1,12 @@
 package com.backbase.golden_sample_app.payments
 
+import androidx.core.os.bundleOf
 import androidx.navigation.NavController
+import com.backbase.android.Backbase
+import com.backbase.android.client.gen2.arrangementclient2.api.ArrangementsApi
+import com.backbase.android.client.gen2.arrangementclient2.api.ProductSummaryApi
+import com.backbase.android.client.gen2.paymentordera2aclient1.api.A2aClientApi
+import com.backbase.android.client.gen2.paymentorderv2client2.api.PaymentOrdersApi
 import com.backbase.android.retail.journey.more.MenuItem
 import com.backbase.android.retail.journey.more.MenuSection
 import com.backbase.android.retail.journey.more.MenuSections
@@ -8,9 +14,21 @@ import com.backbase.android.retail.journey.more.MoreConfiguration
 import com.backbase.android.retail.journey.more.MoreJourneyScope
 import com.backbase.android.retail.journey.more.MoreMenuInstanceId
 import com.backbase.android.retail.journey.more.OnActionComplete
+import com.backbase.android.retail.journey.payments.ExternalPaymentAccountsServiceUseCase
+import com.backbase.android.retail.journey.payments.PaymentAccountsUseCase
+import com.backbase.android.retail.journey.payments.PaymentJourney
+import com.backbase.android.retail.journey.payments.PaymentJourneyScope
+import com.backbase.android.retail.journey.payments.PaymentJourneyType
+import com.backbase.android.retail.journey.payments.PaymentRouter
+import com.backbase.android.retail.journey.payments.PaymentUseCase
+import com.backbase.android.retail.journey.payments.configuration.a2aPaymentConfiguration
+import com.backbase.android.retail.journey.payments.gen2_paymentorder_v2_client_2.PaymentOrderV2Client2PaymentServiceUseCase
+import com.backbase.android.retail.journey.payments.gen_arrangements_client_2.ArrangementsClient2PaymentAccountsUseCase
+import com.backbase.android.retail.journey.payments.gen_paymentordera2a_client_1.PaymentOrderA2AClient1ServiceUseCase
 import com.backbase.deferredresources.DeferredDrawable
 import com.backbase.deferredresources.DeferredText
 import com.backbase.golden_sample_app.R
+import com.backbase.golden_sample_app.Sdk
 import com.backbase.golden_sample_app.router.MoreMenuRouterImpl
 import com.backbase.golden_sample_app.user.UserEntitlements
 import com.backbase.golden_sample_app.user.UserEntitlementsRepository
@@ -26,6 +44,47 @@ internal fun paymentsMenuModule(
         }
 
         scoped(paymentsScopeId) { paymentsMenuConfig(get()) }
+    }
+
+    scope<PaymentJourneyScope> {
+        scoped { Sdk.moshi }
+        scoped { Sdk.responseBodyParser }
+        scoped {
+            a2aPaymentConfiguration()
+        }
+
+        scoped<PaymentRouter> { //Required
+            object : PaymentRouter {
+                override fun onExit(stepNavController: NavController) {
+                    navController.popBackStack()
+                }
+            }
+        }
+
+        //Use-cases
+        scoped<PaymentAccountsUseCase> { //Required
+            ArrangementsClient2PaymentAccountsUseCase(
+                Backbase.getInstance()?.getClient(ProductSummaryApi::class.java)
+                    ?: throw NullPointerException("Backbase not initialized"),
+
+                Backbase.getInstance()?.getClient(ArrangementsApi::class.java)
+                    ?: throw NullPointerException("Backbase not initialized")
+            )
+        }
+
+        scoped<PaymentUseCase> {
+            PaymentOrderV2Client2PaymentServiceUseCase(
+                Backbase.getInstance()?.getClient(PaymentOrdersApi::class.java)
+                    ?: throw NullPointerException("Backbase not initialized")//Required
+            )
+        }
+
+        scoped<ExternalPaymentAccountsServiceUseCase> { //Only necessary for A2A.
+            PaymentOrderA2AClient1ServiceUseCase(
+                Backbase.getInstance()?.getClient(A2aClientApi::class.java)
+                    ?: throw NullPointerException("Backbase not initialized")
+            )
+        }
     }
 
 }
@@ -62,7 +121,11 @@ private fun makeATransferSection() = MenuSection {
         subtitle = DeferredText.Resource(R.string.move_money_make_a_transfer_description),
         icon = DeferredDrawable.Resource(com.backbase.android.design.R.drawable.backbase_ic_compare_arrows)
     ) {
-        OnActionComplete.NavigateTo(R.id.action_more_to_contactsJourney)
+        OnActionComplete.NavigateTo(
+            R.id.paymentJourney, bundleOf(
+                PaymentJourney.PAYMENT_JOURNEY_TYPE to PaymentJourneyType.A2A
+            )
+        )
     }
 }
 
@@ -73,7 +136,11 @@ private fun sendMoneySection() = MenuSection {
         subtitle = DeferredText.Resource(R.string.move_money_send_to_someone_description),
         icon = DeferredDrawable.Resource(com.backbase.android.design.R.drawable.backbase_ic_person)
     ) {
-        OnActionComplete.NavigateTo(R.id.action_more_to_contactsJourney)
+        OnActionComplete.NavigateTo(
+            R.id.move_money_to_payments_journey, bundleOf(
+                PaymentJourney.PAYMENT_JOURNEY_TYPE to PaymentJourneyType.P2P
+            )
+        )
     }
 }
 
@@ -83,7 +150,7 @@ private fun activitySection() = MenuSection {
         subtitle = DeferredText.Resource(R.string.move_money_activity_description),
         icon = DeferredDrawable.Resource(com.backbase.android.design.R.drawable.backbase_ic_update)
     ) {
-        OnActionComplete.NavigateTo(R.id.action_more_to_contactsJourney)
+        OnActionComplete.NavigateTo(R.id.move_money_to_upcoming_payments)
     }
 }
 
@@ -92,63 +159,8 @@ private fun billPaySection() = MenuSection {
         DeferredText.Resource(R.string.move_money_bill_pay),
         icon = DeferredDrawable.Resource(com.backbase.android.design.R.drawable.backbase_ic_attach_money)
     ) {
-        OnActionComplete.NavigateTo(R.id.action_more_to_contactsJourney)
+        OnActionComplete.NavigateTo(R.id.move_money_to_bill_pay_sso)
     }
 }
 
 val paymentsScopeId = MoreMenuInstanceId.Custom("payments-menu")
-
-/**
- * fun DefaultUniversalMoveMoneyConfiguration(
- *     initializer: MoreConfiguration.Builder.() -> Unit = {}
- * ) = MoreConfiguration.Builder().apply {
- *     screenTitle = DeferredText.Resource(R.string.universalApp_moveMoney_title)
- *     contentDescription = DeferredText.Resource(R.string.universalApp_moveMoney_contentDescription)
- *     sections = mutableListOf<MenuSection>().apply {
- *         add(MenuSection(listOf(makeTransferItem)))
- *         add(MenuSection(listOf(scheduledTransfersItem)))
- *         add(MenuSection(listOf(m2mTransfer)))
- *     }
- * }.apply(initializer).build()
- *
- * private val makeTransferItem = MenuItem(
- *     DeferredText.Resource(R.string.universalApp_moveMoney_item_makeATransfer_title),
- *     subtitle = DeferredText.Resource(R.string.universalApp_moveMoney_item_makeATransfer_subtitle),
- *     icon = DeferredDrawable.Resource(R.drawable.backbase_ic_compare_arrows) {
- *         setTint(DeferredColor.Attribute(R.attr.colorPrimary).resolve(it))
- *     },
- *     iconBackgroundColor = DeferredColor.Attribute(R.attr.colorSelected)
- * ) {
- *     OnActionComplete.NavigateTo(
- *         R.id.action_mainScreen_to_paymentsJourney,
- *         bundleOf(PaymentJourney.PAYMENT_JOURNEY_TYPE to PaymentJourneyType.Internal)
- *     )
- * }
- *
- * private val scheduledTransfersItem = MenuItem(
- *     DeferredText.Resource(R.string.universalApp_moveMoney_item_scheduledTransfers_title),
- *     subtitle = DeferredText.Resource(R.string.universalApp_moveMoney_item_scheduledTransfers_subtitle),
- *     icon = DeferredDrawable.Resource(R.drawable.backbase_ic_update) {
- *         setTint(DeferredColor.Attribute(R.attr.colorPrimary).resolve(it))
- *     },
- *     iconBackgroundColor = DeferredColor.Attribute(R.attr.colorSelected)
- * ) {
- *     OnActionComplete.NavigateTo(R.id.action_mainScreen_to_upcomingPaymentsJourney)
- * }
- *
- * private val m2mTransfer = MenuItem(
- *     title = DeferredText.Resource(R.string.universalApp_moveMoney_item_sendMoneyToMember_title),
- *     subtitle = DeferredText.Resource(R.string.universalApp_moveMoney_item_sendMoneyToMember_subtitle),
- *     icon = DeferredDrawable.Resource(R.drawable.backbase_ic_account_box) {
- *         setTint(DeferredColor.Attribute(R.attr.colorPrimary).resolve(it))
- *     },
- *     iconBackgroundColor = DeferredColor.Attribute(R.attr.colorSelected)
- * ) {
- *     OnActionComplete.NavigateTo(
- *         R.id.action_mainScreen_to_paymentsJourney, bundleOf(
- *             PaymentJourney.PAYMENT_JOURNEY_TYPE to PaymentJourneyType.M2M
- *         )
- *     )
- * }
- *
- */
