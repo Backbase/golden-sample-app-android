@@ -73,6 +73,13 @@ class AccountListFragment : Fragment() {
             .onEach { handleUiState(it) }
             .launchIn(lifecycleScope)
         viewModel.onEvent(AccountListEvent.OnGetAccounts)
+
+        //Remove this button and its action later
+        binding.btnCards.setOnClickListener {
+            val navController = findNavController()
+            val action = AccountListFragmentDirections.actionAccountListFragmentToCardsJourney()
+            navController.navigate(action)
+        }
     }
 
     private fun handleUiState(uiState: AccountListScreenState) {
@@ -104,7 +111,8 @@ class AccountListFragment : Fragment() {
 
     private fun itemClicked(id: String) {
         val navController = findNavController()
-        val action = AccountListFragmentDirections.actionAccountListFragmentToAccountDetailFragment(id)
+        val action =
+            AccountListFragmentDirections.actionAccountListFragmentToAccountDetailFragment(id)
         navController.navigate(action)
     }
 

@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Backbase"
         tools:replace="android:fullBackupContent,android:theme"
-        tools:targetApi="34">
+        tools:targetApi="34"
+        android:networkSecurityConfig="@xml/network_security_config">
         <activity
             android:name=".presentation.MainActivity"
             android:exported="true">

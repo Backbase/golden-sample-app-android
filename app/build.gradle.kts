@@ -1,3 +1,5 @@
+import org.gradle.internal.impldep.org.apache.commons.compress.harmony.pack200.PackingUtils.config
+
 plugins {
     id("com.android.application")
     kotlin("android")
@@ -20,6 +22,12 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
+        }
+    }
+
+    signingConfigs {
+        getByName("debug") {
+            storeFile = file("/Users/subhash/AndroidStudioProjects/golden-sample-app-android/keystore/debug.keystore")
         }
     }
 

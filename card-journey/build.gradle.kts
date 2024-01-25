@@ -6,13 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.backbase.accounts_journey"
+    namespace = "com.backbase.cards_journey"
 }
 
 dependencies {
     // Backbase libraries
     implementation(backbase.bundles.common)
     implementation(libs.bundles.navigation)
-    implementation(project(":card-journey"))
-    androidTestImplementation(project("path" to ":fake-accounts-use-case"))
 }

@@ -18,6 +18,5 @@
     "allowedDomains": [
       "*"
     ]
-  },
-  "bankTimeZone": "Europe/Amsterdam"
+  }
 }
