@@ -34,65 +34,11 @@ import com.backbase.golden_sample_app.user.UserEntitlements
 import com.backbase.golden_sample_app.user.UserEntitlementsRepository
 import org.koin.dsl.module
 
-internal fun paymentsMenuModule(
-    navController: NavController
-) = module {
-
-    scope<MoreJourneyScope> {
-        factory(paymentsScopeId) {
-            MoreMenuRouterImpl(navController)
-        }
-
-        scoped(paymentsScopeId) { paymentsMenuConfig(get()) }
-    }
-
-    scope<PaymentJourneyScope> {
-        scoped { Sdk.moshi }
-        scoped { Sdk.responseBodyParser }
-        scoped {
-            a2aPaymentConfiguration()
-        }
-
-        scoped<PaymentRouter> { //Required
-            object : PaymentRouter {
-                override fun onExit(stepNavController: NavController) {
-                    navController.popBackStack()
-                }
-            }
-        }
-
-        //Use-cases
-        scoped<PaymentAccountsUseCase> {
-            ArrangementsClient2PaymentAccountsUseCase(
-                Backbase.getInstance()?.getClient(ProductSummaryApi::class.java)
-                    ?: throw NullPointerException("Backbase not initialized"),
-
-                Backbase.getInstance()?.getClient(ArrangementsApi::class.java)
-                    ?: throw NullPointerException("Backbase not initialized")
-            )
-        }
-
-        scoped<PaymentUseCase> {
-            PaymentOrderV2Client2PaymentServiceUseCase(
-                Backbase.getInstance()?.getClient(PaymentOrdersApi::class.java)
-                    ?: throw NullPointerException("Backbase not initialized")
-            )
-        }
-
-        scoped<ExternalPaymentAccountsServiceUseCase> {
-            PaymentOrderA2AClient1ServiceUseCase(
-                Backbase.getInstance()?.getClient(A2aClientApi::class.java)
-                    ?: throw NullPointerException("Backbase not initialized")
-            )
-        }
-    }
-
-}
-
 /**
- * Created by Backbase R&D B.V. on 23/07/2020.
+ * Created by Backbase R&D B.V. on 23/01/2024.
+ *
+ * More menu used to create the Move Money screen.
  */
-
 fun paymentsMenuConfig(
     userEntitlementsRepository: UserEntitlementsRepository
 ) = MoreConfiguration {

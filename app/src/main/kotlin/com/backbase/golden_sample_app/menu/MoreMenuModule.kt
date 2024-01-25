@@ -18,6 +18,9 @@ import com.backbase.golden_sample_app.user.UserEntitlementsRepository
 import com.backbase.golden_sample_app.user.UserEntitlements
 import org.koin.dsl.module
 
+/**
+ * Created by Backbase R&D B.V. on 23/07/2020.
+ */
 internal fun moreMenuModule(
     navController: NavController
 ) = module {
@@ -31,16 +34,12 @@ internal fun moreMenuModule(
     }
 }
 
-/**
- * Created by Backbase R&D B.V. on 23/07/2020.
- */
-
 fun demoMoreConfig(
     sessionManager: SessionManager,
     userEntitlementsRepository: UserEntitlementsRepository
 ) = MoreConfiguration {
     showIcons = true
-    contentDescription = DeferredText.Constant("More Menu")
+    contentDescription = DeferredText.Resource(R.string.more_menu_title)
     sections = MenuSections {
         +moreSection(userEntitlementsRepository)
         +logOutSection(sessionManager)
@@ -51,7 +50,7 @@ private fun moreSection(userEntitlementsRepository: UserEntitlementsRepository):
     return MenuSection {
         if (userEntitlementsRepository.entitlements.contains(UserEntitlements.Contact.view)) {
             +MenuItem(
-                DeferredText.Constant("Contacts"),
+                title = DeferredText.Resource(R.string.more_menu_contacts),
                 icon = DeferredDrawable.Resource(com.backbase.android.design.R.drawable.backbase_ic_contacts)
             ) {
                 NavigateTo(R.id.action_more_to_contactsJourney)
@@ -60,10 +59,6 @@ private fun moreSection(userEntitlementsRepository: UserEntitlementsRepository):
     }
 }
 
-
-/**
- * A menu section configuration can also be written like this using builders.
- */
 private fun logOutSection(
     sessionManager: SessionManager
 ) = MenuSection {
@@ -72,14 +67,14 @@ private fun logOutSection(
     val switchUserIconColor =
         DeferredColor.Resource(com.backbase.android.design.R.color.bds_onDanger)
     +MenuItem(
-        DeferredText.Constant("Log out"),
+        title = DeferredText.Resource(R.string.more_menu_log_out),
         icon = DeferredDrawable.Resource(com.backbase.android.design.R.drawable.backbase_ic_logout)
     ) {
         sessionManager.logOut()
         BackToAuth
     }
     +MenuItem(
-        DeferredText.Constant("Switch user"),
+        title = DeferredText.Resource(R.string.more_menu_switch_user),
         icon = DeferredDrawable.Resource(com.backbase.android.design.R.drawable.backbase_ic_person) {
             setTint(switchUserIconColor.resolve(it))
         },
@@ -88,7 +83,7 @@ private fun logOutSection(
         sessionManager.switchUser()
         BackToAuth
     }
-    title = DeferredText.Constant("Security")
+    title = DeferredText.Resource(R.string.more_menu_security_section_title)
 }
 
 internal object BackToAuth : NavigateTo(R.id.authenticationJourney)
