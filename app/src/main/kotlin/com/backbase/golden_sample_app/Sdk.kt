@@ -140,7 +140,7 @@ object Sdk {
 
     private const val ACCESS_CONTROL_ENDPOINT = "/access-control"
     private const val ARRANGEMENT_MANAGER_ENDPOINT = "/arrangement-manager"
-    private const val CONTACT_MANAGER_ENDPOINT = "//contact-manager"
+    private const val CONTACT_MANAGER_ENDPOINT = "/contact-manager"
     private const val PAYMENT_ORDER_ENDPOINT = "/payment-order-service"
 
 }
