@@ -5,7 +5,6 @@ import androidx.core.os.bundleOf
 import androidx.core.view.forEach
 import androidx.navigation.NavController
 import com.backbase.android.retail.journey.more.MoreJourney
-import com.backbase.android.retail.journey.more.MoreMenuInstanceId
 import com.backbase.golden_sample_app.R
 import com.backbase.golden_sample_app.payments.paymentsScopeId
 import com.backbase.golden_sample_app.router.AppRouting
@@ -36,9 +35,10 @@ class BottomNavigationHandler(
         }
         navigator.bind(navController)
         bottomNavigation.setOnItemSelectedListener { item ->
-            if(item.itemId == R.id.move_money){
+            if (item.itemId == R.id.move_money) {
                 navController.navigate(
-                    item.itemId, bundleOf(
+                    item.itemId,
+                    bundleOf(
                         MoreJourney.INSTANCE_ID to paymentsScopeId
                     )
                 )
@@ -58,5 +58,4 @@ class BottomNavigationHandler(
             }
         }
     }
-
 }

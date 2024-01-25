@@ -14,8 +14,8 @@ import com.backbase.deferredresources.DeferredText
 import com.backbase.golden_sample_app.R
 import com.backbase.golden_sample_app.router.MoreMenuRouterImpl
 import com.backbase.golden_sample_app.session.SessionManager
-import com.backbase.golden_sample_app.user.UserEntitlementsRepository
 import com.backbase.golden_sample_app.user.UserEntitlements
+import com.backbase.golden_sample_app.user.UserEntitlementsRepository
 import org.koin.dsl.module
 
 /**
@@ -24,7 +24,6 @@ import org.koin.dsl.module
 internal fun moreMenuModule(
     navController: NavController
 ) = module {
-
     scope<MoreJourneyScope> {
         factory<MoreRouter> {
             MoreMenuRouterImpl(navController)

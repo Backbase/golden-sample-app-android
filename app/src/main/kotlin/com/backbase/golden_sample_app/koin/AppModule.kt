@@ -5,7 +5,6 @@ import com.backbase.android.dbs.DBSDataProvider
 import com.backbase.android.dbs.dataproviders.NetworkDBSDataProvider
 import com.backbase.golden_sample_app.router.AppRouter
 import com.backbase.golden_sample_app.router.AppRouting
-import com.backbase.golden_sample_app.session.SessionManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -20,5 +19,5 @@ internal fun appModule(context: Context) = module {
     factory { CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate) }
     single<AppRouting> { AppRouter() }
     val dbsDataProvider: DBSDataProvider = NetworkDBSDataProvider(context)
-    single { dbsDataProvider}
+    single { dbsDataProvider }
 }

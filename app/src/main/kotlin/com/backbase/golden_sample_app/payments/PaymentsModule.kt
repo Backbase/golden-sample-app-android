@@ -20,15 +20,12 @@ import com.backbase.golden_sample_app.Sdk
 import com.backbase.golden_sample_app.router.MoreMenuRouterImpl
 import org.koin.dsl.module
 
-
-
 /**
  * Created by Backbase R&D B.V. on 23/01/2024.
  */
 internal fun paymentsMenuModule(
     navController: NavController
 ) = module {
-
     scope<MoreJourneyScope> {
         factory(paymentsScopeId) {
             MoreMenuRouterImpl(navController)
@@ -44,7 +41,7 @@ internal fun paymentsMenuModule(
             a2aPaymentConfiguration()
         }
 
-        scoped<PaymentRouter> { //Required
+        scoped<PaymentRouter> { // Required
             object : PaymentRouter {
                 override fun onExit(stepNavController: NavController) {
                     navController.popBackStack()
@@ -52,7 +49,7 @@ internal fun paymentsMenuModule(
             }
         }
 
-        //Use-cases
+        // Use-cases
         scoped<PaymentAccountsUseCase> {
             ArrangementsClient2PaymentAccountsUseCase(
                 Backbase.requireInstance().getClient(ProductSummaryApi::class.java),
@@ -72,5 +69,4 @@ internal fun paymentsMenuModule(
             )
         }
     }
-
 }

@@ -14,12 +14,12 @@ class SessionManager(
     private val userEntitlementsRepository: UserEntitlementsRepository
 ) {
 
-    fun logOut(){
+    fun logOut() {
         clearSession()
         navController.navigate(R.id.authenticationJourney)
     }
 
-    fun switchUser(){
+    fun switchUser() {
         clearSession()
         authClient.reset()
         navController.navigate(R.id.authenticationJourney)
@@ -30,5 +30,4 @@ class SessionManager(
         userRepository.clearUserInfo()
         userEntitlementsRepository.entitlements = emptyList()
     }
-
 }

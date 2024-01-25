@@ -7,7 +7,6 @@ import com.backbase.android.retail.journey.contacts.ContactsUseCase
 import com.backbase.android.retail.journey.contacts.contactmanager_client_2.GenContactManagerClient2ContactsUseCase
 import org.koin.dsl.module
 
-
 fun contactsModule() = module {
     factory<ContactsUseCase> { GenContactManagerClient2ContactsUseCase(get()) }
     factory<ContactsConfiguration> { ContactsConfiguration {} }

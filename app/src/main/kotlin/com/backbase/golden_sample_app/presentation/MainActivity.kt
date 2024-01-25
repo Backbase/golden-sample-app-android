@@ -1,16 +1,13 @@
 package com.backbase.golden_sample_app.presentation
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.forEach
 import androidx.navigation.Navigation
 import com.backbase.golden_sample_app.R
 import com.backbase.golden_sample_app.databinding.ActivityMainBinding
 import com.backbase.golden_sample_app.menu.moreMenuModule
 import com.backbase.golden_sample_app.payments.paymentsMenuModule
 import com.backbase.golden_sample_app.router.AppRouting
-import com.backbase.golden_sample_app.session.SessionManager
 import com.backbase.golden_sample_app.session.sessionModule
 import org.koin.android.ext.android.inject
 import org.koin.core.context.loadKoinModules
@@ -58,5 +55,4 @@ class MainActivity : AppCompatActivity() {
             )
         )
     }
-
 }
