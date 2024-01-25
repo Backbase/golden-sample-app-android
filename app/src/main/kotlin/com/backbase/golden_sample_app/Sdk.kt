@@ -1,6 +1,5 @@
 package com.backbase.golden_sample_app
 
-import android.app.Application
 import android.content.Context
 import com.backbase.android.Backbase
 import com.backbase.android.client.contactmanagerclient2.api.ContactsApi
@@ -30,7 +29,7 @@ import java.net.URI
 object Sdk {
 
     val serverUrl: String?
-        get() = Backbase.getInstance()?.configuration?.experienceConfiguration?.serverURL
+        get() = Backbase.requireInstance().configuration.experienceConfiguration?.serverURL
 
     val clients: (Context) -> List<DBSClient> = { context ->
         val networkDBSDataProvider = NetworkDBSDataProvider(context)

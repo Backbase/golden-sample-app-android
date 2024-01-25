@@ -55,25 +55,20 @@ internal fun paymentsMenuModule(
         //Use-cases
         scoped<PaymentAccountsUseCase> {
             ArrangementsClient2PaymentAccountsUseCase(
-                Backbase.getInstance()?.getClient(ProductSummaryApi::class.java)
-                    ?: throw NullPointerException("Backbase not initialized"),
-
-                Backbase.getInstance()?.getClient(ArrangementsApi::class.java)
-                    ?: throw NullPointerException("Backbase not initialized")
+                Backbase.requireInstance().getClient(ProductSummaryApi::class.java),
+                Backbase.requireInstance().getClient(ArrangementsApi::class.java)
             )
         }
 
         scoped<PaymentUseCase> {
             PaymentOrderV2Client2PaymentServiceUseCase(
-                Backbase.getInstance()?.getClient(PaymentOrdersApi::class.java)
-                    ?: throw NullPointerException("Backbase not initialized")
+                Backbase.requireInstance().getClient(PaymentOrdersApi::class.java)
             )
         }
 
         scoped<ExternalPaymentAccountsServiceUseCase> {
             PaymentOrderA2AClient1ServiceUseCase(
-                Backbase.getInstance()?.getClient(A2aClientApi::class.java)
-                    ?: throw NullPointerException("Backbase not initialized")
+                Backbase.requireInstance().getClient(A2aClientApi::class.java)
             )
         }
     }

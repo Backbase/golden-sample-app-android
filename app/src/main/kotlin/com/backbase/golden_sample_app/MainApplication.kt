@@ -87,7 +87,7 @@ class MainApplication : Application() {
         val baseUri = URI(Sdk.serverUrl + "/api")
         Sdk.clients(this@MainApplication).forEach { client ->
             client.setBaseURI(URI("$baseUri${client.baseURI}"))
-            Backbase.getInstance()?.registerClient(client)
+            Backbase.requireInstance().registerClient(client)
         }
     }
 
