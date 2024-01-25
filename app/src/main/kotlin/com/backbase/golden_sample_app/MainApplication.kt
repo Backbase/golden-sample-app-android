@@ -113,17 +113,13 @@ class MainApplication : Application() {
                 securityModule(this@MainApplication),
                 userModule,
                 featureFilterModule,
-                appModule,
+                appModule(this@MainApplication),
                 identityAuthModule(sessionEmitter),
                 contactsModule(checkNotNull(Backbase.getInstance())),
                 workspacesModule,
                 WorkspacesJourney.create(),
                 accountsModule,
                 AccountsJourney.create(configuration = setupAccountsJourneyConfiguration()),
-                module {
-                    val dbsDataProvider: DBSDataProvider = NetworkDBSDataProvider(this@MainApplication)
-                    single { dbsDataProvider}
-                }
             )
         )
     }
