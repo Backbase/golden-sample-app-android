@@ -8,8 +8,8 @@ import com.backbase.android.retail.journey.contacts.contactmanager_client_2.GenC
 import org.koin.dsl.module
 
 
-fun contactsModule(backbase: Backbase) = module {
+fun contactsModule() = module {
     factory<ContactsUseCase> { GenContactManagerClient2ContactsUseCase(get()) }
     factory<ContactsConfiguration> { ContactsConfiguration {} }
-    single { backbase.getClient(ContactsApi::class.java) }
+    single { Backbase.requireInstance().getClient(ContactsApi::class.java) }
 }

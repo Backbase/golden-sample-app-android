@@ -115,7 +115,7 @@ class MainApplication : Application() {
                 featureFilterModule,
                 appModule(this@MainApplication),
                 identityAuthModule(sessionEmitter),
-                contactsModule(checkNotNull(Backbase.getInstance())),
+                contactsModule(),
                 workspacesModule,
                 WorkspacesJourney.create(),
                 accountsModule,
