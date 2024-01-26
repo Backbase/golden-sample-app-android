@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.backbase.cards_journey.databinding.FragmentCardsJourneyBinding
 
@@ -18,6 +19,7 @@ class CardsJourney : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentCardsJourneyBinding.inflate(inflater, container, false)
+        Toast.makeText(requireContext(), "Cards Journey", Toast.LENGTH_SHORT).show()
         return binding.root
     }
 

@@ -22,6 +22,7 @@ import com.backbase.golden_sample_app.koin.accountsModule
 import com.backbase.golden_sample_app.koin.appModule
 import com.backbase.golden_sample_app.koin.featureFilterModule
 import com.backbase.golden_sample_app.koin.identityAuthModule
+import com.backbase.golden_sample_app.koin.navigationModule
 import com.backbase.golden_sample_app.koin.securityModule
 import com.backbase.golden_sample_app.koin.userModule
 import com.backbase.golden_sample_app.koin.workspacesModule
@@ -104,6 +105,7 @@ class MainApplication : Application() {
 
         loadKoinModules(
             listOf(
+                navigationModule,
                 securityModule(this@MainApplication),
                 userModule,
                 featureFilterModule,

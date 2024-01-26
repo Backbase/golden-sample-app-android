@@ -63,4 +63,12 @@
             android:name="accountId"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/cardsJourney"
+        android:name="com.backbase.cards_journey.CardsJourney"
+        android:label="CardsJourney"
+        tools:layout="@layout/fragment_cards_journey" />
+    <action
+        android:id="@+id/action_global_cardsJourney"
+        app:destination="@id/cardsJourney" />
 </navigation>

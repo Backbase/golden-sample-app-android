@@ -13,6 +13,5 @@ dependencies {
     // Backbase libraries
     implementation(backbase.bundles.common)
     implementation(libs.bundles.navigation)
-    implementation(project(":card-journey"))
     androidTestImplementation(project("path" to ":fake-accounts-use-case"))
 }
