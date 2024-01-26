@@ -6,14 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.backbase.cards_journey"
+    namespace = "com.backbase.card_use_case"
 }
 
 dependencies {
-    // Backbase libraries
-    implementation(backbase.bundles.common)
-    implementation(libs.bundles.navigation)
-    implementation(backbase.bundles.card.client.common)
 
-    implementation(project(":card-use-case"))
+    // Backbase libraries
+    implementation(backbase.bundles.card.client.common)
 }

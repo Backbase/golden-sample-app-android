@@ -8,6 +8,9 @@ business-journey-common = "5.0.0"
 
 ## C
 clients-common-coroutines = "2.0.0"
+cards-client              = "2.0.0"
+clients-common             = "1.6.2"
+common-utils             = "7.0.0"
 
 ## D
 design-system = "5.5.0"
@@ -42,6 +45,9 @@ business-journey-common = { group = "com.backbase.android.business.journey", nam
 
 ## C
 clients-common-coroutines = { group = "com.backbase.android.clients", name = "clients-common-coroutines", version.ref = "clients-common-coroutines" }
+cards-client = { group = "com.backbase.android.clients", name = "gen-cards-client-2", version.ref = "cards-client" }
+clients-common = { group = "com.backbase.android.clients", name = "clients-common", version.ref = "clients-common" }
+common-utils = { group = "com.backbase.android.common", name = "common-utils", version.ref = "common-utils" }
 
 ## D
 design-system = { group = "com.backbase.android.design", name = "design-system", version.ref = "design-system" }
@@ -105,6 +111,13 @@ common = [
     "clients-common-coroutines",
     "retail-journey-common",
     "journey-test",
+]
+card-client-common = [
+    "cards-client",
+    "clients-common-coroutines",
+    "clients-common",
+    "common-utils",
+    "retail-journey-common",
 ]
 
 ## F

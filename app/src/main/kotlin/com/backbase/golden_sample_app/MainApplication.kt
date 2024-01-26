@@ -16,6 +16,7 @@ import com.backbase.android.listeners.ModelListener
 import com.backbase.android.model.Model
 import com.backbase.android.model.ModelSource
 import com.backbase.android.utils.net.response.Response
+import com.backbase.cards_journey.koin.cardModule
 import com.backbase.golden_sample_app.authentication.CompositeSessionListener
 import com.backbase.golden_sample_app.common.TAG
 import com.backbase.golden_sample_app.koin.accountsModule
@@ -115,6 +116,7 @@ class MainApplication : Application() {
                 WorkspacesJourney.create(),
                 accountsModule,
                 AccountsJourney.create(configuration = setupAccountsJourneyConfiguration()),
+                cardModule(this@MainApplication),
             )
         )
     }
