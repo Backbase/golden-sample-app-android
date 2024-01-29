@@ -14,6 +14,5 @@ dependencies {
     implementation(backbase.bundles.common)
     implementation(libs.bundles.navigation)
     implementation(backbase.bundles.card.client.common)
-
     implementation(project(":card-use-case"))
 }

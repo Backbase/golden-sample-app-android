@@ -5,5 +5,4 @@ import com.backbase.android.clients.common.Call
 
 interface CustomCardClient {
     fun getCards(): Call<List<CardItem>>
-
 }

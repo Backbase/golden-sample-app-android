@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/cardListFragment"
-        android:name="com.backbase.cards_journey.ui.CardListFragment"
+        android:name="com.backbase.cards_journey.ui.list.CardListFragment"
         android:label="fragment_card_list"
         tools:layout="@layout/fragment_card_list" />
 </navigation>
