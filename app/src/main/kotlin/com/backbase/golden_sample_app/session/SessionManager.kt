@@ -16,13 +16,13 @@ class SessionManager(
 
     fun logOut() {
         clearSession()
-        navController.navigate(R.id.authenticationJourney)
+        navController.clearBackStack(R.id.authenticationJourney)
     }
 
     fun switchUser() {
         clearSession()
         authClient.reset()
-        navController.navigate(R.id.authenticationJourney)
+        navController.clearBackStack(R.id.authenticationJourney)
     }
 
     private fun clearSession() {

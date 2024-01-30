@@ -30,15 +30,6 @@ fun paymentsMenuConfig(
         if (userEntitlementsRepository.entitlements.contains(UserEntitlements.Payments.A2A.create)) {
             +makeATransferSection()
         }
-        if (userEntitlementsRepository.entitlements.contains(UserEntitlements.Payments.DomesticWire.create)) {
-            +sendMoneySection()
-        }
-        if (userEntitlementsRepository.entitlements.contains(UserEntitlements.Payments.A2A.view)) {
-            +activitySection()
-        }
-        if (userEntitlementsRepository.entitlements.contains(UserEntitlements.BillPay.create)) {
-            +billPaySection()
-        }
     }
 }
 
@@ -54,40 +45,6 @@ private fun makeATransferSection() = MenuSection {
                 PaymentJourney.PAYMENT_JOURNEY_TYPE to PaymentJourneyType.A2A
             )
         )
-    }
-}
-
-private fun sendMoneySection() = MenuSection {
-    +MenuItem(
-        DeferredText.Resource(R.string.move_money_send_to_someone),
-        subtitle = DeferredText.Resource(R.string.move_money_send_to_someone_description),
-        icon = DeferredDrawable.Resource(com.backbase.android.design.R.drawable.backbase_ic_person)
-    ) {
-        OnActionComplete.NavigateTo(
-            R.id.move_money_to_payments_journey,
-            bundleOf(
-                PaymentJourney.PAYMENT_JOURNEY_TYPE to PaymentJourneyType.P2P
-            )
-        )
-    }
-}
-
-private fun activitySection() = MenuSection {
-    +MenuItem(
-        DeferredText.Resource(R.string.move_money_activity),
-        subtitle = DeferredText.Resource(R.string.move_money_activity_description),
-        icon = DeferredDrawable.Resource(com.backbase.android.design.R.drawable.backbase_ic_update)
-    ) {
-        OnActionComplete.NavigateTo(R.id.move_money_to_upcoming_payments)
-    }
-}
-
-private fun billPaySection() = MenuSection {
-    +MenuItem(
-        DeferredText.Resource(R.string.move_money_bill_pay),
-        icon = DeferredDrawable.Resource(com.backbase.android.design.R.drawable.backbase_ic_attach_money)
-    ) {
-        OnActionComplete.NavigateTo(R.id.move_money_to_bill_pay_sso)
     }
 }
 

@@ -37,9 +37,7 @@ internal fun paymentsMenuModule(
     scope<PaymentJourneyScope> {
         scoped { Sdk.moshi }
         scoped { Sdk.responseBodyParser }
-        scoped {
-            a2aPaymentConfiguration()
-        }
+        scoped { a2aPaymentConfiguration() }
 
         scoped<PaymentRouter> { // Required
             object : PaymentRouter {

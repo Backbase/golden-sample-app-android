@@ -6,6 +6,7 @@ import com.backbase.android.business.journey.common.user.UserRepository
 import com.backbase.android.client.gen2.accesscontrolclient3.api.UserContextApi
 import com.backbase.android.client.gen2.accesscontrolclient3.api.UsersApi
 import com.backbase.golden_sample_app.user.UserEntitlementsRepository
+import com.backbase.golden_sample_app.user.UserEntitlementsRepositoryImpl
 import com.backbase.golden_sample_app.user.UserRepositoryImpl
 import org.koin.dsl.module
 
@@ -19,7 +20,7 @@ internal val userModule = module {
     single { Backbase.requireInstance().getClient(UsersApi::class.java) }
 
     single { User() }
-    single { UserEntitlementsRepository() }
+    single<UserEntitlementsRepository> { UserEntitlementsRepositoryImpl() }
 
     factory<UserRepository> {
         UserRepositoryImpl(
