@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.backbase.android.retail.journey.koin.KoinScopeViewModel
 import com.backbase.android.retail.journey.koin.scoped
 import com.backbase.android.retail.journey.koin.scopedViewModel
+import com.backbase.cards_journey.ui.details.CardDetailsViewModel
 import com.backbase.cards_journey.ui.list.CardListViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.loadKoinModules
@@ -43,9 +44,12 @@ class CardsJourneyScopeImpl :
     fun launchWithArguments() {
         if (scopeModule == null) {
             scopeModule = ScopedModule<CardsJourneyScope> {
-                /*viewModel {
+                viewModel {
                     CardListViewModel(get())
-                }*/
+                }
+                viewModel { (id: String) ->
+                    CardDetailsViewModel(cardId = id, get())
+                }
             }.apply {
                 loadKoinModules(this)
             }

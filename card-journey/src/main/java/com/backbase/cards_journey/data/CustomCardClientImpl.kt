@@ -35,4 +35,19 @@ class CustomCardClientImpl(
         }
     }
 
+    override fun getCardDetails(id: String): Call<CardItem> {
+        return buildGetRequest(
+            serverUri,
+            Constants.GET_CARD_DETAILS_END_POINT + id,
+            Params(),
+            provider
+        ).let {
+            Call(
+                it,
+                provider, parser,
+                CardItem::class.java
+            )
+        }
+    }
+
 }

@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".ui.list.CardListFragment">
 
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@null"
+        android:layoutDirection="locale"
+        app:contentInsetStartWithNavigation="0dp"
+        app:layout_collapseMode="pin"
+        app:navigationIcon="@drawable/ic_back"
+        app:title="@string/cards" />
+
     <ProgressBar
         android:id="@+id/loading"
         android:layout_width="wrap_content"
@@ -16,11 +27,16 @@
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
- <!--   <ImageView
+
+    <TextView
+        android:id="@+id/error"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        cen
-        android:src="@drawable/backbase_ic_error"
-        app:tint="@android:color/holo_red_light" />-->
+        android:layout_gravity="center"
+        android:text="@string/error_occurred"
+        android:textColor="@android:color/black"
+        android:visibility="gone"
+        app:drawableTint="@android:color/holo_red_dark"
+        app:drawableTopCompat="@drawable/backbase_ic_error" />
 
 </FrameLayout>

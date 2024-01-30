@@ -9,5 +9,18 @@
         android:id="@+id/cardListFragment"
         android:name="com.backbase.cards_journey.ui.list.CardListFragment"
         android:label="fragment_card_list"
-        tools:layout="@layout/fragment_card_list" />
+        tools:layout="@layout/fragment_card_list">
+        <action
+            android:id="@+id/action_cardListFragment_to_cardDetailsFragment"
+            app:destination="@id/cardDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cardDetailsFragment"
+        android:name="com.backbase.cards_journey.ui.details.CardDetailsFragment"
+        android:label="CardDetailsFragment"
+        tools:layout="@layout/fragment_card_details" >
+        <argument
+            android:name="cardId"
+            app:argType="string" />
+    </fragment>
 </navigation>

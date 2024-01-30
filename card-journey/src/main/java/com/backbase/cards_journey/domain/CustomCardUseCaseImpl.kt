@@ -33,4 +33,28 @@ class CustomCardUseCaseImpl(private val customCardClient: CustomCardClient) : Cu
         }
     }
 
+    override suspend fun getCardDetails(id: String): Result<CardItem> {
+        return withContext(Dispatchers.IO) {
+            when (val callResult =
+                customCardClient.getCardDetails(id).executeAsSuspended()) {
+                is CallResult.Success -> {
+                    Result.success(callResult.data)
+                }
+
+                is CallResult.Error -> {
+                    Result.failure(
+                        Throwable(
+                            message = callResult.errorResponse.errorMessage,
+                            cause = Throwable(callResult.errorResponse.causeTrace),
+                        )
+                    )
+                }
+
+                else -> {
+                    Result.failure(Throwable())
+                }
+            }
+        }
+    }
+
 }

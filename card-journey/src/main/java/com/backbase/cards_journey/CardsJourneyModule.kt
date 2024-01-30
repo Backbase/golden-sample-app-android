@@ -6,8 +6,5 @@ import org.koin.dsl.module
 
 val cardsJourneyModule = module {
     scope<CardsJourneyScope> {
-        viewModel {
-            CardListViewModel(get())
-        }
     }
 }

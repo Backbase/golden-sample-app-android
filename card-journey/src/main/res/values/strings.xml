@@ -1,4 +1,9 @@
 <resources>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="error_occurred">Error occurred</string>
+    <string name="sub_type">Sub Type</string>
+    <string name="currency">Currency</string>
+    <string name="online_limit">Online limit</string>
+    <string name="atm_limit">Atm limit</string>
+    <string name="details">Details</string>
+    <string name="cards">Cards</string>
 </resources>

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import com.backbase.android.client.cardsclient2.model.CardItem
 import com.backbase.cards_journey.databinding.InflateCardBinding
 
-class CardListAdapter :
+class CardListAdapter(val onclick: (CardItem) -> Unit) :
     ListAdapter<CardItem, CardViewHolder>(BillsDiffCallBack()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
@@ -19,7 +19,7 @@ class CardListAdapter :
     }
 
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), onclick)
     }
 
     private class BillsDiffCallBack : DiffUtil.ItemCallback<CardItem>() {

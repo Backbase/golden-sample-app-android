@@ -19,6 +19,7 @@ class CardListViewModel(val usecase: CustomCardUseCase) :
     }
 
     private fun getCardList() {
+        if (state.value.cards != null) return
         setState {
             copy(isLoading = true)
         }

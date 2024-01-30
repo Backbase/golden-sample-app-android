@@ -9,8 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
-import com.backbase.android.core.utils.BBLogger
+import com.backbase.android.client.cardsclient2.model.CardItem
 import com.backbase.cards_journey.R
 import com.backbase.cards_journey.databinding.FragmentCardListBinding
 import com.backbase.cards_journey.journeyScopedViewModel
@@ -27,6 +28,7 @@ class CardListFragment : Fragment() {
 
     init {
         collectState()
+        collectEffect()
     }
 
     override fun onCreateView(
@@ -41,13 +43,21 @@ class CardListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.sendEvent(CardListScreenEvent.GetCardList)
 
-        cardsAdapter = CardListAdapter()
+        cardsAdapter = CardListAdapter(::onclick)
         binding.pager.apply {
             orientation = ViewPager2.ORIENTATION_HORIZONTAL
             offscreenPageLimit = 2
 //            adjustViewPager(this)
             adapter = cardsAdapter
         }
+        binding.toolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
+    }
+
+    private fun onclick(card: CardItem) {
+        findNavController()
+            .navigate(CardListFragmentDirections.actionCardListFragmentToCardDetailsFragment(card.id))
     }
 
     private fun collectState() {
@@ -56,10 +66,21 @@ class CardListFragment : Fragment() {
                 viewModel.state.collect { state ->
                     binding.loading.isVisible = state.isLoading
                     if (state.cards != null) {
+                        binding.error.isVisible = false
                         cardsAdapter.submitList(state.cards)
                     }
-                    BBLogger.debug("DDDD", state.isLoading.toString())
-                    BBLogger.debug("DDDD", state.cards.toString())
+                }
+            }
+        }
+    }
+
+    private fun collectEffect() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.effect.collect { effect ->
+                    when (effect) {
+                        CardListScreenEffect.HandleErrorResponse -> binding.error.isVisible = true
+                    }
                 }
             }
         }
