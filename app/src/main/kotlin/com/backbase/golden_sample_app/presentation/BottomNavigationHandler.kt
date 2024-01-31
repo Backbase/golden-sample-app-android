@@ -55,6 +55,7 @@ class BottomNavigationHandler(
         bottomNavigation.menu.forEach { item ->
             if (item.itemId == destinationId) {
                 item.isChecked = true
+                return
             }
         }
     }
