@@ -10,7 +10,7 @@ business-journey-common = "5.0.0"
 clients-common-coroutines = "2.0.0"
 
 ## D
-design-system = "5.5.0"
+design-system = "5.7.0"
 
 ## F
 feature-filter-use-case = "4.0.0"

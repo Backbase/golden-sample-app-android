@@ -2,6 +2,8 @@ package com.backbase.golden_sample_app.koin
 
 import android.content.Context
 import com.backbase.android.dbs.dataproviders.NetworkDBSDataProvider
+import com.backbase.golden_sample_app.presentation.header.TabListConfigurationProvider
+import com.backbase.golden_sample_app.presentation.header.TopBarConfigurationProvider
 import com.backbase.golden_sample_app.router.AppRouter
 import com.backbase.golden_sample_app.router.AppRouting
 import kotlinx.coroutines.CoroutineScope
@@ -16,6 +18,10 @@ import org.koin.dsl.module
  */
 internal fun appModule(context: Context) = module {
     factory { CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate) }
-    single<AppRouting> { AppRouter() }
     single { NetworkDBSDataProvider(context) }
+    // Navigation dependencies
+    single<AppRouting> { AppRouter(tabListConfig = get(), topBarConfig = get()) }
+    // Presentation dependencies
+    factory { TabListConfigurationProvider(context = context) }
+    factory { TopBarConfigurationProvider(storageComponent = get(), userRepository = get()) }
 }

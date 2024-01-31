@@ -17,8 +17,10 @@ internal class AuthenticationRouterImpl(
 ) : AuthenticationRouter {
 
     override fun onAuthenticated() {
-        val username = credentialsStorage.getItem("Authentication Journey username") ?: ""
+        val username = credentialsStorage.getUsernameOrBlank()
         userRepository.saveUsername(username.toCharArray())
         appNavigator.getNavController()?.navigate(R.id.action_authenticationJourneyFragment_to_workspaceSelector)
     }
 }
+
+fun StorageComponent.getUsernameOrBlank() = getItem("Authentication Journey username") ?: ""
