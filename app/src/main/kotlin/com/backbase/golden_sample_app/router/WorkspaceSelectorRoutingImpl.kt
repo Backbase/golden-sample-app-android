@@ -8,6 +8,7 @@ import com.backbase.android.business.journey.workspaces.navigation.WorkspaceSele
 import com.backbase.android.core.utils.BBLogger
 import com.backbase.golden_sample_app.R
 import com.backbase.golden_sample_app.common.TAG
+import com.backbase.golden_sample_app.user.UserEntitlementsRepository
 
 /**
  * Workspace selector router implementation
@@ -17,6 +18,7 @@ import com.backbase.golden_sample_app.common.TAG
 class WorkspaceSelectorRoutingImpl(
     private val appRouter: AppRouting,
     private var user: User,
+    private val userEntitlementsRepository: UserEntitlementsRepository
 ) : WorkspaceSelectorRouting {
 
     private val navController by lazy { appRouter.getNavController() }
@@ -36,6 +38,7 @@ class WorkspaceSelectorRoutingImpl(
 
     override fun onWorkspaceSelectedV2(workspaceInfo: WorkspaceInfo): Int {
         user.userContext = workspaceInfo.workspace.name
+        userEntitlementsRepository.entitlements = workspaceInfo.entitlements ?: emptyList()
         return R.id.accountListFragment
     }
 }
