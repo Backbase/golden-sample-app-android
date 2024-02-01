@@ -15,6 +15,9 @@ import com.backbase.android.identity.journey.authentication.stopAuthenticationJo
 import com.backbase.android.listeners.ModelListener
 import com.backbase.android.model.Model
 import com.backbase.android.model.ModelSource
+import com.backbase.android.observability.Tracker
+import com.backbase.android.observability.TrackerProvider
+import com.backbase.android.observability.event.ScreenViewEvent
 import com.backbase.android.utils.net.response.Response
 import com.backbase.golden_sample_app.authentication.CompositeSessionListener
 import com.backbase.golden_sample_app.common.TAG
@@ -26,9 +29,13 @@ import com.backbase.golden_sample_app.koin.identityAuthModule
 import com.backbase.golden_sample_app.koin.securityModule
 import com.backbase.golden_sample_app.koin.userModule
 import com.backbase.golden_sample_app.koin.workspacesModule
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
+import org.koin.dsl.module
 import java.net.URI
 
 /**
@@ -39,6 +46,11 @@ import java.net.URI
 class MainApplication : Application() {
 
     private val sessionEmitter = CompositeSessionListener()
+
+    private val tracker: Tracker = TrackerProvider.create()
+
+    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+
     private val authClient: BBIdentityAuthClient by lazy {
         BBIdentityAuthClient(this, "").apply {
             addAuthenticator(BBDeviceAuthenticator())
@@ -56,6 +68,7 @@ class MainApplication : Application() {
         setupAuthClient()
         setupDependencies()
         initAuthenticationJourney()
+        setupAnalytics()
     }
 
     private fun initializeBackbase(
@@ -102,7 +115,6 @@ class MainApplication : Application() {
 
     private fun setupDependencies() = startKoin {
         androidContext(this@MainApplication)
-
         loadKoinModules(
             listOf(
                 securityModule(this@MainApplication),
@@ -115,8 +127,21 @@ class MainApplication : Application() {
                 WorkspacesJourney.create(),
                 accountsModule,
                 AccountsJourney.create(configuration = setupAccountsJourneyConfiguration()),
+                module { single { tracker } }
             )
         )
+    }
+
+    private fun setupAnalytics() {
+        tracker.subscribe(this, ScreenViewEvent::class, scope) { event ->
+            // In this code block we can start receiving events from the analytics framework.
+            // After that, you can start forwarding it to the Analytics tools of your choice.
+
+            // Samples (Actual method call could be different, please refer to the actual Analytics tools documentation)
+            // Firebase.logEvent(${event.name})
+            // Adjust.screen(${event.name})
+            // Log.d("Tracker", "Tracked screen view: ${event.name}")
+        }
     }
 
     override fun onTerminate() {

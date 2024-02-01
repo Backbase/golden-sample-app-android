@@ -12,6 +12,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.backbase.accounts_journey.databinding.FragmentAccountDetailBinding
+import com.backbase.accounts_journey.presentation.accountDetailsScreenViewEvent
+import com.backbase.accounts_journey.presentation.publishScreenViewEvent
+import com.backbase.android.observability.Tracker
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.koin.android.ext.android.inject
@@ -27,6 +30,8 @@ class AccountDetailFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: AccountDetailViewModel by inject()
+
+    private val tracker: Tracker by inject()
 
     private val args: AccountDetailFragmentArgs by navArgs()
 
@@ -110,5 +115,10 @@ class AccountDetailFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onStart() {
+        super.onStart()
+        publishScreenViewEvent(tracker, accountDetailsScreenViewEvent)
     }
 }
