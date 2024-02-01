@@ -27,7 +27,7 @@ android {
 
     signingConfigs {
         getByName("debug") {
-            storeFile = file("/Users/subhash/AndroidStudioProjects/golden-sample-app-android/keystore/debug.keystore")
+            storeFile = file("../keystore/debug.keystore")
         }
     }
 
