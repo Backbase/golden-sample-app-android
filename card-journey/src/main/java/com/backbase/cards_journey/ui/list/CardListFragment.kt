@@ -12,15 +12,18 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.backbase.android.client.cardsclient2.model.CardItem
+import com.backbase.cards_journey.CardExitNavigationAction
 import com.backbase.cards_journey.R
 import com.backbase.cards_journey.databinding.FragmentCardListBinding
 import com.backbase.cards_journey.journeyScopedViewModel
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 
 
 class CardListFragment : Fragment() {
 
     private val viewModel by journeyScopedViewModel<CardListViewModel>()
+    private val rounter by inject<CardExitNavigationAction>()
 
     private var _binding: FragmentCardListBinding? = null
     private val binding get() = _binding!!
@@ -51,7 +54,7 @@ class CardListFragment : Fragment() {
             adapter = cardsAdapter
         }
         binding.toolbar.setNavigationOnClickListener {
-            findNavController().navigateUp()
+            rounter.exit()
         }
     }
 
