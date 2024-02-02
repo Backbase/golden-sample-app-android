@@ -43,13 +43,12 @@ class CardListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.sendEvent(com.backbase.cards_journey.impl.ui.list.CardListScreenEvent.GetCardList)
+        viewModel.sendEvent(CardListScreenEvent.GetCardList)
 
         cardsAdapter = CardListAdapter(::onclick)
         binding.pager.apply {
             orientation = ViewPager2.ORIENTATION_HORIZONTAL
             offscreenPageLimit = 2
-//            adjustViewPager(this)
             adapter = cardsAdapter
         }
         binding.toolbar.setNavigationOnClickListener {
