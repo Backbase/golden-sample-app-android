@@ -6,7 +6,7 @@ import com.backbase.card_use_case.domain.CustomCardUseCase
 import com.backbase.cards_journey.mvi.BaseViewModel
 import kotlinx.coroutines.launch
 
-class CardListViewModel(val usecase: CustomCardUseCase) :
+class CardListViewModel(val useCase: CustomCardUseCase) :
     BaseViewModel<CardListScreenViewState, CardListScreenEffect, CardListScreenEvent>() {
     override fun handleEvent(event: CardListScreenEvent) {
         when (event) {
@@ -25,7 +25,7 @@ class CardListViewModel(val usecase: CustomCardUseCase) :
         }
 
         viewModelScope.launch {
-            usecase.getCards().fold(
+            useCase.getCards().fold(
                 onSuccess = { result ->
                     setState {
                         copy(
