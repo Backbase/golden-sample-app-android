@@ -1,4 +1,4 @@
-package com.backbase.cards_journey.impl.mvi
+package com.backbase.core_ui.mvi.mvi
 
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
-abstract class BaseViewModel<State : com.backbase.cards_journey.impl.mvi.UiState, Effect : com.backbase.cards_journey.impl.mvi.UiEffect, Event : UiEvent> : ViewModel() {
+abstract class BaseViewModel<State : UiState, Effect : UiEffect, Event : UiEvent> : ViewModel() {
 
     protected val currentState: State
         get() = _state.value

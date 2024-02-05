@@ -1,5 +1,5 @@
 package com.backbase.cards_journey.impl
 
-interface CardExitNavigationAction {
+interface CardsRouter {
     fun exit()
 }

@@ -14,7 +14,7 @@ import com.backbase.accounts_journey.R
 import com.backbase.accounts_journey.configuration.AccountsJourneyConfiguration
 import com.backbase.accounts_journey.configuration.accountlist.AccountListScreenConfiguration
 import com.backbase.accounts_journey.databinding.FragmentAccountListBinding
-import com.backbase.accounts_journey.router.CardNavigationAction
+import com.backbase.accounts_journey.router.AccountsRouter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.koin.android.ext.android.inject
@@ -40,7 +40,7 @@ class AccountListFragment : Fragment() {
     private val accountListAdapter: AccountListAdapter = AccountListAdapter(
         onClick = { itemClicked(it) }
     )
-    private val cardNavigationAction: CardNavigationAction by inject()
+    private val cardNavigationAction: AccountsRouter by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -78,7 +78,7 @@ class AccountListFragment : Fragment() {
 
         //Remove this button and its action later
         binding.btnCards.setOnClickListener {
-            cardNavigationAction.navigateToCards(findNavController())
+            cardNavigationAction.exit(findNavController())
         }
     }
 

@@ -1,9 +1,9 @@
 package com.backbase.cards_journey.impl.ui.details
 
 import com.backbase.android.client.cardsclient2.model.CardItem
-import com.backbase.cards_journey.impl.mvi.UiEffect
-import com.backbase.cards_journey.impl.mvi.UiEvent
-import com.backbase.cards_journey.impl.mvi.UiState
+import com.backbase.core_ui.mvi.mvi.UiEffect
+import com.backbase.core_ui.mvi.mvi.UiEvent
+import com.backbase.core_ui.mvi.mvi.UiState
 
 
 data class CardDetailsScreenViewState(

@@ -2,7 +2,7 @@ package com.backbase.cards_journey.impl.ui.list
 
 import androidx.lifecycle.viewModelScope
 import com.backbase.api.domain.CustomCardUseCase
-import com.backbase.cards_journey.impl.mvi.BaseViewModel
+import com.backbase.core_ui.mvi.mvi.BaseViewModel
 import kotlinx.coroutines.launch
 
 class CardListViewModel(private val useCase: CustomCardUseCase) :

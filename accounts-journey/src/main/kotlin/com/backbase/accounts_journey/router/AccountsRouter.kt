@@ -2,7 +2,7 @@ package com.backbase.accounts_journey.router
 
 import androidx.navigation.NavController
 
-interface CardNavigationAction {
+interface AccountsRouter {
 
-    fun navigateToCards(navController: NavController)
+    fun exit(navController: NavController)
 }

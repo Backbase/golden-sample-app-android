@@ -15,4 +15,5 @@ dependencies {
     implementation(libs.bundles.navigation)
     implementation(backbase.bundles.card.client.common)
     implementation(project(":card-journey:api"))
+    implementation(project(":core-ui"))
 }
