@@ -18,6 +18,7 @@ import com.backbase.android.model.ModelSource
 import com.backbase.android.observability.Tracker
 import com.backbase.android.observability.TrackerProvider
 import com.backbase.android.observability.event.ScreenViewEvent
+import com.backbase.android.observability.event.UserActionEvent
 import com.backbase.android.utils.net.NetworkConnectorBuilder
 import com.backbase.android.utils.net.response.Response
 import com.backbase.golden_sample_app.authentication.CompositeSessionListener
@@ -156,11 +157,15 @@ class MainApplication : Application() {
         tracker.subscribe(this, ScreenViewEvent::class, scope) { event ->
             // In this code block we can start receiving events from the analytics framework.
             // After that, you can start forwarding it to the Analytics tools of your choice.
+            // Here we receive the Screen View Events.
 
             // Samples (Actual method call could be different, please refer to the actual Analytics tools documentation)
             // Firebase.logEvent(${event.name})
             // Adjust.screen(${event.name})
             // Log.d("Tracker", "Tracked screen view: ${event.name}")
+        }
+        tracker.subscribe(this, UserActionEvent::class, scope) { event ->
+            // Same can be done with the User Action Events.
         }
     }
 
