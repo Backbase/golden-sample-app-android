@@ -48,7 +48,6 @@ android {
                 "META-INF/ASL2.0",
                 "META-INF/licenses/ASM",
                 "META-INF/*.kotlin_module",
-                "**/kotlin/**",
                 "**/*.txt",
                 "**/*.xml",
                 "**/*.md",
