@@ -16,7 +16,6 @@ import com.backbase.android.listeners.ModelListener
 import com.backbase.android.model.Model
 import com.backbase.android.model.ModelSource
 import com.backbase.android.observability.Tracker
-import com.backbase.android.observability.TrackerProvider
 import com.backbase.android.observability.event.ScreenViewEvent
 import com.backbase.android.observability.event.UserActionEvent
 import com.backbase.android.utils.net.NetworkConnectorBuilder
@@ -31,14 +30,15 @@ import com.backbase.golden_sample_app.koin.identityAuthModule
 import com.backbase.golden_sample_app.koin.securityModule
 import com.backbase.golden_sample_app.koin.userModule
 import com.backbase.golden_sample_app.koin.workspacesModule
+import com.backbase.golden_sample_app.observability.observabilityModule
 import com.google.gson.internal.LinkedTreeMap
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
-import org.koin.dsl.module
 import java.net.URI
 
 /**
@@ -50,9 +50,9 @@ class MainApplication : Application() {
 
     private val sessionEmitter = CompositeSessionListener()
 
-    private val tracker: Tracker = TrackerProvider.create()
+    private val tracker: Tracker by inject()
 
-    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
 
     private val authClient: BBIdentityAuthClient by lazy {
         BBIdentityAuthClient(this, "").apply {
@@ -148,7 +148,7 @@ class MainApplication : Application() {
                 WorkspacesJourney.create(),
                 accountsModule,
                 AccountsJourney.create(configuration = setupAccountsJourneyConfiguration()),
-                module { single { tracker } }
+                observabilityModule,
             )
         )
     }
