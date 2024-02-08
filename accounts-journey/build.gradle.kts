@@ -7,6 +7,10 @@ plugins {
 
 android {
     namespace = "com.backbase.accounts_journey"
+
+    testOptions {
+        animationsDisabled = true
+    }
 }
 
 dependencies {

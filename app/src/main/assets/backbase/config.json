@@ -3,15 +3,15 @@
     "debugEnable": true
   },
   "backbase": {
-    "serverURL": "https://app.dev.sdbxaz.azure.backbaseservices.com",
+    "serverURL": "https://app.bus-stg.reference.azure.backbaseservices.com",
     "localModelPath": "$(contextRoot)/model.json",
     "experience": "",
     "version": "6.1.5",
     "identity": {
-      "baseURL": "https://identity.dev.sdbxaz.azure.backbaseservices.com",
+      "baseURL": "https://identity.bus-stg.reference.azure.backbaseservices.com",
       "realm": "customer",
       "clientId": "mobile-client",
-      "applicationKey": "retail"
+      "applicationKey": "business"
     }
   },
   "security": {
@@ -21,7 +21,7 @@
   },
   "custom": {
     "default-http-headers": {
-      "X-SDBXAZ-API-KEY": "ADD YOUR API KEY HERE"
+      "X-REFERENCE-BAAS": "reference-bus-stg-f4c23d77-c00e-df81-9a4d-97fc61830923"
     }
   },
   "bankTimeZone": "Europe/Amsterdam"

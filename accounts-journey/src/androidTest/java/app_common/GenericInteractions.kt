@@ -1,6 +1,7 @@
 package app_common
 
 import androidx.test.espresso.ViewInteraction
+import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
 import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
@@ -32,3 +33,6 @@ fun ViewInteraction.shouldBeEnabled(): ViewInteraction = check(matches(isEnabled
 
 fun ViewInteraction.typeTextInInput(text: String): ViewInteraction =
     perform(typeText(text)).perform(closeSoftKeyboard())
+
+fun ViewInteraction.tapOnView(): ViewInteraction =
+    perform(click())
