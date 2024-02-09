@@ -28,6 +28,7 @@ import com.backbase.golden_sample_app.koin.appModule
 import com.backbase.golden_sample_app.koin.contactsModule
 import com.backbase.golden_sample_app.koin.featureFilterModule
 import com.backbase.golden_sample_app.koin.identityAuthModule
+import com.backbase.golden_sample_app.koin.presentationModule
 import com.backbase.golden_sample_app.koin.securityModule
 import com.backbase.golden_sample_app.koin.userModule
 import com.backbase.golden_sample_app.koin.workspacesModule
@@ -139,9 +140,10 @@ class MainApplication : Application() {
         loadKoinModules(
             listOf(
                 securityModule(this@MainApplication),
-                userModule,
+                userModule(context = this@MainApplication),
                 featureFilterModule,
                 appModule(this@MainApplication),
+                presentationModule(context = this@MainApplication),
                 identityAuthModule(sessionEmitter),
                 contactsModule(),
                 workspacesModule,

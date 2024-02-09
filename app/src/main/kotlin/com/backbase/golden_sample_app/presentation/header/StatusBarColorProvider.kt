@@ -9,8 +9,10 @@ import kotlinx.coroutines.flow.Flow
 
 fun AppCompatActivity.updateStatusBarColor(isInRootScreen: Flow<Boolean>) = repeatOnStarted {
     isInRootScreen.collect { isInRootScreen ->
+        val context = this@updateStatusBarColor
+
         window.statusBarColor = MaterialColors
-            .getColorOrNull(this@updateStatusBarColor, if (isInRootScreen) R.attr.colorPrimary else R.attr.colorFoundation)
+            .getColorOrNull(context, if (isInRootScreen) R.attr.tabHeaderStatusBarColor else R.attr.colorFoundation)
             ?: run {
                 BBLogger.warning("", "Cannot update status bar color, please check that your theme is extending from Theme.Backbase.")
                 return@collect

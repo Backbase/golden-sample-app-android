@@ -3,9 +3,14 @@ package com.backbase.golden_sample_app.presentation
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Lifecycle.State.STARTED
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import com.backbase.android.design.header.AvatarConfiguration
 import com.backbase.android.design.header.TabHeaderViewModel
+import com.backbase.android.design.header.TopBarConfiguration
 import com.backbase.golden_sample_app.R
 import com.backbase.golden_sample_app.databinding.ActivityMainBinding
 import com.backbase.golden_sample_app.menu.moreMenuModule
@@ -15,6 +20,7 @@ import com.backbase.golden_sample_app.presentation.header.updateStatusBarColor
 import com.backbase.golden_sample_app.router.AppRouting
 import com.backbase.golden_sample_app.session.sessionModule
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.core.context.loadKoinModules
 
@@ -28,6 +34,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
 
     private val navigator: AppRouting by inject()
+
+    private val mainViewModel: MainViewModel by inject()
     private val tabHeaderViewModel: TabHeaderViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +50,14 @@ class MainActivity : AppCompatActivity() {
         setupBottomBar(isInRootScreen = tabHeaderViewModel.uiState.map { it.isInRootScreen })
 
         if (savedInstanceState == null) { loadScopedDependencies() }
+
+        lifecycleScope.launch { repeatOnLifecycle(STARTED) { mainViewModel.uiState.collect(::update) } }
+    }
+
+    private fun update(uiState: MainViewModel.UiState) = tabHeaderViewModel update TopBarConfiguration {
+        title = uiState.fullName
+        subtitle = uiState.serviceAgreementName
+        avatar = AvatarConfiguration { initials = uiState.userInitials }
     }
 
     private fun loadScopedDependencies() {

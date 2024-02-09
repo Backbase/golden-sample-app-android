@@ -3,7 +3,6 @@ package com.backbase.golden_sample_app.router
 import androidx.navigation.NavController
 import com.backbase.golden_sample_app.presentation.header.TabListConfigurationProvider
 import com.backbase.golden_sample_app.presentation.bottom.addBottomBarNavigationDestinations
-import com.backbase.golden_sample_app.presentation.header.TopBarConfigurationProvider
 
 /**
  * App routing implementation
@@ -12,12 +11,12 @@ import com.backbase.golden_sample_app.presentation.header.TopBarConfigurationPro
  */
 class AppRouter(
     private val tabListConfig: TabListConfigurationProvider,
-    private val topBarConfig: TopBarConfigurationProvider,
 ) : AppRouting {
 
     private var navController: NavController? = null
         set(value) {
-            value?.addBottomBarNavigationDestinations(tabListConfig, topBarConfig)
+            // Workaround because WorkspaceSelectorRouting doesn't allow to navigate  between destinations with arguments.
+            value?.addBottomBarNavigationDestinations(tabListConfig)
             field = value
         }
 
