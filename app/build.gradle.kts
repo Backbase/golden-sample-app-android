@@ -73,6 +73,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":analytics"))
     implementation(project(":accounts-journey"))
     implementation(project(":accounts-use-case"))
 

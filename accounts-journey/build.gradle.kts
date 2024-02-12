@@ -10,6 +10,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":analytics"))
+
     // Backbase libraries
     implementation(backbase.observability)
     implementation(backbase.bundles.common)

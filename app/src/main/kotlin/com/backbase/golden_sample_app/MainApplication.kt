@@ -4,6 +4,7 @@ import android.app.Application
 import com.backbase.accounts_journey.AccountsJourney
 import com.backbase.accounts_journey.configuration.AccountsJourneyConfiguration
 import com.backbase.accounts_journey.configuration.accountlist.AccountListScreenConfiguration
+import com.backbase.analytics.observabilityModule
 import com.backbase.android.Backbase
 import com.backbase.android.business.journey.workspaces.WorkspacesJourney
 import com.backbase.android.core.utils.BBLogger
@@ -30,7 +31,6 @@ import com.backbase.golden_sample_app.koin.identityAuthModule
 import com.backbase.golden_sample_app.koin.securityModule
 import com.backbase.golden_sample_app.koin.userModule
 import com.backbase.golden_sample_app.koin.workspacesModule
-import com.backbase.golden_sample_app.observability.observabilityModule
 import com.google.gson.internal.LinkedTreeMap
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

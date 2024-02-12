@@ -1,4 +1,4 @@
-package com.backbase.golden_sample_app.observability
+package com.backbase.analytics
 
 import com.backbase.android.observability.TrackerProvider
 import org.koin.dsl.module

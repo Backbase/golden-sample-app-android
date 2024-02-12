@@ -13,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.backbase.accounts_journey.databinding.FragmentAccountDetailBinding
 import com.backbase.accounts_journey.presentation.accountDetailsScreenViewEvent
-import com.backbase.accounts_journey.presentation.publishScreenViewEvent
+import com.backbase.analytics.publishScreenViewEvent
 import com.backbase.android.observability.Tracker
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

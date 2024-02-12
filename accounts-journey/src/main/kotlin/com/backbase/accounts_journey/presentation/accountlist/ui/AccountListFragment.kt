@@ -16,10 +16,10 @@ import com.backbase.accounts_journey.configuration.accountlist.AccountListScreen
 import com.backbase.accounts_journey.databinding.FragmentAccountListBinding
 import com.backbase.accounts_journey.presentation.accountScreenViewEvent
 import com.backbase.accounts_journey.presentation.clickUserActionEvent
-import com.backbase.accounts_journey.presentation.publishScreenViewEvent
-import com.backbase.accounts_journey.presentation.publishUserActionEvent
 import com.backbase.accounts_journey.presentation.refreshUserActionEvent
 import com.backbase.accounts_journey.presentation.searchUserActionEvent
+import com.backbase.analytics.publishScreenViewEvent
+import com.backbase.analytics.publishUserActionEvent
 import com.backbase.android.observability.Tracker
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
