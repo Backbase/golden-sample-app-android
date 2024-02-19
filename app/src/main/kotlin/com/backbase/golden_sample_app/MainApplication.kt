@@ -15,6 +15,7 @@ import com.backbase.android.identity.journey.authentication.stopAuthenticationJo
 import com.backbase.android.listeners.ModelListener
 import com.backbase.android.model.Model
 import com.backbase.android.model.ModelSource
+import com.backbase.android.utils.net.NetworkConnectorBuilder
 import com.backbase.android.utils.net.response.Response
 import com.backbase.cards_journey.impl.cardsJourneyModule
 import com.backbase.cards_journey.impl.koin.cardModule
@@ -22,12 +23,14 @@ import com.backbase.golden_sample_app.authentication.CompositeSessionListener
 import com.backbase.golden_sample_app.common.TAG
 import com.backbase.golden_sample_app.koin.accountsModule
 import com.backbase.golden_sample_app.koin.appModule
+import com.backbase.golden_sample_app.koin.contactsModule
 import com.backbase.golden_sample_app.koin.featureFilterModule
 import com.backbase.golden_sample_app.koin.identityAuthModule
 import com.backbase.golden_sample_app.koin.navigationModule
 import com.backbase.golden_sample_app.koin.securityModule
 import com.backbase.golden_sample_app.koin.userModule
 import com.backbase.golden_sample_app.koin.workspacesModule
+import com.google.gson.internal.LinkedTreeMap
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
@@ -56,6 +59,7 @@ class MainApplication : Application() {
         initializeBackbase()
         setupRemoteClients()
         setupAuthClient()
+        setupHttpHeaders()
         setupDependencies()
         initAuthenticationJourney()
     }
@@ -82,7 +86,7 @@ class MainApplication : Application() {
         val baseUri = URI(Sdk.serverUrl + "/api")
         Sdk.clients(this@MainApplication).forEach { client ->
             client.setBaseURI(URI("$baseUri${client.baseURI}"))
-            Backbase.getInstance()?.registerClient(client)
+            Backbase.requireInstance().registerClient(client)
         }
     }
 
@@ -90,6 +94,22 @@ class MainApplication : Application() {
         val backbase = checkNotNull(Backbase.getInstance())
         backbase.registerAuthClient(authClient)
         backbase.authClient.startSessionObserver(sessionEmitter)
+    }
+
+    private fun setupHttpHeaders() {
+        val headers = Backbase.requireInstance().configuration.custom["default-http-headers"]
+        val hashMap: HashMap<String, String> = HashMap()
+        try {
+            val map = headers as LinkedTreeMap<*, *>
+            for ((k, v) in map) {
+                val stringK = k as String
+                val stringV = v as String
+                hashMap[stringK] = stringV
+            }
+        } catch (e: Exception) {
+            BBLogger.error(TAG, "Failed to cast header values")
+        }
+        NetworkConnectorBuilder.Configurations.appendHeaders(hashMap)
     }
 
     private fun setupAccountsJourneyConfiguration(): AccountsJourneyConfiguration {
@@ -109,8 +129,9 @@ class MainApplication : Application() {
                 securityModule(this@MainApplication),
                 userModule,
                 featureFilterModule,
-                appModule,
+                appModule(this@MainApplication),
                 identityAuthModule(sessionEmitter),
+                contactsModule(),
                 workspacesModule,
                 WorkspacesJourney.create(),
                 accountsModule,

@@ -26,9 +26,18 @@ gen-arrangements-client-2 = "1.2.0"
 journey-test = "5.0.3"
 
 ## M
+more-menu-journey = "5.0.0"
 msdk = "10.0.1"
 
+## P
+payment-journey = "6.0.0"
+payment-order-a2a-client = "1.0.0"
+payment-order-client = "1.2.0"
+payment-order-client-gen2 = "1.2.0"
+payment-order-v2-client = "1.0.0"
+
 ## R
+retail-contacts-journey = "6.0.0"
 retail-journey-common = "5.0.3"
 
 ## W
@@ -64,9 +73,24 @@ journey-test = { group = "com.backbase.android.retail.journey", name = "journey-
 
 ## M
 msdk = { group = "com.backbase.android.sdk", name = "backbase", version.ref = "msdk" }
+more-menu-journey = { group = "com.backbase.android.retail.journey", name = "more-journey", version.ref = "more-menu-journey" }
+
+## P
+payment-journey = { group = "com.backbase.android.retail.journey", name = "payments-journey", version.ref = "payment-journey"}
+payment-usecase = { group = "com.backbase.android.retail.journey", name = "gen2-paymentorder-v2-client-2-payments-use-case", version.ref = "payment-journey"}
+payment-accounts-usecase = { group = "com.backbase.android.retail.journey", name = "gen-arrangements-client-2-payments-use-case", version.ref = "payment-journey"}
+payment-external-accounts-usecase = { group = "com.backbase.android.retail.journey", name = "gen-paymentordera2a-client-1-accounts-use-case", version.ref = "payment-journey"}
+payment-contacts-usecase = { group = "com.backbase.android.retail.journey", name = "gen-contactmanager-client-2-payments-use-case", version.ref = "payment-journey"}
+payment-order-a2a-client = { group = "com.backbase.android.clients", name = "gen2-paymentordera2a-client-1", version.ref = "payment-order-a2a-client"}
+payment-order-client = { group = "com.backbase.android.clients", name = "gen-paymentorder-client-2", version.ref = "payment-order-client"}
+payment-order-client-gen2 = { group = "com.backbase.android.clients", name = "gen2-paymentorder-client-2", version.ref = "payment-order-client-gen2"}
+payment-order-v2-client = { group = "com.backbase.android.clients", name = "gen2-paymentorderv2-client-2", version.ref = "payment-order-v2-client"}
 
 ## R
+retail-contacts-journey = { group = "com.backbase.android.retail.journey", name = "contacts-journey", version.ref = "retail-contacts-journey" }
+retail-contacts-journey-usecase = { group = "com.backbase.android.retail.journey", name = "gen-contactmanager-client-2-contacts-use-case", version.ref = "retail-contacts-journey" }
 retail-journey-common = { group = "com.backbase.android.retail.journey", name = "journey-common", version.ref = "retail-journey-common" }
+retail-journey-common-koin = { group = "com.backbase.android.retail.journey", name = "journey-common-koin", version.ref = "retail-journey-common" }
 
 ## W
 workspaces-journey = { group = "com.backbase.android.business.journey", name = "workspaces-journey", version.ref = "workspaces-journey" }
@@ -110,6 +134,7 @@ common = [
     "business-journey-common",
     "clients-common-coroutines",
     "retail-journey-common",
+    "retail-journey-common-koin",
     "journey-test",
 ]
 card-client-common = [
@@ -124,6 +149,33 @@ card-client-common = [
 # implementation(backbase.bundles.feature.filter)
 feature-filter = [
     "feature-filter-use-case",
+]
+
+## M
+# implementation(backbase.bundles.more)
+more = [
+    "more-menu-journey",
+]
+
+## P
+# implementation(backbase.bundles.retail.payments)
+retail-payments = [
+    "payment-journey",
+    "payment-usecase",
+    "payment-accounts-usecase",
+    "payment-external-accounts-usecase",
+    "payment-contacts-usecase",
+    "payment-order-a2a-client",
+    "payment-order-client",
+    "payment-order-client-gen2",
+    "payment-order-v2-client"
+    ]
+
+## R
+# implementation(backbase.bundles.retail.contacts)
+retail-contacts = [
+    "retail-contacts-journey",
+    "retail-contacts-journey-usecase"
 ]
 
 ## S
