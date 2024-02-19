@@ -21,6 +21,8 @@ import com.backbase.android.observability.event.ScreenViewEvent
 import com.backbase.android.observability.event.UserActionEvent
 import com.backbase.android.utils.net.NetworkConnectorBuilder
 import com.backbase.android.utils.net.response.Response
+import com.backbase.cards_journey.impl.cardsJourneyModule
+import com.backbase.cards_journey.impl.koin.cardModule
 import com.backbase.golden_sample_app.authentication.CompositeSessionListener
 import com.backbase.golden_sample_app.common.TAG
 import com.backbase.golden_sample_app.koin.accountsModule
@@ -28,6 +30,7 @@ import com.backbase.golden_sample_app.koin.appModule
 import com.backbase.golden_sample_app.koin.contactsModule
 import com.backbase.golden_sample_app.koin.featureFilterModule
 import com.backbase.golden_sample_app.koin.identityAuthModule
+import com.backbase.golden_sample_app.koin.navigationModule
 import com.backbase.golden_sample_app.koin.securityModule
 import com.backbase.golden_sample_app.koin.userModule
 import com.backbase.golden_sample_app.koin.workspacesModule
@@ -138,6 +141,7 @@ class MainApplication : Application() {
         androidContext(this@MainApplication)
         loadKoinModules(
             listOf(
+                navigationModule,
                 securityModule(this@MainApplication),
                 userModule,
                 featureFilterModule,
@@ -149,6 +153,8 @@ class MainApplication : Application() {
                 accountsModule,
                 AccountsJourney.create(configuration = setupAccountsJourneyConfiguration()),
                 observabilityModule,
+                cardModule(this@MainApplication),
+                cardsJourneyModule
             )
         )
     }

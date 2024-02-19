@@ -1,3 +1,5 @@
+import org.gradle.internal.impldep.org.apache.commons.compress.harmony.pack200.PackingUtils.config
+
 plugins {
     id("com.android.application")
     kotlin("android")
@@ -20,6 +22,12 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
+        }
+    }
+
+    signingConfigs {
+        getByName("debug") {
+            storeFile = file("../keystore/debug.keystore")
         }
     }
 
@@ -76,6 +84,8 @@ dependencies {
     implementation(project(":analytics"))
     implementation(project(":accounts-journey"))
     implementation(project(":accounts-use-case"))
+    implementation(project(":card-journey:impl"))
+    implementation(project(":card-journey:api"))
 
     implementation(platform(libs.kotlin.bom))
     implementation(libs.bundles.android.core)

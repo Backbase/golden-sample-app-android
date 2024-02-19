@@ -132,4 +132,12 @@
         android:name="com.backbase.android.retail.journey.billPaySso.BillPayIntegratorSsoJourney"
         android:label="BillPaySsoJourney" />
 
+    <fragment
+        android:id="@+id/cardsJourney"
+        android:name="com.backbase.cards_journey.impl.CardsJourney"
+        android:label="CardsJourney"
+        tools:layout="@layout/fragment_cards_journey" />
+    <action
+        android:id="@+id/action_global_cardsJourney"
+        app:destination="@id/cardsJourney" />
 </navigation>
