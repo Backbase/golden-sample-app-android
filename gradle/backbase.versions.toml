@@ -29,6 +29,9 @@ journey-test = "5.0.3"
 more-menu-journey = "5.0.0"
 msdk = "10.0.1"
 
+## O
+observability = "4.0.0"
+
 ## P
 payment-journey = "6.0.0"
 payment-order-a2a-client = "1.0.0"
@@ -85,6 +88,9 @@ payment-order-a2a-client = { group = "com.backbase.android.clients", name = "gen
 payment-order-client = { group = "com.backbase.android.clients", name = "gen-paymentorder-client-2", version.ref = "payment-order-client"}
 payment-order-client-gen2 = { group = "com.backbase.android.clients", name = "gen2-paymentorder-client-2", version.ref = "payment-order-client-gen2"}
 payment-order-v2-client = { group = "com.backbase.android.clients", name = "gen2-paymentorderv2-client-2", version.ref = "payment-order-v2-client"}
+
+## O
+observability = { group = "com.backbase.android.observability", name = "backbase-observability-android", version.ref = "observability" }
 
 ## R
 retail-contacts-journey = { group = "com.backbase.android.retail.journey", name = "contacts-journey", version.ref = "retail-contacts-journey" }

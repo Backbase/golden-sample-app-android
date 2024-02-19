@@ -4,6 +4,7 @@ import android.app.Application
 import com.backbase.accounts_journey.AccountsJourney
 import com.backbase.accounts_journey.configuration.AccountsJourneyConfiguration
 import com.backbase.accounts_journey.configuration.accountlist.AccountListScreenConfiguration
+import com.backbase.analytics.observabilityModule
 import com.backbase.android.Backbase
 import com.backbase.android.business.journey.workspaces.WorkspacesJourney
 import com.backbase.android.core.utils.BBLogger
@@ -15,6 +16,9 @@ import com.backbase.android.identity.journey.authentication.stopAuthenticationJo
 import com.backbase.android.listeners.ModelListener
 import com.backbase.android.model.Model
 import com.backbase.android.model.ModelSource
+import com.backbase.android.observability.Tracker
+import com.backbase.android.observability.event.ScreenViewEvent
+import com.backbase.android.observability.event.UserActionEvent
 import com.backbase.android.utils.net.NetworkConnectorBuilder
 import com.backbase.android.utils.net.response.Response
 import com.backbase.cards_journey.impl.cardsJourneyModule
@@ -31,6 +35,10 @@ import com.backbase.golden_sample_app.koin.securityModule
 import com.backbase.golden_sample_app.koin.userModule
 import com.backbase.golden_sample_app.koin.workspacesModule
 import com.google.gson.internal.LinkedTreeMap
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
@@ -44,6 +52,11 @@ import java.net.URI
 class MainApplication : Application() {
 
     private val sessionEmitter = CompositeSessionListener()
+
+    private val tracker: Tracker by inject()
+
+    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
+
     private val authClient: BBIdentityAuthClient by lazy {
         BBIdentityAuthClient(this, "").apply {
             addAuthenticator(BBDeviceAuthenticator())
@@ -62,10 +75,12 @@ class MainApplication : Application() {
         setupHttpHeaders()
         setupDependencies()
         initAuthenticationJourney()
+        setupAnalytics()
     }
 
     private fun initializeBackbase(
-        backbaseConfigAssetPath: String = "backbase/config.json", encrypted: Boolean = false
+        backbaseConfigAssetPath: String = "backbase/config.json",
+        encrypted: Boolean = false
     ) {
         Backbase.initialize(this@MainApplication, backbaseConfigAssetPath, encrypted)
         with(Backbase.requireInstance()) {
@@ -77,7 +92,8 @@ class MainApplication : Application() {
                     override fun onError(response: Response) = throw IllegalArgumentException(
                         "backbaseConfigAssetPath must point to a valid model. Instead, ${response.errorMessage}"
                     )
-                }, ModelSource.LOCAL
+                },
+                ModelSource.LOCAL
             )
         }
     }
@@ -96,6 +112,7 @@ class MainApplication : Application() {
         backbase.authClient.startSessionObserver(sessionEmitter)
     }
 
+    @Suppress("TooGenericExceptionCaught", "SwallowedException")
     private fun setupHttpHeaders() {
         val headers = Backbase.requireInstance().configuration.custom["default-http-headers"]
         val hashMap: HashMap<String, String> = HashMap()
@@ -122,7 +139,6 @@ class MainApplication : Application() {
 
     private fun setupDependencies() = startKoin {
         androidContext(this@MainApplication)
-
         loadKoinModules(
             listOf(
                 navigationModule,
@@ -136,10 +152,27 @@ class MainApplication : Application() {
                 WorkspacesJourney.create(),
                 accountsModule,
                 AccountsJourney.create(configuration = setupAccountsJourneyConfiguration()),
+                observabilityModule,
                 cardModule(this@MainApplication),
                 cardsJourneyModule
             )
         )
+    }
+
+    private fun setupAnalytics() {
+        tracker.subscribe(this, ScreenViewEvent::class, scope) { event ->
+            // In this code block we can start receiving events from the analytics framework.
+            // After that, you can start forwarding it to the Analytics tools of your choice.
+            // Here we receive the Screen View Events.
+
+            // Samples (Actual method call could be different, please refer to the actual Analytics tools documentation)
+            // Firebase.logEvent(${event.name})
+            // Adjust.screen(${event.name})
+            // Log.d("Tracker", "Tracked screen view: ${event.name}")
+        }
+        tracker.subscribe(this, UserActionEvent::class, scope) { event ->
+            // Same can be done with the User Action Events.
+        }
     }
 
     override fun onTerminate() {

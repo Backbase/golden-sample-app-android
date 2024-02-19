@@ -81,6 +81,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":analytics"))
     implementation(project(":accounts-journey"))
     implementation(project(":accounts-use-case"))
     implementation(project(":card-journey:impl"))
@@ -96,9 +97,9 @@ dependencies {
     testImplementation(libs.bundles.test)
 
     // Backbase libraries
-    implementation(backbase.bundles.authentication)
     implementation(backbase.bundles.access.control.client)
     implementation(backbase.bundles.arrangements.client)
+    implementation(backbase.bundles.authentication)
     implementation(backbase.bundles.common)
     implementation(backbase.bundles.feature.filter)
     implementation(backbase.bundles.more)
@@ -107,4 +108,5 @@ dependencies {
     implementation(backbase.bundles.sdk)
     implementation(backbase.bundles.workspaces)
     implementation(backbase.bundles.ui)
+    implementation(backbase.observability)
 }
