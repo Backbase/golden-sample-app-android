@@ -33,9 +33,6 @@ internal fun userModule(context: Context) = module {
     }
 
     factory {
-        ProfileRepository(
-            remoteSource = Sdk.getUsersProfileApi(context),
-            localSource = get()
-        )
+        ProfileRepository(userProfileManagementApi = Sdk.getUsersProfileApi(context))
     }
 }
