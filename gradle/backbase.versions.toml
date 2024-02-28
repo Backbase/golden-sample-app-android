@@ -10,7 +10,7 @@ business-journey-common = "5.0.0"
 clients-common-coroutines = "2.0.0"
 
 ## D
-design-system = "5.5.0"
+design-system = "5.7.1"
 
 ## F
 feature-filter-use-case = "4.0.0"
@@ -39,6 +39,9 @@ payment-order-v2-client = "1.0.0"
 ## R
 retail-contacts-journey = "6.0.0"
 retail-journey-common = "5.0.3"
+
+## U
+user-manager-client = "1.0.0"
 
 ## W
 workspaces-journey = "6.0.0"
@@ -91,6 +94,9 @@ retail-contacts-journey = { group = "com.backbase.android.retail.journey", name 
 retail-contacts-journey-usecase = { group = "com.backbase.android.retail.journey", name = "gen-contactmanager-client-2-contacts-use-case", version.ref = "retail-contacts-journey" }
 retail-journey-common = { group = "com.backbase.android.retail.journey", name = "journey-common", version.ref = "retail-journey-common" }
 retail-journey-common-koin = { group = "com.backbase.android.retail.journey", name = "journey-common-koin", version.ref = "retail-journey-common" }
+
+## U
+user-manager-client = { group = "com.backbase.android.clients", name = "gen-usermanager-client-2", version.ref = "user-manager-client" }
 
 ## W
 workspaces-journey = { group = "com.backbase.android.business.journey", name = "workspaces-journey", version.ref = "workspaces-journey" }

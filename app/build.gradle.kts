@@ -98,5 +98,8 @@ dependencies {
     implementation(backbase.bundles.sdk)
     implementation(backbase.bundles.workspaces)
     implementation(backbase.bundles.ui)
+
     implementation(backbase.observability)
+    implementation(backbase.user.manager.client)
+
 }

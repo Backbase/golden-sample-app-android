@@ -21,5 +21,11 @@
     <string name="move_money_activity_description">Scheduled and executed transfers</string>
     <string name="move_money_bill_pay">Bill Pay</string>
 
+    <string name="top_bar_tab_accounts">Accounts</string>
+    <string name="top_bar_tab_payments">Payments</string>
+    <string name="top_bar_tab_three">Tab 3</string>
+    <string name="top_bar_tab_two">Tab 2</string>
 
+    <string name="upcoming_journey_stay_tuned">Soon a new journey will be added to this tab. Stay tuned!</string>
+    <string name="upcoming_journey_under_construction">Journey under construction!</string>
 </resources>

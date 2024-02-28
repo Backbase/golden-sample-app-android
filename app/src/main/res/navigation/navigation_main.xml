@@ -79,9 +79,8 @@
     </fragment>
 
     <fragment
-        android:id="@+id/move_money"
+        android:id="@+id/moreJourney"
         android:name="com.backbase.android.retail.journey.more.MoreJourney"
-        android:label="Move money"
         tools:layout="@layout/more_journey">
 
         <action
@@ -131,5 +130,10 @@
         android:id="@+id/billPaySsoJourney"
         android:name="com.backbase.android.retail.journey.billPaySso.BillPayIntegratorSsoJourney"
         android:label="BillPaySsoJourney" />
+
+    <fragment
+        android:id="@+id/upcoming_fragment"
+        android:name="com.backbase.golden_sample_app.presentation.header.UpComingJourneyFragment"
+        tools:layout="@layout/fragment_upcoming_journey" />
 
 </navigation>
