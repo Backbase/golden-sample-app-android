@@ -9,6 +9,7 @@ import com.backbase.android.client.gen2.arrangementclient2.api.ArrangementsApi
 import com.backbase.android.client.gen2.arrangementclient2.api.ProductSummaryApi
 import com.backbase.android.client.gen2.paymentordera2aclient1.api.A2aClientApi
 import com.backbase.android.client.gen2.paymentorderv2client2.api.PaymentOrdersApi
+import com.backbase.android.client.usermanagerclient2.api.UserProfileManagementApi
 import com.backbase.android.clients.common.MoshiResponseBodyParser
 import com.backbase.android.clients.common.ResponseBodyParser
 import com.backbase.android.clients.common.base64Adapter
@@ -28,6 +29,9 @@ import java.net.URI
  */
 object Sdk {
 
+    val apiRoot: String?
+        get() = Backbase.requireInstance().configuration.experienceConfiguration?.apiRoot
+
     val serverUrl: String?
         get() = Backbase.requireInstance().configuration.experienceConfiguration?.serverURL
 
@@ -36,6 +40,7 @@ object Sdk {
         listOf(
             getUserContextApi(context, networkDBSDataProvider),
             getUsersApi(context, networkDBSDataProvider),
+            getUsersProfileApi(context, networkDBSDataProvider),
             getProductSummaryApi(context, networkDBSDataProvider),
             getArrangementsApi(context, networkDBSDataProvider),
             getContactsApi(context, networkDBSDataProvider),
@@ -73,6 +78,18 @@ object Sdk {
         moshi = moshi,
         parser = responseBodyParser,
         serverUri = URI(ACCESS_CONTROL_ENDPOINT),
+        provider = dataProvider,
+        backbase = Backbase.requireInstance()
+    )
+
+    fun getUsersProfileApi(
+        context: Context,
+        dataProvider: DBSDataProvider = NetworkDBSDataProvider(context),
+    ) = UserProfileManagementApi(
+        context = context,
+        moshi = moshi,
+        parser = responseBodyParser,
+        serverUri = URI("$apiRoot/$USER_MANAGER_ENDPOINT"),
         provider = dataProvider,
         backbase = Backbase.requireInstance()
     )
@@ -140,4 +157,5 @@ object Sdk {
     private const val ARRANGEMENT_MANAGER_ENDPOINT = "/arrangement-manager"
     private const val CONTACT_MANAGER_ENDPOINT = "/contact-manager"
     private const val PAYMENT_ORDER_ENDPOINT = "/payment-order-service"
+    private const val USER_MANAGER_ENDPOINT = "user-manager"
 }
