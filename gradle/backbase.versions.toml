@@ -38,7 +38,7 @@ payment-order-v2-client = "1.0.0"
 
 ## R
 retail-contacts-journey = "6.0.0"
-retail-journey-common = "5.1.0"
+retail-journey-common = "5.0.3"
 
 ## U
 user-manager-client = "1.0.0"
