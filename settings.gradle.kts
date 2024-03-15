@@ -8,16 +8,7 @@ pluginManagement {
 
 dependencyResolutionManagement {
     repositories {
-        maven {
-            setUrl("https://artifacts.backbase.com/android")
-            val mvnUser: String by settings
-            val mvnPass: String by settings
-            credentials {
-                username = mvnUser
-                password = mvnPass
-            }
-        }
-        mavenLocal()
+
         google()
         mavenCentral()
         maven { setUrl("https://jitpack.io") }
@@ -30,7 +21,6 @@ dependencyResolutionManagement {
 
     versionCatalogs {
         create("backbase") { from(files("gradle/backbase.versions.toml")) }
-        create("libs1") { from("com.backbase.android.gradle:version-catalog:2023.10.75") }
     }
 }
 rootProject.name = "Golden Sample App Android"
