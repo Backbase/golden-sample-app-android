@@ -10,7 +10,7 @@ business-journey-common = "5.0.0"
 clients-common-coroutines = "2.0.0"
 
 ## D
-design-system = "5.7.1"
+design-system = "5.7.2"
 
 ## F
 feature-filter-use-case = "4.0.0"
@@ -24,7 +24,7 @@ journey-test = "5.0.3"
 
 ## M
 more-menu-journey = "5.0.0"
-msdk = "10.0.1"
+msdk = "10.0.3"
 
 ## O
 observability = "4.0.0"
@@ -38,7 +38,7 @@ payment-order-v2-client = "1.0.0"
 
 ## R
 retail-contacts-journey = "6.0.0"
-retail-journey-common = "5.0.3"
+retail-journey-common = "5.1.0"
 
 ## U
 user-manager-client = "1.0.0"
