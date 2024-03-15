@@ -49,7 +49,9 @@ dependencies {
     implementation("com.backbase.android.design:design-system-compose:1.0.0-beta04")
     implementation("com.backbase.android.design:design-system:5.7.3")
     implementation("com.backbase.android.design:country-core:4.0.1!!")
+    implementation(libs.navigation.compose)
 
+    implementation("androidx.navigation:navigation-compose:2.7.7")
 
     val composeBom = platform("androidx.compose:compose-bom:2024.02.02")
     implementation(composeBom)
