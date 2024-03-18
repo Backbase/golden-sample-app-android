@@ -11,10 +11,12 @@ import androidx.navigation.compose.rememberNavController
 import com.backbase.android.design.theme.PreviewTheme
 import com.backbase.android.design.theme.Theme
 import com.backbase.android.retail.authorization.AuthenticationJourney
+import com.backbase.android.retail.contacts.ContactsJourney
 
 class MainActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             PreviewTheme {
                 val navController: NavHostController = rememberNavController()
@@ -27,7 +29,7 @@ class MainActivity : FragmentActivity() {
                         )
                     }
                     composable("app") {
-                        Text("Application authorized", color = Theme.colors.primary.default)
+                        ContactsJourney()
                     }
                 }
             }

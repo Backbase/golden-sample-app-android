@@ -39,6 +39,13 @@ android {
         viewBinding = true
         buildConfig = true
     }
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "META-INF/LICENSE.md"
+            excludes += "META-INF/LICENSE-notice.md"
+        }
+    }
 }
 
 dependencies {
@@ -77,7 +84,10 @@ dependencies {
 
     implementation(backbase.authentication.journey)
     implementation(backbase.authentication.use.case)
+    implementation(backbase.retail.contacts.journey)
+    implementation(backbase.retail.contacts.journey.usecase)
     implementation(backbase.retail.journey.common)
+    implementation(backbase.business.journey.common)
 
     // UI Tests
     androidTestImplementation(composeBom)
