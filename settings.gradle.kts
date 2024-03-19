@@ -8,7 +8,7 @@ pluginManagement {
 
 dependencyResolutionManagement {
     repositories {
-
+        mavenLocal()
         google()
         mavenCentral()
         maven { setUrl("https://jitpack.io") }

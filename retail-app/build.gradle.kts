@@ -88,6 +88,12 @@ dependencies {
     implementation(backbase.retail.contacts.journey.usecase)
     implementation(backbase.retail.journey.common)
     implementation(backbase.business.journey.common)
+    implementation(backbase.workspaces.use.case)
+    implementation(backbase.bundles.access.control.client)
+//    implementation(backbase.workspaces.journey)
+    implementation("com.backbase.android.business.journey:workspaces-journey:dev-SNAPSHOT!!")
+
+    implementation( "androidx.navigation:navigation-fragment-ktx:2.7.7")
 
     // UI Tests
     androidTestImplementation(composeBom)
