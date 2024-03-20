@@ -1,6 +1,7 @@
 [versions]
 ## A
 access-control-client-2-entitlements-use-case = "4.0.0"
+analytics = "1.0.0-beta6"
 authentication-journey = "6.0.0"
 
 ## B
@@ -49,6 +50,7 @@ workspaces-journey = "6.0.0"
 [libraries]
 ## A
 access-control-client-2-entitlements-use-case = { group = "com.backbase.android.retail.feature_filter", name = "accesscontrol-client-2-entitlements-use-case", version.ref = "access-control-client-2-entitlements-use-case" }
+analytics = { group = "com.backbase.android.sdk", name = "backbase-analytics", version.ref = "analytics" }
 authentication-journey = { group = "com.backbase.android.identity.journey", name = "authentication-journey", version.ref = "authentication-journey" }
 authentication-use-case = { group = "com.backbase.android.identity.journey", name = "identity-auth-client-1-authentication-use-case", version.ref = "authentication-journey" }
 
@@ -69,22 +71,22 @@ gen-access-control-client-3 = { group = "com.backbase.android.clients", name = "
 gen-arrangements-client-2 = { group = "com.backbase.android.clients", name = "gen2-arrangement-client-2", version.ref = "gen-arrangements-client-2" }
 
 ## J
-journey-test = { group = "com.backbase.android.retail.journey", name = "journey-test", version.ref = "journey-test"}
+journey-test = { group = "com.backbase.android.retail.journey", name = "journey-test", version.ref = "journey-test" }
 
 ## M
 msdk = { group = "com.backbase.android.sdk", name = "backbase", version.ref = "msdk" }
 more-menu-journey = { group = "com.backbase.android.retail.journey", name = "more-journey", version.ref = "more-menu-journey" }
 
 ## P
-payment-journey = { group = "com.backbase.android.retail.journey", name = "payments-journey", version.ref = "payment-journey"}
-payment-usecase = { group = "com.backbase.android.retail.journey", name = "gen2-paymentorder-v2-client-2-payments-use-case", version.ref = "payment-journey"}
-payment-accounts-usecase = { group = "com.backbase.android.retail.journey", name = "gen-arrangements-client-2-payments-use-case", version.ref = "payment-journey"}
-payment-external-accounts-usecase = { group = "com.backbase.android.retail.journey", name = "gen-paymentordera2a-client-1-accounts-use-case", version.ref = "payment-journey"}
-payment-contacts-usecase = { group = "com.backbase.android.retail.journey", name = "gen-contactmanager-client-2-payments-use-case", version.ref = "payment-journey"}
-payment-order-a2a-client = { group = "com.backbase.android.clients", name = "gen2-paymentordera2a-client-1", version.ref = "payment-order-a2a-client"}
-payment-order-client = { group = "com.backbase.android.clients", name = "gen-paymentorder-client-2", version.ref = "payment-order-client"}
-payment-order-client-gen2 = { group = "com.backbase.android.clients", name = "gen2-paymentorder-client-2", version.ref = "payment-order-client-gen2"}
-payment-order-v2-client = { group = "com.backbase.android.clients", name = "gen2-paymentorderv2-client-2", version.ref = "payment-order-v2-client"}
+payment-journey = { group = "com.backbase.android.retail.journey", name = "payments-journey", version.ref = "payment-journey" }
+payment-usecase = { group = "com.backbase.android.retail.journey", name = "gen2-paymentorder-v2-client-2-payments-use-case", version.ref = "payment-journey" }
+payment-accounts-usecase = { group = "com.backbase.android.retail.journey", name = "gen-arrangements-client-2-payments-use-case", version.ref = "payment-journey" }
+payment-external-accounts-usecase = { group = "com.backbase.android.retail.journey", name = "gen-paymentordera2a-client-1-accounts-use-case", version.ref = "payment-journey" }
+payment-contacts-usecase = { group = "com.backbase.android.retail.journey", name = "gen-contactmanager-client-2-payments-use-case", version.ref = "payment-journey" }
+payment-order-a2a-client = { group = "com.backbase.android.clients", name = "gen2-paymentordera2a-client-1", version.ref = "payment-order-a2a-client" }
+payment-order-client = { group = "com.backbase.android.clients", name = "gen-paymentorder-client-2", version.ref = "payment-order-client" }
+payment-order-client-gen2 = { group = "com.backbase.android.clients", name = "gen2-paymentorder-client-2", version.ref = "payment-order-client-gen2" }
+payment-order-v2-client = { group = "com.backbase.android.clients", name = "gen2-paymentorderv2-client-2", version.ref = "payment-order-v2-client" }
 
 ## O
 observability = { group = "com.backbase.android.observability", name = "backbase-observability-android", version.ref = "observability" }
@@ -168,7 +170,7 @@ retail-payments = [
     "payment-order-client",
     "payment-order-client-gen2",
     "payment-order-v2-client"
-    ]
+]
 
 ## R
 # implementation(backbase.bundles.retail.contacts)

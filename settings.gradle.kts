@@ -12,9 +12,13 @@ dependencyResolutionManagement {
         mavenCentral()
         maven { setUrl("https://jitpack.io") }
         maven {
-            name = "backbaseRepo"
-            url = uri("https://repo.backbase.com/repo")
-            credentials(PasswordCredentials::class)
+            val mvnUser: String by settings
+            val mvnPass: String by settings
+            setUrl("https://artifacts.backbase.com/repo")
+            credentials {
+                username = mvnUser
+                password = mvnPass
+            }
         }
     }
 

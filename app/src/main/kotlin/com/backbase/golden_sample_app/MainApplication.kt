@@ -19,6 +19,7 @@ import com.backbase.android.model.ModelSource
 import com.backbase.android.observability.Tracker
 import com.backbase.android.observability.event.ScreenViewEvent
 import com.backbase.android.observability.event.UserActionEvent
+import com.backbase.android.sdk.enableBBAnalytics
 import com.backbase.android.utils.net.NetworkConnectorBuilder
 import com.backbase.android.utils.net.response.Response
 import com.backbase.golden_sample_app.authentication.CompositeSessionListener
@@ -156,6 +157,7 @@ class MainApplication : Application() {
     }
 
     private fun setupAnalytics() {
+        tracker.enableBBAnalytics(apiKey = "", scope = scope)
         tracker.subscribe(this, ScreenViewEvent::class, scope) { event ->
             // In this code block we can start receiving events from the analytics framework.
             // After that, you can start forwarding it to the Analytics tools of your choice.
