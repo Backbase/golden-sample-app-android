@@ -6,10 +6,12 @@ import com.backbase.android.core.utils.BBLogger
 import com.backbase.android.identity.client.BBIdentityAuthClient
 import com.backbase.android.identity.device.BBDeviceAuthenticator
 import com.backbase.android.listeners.ModelListener
+import com.backbase.android.listeners.NavigationEventListener
 import com.backbase.android.listeners.SessionListener
 import com.backbase.android.model.Model
 import com.backbase.android.model.ModelSource
 import com.backbase.android.retail.authorization.CompositeSessionListener
+import com.backbase.android.retail.journey.NavigationEventEmitter
 import com.backbase.android.retail.journey.SessionEmitter
 import com.backbase.android.utils.net.NetworkConnectorBuilder
 import com.backbase.android.utils.net.response.Response
@@ -69,4 +71,14 @@ fun Application.setupAuthClient() {
 
     BackbaseClient.registerAuthClient(authClient)
     BackbaseClient.authClient.startSessionObserver(AppSessionListener)
+}
+
+class DefaultNavigationEventEmitter(
+    private val backbase: Backbase
+) : NavigationEventEmitter {
+    override fun registerNavigationEventListener(listener: NavigationEventListener) =
+        backbase.registerNavigationEventListener(listener)
+
+    override fun unregisterNavigationEventListener(listener: NavigationEventListener) =
+        backbase.unregisterNavigationEventListener(listener)
 }

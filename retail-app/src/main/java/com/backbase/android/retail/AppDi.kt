@@ -6,7 +6,6 @@ import com.backbase.android.business.journey.common.user.UserRepository
 import com.backbase.android.business.journey.workspaces.WorkspacesJourney
 import com.backbase.android.business.journey.workspaces.accesscontrol_client_2.WorkspacesUseCaseImpl
 import com.backbase.android.business.journey.workspaces.usecase.WorkspacesUseCase
-import com.backbase.android.client.contactmanagerclient2.api.ContactsApi
 import com.backbase.android.client.gen2.accesscontrolclient3.api.UserContextApi
 import com.backbase.android.client.gen2.accesscontrolclient3.api.UsersApi
 import com.backbase.android.clients.auth.AuthClient
@@ -19,8 +18,6 @@ import com.backbase.android.retail.feature_filter.entitlements.accesscontrol_cli
 import com.backbase.android.retail.journey.NavigationEventEmitter
 import com.backbase.android.retail.journey.SessionEmitter
 import com.backbase.android.retail.journey.contacts.ContactsConfiguration
-import com.backbase.android.retail.journey.contacts.ContactsUseCase
-import com.backbase.android.retail.journey.contacts.contactmanager_client_2.GenContactManagerClient2ContactsUseCase
 import com.backbase.android.secure.storage.SecureStorageFactory
 import com.backbase.android.secure.storage.SecureStorageInfo
 import com.backbase.golden_sample_app.user.UserRepositoryImpl
@@ -84,10 +81,8 @@ internal fun appModule() = module {
         DefaultNavigationEventEmitter(BackbaseClient)
     }
 
-    factory<ContactsUseCase> { GenContactManagerClient2ContactsUseCase(get()) }
-    factory<ContactsConfiguration> { ContactsConfiguration {} }
-    single { Backbase.requireInstance().getClient(ContactsApi::class.java) }
     single { Backbase.requireInstance().getClient(UserContextApi::class.java) }
+    factory<ContactsConfiguration> { ContactsConfiguration {} }
     single { Backbase.requireInstance().getClient(UsersApi::class.java) }
 
 
