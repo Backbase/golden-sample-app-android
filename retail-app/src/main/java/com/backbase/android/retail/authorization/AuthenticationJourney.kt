@@ -15,7 +15,7 @@ import org.koin.dsl.module
 
 @Composable
 fun AuthenticationJourney(onAuthenticated: () -> Unit) {
-    InitRouter(onAuthenticated)
+//    InitRouter(onAuthenticated)
     AndroidViewBinding(ContainerAuthenticationBinding::inflate, modifier = Modifier.fillMaxSize()) {
         val fragment = containerAuthentication.getFragment<AuthenticationJourney>()
     }
@@ -28,7 +28,7 @@ private fun InitRouter(onAuthenticated: () -> Unit) {
         val modules = listOf(
             module {
                 factory<AuthenticationRouter> {
-                    AuthenticationRouterImpl(onAuthenticated)
+                    AuthenticationRouter(onAuthenticated)
                 }
             }
         )

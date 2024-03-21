@@ -1,19 +1,31 @@
 package com.backbase.android.retail
 
+import android.app.Activity
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.backbase.android.retail.authorization.AuthenticationJourney
+import com.backbase.android.retail.authorization.authenticationActions
 import com.backbase.android.retail.contacts.contactsJourney
 import com.backbase.android.retail.contacts.contactsScreen
 import com.backbase.android.retail.contacts.detailsScreen
 import com.backbase.android.retail.workspaceselector.WorkspaceSelectorJourney
 
 @Composable
-fun MainNavHost() {
+fun Activity.MainNavHost() {
     val navController: NavHostController = rememberNavController()
+
+    LaunchedEffect(key1 = Unit) {
+        authenticationActions {
+            onSuccess = {
+                navController.navigate("contacts")
+            }
+        }
+    }
+
     NavHost(
         navController,
         startDestination = "authentication"
