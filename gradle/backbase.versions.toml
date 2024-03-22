@@ -1,7 +1,7 @@
 [versions]
 ## A
 access-control-client-2-entitlements-use-case = "4.0.0"
-analytics = "1.0.0-beta6"
+analytics = "1.0.0-beta7"
 authentication-journey = "6.0.0"
 
 ## B

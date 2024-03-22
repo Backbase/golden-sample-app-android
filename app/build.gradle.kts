@@ -88,7 +88,6 @@ dependencies {
 
     // Backbase libraries
     implementation(backbase.bundles.access.control.client)
-    implementation(backbase.analytics)
     implementation(backbase.bundles.arrangements.client)
     implementation(backbase.bundles.authentication)
     implementation(backbase.bundles.common)
