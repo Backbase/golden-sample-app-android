@@ -12,6 +12,7 @@ import com.backbase.android.business.journey.workspaces.view.WorkspaceSelectorFr
 import com.backbase.android.design.theme.PreviewTheme
 import com.backbase.android.identity.journey.authentication.AuthenticationJourney
 import com.backbase.android.retail.authenticaton.authenticationActions
+import com.backbase.android.retail.contacts.contactsActions
 import com.backbase.android.retail.journey.contacts.ContactsJourney
 import com.backbase.android.retail.workspaceselector.workspaceSelectorActions
 
@@ -34,12 +35,17 @@ class MainActivity : FragmentActivity() {
         val navController = navHostFragment.navController
         authenticationActions {
             onSuccess = {
-                navController.navigate("a1")
+                navController.navigate("workspaces")
             }
         }
         workspaceSelectorActions {
             onSuccess = {
                 navController.navigate("contacts")
+            }
+        }
+        contactsActions {
+            onContactClicked = { id ->
+
             }
         }
         val graph = navController.createGraph(startDestination = "authentication") {
