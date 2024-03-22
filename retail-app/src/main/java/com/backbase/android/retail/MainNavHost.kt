@@ -20,7 +20,7 @@ fun Activity.MainNavHost() {
 
     LaunchedEffect(key1 = Unit) {
         authenticationActions {
-            onContactItemClicked = {
+            onSuccess = {
                 navController.navigate("contacts")
             }
         }
