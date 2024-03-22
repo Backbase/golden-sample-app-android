@@ -1,4 +1,4 @@
-package com.backbase.android.retail.authorization
+package com.backbase.android.retail.authenticaton
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable

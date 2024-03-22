@@ -7,8 +7,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.backbase.android.retail.authorization.AuthenticationJourney
-import com.backbase.android.retail.authorization.authenticationActions
+import com.backbase.android.retail.authenticaton.AuthenticationJourney
+import com.backbase.android.retail.authenticaton.authenticationActions
 import com.backbase.android.retail.contacts.contactsJourney
 import com.backbase.android.retail.contacts.contactsScreen
 import com.backbase.android.retail.contacts.detailsScreen

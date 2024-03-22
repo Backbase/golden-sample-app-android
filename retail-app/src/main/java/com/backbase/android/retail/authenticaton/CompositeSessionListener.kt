@@ -1,4 +1,4 @@
-package com.backbase.android.retail.authorization
+package com.backbase.android.retail.authenticaton
 
 import com.backbase.android.core.utils.BBLogger
 import com.backbase.android.listeners.SessionListener

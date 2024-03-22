@@ -10,7 +10,7 @@ import com.backbase.android.listeners.NavigationEventListener
 import com.backbase.android.listeners.SessionListener
 import com.backbase.android.model.Model
 import com.backbase.android.model.ModelSource
-import com.backbase.android.retail.authorization.CompositeSessionListener
+import com.backbase.android.retail.authenticaton.CompositeSessionListener
 import com.backbase.android.retail.journey.NavigationEventEmitter
 import com.backbase.android.retail.journey.SessionEmitter
 import com.backbase.android.utils.net.NetworkConnectorBuilder

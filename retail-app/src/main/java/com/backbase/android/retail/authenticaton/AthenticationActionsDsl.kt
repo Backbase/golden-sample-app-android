@@ -1,4 +1,4 @@
-package com.backbase.android.retail.authorization
+package com.backbase.android.retail.authenticaton
 
 import android.app.Activity
 import com.backbase.android.identity.journey.authentication.AuthenticationRouter

@@ -36,15 +36,12 @@ private fun InitRouter(onAuthenticated: () -> Unit) {
                 factory<WorkspaceSelectorRouting> {
                     object : WorkspaceSelectorRouting {
                         override fun onError() {
-                            TODO("Not yet implemented")
                         }
 
                         override fun onExit(navController: NavController, navigationActionId: Int, args: Bundle?) {
-                            TODO("Not yet implemented")
                         }
 
                         override fun onNoWorkspacesFound() {
-                            TODO("Not yet implemented")
                         }
 
                         override fun onWorkspaceSelectedV2(workspaceInfo: WorkspaceInfo): Int {

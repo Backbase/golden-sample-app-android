@@ -12,7 +12,7 @@ import com.backbase.android.clients.auth.AuthClient
 import com.backbase.android.dbs.dataproviders.NetworkDBSDataProvider
 import com.backbase.android.plugins.storage.StorageComponent
 import com.backbase.android.plugins.storage.persistent.EncryptedStorage
-import com.backbase.android.retail.authorization.authenticationAppModule
+import com.backbase.android.retail.authenticaton.authenticationAppModule
 import com.backbase.android.retail.feature_filter.entitlements.EntitlementsUseCase
 import com.backbase.android.retail.feature_filter.entitlements.accesscontrol_client_2.AccessControlClient2EntitlementsUseCase
 import com.backbase.android.retail.journey.NavigationEventEmitter
