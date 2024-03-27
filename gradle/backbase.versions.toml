@@ -1,7 +1,6 @@
 [versions]
 ## A
 access-control-client-2-entitlements-use-case = "4.0.0"
-analytics = "1.0.0-beta8"
 authentication-journey = "6.0.0"
 
 ## B
@@ -29,6 +28,7 @@ msdk = "10.0.3"
 
 ## O
 observability = "4.0.0"
+opentelemetry-connector = "1.0.0-beta9"
 
 ## P
 payment-journey = "6.0.0"
@@ -50,7 +50,6 @@ workspaces-journey = "6.0.0"
 [libraries]
 ## A
 access-control-client-2-entitlements-use-case = { group = "com.backbase.android.retail.feature_filter", name = "accesscontrol-client-2-entitlements-use-case", version.ref = "access-control-client-2-entitlements-use-case" }
-analytics = { group = "com.backbase.android.sdk", name = "backbase-analytics", version.ref = "analytics" }
 authentication-journey = { group = "com.backbase.android.identity.journey", name = "authentication-journey", version.ref = "authentication-journey" }
 authentication-use-case = { group = "com.backbase.android.identity.journey", name = "identity-auth-client-1-authentication-use-case", version.ref = "authentication-journey" }
 
@@ -90,6 +89,7 @@ payment-order-v2-client = { group = "com.backbase.android.clients", name = "gen2
 
 ## O
 observability = { group = "com.backbase.android.observability", name = "backbase-observability-android", version.ref = "observability" }
+opentelemetry-connector = { group = "com.backbase.android.sdk", name = "backbase-opentelemetry-connector", version.ref = "opentelemetry-connector" }
 
 ## R
 retail-contacts-journey = { group = "com.backbase.android.retail.journey", name = "contacts-journey", version.ref = "retail-contacts-journey" }

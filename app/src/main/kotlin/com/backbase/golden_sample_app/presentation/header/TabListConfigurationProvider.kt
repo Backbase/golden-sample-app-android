@@ -61,4 +61,4 @@ class TabListConfigurationProvider(private val context: Context) {
     }
 }
 
-class UpComingJourneyFragment: Fragment(R.layout.fragment_upcoming_journey)
+class UpComingJourneyFragment : Fragment(R.layout.fragment_upcoming_journey)
