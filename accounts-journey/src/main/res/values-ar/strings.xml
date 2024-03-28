@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="accounts_screen_title">حساباتي</string>
+    <string name="no_internet_connection">يبدو أنك لست متصلاً بالإنترنت. حاول ثانية.</string>
+    <string name="no_response">لا يوجد رد</string>
+    <string name="failed_get_data">فشل الحصول على البيانات</string>
+    <string name="failed_unknown">هناك خطأ ما</string>
+    <string name="no_accounts">لم يتم العثور على حسابات.</string>
+
+    <string name="header_account_details">تفاصيل الحساب</string>
+    <string name="header_general">عام</string>
+    <string name="header_interest_details">تفاصيل الفائدة</string>
+    <string name="header_overdraft_details">تفاصيل السحب على المكشوف</string>
+    <string name="header_other">آخر</string>
+
+    <string name="account_details_account_holder_names_label">اسم (أسماء) صاحب الحساب</string>
+    <string name="account_details_account_number_label">رقم حساب</string>
+    <string name="general_account_type_label">نوع الحساب</string>
+    <string name="general_account_name_label">إسم الحساب</string>
+    <string name="general_aba_routing_number_label">ABA عدد التوجيه</string>
+    <string name="general_time_of_last_update_label">وقت آخر تحديث</string>
+    <string name="interest_details_interest_rate_label">سعر الفائدة</string>
+    <string name="interest_details_accured_interest_label">الفائدة المستحقة</string>
+    <string name="overdraft_details_overdraft_limit_label">حدود السحب</string>
+    <string name="other_account_opening_date_label">تاريخ فتح الحساب</string>
+</resources>
