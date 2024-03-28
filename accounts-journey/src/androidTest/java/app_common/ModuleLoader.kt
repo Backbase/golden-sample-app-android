@@ -6,6 +6,8 @@ import com.backbase.accounts_journey.configuration.AccountsJourneyConfiguration
 import com.backbase.accounts_journey.data.usecase.AccountsUseCase
 import com.backbase.accounts_journey.koin.viewModelModule
 import com.backbase.accounts_journey.presentation.accountlist.mapper.AccountUiMapper
+import com.backbase.android.observability.Tracker
+import com.backbase.android.observability.TrackerProvider
 import com.backbase.fake_accounts_use_case.FakeAccountsUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.android.ext.koin.androidContext
@@ -24,6 +26,7 @@ class ModuleLoader {
     fun loadModule(
         accountsUseCase: FakeAccountsUseCase = FakeAccountsUseCase(TEST_ACCOUNTS),
         journeyConfiguration: AccountsJourneyConfiguration = AccountsJourneyConfiguration {},
+        tracker: Tracker = TrackerProvider.create(),
     ) {
         startKoin {
             androidContext(InstrumentationRegistry.getInstrumentation().targetContext)
@@ -34,6 +37,7 @@ class ModuleLoader {
                         single<AccountsJourneyConfiguration> { journeyConfiguration }
                         single<AccountsUseCase> { accountsUseCase }
                         single<AccountUiMapper> { AccountUiMapper(get())  }
+                        single { tracker }
                     },
                     viewModelModule
                 )

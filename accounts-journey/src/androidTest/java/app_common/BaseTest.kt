@@ -31,8 +31,8 @@ open class BaseTest : KoinTest {
     @Before
     open fun setup() {
         stopKoin()
-//        enable the following line to run the tests in different locale
-//        setLocale("ar")
+        // change the local to run the tests in different local
+        setLocale("en")
         Dispatchers.setMain(testDispatcher)
     }
 
