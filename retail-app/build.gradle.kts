@@ -120,6 +120,7 @@ dependencies {
     implementation(libs.navigation.compose)
 
     implementation("androidx.navigation:navigation-compose:2.7.7")
+    implementation(libs.androidx.navigation.ui.ktx)
 
     val composeBom = platform("androidx.compose:compose-bom:2024.02.02")
     implementation(composeBom)

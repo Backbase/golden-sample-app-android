@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/contacts_journey">
+
+    <fragment
+        android:id="@+id/contacts_journey"
+        android:name="com.backbase.android.retail.journey.contacts.ContactsJourney"
+        android:label="Contacts"
+        tools:layout="@layout/container_contacts_journey" />
+
+    <fragment
+        android:id="@+id/contacts_journey1"
+        android:name="com.backbase.android.retail.journey.contacts.ContactsJourney"
+        android:label="Contacts1"
+        tools:layout="@layout/container_contacts_journey" />
+</navigation>

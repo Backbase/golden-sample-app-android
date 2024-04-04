@@ -5,15 +5,9 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.core.view.WindowCompat
 import androidx.fragment.app.FragmentActivity
-import androidx.navigation.createGraph
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.fragment
-import com.backbase.android.business.journey.workspaces.view.WorkspaceSelectorFragment
 import com.backbase.android.design.theme.PreviewTheme
-import com.backbase.android.identity.journey.authentication.AuthenticationJourney
 import com.backbase.android.retail.authenticaton.authenticationActions
-import com.backbase.android.retail.contacts.contactsActions
-import com.backbase.android.retail.journey.contacts.ContactsJourney
 import com.backbase.android.retail.workspaceselector.workspaceSelectorActions
 
 class MainActivity : FragmentActivity() {
@@ -35,28 +29,17 @@ class MainActivity : FragmentActivity() {
         val navController = navHostFragment.navController
         authenticationActions {
             onSuccess = {
-                navController.navigate("workspaces")
+                navController.navigate(R.id.action_authenticationJourneyFragment_to_workspaceSelector)
             }
         }
         workspaceSelectorActions {
             onSuccess = {
-                navController.navigate("contacts")
+                navController.navigate(R.id.action_workspaces_selector_to_bottomMenuScreen)
             }
         }
-        contactsActions {
-            onContactClicked = { id ->
 
-            }
-        }
-        val graph = navController.createGraph(startDestination = "authentication") {
-            fragment<AuthenticationJourney>("authentication") {
-            }
-            fragment<WorkspaceSelectorFragment>("workspaces") {
-            }
-            fragment<ContactsJourney>("contacts") {
-            }
-        }
-        navController.setGraph(graph, null)
+
+        navController.setGraph(R.navigation.navigation_main)
     }
 
     private fun setupComposeNavigation() {
