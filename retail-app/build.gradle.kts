@@ -1,3 +1,7 @@
+import androidx.navigation.safe.args.generator.ext.capitalize
+import org.jetbrains.kotlin.gradle.internal.ensureParentDirsCreated
+import java.util.Locale
+
 plugins {
     id("com.android.application")
     kotlin("android")
@@ -48,6 +52,63 @@ android {
     }
 }
 
+androidComponents {
+    onVariants { variant ->
+        val configCreationTask =
+            project.tasks.register<ConfigCreatorTask>("create${variant.name.capitalize(Locale.getDefault())}Config")
+        variant.sources.assets?.addGeneratedSourceDirectory(
+            configCreationTask,
+            ConfigCreatorTask::outputDirectory
+        )
+    }
+}
+
+abstract class ConfigCreatorTask : DefaultTask() {
+    @get:OutputDirectory
+    abstract val outputDirectory: DirectoryProperty
+
+    @TaskAction
+    fun taskAction() {
+        val goldenSampleApiToken:String by project
+        val file = File(outputDirectory.get().asFile, "backbase/config.json")
+        file.ensureParentDirsCreated()
+        file.writeText(
+            """
+            {
+              "development": {
+                "debugEnable": true
+              },
+              "backbase": {
+                "serverURL": "https://app.dev.sdbxaz.azure.backbaseservices.com",
+                "localModelPath": "${'$'}(contextRoot)/model.json",
+                "experience": "",
+                "version": "6.1.5",
+                "identity": {
+                  "baseURL": "https://identity.dev.sdbxaz.azure.backbaseservices.com",
+                  "realm": "customer",
+                  "clientId": "mobile-client",
+                  "applicationKey": "retail"
+                }
+              },
+              "security": {
+                "allowedDomains": [
+                  "*"
+                ]
+              },
+              "custom": {
+                "default-http-headers": {
+                  "X-SDBXAZ-API-KEY": "$goldenSampleApiToken"
+                }
+              },
+              "bankTimeZone": "Europe/Amsterdam"
+            }
+
+        """.trimIndent()
+        )
+    }
+}
+
+
 dependencies {
     implementation(platform(libs.kotlin.bom))
     implementation(libs.bundles.android.core)
@@ -93,7 +154,7 @@ dependencies {
 //    implementation(backbase.workspaces.journey)
     implementation("com.backbase.android.business.journey:workspaces-journey:dev-SNAPSHOT!!")
 
-    implementation( "androidx.navigation:navigation-fragment-ktx:2.7.7")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
 
     // UI Tests
     androidTestImplementation(composeBom)
