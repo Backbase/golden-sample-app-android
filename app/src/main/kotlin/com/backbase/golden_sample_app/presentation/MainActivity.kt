@@ -36,6 +36,10 @@ class MainActivity : AppCompatActivity() {
     private val navigator: AppRouting by inject()
 
     private val mainViewModel: MainViewModel by inject()
+
+    /**
+     * Shared VM between the activity and all the instances of TabHeaderFragment
+      */
     private val tabHeaderViewModel: TabHeaderViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,6 +58,10 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch { repeatOnLifecycle(STARTED) { mainViewModel.uiState.collect(::update) } }
     }
 
+    /**
+     * Updates the [TopBarConfiguration] in all the TabHeaderFragment. This will update
+     * the toolbar content with the information passed in the configuration.
+     */
     private fun update(uiState: MainViewModel.UiState) = tabHeaderViewModel update TopBarConfiguration {
         title = uiState.fullName
         subtitle = uiState.serviceAgreementName

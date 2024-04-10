@@ -11,6 +11,10 @@ import com.backbase.android.retail.journey.more.MoreJourney
 import com.backbase.golden_sample_app.R
 import com.backbase.golden_sample_app.payments.paymentsScopeId
 
+/**
+ * Provides the [TabListConfiguration] for the tabs displayed in the TabLayout inside
+ * the TabHeaderFragment.
+ */
 class TabListConfigurationProvider(private val context: Context) {
 
     fun dashboardTabList() = TabListConfiguration {
