@@ -9,6 +9,9 @@ import com.backbase.android.design.header.TabListConfiguration
 import com.backbase.golden_sample_app.R
 import com.backbase.golden_sample_app.presentation.header.TabListConfigurationProvider
 
+/**
+ * Injects the `TabHeaderFragment` instances as destination into the NavGraph.
+ */
 fun NavController.addBottomBarNavigationDestinations(
     tabListConfig: TabListConfigurationProvider
 ) = graph.addDestinations(
@@ -22,6 +25,13 @@ fun NavController.addBottomBarNavigationDestinations(
     )
 )
 
+/**
+ * Creates a [FragmentNavigator.Destination] that navigates to an instance of the [TabHeaderFragment].
+ *
+ * @param id the id of the destination.
+ * @param tabList contains the arguments that [TabHeaderFragment] requires. These are injected into
+ * the fragment as the default value for the `arguments`.
+ */
 private fun NavController.createDestination(
     @IdRes id: Int,
     tabList: TabListConfiguration,
