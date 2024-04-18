@@ -24,6 +24,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Golden Sample App Android"
 include(":app")
+include(":retail-app")
 include(":accounts-journey")
 include(":accounts-use-case")
 include(":fake-accounts-use-case")

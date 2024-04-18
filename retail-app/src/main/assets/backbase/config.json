@@ -1,0 +1,28 @@
+{
+  "development": {
+    "debugEnable": true
+  },
+  "backbase": {
+    "serverURL": "https://app.dev.sdbxaz.azure.backbaseservices.com",
+    "localModelPath": "$(contextRoot)/model.json",
+    "experience": "",
+    "version": "6.1.5",
+    "identity": {
+      "baseURL": "https://identity.dev.sdbxaz.azure.backbaseservices.com",
+      "realm": "customer",
+      "clientId": "mobile-client",
+      "applicationKey": "retail"
+    }
+  },
+  "security": {
+    "allowedDomains": [
+      "*"
+    ]
+  },
+  "custom": {
+    "default-http-headers": {
+      "X-SDBXAZ-API-KEY": "bb-306fc262-lfil-0017-d9un-1111d5a694b0"
+    }
+  },
+  "bankTimeZone": "Europe/Amsterdam"
+}
