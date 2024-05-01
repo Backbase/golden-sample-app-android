@@ -73,7 +73,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":analytics"))
     implementation(project(":accounts-journey"))
     implementation(project(":accounts-use-case"))
 
@@ -94,12 +93,10 @@ dependencies {
     implementation(backbase.bundles.feature.filter)
     implementation(backbase.bundles.more)
     implementation(backbase.bundles.retail.contacts)
-    implementation(backbase.bundles.retail.payments)
     implementation(backbase.bundles.sdk)
     implementation(backbase.bundles.workspaces)
     implementation(backbase.bundles.ui)
 
-    implementation(backbase.observability)
     implementation(backbase.user.manager.client)
 
 }
