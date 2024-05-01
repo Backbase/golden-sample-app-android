@@ -14,7 +14,6 @@ import com.backbase.android.design.header.TopBarConfiguration
 import com.backbase.golden_sample_app.R
 import com.backbase.golden_sample_app.databinding.ActivityMainBinding
 import com.backbase.golden_sample_app.menu.moreMenuModule
-import com.backbase.golden_sample_app.payments.paymentsMenuModule
 import com.backbase.golden_sample_app.presentation.bottom.setupBottomBar
 import com.backbase.golden_sample_app.presentation.header.updateStatusBarColor
 import com.backbase.golden_sample_app.router.AppRouting
@@ -39,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 
     /**
      * Shared VM between the activity and all the instances of TabHeaderFragment
-      */
+     */
     private val tabHeaderViewModel: TabHeaderViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,7 +73,6 @@ class MainActivity : AppCompatActivity() {
             listOf(
                 sessionModule(navController),
                 moreMenuModule(navController),
-                paymentsMenuModule(navController)
             )
         )
     }

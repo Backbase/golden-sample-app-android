@@ -1,8 +1,8 @@
 package com.backbase.golden_sample_app.router
 
 import androidx.navigation.NavController
-import com.backbase.golden_sample_app.presentation.header.TabListConfigurationProvider
 import com.backbase.golden_sample_app.presentation.bottom.addBottomBarNavigationDestinations
+import com.backbase.golden_sample_app.presentation.header.TabListConfigurationProvider
 
 /**
  * App routing implementation
