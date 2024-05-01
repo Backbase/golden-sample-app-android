@@ -19,10 +19,6 @@ fun NavController.addBottomBarNavigationDestinations(
         id = R.id.dashboard,
         tabList = tabListConfig.dashboardTabList()
     ),
-    createDestination(
-        id = R.id.move_money,
-        tabList = tabListConfig.moveMoneyTabList()
-    )
 )
 
 /**
