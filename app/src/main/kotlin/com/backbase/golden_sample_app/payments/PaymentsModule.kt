@@ -10,6 +10,7 @@ import com.backbase.android.retail.journey.more.MoreJourneyScope
 import com.backbase.android.retail.journey.payments.ExternalPaymentAccountsServiceUseCase
 import com.backbase.android.retail.journey.payments.PaymentAccountsUseCase
 import com.backbase.android.retail.journey.payments.PaymentJourneyScope
+import com.backbase.android.retail.journey.payments.PaymentJourneyType
 import com.backbase.android.retail.journey.payments.PaymentRouter
 import com.backbase.android.retail.journey.payments.PaymentUseCase
 import com.backbase.android.retail.journey.payments.configuration.a2aPaymentConfiguration
@@ -37,7 +38,7 @@ internal fun paymentsMenuModule(
     scope<PaymentJourneyScope> {
         scoped { Sdk.moshi }
         scoped { Sdk.responseBodyParser }
-        scoped { a2aPaymentConfiguration() }
+        scoped(PaymentJourneyType.A2A) { a2aPaymentConfiguration() }
 
         scoped<PaymentRouter> { // Required
             object : PaymentRouter {

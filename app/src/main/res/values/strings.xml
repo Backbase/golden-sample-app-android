@@ -6,7 +6,6 @@
     <string name="label_menu_move_money">Move Money</string>
 
     <string name="more_menu_title">"More Menu"</string>
-    <string name="more_menu_contacts">"Contacts"</string>
     <string name="more_menu_log_out">Log out</string>
     <string name="more_menu_switch_user">Switch user</string>
     <string name="more_menu_security_section_title">Security</string>

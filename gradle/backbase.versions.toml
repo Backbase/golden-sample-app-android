@@ -26,9 +26,6 @@ journey-test = "5.0.3"
 more-menu-journey = "5.0.0"
 msdk = "10.0.3"
 
-## O
-observability = "4.0.0"
-
 ## P
 payment-journey = "6.0.0"
 payment-order-a2a-client = "1.0.0"
@@ -37,7 +34,6 @@ payment-order-client-gen2 = "1.2.0"
 payment-order-v2-client = "1.0.0"
 
 ## R
-retail-contacts-journey = "6.0.0"
 retail-journey-common = "5.1.0"
 
 ## U
@@ -87,11 +83,7 @@ payment-order-client-gen2 = { group = "com.backbase.android.clients", name = "ge
 payment-order-v2-client = { group = "com.backbase.android.clients", name = "gen2-paymentorderv2-client-2", version.ref = "payment-order-v2-client"}
 
 ## O
-observability = { group = "com.backbase.android.observability", name = "backbase-observability-android", version.ref = "observability" }
-
 ## R
-retail-contacts-journey = { group = "com.backbase.android.retail.journey", name = "contacts-journey", version.ref = "retail-contacts-journey" }
-retail-contacts-journey-usecase = { group = "com.backbase.android.retail.journey", name = "gen-contactmanager-client-2-contacts-use-case", version.ref = "retail-contacts-journey" }
 retail-journey-common = { group = "com.backbase.android.retail.journey", name = "journey-common", version.ref = "retail-journey-common" }
 retail-journey-common-koin = { group = "com.backbase.android.retail.journey", name = "journey-common-koin", version.ref = "retail-journey-common" }
 
@@ -169,13 +161,6 @@ retail-payments = [
     "payment-order-client-gen2",
     "payment-order-v2-client"
     ]
-
-## R
-# implementation(backbase.bundles.retail.contacts)
-retail-contacts = [
-    "retail-contacts-journey",
-    "retail-contacts-journey-usecase"
-]
 
 ## S
 # implementation(backbase.bundles.sdk)

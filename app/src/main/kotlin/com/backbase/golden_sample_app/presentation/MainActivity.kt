@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
     /**
      * Shared VM between the activity and all the instances of TabHeaderFragment
-      */
+     */
     private val tabHeaderViewModel: TabHeaderViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
