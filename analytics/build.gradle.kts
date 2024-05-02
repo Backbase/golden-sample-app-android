@@ -9,4 +9,5 @@ android {
 
 dependencies {
     implementation(backbase.observability)
+    implementation(backbase.opentelemetry.connector)
 }

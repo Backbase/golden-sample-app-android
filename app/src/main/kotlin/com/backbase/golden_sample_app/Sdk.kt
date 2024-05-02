@@ -2,13 +2,10 @@ package com.backbase.golden_sample_app
 
 import android.content.Context
 import com.backbase.android.Backbase
-import com.backbase.android.client.contactmanagerclient2.api.ContactsApi
 import com.backbase.android.client.gen2.accesscontrolclient3.api.UserContextApi
 import com.backbase.android.client.gen2.accesscontrolclient3.api.UsersApi
 import com.backbase.android.client.gen2.arrangementclient2.api.ArrangementsApi
 import com.backbase.android.client.gen2.arrangementclient2.api.ProductSummaryApi
-import com.backbase.android.client.gen2.paymentordera2aclient1.api.A2aClientApi
-import com.backbase.android.client.gen2.paymentorderv2client2.api.PaymentOrdersApi
 import com.backbase.android.client.usermanagerclient2.api.UserProfileManagementApi
 import com.backbase.android.clients.common.MoshiResponseBodyParser
 import com.backbase.android.clients.common.ResponseBodyParser
@@ -43,9 +40,6 @@ object Sdk {
             getUsersProfileApi(context, networkDBSDataProvider),
             getProductSummaryApi(context, networkDBSDataProvider),
             getArrangementsApi(context, networkDBSDataProvider),
-            getContactsApi(context, networkDBSDataProvider),
-            getA2aClientApi(context, networkDBSDataProvider),
-            getPaymentsOrderApi(context, networkDBSDataProvider)
         )
     }
 
@@ -118,44 +112,7 @@ object Sdk {
         backbase = Backbase.requireInstance()
     )
 
-    private fun getContactsApi(
-        context: Context,
-        dataProvider: DBSDataProvider
-    ) = ContactsApi(
-        context = context,
-        moshi = moshi,
-        parser = responseBodyParser,
-        serverUri = URI(CONTACT_MANAGER_ENDPOINT),
-        provider = dataProvider,
-        backbase = Backbase.requireInstance()
-    )
-
-    private fun getA2aClientApi(
-        context: Context,
-        dataProvider: DBSDataProvider
-    ) = A2aClientApi(
-        context = context,
-        moshi = moshi,
-        parser = responseBodyParser,
-        serverUri = URI(PAYMENT_ORDER_ENDPOINT),
-        provider = dataProvider,
-        backbase = Backbase.requireInstance()
-    )
-    private fun getPaymentsOrderApi(
-        context: Context,
-        dataProvider: DBSDataProvider
-    ) = PaymentOrdersApi(
-        context = context,
-        moshi = moshi,
-        parser = responseBodyParser,
-        serverUri = URI(PAYMENT_ORDER_ENDPOINT),
-        provider = dataProvider,
-        backbase = Backbase.requireInstance()
-    )
-
     private const val ACCESS_CONTROL_ENDPOINT = "/access-control"
     private const val ARRANGEMENT_MANAGER_ENDPOINT = "/arrangement-manager"
-    private const val CONTACT_MANAGER_ENDPOINT = "/contact-manager"
-    private const val PAYMENT_ORDER_ENDPOINT = "/payment-order-service"
     private const val USER_MANAGER_ENDPOINT = "user-manager"
 }

@@ -14,8 +14,6 @@ import com.backbase.deferredresources.DeferredText
 import com.backbase.golden_sample_app.R
 import com.backbase.golden_sample_app.router.MoreMenuRouterImpl
 import com.backbase.golden_sample_app.session.SessionManager
-import com.backbase.golden_sample_app.user.UserEntitlements
-import com.backbase.golden_sample_app.user.UserEntitlementsRepository
 import org.koin.dsl.module
 
 /**
@@ -29,32 +27,17 @@ internal fun moreMenuModule(
             MoreMenuRouterImpl(navController)
         }
 
-        scoped { demoMoreConfig(get(), get()) }
+        scoped { demoMoreConfig(get()) }
     }
 }
 
 fun demoMoreConfig(
     sessionManager: SessionManager,
-    userEntitlementsRepository: UserEntitlementsRepository
 ) = MoreConfiguration {
     showIcons = true
     contentDescription = DeferredText.Resource(R.string.more_menu_title)
     sections = MenuSections {
-        +moreSection(userEntitlementsRepository)
         +logOutSection(sessionManager)
-    }
-}
-
-private fun moreSection(userEntitlementsRepository: UserEntitlementsRepository): MenuSection {
-    return MenuSection {
-        if (userEntitlementsRepository.entitlements.contains(UserEntitlements.Contact.view)) {
-            +MenuItem(
-                title = DeferredText.Resource(R.string.more_menu_contacts),
-                icon = DeferredDrawable.Resource(com.backbase.android.design.R.drawable.backbase_ic_contacts)
-            ) {
-                NavigateTo(R.id.action_more_to_contactsJourney)
-            }
-        }
     }
 }
 

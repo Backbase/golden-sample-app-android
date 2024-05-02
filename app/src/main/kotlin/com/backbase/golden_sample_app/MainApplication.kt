@@ -1,6 +1,7 @@
 package com.backbase.golden_sample_app
 
 import android.app.Application
+import android.util.Log
 import com.backbase.accounts_journey.AccountsJourney
 import com.backbase.accounts_journey.configuration.AccountsJourneyConfiguration
 import com.backbase.accounts_journey.configuration.accountlist.AccountListScreenConfiguration
@@ -25,7 +26,6 @@ import com.backbase.golden_sample_app.authentication.CompositeSessionListener
 import com.backbase.golden_sample_app.common.TAG
 import com.backbase.golden_sample_app.koin.accountsModule
 import com.backbase.golden_sample_app.koin.appModule
-import com.backbase.golden_sample_app.koin.contactsModule
 import com.backbase.golden_sample_app.koin.featureFilterModule
 import com.backbase.golden_sample_app.koin.identityAuthModule
 import com.backbase.golden_sample_app.koin.presentationModule
@@ -145,12 +145,11 @@ class MainApplication : Application() {
                 appModule(this@MainApplication),
                 presentationModule(context = this@MainApplication),
                 identityAuthModule(sessionEmitter),
-                contactsModule(),
                 workspacesModule,
                 WorkspacesJourney.create(),
                 accountsModule,
                 AccountsJourney.create(configuration = setupAccountsJourneyConfiguration()),
-                observabilityModule,
+                observabilityModule(scope),
             )
         )
     }
@@ -164,10 +163,11 @@ class MainApplication : Application() {
             // Samples (Actual method call could be different, please refer to the actual Analytics tools documentation)
             // Firebase.logEvent(${event.name})
             // Adjust.screen(${event.name})
-            // Log.d("Tracker", "Tracked screen view: ${event.name}")
+            Log.d("Tracker", "Tracked screen view: ${event.name}")
         }
         tracker.subscribe(this, UserActionEvent::class, scope) { event ->
             // Same can be done with the User Action Events.
+            Log.d("Tracker", "Tracked user action: ${event.name}")
         }
     }
 
