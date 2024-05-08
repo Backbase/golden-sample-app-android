@@ -7,7 +7,7 @@ To get started, please follow this [guide on Backbase.io](https://backbase.io/de
 Note that this project connects to the EBP Sandbox Environment, for that you need to request an API key as [mentioned here](https://backbase.io/developers/documentation/api-sandbox/retail-banking-usa/android-guide/). Add the key to the `config.json` file in the assets folder.
 
 ## 🧬 Branch catalog
-| Project |    |
+| Branch |    |
 |:-----|---------|
 | `main`<br />The minimal sample that includes all the required Backbase SDKs to get started to develop your own bank app.<br />• Foundation libraries: MDS and MSDK<br />• Identity Journey<br />• Workspaces Journey<br />• More Menu Journey<br />• Example how to build a custom Accounts Journey<br />• More Menu Journey<br />• NEO header<br />• Screenshot tests<br />• Automated UI tests<br />Status: `Maintained`<br />EBP Sandbox 2023.09-LTS<br /><br />[> Browse](https://github.com/Backbase/golden-sample-app-android) | <img src="readme/screenshots/main.png" width="320" alt="main branch" />  |
 | | |
