@@ -17,14 +17,6 @@ object UserEntitlements {
         )
     }
 
-    object Contact {
-        val view = UserEntitlement(
-            "Contacts",
-            "Contacts",
-            "view"
-        )
-    }
-
     object Payments {
         object A2A {
             val create = UserEntitlement(

@@ -14,13 +14,6 @@ import com.backbase.accounts_journey.R
 import com.backbase.accounts_journey.configuration.AccountsJourneyConfiguration
 import com.backbase.accounts_journey.configuration.accountlist.AccountListScreenConfiguration
 import com.backbase.accounts_journey.databinding.FragmentAccountListBinding
-import com.backbase.accounts_journey.presentation.accountScreenViewEvent
-import com.backbase.accounts_journey.presentation.clickUserActionEvent
-import com.backbase.accounts_journey.presentation.refreshUserActionEvent
-import com.backbase.accounts_journey.presentation.searchUserActionEvent
-import com.backbase.analytics.publishScreenViewEvent
-import com.backbase.analytics.publishUserActionEvent
-import com.backbase.android.observability.Tracker
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.koin.android.ext.android.inject
@@ -42,8 +35,6 @@ class AccountListFragment : Fragment() {
     }
 
     private val viewModel: AccountListViewModel by viewModel()
-
-    private val tracker: Tracker by inject()
 
     private val accountListAdapter: AccountListAdapter = AccountListAdapter(
         onClick = { itemClicked(it) }
@@ -69,12 +60,10 @@ class AccountListFragment : Fragment() {
         binding.header.text = requireContext().getText(screenConfiguration.screenTitle)
 
         binding.accountlistSwipeContainer.setOnRefreshListener {
-            publishUserActionEvent(tracker, refreshUserActionEvent)
             viewModel.onEvent(AccountListEvent.OnRefresh)
         }
 
         binding.searchTextInput.addTextChangedListener { text ->
-            publishUserActionEvent(tracker, searchUserActionEvent)
             viewModel.onEvent(AccountListEvent.OnSearch(text.toString()))
         }
 
@@ -113,7 +102,6 @@ class AccountListFragment : Fragment() {
     }
 
     private fun itemClicked(id: String) {
-        publishUserActionEvent(tracker, clickUserActionEvent)
         val navController = findNavController()
         val action = AccountListFragmentDirections.actionAccountListFragmentToAccountDetailFragment(id)
         navController.navigate(action)
@@ -122,10 +110,5 @@ class AccountListFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    override fun onStart() {
-        super.onStart()
-        publishScreenViewEvent(tracker, accountScreenViewEvent)
     }
 }
