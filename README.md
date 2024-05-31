@@ -1,5 +1,5 @@
 # Golden Sample Android App
-This golden sample provides examples of the code structure, configuration, and best practices for using the Backbase Android tools.
+TThe golden sample is a public repository that contains samples, examples and best practices. This repository should be used internally and externally to show the Backbase approach, architecture and way of working to our developers and customers.
 
 ## 💻 Getting started
 To get started, please follow this [guide on Backbase.io](https://backbase.io/developers/documentation/mobile-devkit/getting-started/set-up-android-development/).

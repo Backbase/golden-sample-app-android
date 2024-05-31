@@ -65,71 +65,11 @@
     </fragment>
 
     <fragment
-        android:id="@+id/contactsJourney"
-        android:name="com.backbase.android.retail.journey.contacts.ContactsJourney" />
-
-    <fragment
         android:id="@+id/more"
         android:name="com.backbase.android.retail.journey.more.MoreJourney"
         android:label="More menu"
         tools:layout="@layout/more_journey">
-        <action
-            android:id="@+id/action_more_to_contactsJourney"
-            app:destination="@id/contactsJourney" />
     </fragment>
-
-    <fragment
-        android:id="@+id/moreJourney"
-        android:name="com.backbase.android.retail.journey.more.MoreJourney"
-        tools:layout="@layout/more_journey">
-
-        <action
-            android:id="@+id/move_money_to_payments_journey"
-            app:destination="@id/paymentJourney" />
-
-
-        <action
-            android:id="@+id/move_money_to_bill_pay_sso"
-            app:destination="@id/billPaySsoJourney" />
-
-
-
-        <action
-            android:id="@+id/move_money_to_upcoming_payments"
-            app:destination="@id/upcomingPaymentsJourney"/>
-    </fragment>
-
-    <fragment
-        android:id="@+id/paymentJourney"
-        android:name="com.backbase.android.retail.journey.payments.PaymentJourney"
-        android:label="Payment Journey"
-        tools:layout="@layout/payments_journey">
-
-        <action
-            android:id="@+id/action_paymentJourney_to_upcomingPaymentsJourney"
-            app:destination="@id/upcomingPaymentsJourney"
-            app:popUpTo="@id/upcomingPaymentsJourney"
-            app:popUpToInclusive="true"/>
-    </fragment>
-
-
-
-    <fragment
-        android:id="@+id/upcomingPaymentsJourney"
-        android:name="com.backbase.android.retail.journey.payments.upcoming.UpcomingPaymentsJourney"
-        android:label="Upcoming Payments Journey"
-        tools:layout="@layout/upcoming_payment_journey" >
-
-        <action
-            android:id="@+id/action_upcomingPaymentsJourney_edit_payment"
-            app:destination="@id/paymentJourney"/>
-    </fragment>
-
-
-    <fragment
-        android:id="@+id/billPaySsoJourney"
-        android:name="com.backbase.android.retail.journey.billPaySso.BillPayIntegratorSsoJourney"
-        android:label="BillPaySsoJourney" />
 
     <fragment
         android:id="@+id/upcoming_fragment"
