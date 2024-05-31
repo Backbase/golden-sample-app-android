@@ -12,6 +12,7 @@ import com.backbase.android.design.header.AvatarConfiguration
 import com.backbase.android.design.header.TabHeaderViewModel
 import com.backbase.android.design.header.TopBarConfiguration
 import com.backbase.golden_sample_app.R
+import com.backbase.golden_sample_app.configuration.ApplicationConfiguration
 import com.backbase.golden_sample_app.databinding.ActivityMainBinding
 import com.backbase.golden_sample_app.menu.moreMenuModule
 import com.backbase.golden_sample_app.presentation.bottom.setupBottomBar
@@ -72,7 +73,7 @@ class MainActivity : AppCompatActivity() {
         loadKoinModules(
             listOf(
                 sessionModule(navController),
-                moreMenuModule(navController),
+                moreMenuModule(navController, ApplicationConfiguration),
             )
         )
     }

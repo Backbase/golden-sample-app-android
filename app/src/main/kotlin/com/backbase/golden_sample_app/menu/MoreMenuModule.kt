@@ -12,6 +12,10 @@ import com.backbase.deferredresources.DeferredColor
 import com.backbase.deferredresources.DeferredDrawable
 import com.backbase.deferredresources.DeferredText
 import com.backbase.golden_sample_app.R
+import com.backbase.golden_sample_app.configuration.ApplicationConfiguration
+import com.backbase.golden_sample_app.configuration.ApplicationFeatureFlag
+import com.backbase.golden_sample_app.configuration.getFeatureFlagOrNull
+import com.backbase.golden_sample_app.configuration.hasFeatureFlag
 import com.backbase.golden_sample_app.router.MoreMenuRouterImpl
 import com.backbase.golden_sample_app.session.SessionManager
 import com.backbase.golden_sample_app.user.UserEntitlements
@@ -22,37 +26,44 @@ import org.koin.dsl.module
  * Created by Backbase R&D B.V. on 23/07/2020.
  */
 internal fun moreMenuModule(
-    navController: NavController
+    navController: NavController,
+    applicationConfiguration: ApplicationConfiguration,
 ) = module {
     scope<MoreJourneyScope> {
         factory<MoreRouter> {
             MoreMenuRouterImpl(navController)
         }
 
-        scoped { demoMoreConfig(get(), get()) }
+        scoped { demoMoreConfig(get(), get(), applicationConfiguration) }
     }
 }
 
 fun demoMoreConfig(
     sessionManager: SessionManager,
-    userEntitlementsRepository: UserEntitlementsRepository
+    userEntitlementsRepository: UserEntitlementsRepository,
+    applicationConfiguration: ApplicationConfiguration,
 ) = MoreConfiguration {
     showIcons = true
     contentDescription = DeferredText.Resource(R.string.more_menu_title)
     sections = MenuSections {
-        +moreSection(userEntitlementsRepository)
+        +moreSection(userEntitlementsRepository, applicationConfiguration)
         +logOutSection(sessionManager)
     }
 }
 
-private fun moreSection(userEntitlementsRepository: UserEntitlementsRepository): MenuSection {
+private fun moreSection(
+    userEntitlementsRepository: UserEntitlementsRepository,
+    applicationConfiguration: ApplicationConfiguration
+): MenuSection {
     return MenuSection {
-        if (userEntitlementsRepository.entitlements.contains(UserEntitlements.Contact.view)) {
-            +MenuItem(
-                title = DeferredText.Resource(R.string.more_menu_contacts),
-                icon = DeferredDrawable.Resource(com.backbase.android.design.R.drawable.backbase_ic_contacts)
-            ) {
-                NavigateTo(R.id.action_more_to_contactsJourney)
+        if (applicationConfiguration.applicationFeatureFlags.hasFeatureFlag<ApplicationFeatureFlag.ContactsJourneyFeatureFlag>()) {
+            if (userEntitlementsRepository.entitlements.contains(UserEntitlements.Contact.view)) {
+                +MenuItem(
+                    title = DeferredText.Resource(R.string.more_menu_contacts),
+                    icon = DeferredDrawable.Resource(com.backbase.android.design.R.drawable.backbase_ic_contacts)
+                ) {
+                    NavigateTo(R.id.action_more_to_contactsJourney)
+                }
             }
         }
     }
