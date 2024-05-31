@@ -1,6 +1,6 @@
 # Sample catalog
 
-This file contains the catalog of samples in the repository, please refer to the contributing guideline how to add a new entry. To check code changes in a sample you can always compare it to the appropriate tag on the main branch.
+This file contains the catalog of samples in the repository, please refer to the [contributing guideline](CONTRIBUTING.md) how to add a new entry. To check code changes in a sample you can always compare it to the appropriate tag on the main branch.
 
 ## [main](https://github.com/Backbase/golden-sample-app-android)
 The minimal sample that includes all the required Backbase SDKs to get started to develop your own bank app.
