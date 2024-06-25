@@ -9,7 +9,7 @@
         android:id="@+id/authenticationJourney"
         android:name="com.backbase.android.identity.journey.authentication.AuthenticationJourney"
         android:label="Authentication Journey"
-        tools:layout="@layout/identity_authentication_journey">
+        tools:layout="@layout/identity_username_screen">
         <action
             android:id="@+id/action_authenticationJourneyFragment_to_workspaceSelector"
             app:destination="@id/workspaces_selector"

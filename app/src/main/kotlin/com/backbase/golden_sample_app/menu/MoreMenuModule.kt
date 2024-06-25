@@ -20,49 +20,71 @@ import org.koin.dsl.module
  * Created by Backbase R&D B.V. on 23/07/2020.
  */
 internal fun moreMenuModule(
-    navController: NavController
+    navController: NavController,
 ) = module {
     scope<MoreJourneyScope> {
         factory<MoreRouter> {
             MoreMenuRouterImpl(navController)
         }
 
-        scoped { demoMoreConfig(get()) }
+        scoped { demoMoreConfig(get(), navController) }
     }
 }
 
 fun demoMoreConfig(
     sessionManager: SessionManager,
+    navController: NavController
 ) = MoreConfiguration {
     showIcons = true
     contentDescription = DeferredText.Resource(R.string.more_menu_title)
     sections = MenuSections {
-        +logOutSection(sessionManager)
+        +demoSection()
+        +logOutSection(sessionManager, navController)
+    }
+}
+
+private fun demoSection(): MenuSection {
+    return MenuSection {
+        val switchIconColor =
+            DeferredColor.Resource(com.backbase.android.design.R.color.bds_onDanger)
+        +MenuItem(
+            title = DeferredText.Resource(R.string.more_menu_demo_title),
+            icon = DeferredDrawable.Resource(com.backbase.android.design.R.drawable.backbase_ic_curtains_closed) {
+                setTint(switchIconColor.resolve(it))
+            },
+        ) {
+            NavigateTo(R.id.upcoming_fragment)
+        }
     }
 }
 
 private fun logOutSection(
-    sessionManager: SessionManager
+    sessionManager: SessionManager,
+    navController: NavController
 ) = MenuSection {
-    val switchUserBackgroundColor =
+    val switchBackgroundColor =
         DeferredColor.Resource(com.backbase.android.design.R.color.bds_danger)
-    val switchUserIconColor =
+    val switchIconColor =
         DeferredColor.Resource(com.backbase.android.design.R.color.bds_onDanger)
     +MenuItem(
         title = DeferredText.Resource(R.string.more_menu_log_out),
-        icon = DeferredDrawable.Resource(com.backbase.android.design.R.drawable.backbase_ic_logout)
+        icon = DeferredDrawable.Resource(com.backbase.android.design.R.drawable.backbase_ic_logout) {
+            setTint(switchIconColor.resolve(it))
+        }
     ) {
         sessionManager.logOut()
+        navController.popBackStack(R.id.workspaces_selector, true)
         BackToAuth
     }
     +MenuItem(
         title = DeferredText.Resource(R.string.more_menu_switch_user),
         icon = DeferredDrawable.Resource(com.backbase.android.design.R.drawable.backbase_ic_person) {
-            setTint(switchUserIconColor.resolve(it))
+            setTint(switchIconColor.resolve(it))
         },
-        iconBackgroundColor = switchUserBackgroundColor
+        iconBackgroundColor = switchBackgroundColor
     ) {
         sessionManager.switchUser()
+        navController.popBackStack(R.id.workspaces_selector, true)
         BackToAuth
     }
     title = DeferredText.Resource(R.string.more_menu_security_section_title)
