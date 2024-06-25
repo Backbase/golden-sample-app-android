@@ -57,7 +57,7 @@ class AccountUiMapper(accountsJourneyConfiguration: AccountsJourneyConfiguration
                     AccountUiModel(
                         id = domain.id,
                         name = domain.displayName,
-                        balance = formatCurrency(domain.currency, domain.availableBalance),
+                        balance = formatCurrency(domain.currency, domain.availableBalance?.toBigDecimalOrNull()),
                         state = formatState(domain.state?.state, domain.BBAN),
                         icon = iconsConfiguration.iconCustomProduct,
                         isVisible = domain.userPreferences?.visible
@@ -76,7 +76,7 @@ class AccountUiMapper(accountsJourneyConfiguration: AccountsJourneyConfiguration
                 AccountUiModel(
                     id = domain.id,
                     name = domain.displayName,
-                    balance = formatCurrency(domain.currency, domain.availableBalance),
+                    balance = formatCurrency(domain.currency, domain.availableBalance?.toBigDecimalOrNull()),
                     state = formatState(domain.state?.state, domain.BBAN),
                     icon = iconsConfiguration.iconCurrentAccount,
                     isVisible = domain.userPreferences?.visible
@@ -94,7 +94,7 @@ class AccountUiMapper(accountsJourneyConfiguration: AccountsJourneyConfiguration
                 AccountUiModel(
                     id = domain.id,
                     name = domain.displayName,
-                    balance = formatCurrency(domain.currency, domain.availableBalance),
+                    balance = formatCurrency(domain.currency, domain.availableBalance?.toBigDecimalOrNull()),
                     state = formatState(domain.state?.state, domain.BBAN),
                     icon = iconsConfiguration.iconSavingsAccount,
                     isVisible = domain.userPreferences?.visible
@@ -112,7 +112,7 @@ class AccountUiMapper(accountsJourneyConfiguration: AccountsJourneyConfiguration
                 AccountUiModel(
                     id = domain.id,
                     name = domain.displayName,
-                    balance = formatCurrency(domain.currency, domain.availableBalance),
+                    balance = formatCurrency(domain.currency, domain.availableBalance?.toBigDecimalOrNull()),
                     state = formatState(domain.state?.state, domain.BBAN),
                     icon = iconsConfiguration.iconTermDeposit,
                     isVisible = domain.userPreferences?.visible
@@ -130,7 +130,7 @@ class AccountUiMapper(accountsJourneyConfiguration: AccountsJourneyConfiguration
                 AccountUiModel(
                     id = domain.id,
                     name = domain.displayName,
-                    balance = formatCurrency(domain.currency, domain.availableBalance),
+                    balance = formatCurrency(domain.currency, domain.availableBalance?.toBigDecimalOrNull()),
                     state = formatState(domain.state?.state, domain.BBAN),
                     icon = iconsConfiguration.iconLoan,
                     isVisible = domain.userPreferences?.visible
@@ -148,7 +148,7 @@ class AccountUiMapper(accountsJourneyConfiguration: AccountsJourneyConfiguration
                 AccountUiModel(
                     id = domain.id,
                     name = domain.displayName,
-                    balance = formatCurrency(domain.currency, domain.availableBalance),
+                    balance = formatCurrency(domain.currency, domain.availableBalance?.toBigDecimalOrNull()),
                     state = formatState(domain.state?.state, domain.creditCardAccountNumber),
                     icon = iconsConfiguration.iconCreditCard,
                     isVisible = domain.userPreferences?.visible
@@ -184,7 +184,7 @@ class AccountUiMapper(accountsJourneyConfiguration: AccountsJourneyConfiguration
                 AccountUiModel(
                     id = domain.id,
                     name = domain.displayName,
-                    balance = formatCurrency(domain.currency, domain.currentInvestmentValue),
+                    balance = formatCurrency(domain.currency, domain.currentInvestmentValue?.toBigDecimalOrNull()),
                     state = formatState(domain.state?.state, domain.BBAN),
                     icon = iconsConfiguration.iconInvestmentAccount,
                     isVisible = domain.userPreferences?.visible
@@ -193,11 +193,11 @@ class AccountUiMapper(accountsJourneyConfiguration: AccountsJourneyConfiguration
         )
     }
 
-    private fun formatCurrency(currency: String?, amount: String?): String {
+    private fun formatCurrency(currency: String?, amount: BigDecimal?): String {
         return AmountFormat().apply {
             enableAbbreviation = true
             currencyCode = currency
-        }.format(amount?.toBigDecimal() ?: BigDecimal.ZERO)
+        }.format(amount ?: BigDecimal.ZERO)
     }
 
     private fun formatState(state: String?, number: String?): String? {
