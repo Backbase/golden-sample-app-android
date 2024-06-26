@@ -26,7 +26,7 @@ class AccountDetailUiMapper(accountsJourneyConfiguration: AccountsJourneyConfigu
             id = domain.id,
             name = domain.name,
             BBAN = domain.BBAN ?: domain.BIC,
-            availableBalance = formatCurrency(domain.currency, domain.availableBalance.toString()),
+            availableBalance = formatCurrency(domain.currency, domain.availableBalance),
             accountHolderNames = domain.accountHolderNames,
             productKindName = domain.product?.productKind?.kindName,
             bankBranchCode = domain.bankBranchCode,
@@ -34,18 +34,18 @@ class AccountDetailUiMapper(accountsJourneyConfiguration: AccountsJourneyConfigu
             accountInterestRate = domain.accountInterestRate?.let { rate ->
                 rate.setScale(2, RoundingMode.CEILING).let { "$it%" }
             },
-            accruedInterest = formatCurrency(domain.currency, domain.accruedInterest.toString()),
-            creditLimit = formatCurrency(domain.currency, domain.creditLimit.toString()),
+            accruedInterest = formatCurrency(domain.currency, domain.accruedInterest),
+            creditLimit = formatCurrency(domain.currency, domain.creditLimit),
             accountOpeningDate = domain.accountOpeningDate!!.format(DateTimeFormatter.ofPattern("MMMM d, yyyy")),
             icon = getIcon(domain.product?.externalId)
         )
     }
 
-    private fun formatCurrency(currency: String?, amount: String?): String {
+    private fun formatCurrency(currency: String?, amount: BigDecimal?): String {
         return AmountFormat().apply {
             enableAbbreviation = false
             currencyCode = currency
-        }.format(amount?.toBigDecimal() ?: BigDecimal.ZERO)
+        }.format(amount ?: BigDecimal.ZERO)
     }
 
     private fun getIcon(productType: String?): Int {
