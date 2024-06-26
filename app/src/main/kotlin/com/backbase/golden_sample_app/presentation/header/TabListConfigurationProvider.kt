@@ -24,7 +24,7 @@ class TabListConfigurationProvider(private val context: Context) {
         name = context.getString(R.string.top_bar_tab_accounts)
         navigation = NavigationConfiguration {
             navGraphId = R.navigation.navigation_main
-            destination = DestinationByIdConfiguration { id = R.id.accountListFragment }
+            destination = DestinationByIdConfiguration { id = com.backbase.accounts_journey.R.id.account_journey_nav_graph }
         }
     }
 
