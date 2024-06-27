@@ -12,7 +12,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.backbase.accounts_journey.R
 import com.backbase.accounts_journey.databinding.FragmentAccountDetailBinding
-import com.backbase.accounts_journey.routing.AccountsRouting
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.koin.android.ext.android.inject
@@ -26,7 +25,6 @@ class AccountDetailFragment : Fragment() {
 
     private var _binding: FragmentAccountDetailBinding? = null
     private val binding get() = _binding!!
-    private val routing: AccountsRouting by inject()
     private val viewModel: AccountDetailViewModel by inject()
 
     override fun onCreateView(

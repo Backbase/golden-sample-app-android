@@ -17,7 +17,7 @@ object AccountsJourney {
 
     fun create(
         configuration: AccountsJourneyConfiguration = AccountsJourneyConfiguration { },
-        accountsRouting:AccountsRouting=AccountsRoutingImpl()
+        accountsRouting: AccountsRouting = AccountsRoutingImpl()
     ) = module {
         factory { configuration }
         single<AccountsRouting> { accountsRouting }
