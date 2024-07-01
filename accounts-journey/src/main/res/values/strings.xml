@@ -23,4 +23,5 @@
     <string name="interest_details_accured_interest_label">Accrued Interest</string>
     <string name="overdraft_details_overdraft_limit_label">Overdraft Limit</string>
     <string name="other_account_opening_date_label">Account Opening Date</string>
+    <string name="missing_account_id">Account id is missing</string>
 </resources>

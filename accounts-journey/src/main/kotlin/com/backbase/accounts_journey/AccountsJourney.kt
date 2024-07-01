@@ -3,6 +3,8 @@ package com.backbase.accounts_journey
 import com.backbase.accounts_journey.configuration.AccountsJourneyConfiguration
 import com.backbase.accounts_journey.koin.mapperModule
 import com.backbase.accounts_journey.koin.viewModelModule
+import com.backbase.accounts_journey.routing.AccountsRouting
+import com.backbase.accounts_journey.routing.AccountsRoutingImpl
 import org.koin.core.context.loadKoinModules
 import org.koin.dsl.module
 
@@ -14,10 +16,11 @@ import org.koin.dsl.module
 object AccountsJourney {
 
     fun create(
-        configuration: AccountsJourneyConfiguration = AccountsJourneyConfiguration { }
+        configuration: AccountsJourneyConfiguration = AccountsJourneyConfiguration { },
+        accountsRouting: AccountsRouting = AccountsRoutingImpl()
     ) = module {
         factory { configuration }
-
+        single<AccountsRouting> { accountsRouting }
         loadKoinModules(
             listOf(
                 viewModelModule,
