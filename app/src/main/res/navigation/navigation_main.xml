@@ -42,27 +42,7 @@
         android:id="@+id/action_global_authenticationJourney"
         app:destination="@id/authenticationJourney" />
 
-    <fragment
-        android:id="@+id/accountListFragment"
-        android:name="com.backbase.accounts_journey.presentation.accountlist.ui.AccountListFragment"
-        android:label="AccountListFragment"
-        tools:layout="@layout/fragment_account_list">
-        <argument
-            android:name="workspaceName"
-            app:argType="string" />
-        <action
-            android:id="@+id/action_accountListFragment_to_accountDetailFragment"
-            app:destination="@id/accountDetailFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/accountDetailFragment"
-        android:name="com.backbase.accounts_journey.presentation.accountdetail.ui.AccountDetailFragment"
-        android:label="AccountDetailFragment"
-        tools:layout="@layout/fragment_account_detail">
-        <argument
-            android:name="accountId"
-            app:argType="string" />
-    </fragment>
+    <include app:graph="@navigation/account_journey_nav_graph" />
 
     <fragment
         android:id="@+id/contactsJourney"
@@ -73,11 +53,7 @@
         android:id="@+id/more"
         android:name="com.backbase.android.retail.journey.more.MoreJourney"
         android:label="More menu"
-        tools:layout="@layout/more_journey">
-        <action
-            android:id="@+id/action_more_to_contactsJourney"
-            app:destination="@id/contactsJourney" />
-    </fragment>
+        tools:layout="@layout/more_journey" />
 
     <fragment
         android:id="@+id/upcoming_fragment"

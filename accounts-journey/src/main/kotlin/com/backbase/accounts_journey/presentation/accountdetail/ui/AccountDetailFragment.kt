@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
+import com.backbase.accounts_journey.R
 import com.backbase.accounts_journey.databinding.FragmentAccountDetailBinding
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -25,10 +25,7 @@ class AccountDetailFragment : Fragment() {
 
     private var _binding: FragmentAccountDetailBinding? = null
     private val binding get() = _binding!!
-
     private val viewModel: AccountDetailViewModel by inject()
-
-    private val args: AccountDetailFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,7 +49,13 @@ class AccountDetailFragment : Fragment() {
             .onEach { handleUiState(it) }
             .launchIn(lifecycleScope)
 
-        viewModel.onEvent(AccountDetailEvent.OnGetAccountDetail(args.id))
+        arguments?.getString(ACCOUNT_ID_ARGUMENT_KEY)?.let { id ->
+            viewModel.onEvent(AccountDetailEvent.OnGetAccountDetail(id))
+        } ?: run {
+            binding.apply {
+                errorText.text = requireContext().getText(R.string.missing_account_id)
+            }
+        }
     }
 
     private fun handleUiState(uiState: AccountDetailScreenState) {
@@ -110,5 +113,9 @@ class AccountDetailFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        const val ACCOUNT_ID_ARGUMENT_KEY = "ACCOUNT_ID_ARGUMENT_KEY"
     }
 }
