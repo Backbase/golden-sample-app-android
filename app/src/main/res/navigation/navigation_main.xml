@@ -38,6 +38,27 @@
         </action>
     </fragment>
 
+    <fragment
+        android:id="@+id/dashboard"
+        android:name="com.backbase.golden_sample_app.presentation.DashboardFragment">
+
+        <action
+            android:id="@+id/action_dashboard_to_tab_header_dashboard"
+            app:destination="@id/tab_header_dashboard"
+            app:popUpTo="@id/dashboard"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/tab_header_dashboard"
+        android:name="com.backbase.android.design.header.TabHeaderFragment">
+
+        <argument
+            android:name="TabListConfigurationKey"
+            app:argType="com.backbase.android.design.header.TabListConfiguration" />
+
+    </fragment>
+
     <action
         android:id="@+id/action_global_authenticationJourney"
         app:destination="@id/authenticationJourney" />

@@ -7,6 +7,7 @@ import com.backbase.android.retail.journey.more.MenuSections
 import com.backbase.android.retail.journey.more.MoreConfiguration
 import com.backbase.android.retail.journey.more.MoreJourneyScope
 import com.backbase.android.retail.journey.more.MoreRouter
+import com.backbase.android.retail.journey.more.OnActionComplete
 import com.backbase.android.retail.journey.more.OnActionComplete.NavigateTo
 import com.backbase.deferredresources.DeferredColor
 import com.backbase.deferredresources.DeferredDrawable
@@ -21,29 +22,31 @@ import org.koin.dsl.module
  */
 internal fun moreMenuModule(
     navController: NavController,
+    onSwitchThemeClick: () -> Unit,
 ) = module {
     scope<MoreJourneyScope> {
         factory<MoreRouter> {
             MoreMenuRouterImpl(navController)
         }
 
-        scoped { demoMoreConfig(get(), navController) }
+        scoped { demoMoreConfig(get(), navController, onSwitchThemeClick) }
     }
 }
 
 fun demoMoreConfig(
     sessionManager: SessionManager,
-    navController: NavController
+    navController: NavController,
+    onSwitchThemeClick: () -> Unit,
 ) = MoreConfiguration {
     showIcons = true
     contentDescription = DeferredText.Resource(R.string.more_menu_title)
     sections = MenuSections {
-        +demoSection()
+        +demoSection(onSwitchThemeClick)
         +logOutSection(sessionManager, navController)
     }
 }
 
-private fun demoSection(): MenuSection {
+private fun demoSection(onSwitchThemeClick: () -> Unit): MenuSection {
     return MenuSection {
         val switchIconColor =
             DeferredColor.Resource(com.backbase.android.design.R.color.bds_onDanger)
@@ -55,6 +58,17 @@ private fun demoSection(): MenuSection {
         ) {
             NavigateTo(R.id.upcoming_fragment)
         }
+
+        +MenuItem(
+            title = DeferredText.Resource(R.string.more_menu_switch_theme),
+            icon = DeferredDrawable.Attribute(com.backbase.android.design.R.attr.iconFormatPaint) {
+                setTint(switchIconColor.resolve(it))
+            },
+            actionBlock = {
+                onSwitchThemeClick()
+                OnActionComplete.DoNothing
+            }
+        )
     }
 }
 

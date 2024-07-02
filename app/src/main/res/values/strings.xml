@@ -10,7 +10,7 @@
     <string name="more_menu_switch_user">Switch user</string>
     <string name="more_menu_security_section_title">Security</string>
     <string name="more_menu_demo_title">Demo</string>
-
+    <string name="more_menu_switch_theme">Switch theme</string>
 
     <string name="move_money_title">Move Money</string>
     <string name="move_money_make_a_transfer">Make a transfer</string>

@@ -129,7 +129,7 @@ class MainApplication : Application() {
                 userModule(context = this@MainApplication),
                 featureFilterModule,
                 appModule(this@MainApplication),
-                presentationModule(context = this@MainApplication),
+                presentationModule(),
                 identityAuthModule(sessionEmitter),
                 workspacesModule,
                 WorkspacesJourney.create(),

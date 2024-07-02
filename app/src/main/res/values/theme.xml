@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Backbase.Premium">
+        <item name="colorPrimary">#CDDC39</item>
+        <item name="colorSecondary">#CDDC39</item>
+        <item name="colorSecondaryDarker">#9E9D24</item>
+    </style>
+</resources>
