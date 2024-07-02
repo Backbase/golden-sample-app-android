@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme.Premium" parent="Theme.Backbase">
+        <item name="colorPrimary">#6E4930</item>
+        <item name="colorPrimaryLightest">#E3DAD4</item>
+        <item name="colorPrimaryLighter">#AA9181</item>
+        <item name="colorPrimaryDarker">#5D3D27</item>
+        <item name="colorPrimaryDarkest">#392416</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+
+        <item name="colorSecondaryLightest">#CCF7F6</item>
+        <item name="colorSecondaryLighter">#66E0DE</item>
+        <item name="colorSecondary">#00C1BF</item>
+        <item name="colorSecondaryDarker">#008785</item>
+        <item name="colorSecondaryDarkest">#006766</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+
+        <item name="tabHeaderStatusBarColor">?colorPrimary</item>
+    </style>
+</resources>

@@ -18,5 +18,5 @@ internal fun appModule(context: Context) = module {
     factory { CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate) }
     single { NetworkDBSDataProvider(context) }
     // Navigation dependencies
-    single<AppRouting> { AppRouter(tabListConfig = get()) }
+    single<AppRouting> { AppRouter() }
 }
