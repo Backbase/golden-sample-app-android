@@ -42,6 +42,7 @@ class MainActivity : AppCompatActivity() {
     private val tabHeaderViewModel: TabHeaderViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setDynamicThemeIfApply()
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -72,7 +73,12 @@ class MainActivity : AppCompatActivity() {
         loadKoinModules(
             listOf(
                 sessionModule(navController),
-                moreMenuModule(navController),
+                moreMenuModule(navController) {
+                    when (selectedTheme()) {
+                        Int.MAX_VALUE -> setThemeTo(themeResId = R.style.Theme_Backbase_Premium)
+                        else -> setThemeToDefault()
+                    }
+                },
             )
         )
     }

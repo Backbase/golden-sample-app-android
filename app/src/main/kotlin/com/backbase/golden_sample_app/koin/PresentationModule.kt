@@ -1,8 +1,6 @@
 package com.backbase.golden_sample_app.koin
 
-import android.content.Context
 import com.backbase.golden_sample_app.presentation.MainViewModel
-import com.backbase.golden_sample_app.presentation.header.TabListConfigurationProvider
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -11,7 +9,6 @@ import org.koin.dsl.module
  *
  * Created by Backbase R&D B.V on 17/08/2023.
  */
-internal fun presentationModule(context: Context) = module {
-    factory { TabListConfigurationProvider(context = context) }
+internal fun presentationModule() = module {
     viewModel { MainViewModel(profileRepository = get(), userRepository = get()) }
 }

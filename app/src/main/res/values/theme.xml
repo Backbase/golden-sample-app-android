@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Backbase.Premium">
+        <item name="colorBackgroundNone">#00000000</item>
+        <item name="colorBackgroundPage">#F6F2F0</item>
+        <item name="colorBackgroundSurface1">#FEFEFE</item>
+        <item name="colorBackgroundSurface1Hovered">#E8E0DB</item>
+        <item name="colorBackgroundSurface1Pressed">#D3C3BA</item>
+        <item name="colorBackgroundSurface2">#F6F2F0</item>
+        <item name="colorBackgroundSurface2Hovered">#E8E0DB</item>
+        <item name="colorBackgroundSurface2Pressed">#D3C3BA</item>
+        <item name="colorBackgroundBrandSubtle">#E3DAD4</item>
+        <item name="colorBackgroundBrand">#6E4930</item>
+        <item name="colorBackgroundBrandPressed">#392416</item>
+        <item name="colorBackgroundBrandHovered">#5D3D27</item>
+        <item name="colorBackgroundNeutralSubtle">#D3C3BA</item>
+        <item name="colorBackgroundNeutral">#977965</item>
+        <item name="colorBackgroundNeutralPressed">#593B28</item>
+        <item name="colorBackgroundNeutralHovered">#493122</item>
+        <item name="colorBackgroundInfoSubtle">#DFE7FF</item>
+        <item name="colorBackgroundInfo">#295EFF</item>
+        <item name="colorBackgroundInfoPressed">#17348C</item>
+        <item name="colorBackgroundInfoHovered">#1D42B2</item>
+        <item name="colorBackgroundSuccessSubtle">#DBECE2</item>
+        <item name="colorBackgroundSuccess">#0E813E</item>
+        <item name="colorBackgroundSuccessPressed">#084722</item>
+        <item name="colorBackgroundSuccessHovered">#0A5A2B</item>
+        <item name="colorBackgroundWarningSubtle">#FEF6DF</item>
+        <item name="colorBackgroundWarning">#FBC02D</item>
+        <item name="colorBackgroundWarningPressed">#8A6A19</item>
+        <item name="colorBackgroundWarningHovered">#B08620</item>
+        <item name="colorBackgroundDangerSubtle">#F5DEDB</item>
+        <item name="colorBackgroundDanger">#BF2310</item>
+        <item name="colorBackgroundDangerPressed">#691309</item>
+        <item name="colorBackgroundDangerHovered">#86190B</item>
+        <item name="colorBackgroundCategory1Subtle">#F6F2F0</item>
+        <item name="colorBackgroundCategory1">#E01700</item>
+        <item name="colorBackgroundCategory2Subtle">#E3DAD4</item>
+        <item name="colorBackgroundCategory2">#392416</item>
+        <item name="colorBackgroundCategory3Subtle">#E3DAD4</item>
+        <item name="colorBackgroundCategory3">#392416</item>
+        <item name="colorBackgroundCategory4Subtle">#E3DAD4</item>
+        <item name="colorBackgroundCategory4">#392416</item>
+        <item name="colorBackgroundCategory5Subtle">#E3DAD4</item>
+        <item name="colorBackgroundCategory5">#392416</item>
+        <item name="colorBackgroundCategory6Subtle">#E3DAD4</item>
+        <item name="colorBackgroundCategory6">#392416</item>
+        <item name="colorBackgroundCategory7Subtle">#E3DAD4</item>
+        <item name="colorBackgroundCategory7">#392416</item>
+        <item name="colorBackgroundCategory8Subtle">#E3DAD4</item>
+        <item name="colorBackgroundCategory8">#392416</item>
+        <item name="colorBackgroundCategory9Subtle">#E3DAD4</item>
+        <item name="colorBackgroundCategory9">#392416</item>
+        <item name="colorBackgroundCategory10Subtle">#E3DAD4</item>
+        <item name="colorBackgroundCategory10">#392416</item>
+        <item name="colorBackgroundOverlay">#000000</item>
+        <item name="colorBackgroundOverlayPressed">#000000</item>
+        <item name="colorBackgroundOverlayHovered">#000000</item>
+        <item name="colorBackgroundOnColor">#FFFFFF</item>
+        <item name="colorBackgroundOnColorPressed">#FFFFFF</item>
+        <item name="colorBackgroundOnColorHovered">#FFFFFF</item>
+        <item name="colorBackgroundInverted">#33231A</item>
+        <item name="colorBackgroundSelected">#E3DAD4</item>
+        <item name="colorBackgroundDisabled">#D3C3BA</item>
+        <!-- endregion -->
+
+        <!-- region on background colors -->
+        <item name="colorOnBackgroundBrandSubtle">#392416</item>
+        <item name="colorOnBackgroundBrand">#FFFFFF</item>
+        <item name="colorOnBackgroundNeutralSubtle">#493122</item>
+        <item name="colorOnBackgroundNeutral">#FEFEFE</item>
+        <item name="colorOnBackgroundInfoSubtle">#17348C</item>
+        <item name="colorOnBackgroundInfo">#FFFFFF</item>
+        <item name="colorOnBackgroundSuccessSubtle">#084722</item>
+        <item name="colorOnBackgroundSuccess">#FFFFFF</item>
+        <item name="colorOnBackgroundWarningSubtle">#8A6A19</item>
+        <item name="colorOnBackgroundWarning">#000000</item>
+        <item name="colorOnBackgroundDangerSubtle">#691309</item>
+        <item name="colorOnBackgroundDanger">#FFFFFF</item>
+        <item name="colorOnBackgroundCategory1Subtle">#392416</item>
+        <item name="colorOnBackgroundCategory1">#FFFFFF</item>
+        <item name="colorOnBackgroundCategory2Subtle">#392416</item>
+        <item name="colorOnBackgroundCategory2">#FFFFFF</item>
+        <item name="colorOnBackgroundCategory3Subtle">#392416</item>
+        <item name="colorOnBackgroundCategory3">#FFFFFF</item>
+        <item name="colorOnBackgroundCategory4Subtle">#392416</item>
+        <item name="colorOnBackgroundCategory4">#FFFFFF</item>
+        <item name="colorOnBackgroundCategory5Subtle">#392416</item>
+        <item name="colorOnBackgroundCategory5">#FFFFFF</item>
+        <item name="colorOnBackgroundCategory6Subtle">#392416</item>
+        <item name="colorOnBackgroundCategory6">#FFFFFF</item>
+        <item name="colorOnBackgroundCategory7Subtle">#392416</item>
+        <item name="colorOnBackgroundCategory7">#FFFFFF</item>
+        <item name="colorOnBackgroundCategory8Subtle">#392416</item>
+        <item name="colorOnBackgroundCategory8">#FFFFFF</item>
+        <item name="colorOnBackgroundCategory9Subtle">#392416</item>
+        <item name="colorOnBackgroundCategory9">#FFFFFF</item>
+        <item name="colorOnBackgroundCategory10Subtle">#392416</item>
+        <item name="colorOnBackgroundCategory10">#FFFFFF</item>
+        <item name="colorOnBackgroundOnColor">#0C0705</item>
+        <item name="colorOnBackgroundInverted">#FFFFFF</item>
+        <!-- endregion -->
+
+        <!-- region foreground colors -->
+        <item name="colorForegroundDefault">#33231A</item>
+        <item name="colorForegroundSupport">#593B28</item>
+        <item name="colorForegroundDisabled">#977965</item>
+        <item name="colorForegroundBrand">#6E4930</item>
+        <item name="colorForegroundInfo">#295EFF</item>
+        <item name="colorForegroundSuccess">#0E813E</item>
+        <item name="colorForegroundWarning">#8A6A19</item>
+        <item name="colorForegroundDanger">#691309</item>
+        <item name="colorForegroundCategory1">#7B0D00</item>
+        <item name="colorForegroundCategory2">#8C4600</item>
+        <item name="colorForegroundCategory3">#82345B</item>
+        <item name="colorForegroundCategory4">#17348C</item>
+        <item name="colorForegroundCategory5">#390D72</item>
+        <item name="colorForegroundCategory6">#FFFFFF</item>
+        <item name="colorForegroundCategory7">#236949</item>
+        <item name="colorForegroundCategory8">#436D0C</item>
+        <item name="colorForegroundCategory9">#856707</item>
+        <item name="colorForegroundCategory10">#202833</item>
+        <item name="colorForegroundOnColor">#FFFFFF</item>
+        <!-- endregion -->
+
+        <!-- region border colors -->
+        <item name="colorBorderDefault">#977965</item>
+        <item name="colorBorderSubtle">#D3C3BA</item>
+        <item name="colorBorderBrand">#6E4930</item>
+        <item name="colorBorderInfo">#295EFF</item>
+        <item name="colorBorderSuccess">#0E813E</item>
+        <item name="colorBorderWarning">#8A6A19</item>
+        <item name="colorBorderDanger">#BF2310</item>
+        <item name="colorBorderOnColor">#FFFFFF</item>
+        <!-- endregion -->
+
+        <!-- region link colors -->
+        <item name="colorLinkDefault">#6E4930</item>
+        <item name="colorLinkHovered">#5D3D27</item>
+        <item name="colorLinkPressed">#392416</item>
+        <item name="colorLinkDisabled">#977965</item>
+        <item name="colorLinkOnColorDefault">#FEFEFE</item>
+        <item name="colorLinkOnColorHovered">#FEFEFE</item>
+        <item name="colorLinkOnColorPressed">#FEFEFE</item>
+        <item name="colorLinkOnColorDisabled">#E0E5EB</item>
+        <!-- endregion -->
+
+        <!-- region focus colors -->
+        <item name="colorFocusOutline">#6E4930</item>
+        <item name="colorFocusOnColorOutline">#FEFEFE</item>
+        <!-- endregion -->
+    </style>
+</resources>

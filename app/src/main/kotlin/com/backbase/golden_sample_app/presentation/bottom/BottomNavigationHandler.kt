@@ -37,7 +37,9 @@ fun MainActivity.setupBottomBar(isInRootScreen: Flow<Boolean>) {
 }
 
 private fun MainActivity.destinationChangedListenerFlow(navController: NavController) = callbackFlow {
-    val destinationsWithBottomBar = binding.bottomNavigation.menu.children.map { it.itemId }
+    // The addition of R.id.tab_header_dashboard is a workaround due to WorkspaceSelectorRouting
+    // doesn't allow to navigate to a screen with args, so we need to place an in between screen for adding the args to the header
+    val destinationsWithBottomBar = binding.bottomNavigation.menu.children.map { it.itemId } + R.id.tab_header_dashboard
     val listener = NavController.OnDestinationChangedListener { _, destination, _ ->
         trySend(element = destination.id in destinationsWithBottomBar)
     }
