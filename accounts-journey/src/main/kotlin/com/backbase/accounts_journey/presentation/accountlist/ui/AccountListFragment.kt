@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.flowWithLifecycle
@@ -15,7 +14,6 @@ import com.backbase.accounts_journey.R
 import com.backbase.accounts_journey.configuration.AccountsJourneyConfiguration
 import com.backbase.accounts_journey.configuration.accountlist.AccountListScreenConfiguration
 import com.backbase.accounts_journey.databinding.FragmentAccountListBinding
-import com.backbase.accounts_journey.presentation.accountdetail.ui.AccountDetailFragment.Companion.ACCOUNT_ID_ARGUMENT_KEY
 import com.backbase.accounts_journey.routing.AccountsRouting
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -59,6 +57,8 @@ class AccountListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        routing.bind(findNavController())
 
         binding.header.text = requireContext().getText(screenConfiguration.screenTitle)
 
@@ -104,10 +104,7 @@ class AccountListFragment : Fragment() {
         }
     }
     private fun itemClicked(id: String) {
-        findNavController().navigate(
-            routing.onAccountSelected(),
-            bundleOf(ACCOUNT_ID_ARGUMENT_KEY to id)
-        )
+        routing.onAccountSelected(id)
     }
 
     override fun onDestroyView() {

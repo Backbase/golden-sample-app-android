@@ -27,6 +27,10 @@ class AccountDetailFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: AccountDetailViewModel by inject()
 
+    private val id by lazy {
+        AccountDetailFragmentArgs.fromBundle(requireArguments()).id
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -49,13 +53,7 @@ class AccountDetailFragment : Fragment() {
             .onEach { handleUiState(it) }
             .launchIn(lifecycleScope)
 
-        arguments?.getString(ACCOUNT_ID_ARGUMENT_KEY)?.let { id ->
-            viewModel.onEvent(AccountDetailEvent.OnGetAccountDetail(id))
-        } ?: run {
-            binding.apply {
-                errorText.text = requireContext().getText(R.string.missing_account_id)
-            }
-        }
+        viewModel.onEvent(AccountDetailEvent.OnGetAccountDetail(id))
     }
 
     private fun handleUiState(uiState: AccountDetailScreenState) {
@@ -113,9 +111,5 @@ class AccountDetailFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    companion object {
-        const val ACCOUNT_ID_ARGUMENT_KEY = "ACCOUNT_ID_ARGUMENT_KEY"
     }
 }

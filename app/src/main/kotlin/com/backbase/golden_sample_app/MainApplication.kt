@@ -21,6 +21,7 @@ import com.backbase.golden_sample_app.authentication.CompositeSessionListener
 import com.backbase.golden_sample_app.common.TAG
 import com.backbase.golden_sample_app.koin.accountsModule
 import com.backbase.golden_sample_app.koin.appModule
+import com.backbase.golden_sample_app.koin.contactsModule
 import com.backbase.golden_sample_app.koin.featureFilterModule
 import com.backbase.golden_sample_app.koin.identityAuthModule
 import com.backbase.golden_sample_app.koin.presentationModule
@@ -131,6 +132,7 @@ class MainApplication : Application() {
                 appModule(this@MainApplication),
                 presentationModule(context = this@MainApplication),
                 identityAuthModule(sessionEmitter),
+                contactsModule(),
                 workspacesModule,
                 WorkspacesJourney.create(),
                 accountsModule,

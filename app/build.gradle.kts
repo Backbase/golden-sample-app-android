@@ -92,6 +92,7 @@ dependencies {
     implementation(backbase.bundles.common)
     implementation(backbase.bundles.feature.filter)
     implementation(backbase.bundles.more)
+    implementation(backbase.bundles.retail.contacts)
     implementation(backbase.bundles.sdk)
     implementation(backbase.bundles.workspaces)
     implementation(backbase.bundles.ui)
