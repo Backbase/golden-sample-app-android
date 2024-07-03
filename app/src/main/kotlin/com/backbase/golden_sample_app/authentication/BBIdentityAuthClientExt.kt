@@ -22,7 +22,7 @@ fun BBIdentityAuthClient.logOut() {
             // Result ignored; fire and forget strategy
         }
     })
-    endSession {
+    //endSession {
         // Result ignored; fire and forget strategy
-    }
+//    }
 }

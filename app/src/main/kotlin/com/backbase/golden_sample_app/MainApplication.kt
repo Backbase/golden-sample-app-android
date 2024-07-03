@@ -8,13 +8,9 @@ import com.backbase.android.Backbase
 import com.backbase.android.business.journey.workspaces.WorkspacesJourney
 import com.backbase.android.core.utils.BBLogger
 import com.backbase.android.identity.client.BBIdentityAuthClient
-import com.backbase.android.identity.device.BBDeviceAuthenticator
 import com.backbase.android.identity.fido.FidoUafFacetUtils
 import com.backbase.android.identity.journey.authentication.initAuthenticationJourney
 import com.backbase.android.identity.journey.authentication.stopAuthenticationJourney
-import com.backbase.android.listeners.ModelListener
-import com.backbase.android.model.Model
-import com.backbase.android.model.ModelSource
 import com.backbase.android.utils.net.NetworkConnectorBuilder
 import com.backbase.android.utils.net.response.Response
 import com.backbase.golden_sample_app.authentication.CompositeSessionListener
@@ -44,7 +40,7 @@ class MainApplication : Application() {
 
     private val authClient: BBIdentityAuthClient by lazy {
         BBIdentityAuthClient(this, "").apply {
-            addAuthenticator(BBDeviceAuthenticator())
+           // addAuthenticator(BBDeviceAuthenticator())
         }
     }
 
@@ -67,7 +63,7 @@ class MainApplication : Application() {
         encrypted: Boolean = false
     ) {
         Backbase.initialize(this@MainApplication, backbaseConfigAssetPath, encrypted)
-        with(Backbase.requireInstance()) {
+        /*with(Backbase.requireInstance()) {
             // We need to keep a local model in our code so that Authenticators can be injected there at runtime.
             getModel(
                 object : ModelListener<Model> {
@@ -79,7 +75,7 @@ class MainApplication : Application() {
                 },
                 ModelSource.LOCAL
             )
-        }
+        }*/
     }
 
     private fun setupRemoteClients() {

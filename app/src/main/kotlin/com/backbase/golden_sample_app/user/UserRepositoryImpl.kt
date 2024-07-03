@@ -70,13 +70,6 @@ internal class UserRepositoryImpl(
     override fun isUserBiometricRegistered(): Boolean =
         getItemWithSanityCheck(KEY_BIOMETRICS)?.toBoolean() ?: DEFAULT_BIOMETRIC_VALUE
 
-    override fun saveEncryptedCredentials(username: CharArray, password: CharArray) {
-        saveUsername(username)
-        coroutineScope.launch(dispatcher) {
-            secureStorage.storeValue(KEY_PASSWORD, password.joinToString(""))
-        }
-    }
-
     override fun isServiceAgreementSelected(): Boolean =
         !getItemWithSanityCheck(KEY_SERVICE_AGREEMENT_ID).isNullOrEmpty()
 
@@ -91,8 +84,6 @@ internal class UserRepositoryImpl(
 
     override fun getUsername(): CharArray? =
         getItemWithSanityCheck(KEY_USERNAME)?.toCharArray()
-
-    override fun getPassword(): CharArray? = getItemWithSanityCheck(KEY_PASSWORD)?.toCharArray()
 
     // Get item from storage, clearing all data and throwing an exception if data is corrupted
     @Suppress("SwallowedException")
