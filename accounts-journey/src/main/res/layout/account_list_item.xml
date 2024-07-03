@@ -51,7 +51,7 @@
         android:maxLines="1"
         android:textColor="?colorOnSurfaceSecondary"
         app:layout_constrainedWidth="true"
-        app:layout_constraintEnd_toEndOf="@id/account_name"
+        app:layout_constraintEnd_toEndOf="@id/barrier2"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="@id/account_name"
