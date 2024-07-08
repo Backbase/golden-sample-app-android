@@ -6,7 +6,7 @@ import com.backbase.accounts_use_case.AccountDetailUseCaseImpl
 import com.backbase.android.Backbase
 import com.backbase.android.client.gen2.arrangementclient2.api.ArrangementsApi
 import com.backbase.android.client.gen2.arrangementclient2.api.ProductSummaryApi
-import com.backbase.golden_sample_app.extend_journey.CustomAccountsUseCaseImpl
+import com.backbase.golden_sample_app.extend_journey.accounts.usecase.CustomAccountsUseCaseImpl
 import org.koin.dsl.module
 
 /**

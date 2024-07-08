@@ -1,4 +1,4 @@
-package com.backbase.golden_sample_app.extend_journey
+package com.backbase.golden_sample_app.extend_journey.accounts.usecase
 
 import com.backbase.accounts_journey.data.usecase.AccountsUseCase
 import com.backbase.accounts_journey.domain.model.account_summary.AccountSummary
@@ -8,9 +8,9 @@ import com.backbase.accounts_journey.domain.model.account_summary.current_accoun
 import com.backbase.accounts_journey.domain.model.account_summary.savings_accounts.SavingsAccount
 import com.backbase.accounts_journey.domain.model.account_summary.savings_accounts.SavingsAccounts
 import com.backbase.accounts_journey.domain.model.common.ProductState
-import com.backbase.golden_sample_app.extend_journey.RandomData.randomName
-import com.backbase.golden_sample_app.extend_journey.RandomData.randomString
-import com.backbase.golden_sample_app.extend_journey.RandomData.round
+import com.backbase.golden_sample_app.extend_journey.accounts.usecase.RandomData.randomName
+import com.backbase.golden_sample_app.extend_journey.accounts.usecase.RandomData.randomString
+import com.backbase.golden_sample_app.extend_journey.accounts.usecase.RandomData.round
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.util.UUID
@@ -77,7 +77,6 @@ private fun generateSavingsAccounts(amount: Int = Random.nextInt(2, 5)): Savings
                 id = randomString()
                 displayName = randomName()
                 availableBalance = ((0..10000).random().toFloat().round().toString())
-                println("$displayName : $availableBalance")
                 state = ProductState {
                     val status = if (Random.nextBoolean()) "Active" else "Closed"
                     externalStateId = status

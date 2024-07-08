@@ -50,6 +50,11 @@
         tools:layout="@layout/rcj_contacts_journey"/>
 
     <fragment
+        android:id="@+id/customContactsFragment"
+        android:name="com.backbase.golden_sample_app.extend_journey.contacts.presentation.ui.CustomContactsFragment"
+        tools:layout="@layout/fragment_custom_contacts" />
+
+    <fragment
         android:id="@+id/more"
         android:name="com.backbase.android.retail.journey.more.MoreJourney"
         android:label="More menu"
