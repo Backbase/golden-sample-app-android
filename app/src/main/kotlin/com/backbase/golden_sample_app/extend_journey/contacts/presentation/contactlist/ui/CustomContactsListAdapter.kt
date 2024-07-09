@@ -1,4 +1,4 @@
-package com.backbase.golden_sample_app.extend_journey.contacts.presentation.ui
+package com.backbase.golden_sample_app.extend_journey.contacts.presentation.contactlist.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,10 +7,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.backbase.golden_sample_app.databinding.CustomContactsListItemBinding
-import com.backbase.golden_sample_app.extend_journey.contacts.presentation.model.ContactUiModel
+import com.backbase.golden_sample_app.extend_journey.contacts.presentation.contactlist.model.ContactUiModel
 
-// Sticky header
-// https://medium.com/@preethamivan473/sticky-headers-with-click-interactions-using-android-recycler-view-40e583a31605
 class CustomContactsListAdapter(
     private val onClick: (String) -> Unit
 ) : ListAdapter<ContactUiModel, CustomContactsListAdapter.ViewHolder>(DiffCallback()) {

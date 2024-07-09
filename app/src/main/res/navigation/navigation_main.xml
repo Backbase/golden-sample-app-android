@@ -47,12 +47,25 @@
     <fragment
         android:id="@+id/contactsJourney"
         android:name="com.backbase.android.retail.journey.contacts.ContactsJourney"
-        tools:layout="@layout/rcj_contacts_journey"/>
+        tools:layout="@layout/rcj_contacts_journey" />
 
     <fragment
         android:id="@+id/customContactsFragment"
-        android:name="com.backbase.golden_sample_app.extend_journey.contacts.presentation.ui.CustomContactsFragment"
-        tools:layout="@layout/fragment_custom_contacts" />
+        android:name="com.backbase.golden_sample_app.extend_journey.contacts.presentation.contactlist.ui.CustomContactsFragment"
+        tools:layout="@layout/fragment_custom_contacts" >
+        <action
+            android:id="@+id/action_customContactsFragment_to_customContactDetailsFragment"
+            app:destination="@id/customContactDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/customContactDetailsFragment"
+        android:name="com.backbase.golden_sample_app.extend_journey.contacts.presentation.contactdetail.ContactDetailFragment"
+        tools:layout="@layout/fragment_custom_contact_detail">
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
 
     <fragment
         android:id="@+id/more"

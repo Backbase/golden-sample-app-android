@@ -79,7 +79,7 @@ private fun contactsSection(
                         setTint(switchIconColor.resolve(it))
                     },
                 ) {
-                    NavigateTo(R.id.contactsJourney)
+                    NavigateTo(R.id.customContactsFragment)
                 }
             }
         }

@@ -1,8 +1,8 @@
-package com.backbase.golden_sample_app.extend_journey.contacts.presentation.mapper
+package com.backbase.golden_sample_app.extend_journey.contacts.presentation.contactlist.mapper
 
 import com.backbase.android.retail.journey.contacts.Contact
-import com.backbase.golden_sample_app.extend_journey.contacts.presentation.model.ContactUiModel
-import com.backbase.golden_sample_app.extend_journey.contacts.presentation.ui.ColorUtils
+import com.backbase.golden_sample_app.extend_journey.contacts.presentation.contactlist.model.ContactUiModel
+import com.backbase.golden_sample_app.extend_journey.contacts.presentation.contactlist.ui.ColorUtils
 
 class CustomContactUiMapper {
 

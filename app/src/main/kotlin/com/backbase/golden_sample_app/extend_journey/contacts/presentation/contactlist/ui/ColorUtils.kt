@@ -1,4 +1,4 @@
-package com.backbase.golden_sample_app.extend_journey.contacts.presentation.ui
+package com.backbase.golden_sample_app.extend_journey.contacts.presentation.contactlist.ui
 
 import android.graphics.Color
 import androidx.core.graphics.toColor

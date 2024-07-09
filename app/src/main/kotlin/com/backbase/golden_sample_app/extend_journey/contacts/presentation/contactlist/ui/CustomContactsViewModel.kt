@@ -1,4 +1,4 @@
-package com.backbase.golden_sample_app.extend_journey.contacts.presentation.ui
+package com.backbase.golden_sample_app.extend_journey.contacts.presentation.contactlist.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,8 +6,8 @@ import com.backbase.android.retail.journey.contacts.ContactsPageCursor
 import com.backbase.android.retail.journey.contacts.ContactsPageFirstCursor
 import com.backbase.android.retail.journey.contacts.ContactsPageRequestParameters
 import com.backbase.android.retail.journey.contacts.ContactsUseCase
-import com.backbase.golden_sample_app.extend_journey.contacts.presentation.mapper.CustomContactUiMapper
-import com.backbase.golden_sample_app.extend_journey.contacts.presentation.model.ContactUiModel
+import com.backbase.golden_sample_app.extend_journey.contacts.presentation.contactlist.mapper.CustomContactUiMapper
+import com.backbase.golden_sample_app.extend_journey.contacts.presentation.contactlist.model.ContactUiModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -31,13 +31,8 @@ class CustomContactsViewModel(
 
     fun onEvent(event: CustomContactsEvent) {
         when (event) {
-            CustomContactsEvent.OnAddContact -> addContact()
             is CustomContactsEvent.OnGetContacts -> getContacts(event.query)
         }
-    }
-
-    private fun addContact() {
-        // TODO: addContact
     }
 
     private fun getContacts(query: String = "") {
@@ -69,7 +64,6 @@ class CustomContactsViewModel(
                     }
 
                     is ContactsUseCase.Result.Failure -> {
-                        println(result.cause)
                         _uiState.update {
                             it.copy(
                                 isLoading = false

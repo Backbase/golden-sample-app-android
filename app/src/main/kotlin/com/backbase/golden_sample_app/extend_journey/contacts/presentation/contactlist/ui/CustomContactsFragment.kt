@@ -1,4 +1,4 @@
-package com.backbase.golden_sample_app.extend_journey.contacts.presentation.ui
+package com.backbase.golden_sample_app.extend_journey.contacts.presentation.contactlist.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,15 +10,20 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.backbase.golden_sample_app.R
 import com.backbase.golden_sample_app.databinding.FragmentCustomContactsBinding
+import com.backbase.golden_sample_app.router.AppRouting
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CustomContactsFragment : Fragment() {
 
     private var _binding: FragmentCustomContactsBinding? = null
     private val binding get() = _binding!!
+
+    private val navigator: AppRouting by inject()
 
     private val viewModel: CustomContactsViewModel by viewModel()
 
@@ -51,6 +56,10 @@ class CustomContactsFragment : Fragment() {
             viewModel.onEvent(CustomContactsEvent.OnGetContacts(text.toString()))
         }
 
+        binding.fab.setOnClickListener {
+            findNavController().navigate(R.id.upcoming_fragment)
+        }
+
         binding.contactlist.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
@@ -78,12 +87,13 @@ class CustomContactsFragment : Fragment() {
 
         if (uiState.error != null) {
             contactsListAdapter.submitList(emptyList())
-            println("error: ${uiState.error}")
         }
     }
 
     private fun itemClicked(id: String) {
-        println("tapped on $id")
+        navigator.getNavController()?.navigate(
+            CustomContactsFragmentDirections.actionCustomContactsFragmentToCustomContactDetailsFragment(id)
+        )
     }
 
     override fun onDestroyView() {

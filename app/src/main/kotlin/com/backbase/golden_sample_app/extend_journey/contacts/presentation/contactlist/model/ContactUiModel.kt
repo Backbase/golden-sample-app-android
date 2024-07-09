@@ -1,4 +1,4 @@
-package com.backbase.golden_sample_app.extend_journey.contacts.presentation.model
+package com.backbase.golden_sample_app.extend_journey.contacts.presentation.contactlist.model
 
 data class ContactUiModel(
     val id: String,

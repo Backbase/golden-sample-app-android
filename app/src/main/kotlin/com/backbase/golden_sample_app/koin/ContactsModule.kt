@@ -5,8 +5,8 @@ import com.backbase.android.client.contactmanagerclient2.api.ContactsApi
 import com.backbase.android.retail.journey.contacts.ContactsConfiguration
 import com.backbase.android.retail.journey.contacts.ContactsUseCase
 import com.backbase.android.retail.journey.contacts.contactmanager_client_2.GenContactManagerClient2ContactsUseCase
-import com.backbase.golden_sample_app.extend_journey.contacts.presentation.mapper.CustomContactUiMapper
-import com.backbase.golden_sample_app.extend_journey.contacts.presentation.ui.CustomContactsViewModel
+import com.backbase.golden_sample_app.extend_journey.contacts.presentation.contactlist.mapper.CustomContactUiMapper
+import com.backbase.golden_sample_app.extend_journey.contacts.presentation.contactlist.ui.CustomContactsViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

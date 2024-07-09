@@ -1,7 +1,7 @@
-package com.backbase.golden_sample_app.extend_journey.contacts.presentation.ui
+package com.backbase.golden_sample_app.extend_journey.contacts.presentation.contactlist.ui
 
 import androidx.annotation.StringRes
-import com.backbase.golden_sample_app.extend_journey.contacts.presentation.model.ContactUiModel
+import com.backbase.golden_sample_app.extend_journey.contacts.presentation.contactlist.model.ContactUiModel
 
 /**
  * The UI state for the custom contacts screen
