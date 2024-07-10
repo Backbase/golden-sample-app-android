@@ -45,11 +45,6 @@
     <include app:graph="@navigation/account_journey_nav_graph" />
 
     <fragment
-        android:id="@+id/contactsJourney"
-        android:name="com.backbase.android.retail.journey.contacts.ContactsJourney"
-        tools:layout="@layout/rcj_contacts_journey"/>
-
-    <fragment
         android:id="@+id/more"
         android:name="com.backbase.android.retail.journey.more.MoreJourney"
         android:label="More menu"
