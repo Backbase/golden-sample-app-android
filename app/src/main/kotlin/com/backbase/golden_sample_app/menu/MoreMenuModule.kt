@@ -12,13 +12,8 @@ import com.backbase.deferredresources.DeferredColor
 import com.backbase.deferredresources.DeferredDrawable
 import com.backbase.deferredresources.DeferredText
 import com.backbase.golden_sample_app.R
-import com.backbase.golden_sample_app.configuration.ApplicationConfiguration
-import com.backbase.golden_sample_app.configuration.ApplicationFeatureFlag
-import com.backbase.golden_sample_app.configuration.hasFeatureFlag
 import com.backbase.golden_sample_app.router.MoreMenuRouterImpl
 import com.backbase.golden_sample_app.session.SessionManager
-import com.backbase.golden_sample_app.user.UserEntitlements
-import com.backbase.golden_sample_app.user.UserEntitlementsRepository
 import org.koin.dsl.module
 
 /**
@@ -32,20 +27,18 @@ internal fun moreMenuModule(
             MoreMenuRouterImpl(navController)
         }
 
-        scoped { demoMoreConfig(get(), get(), navController) }
+        scoped { demoMoreConfig(get(), navController) }
     }
 }
 
 fun demoMoreConfig(
     sessionManager: SessionManager,
-    userEntitlementsRepository: UserEntitlementsRepository,
     navController: NavController
 ) = MoreConfiguration {
     showIcons = true
     contentDescription = DeferredText.Resource(R.string.more_menu_title)
     sections = MenuSections {
         +demoSection()
-        +contactsSection(userEntitlementsRepository)
         +logOutSection(sessionManager, navController)
     }
 }
@@ -61,27 +54,6 @@ private fun demoSection(): MenuSection {
             },
         ) {
             NavigateTo(R.id.upcoming_fragment)
-        }
-    }
-}
-
-private fun contactsSection(
-    userEntitlementsRepository: UserEntitlementsRepository,
-): MenuSection {
-    return MenuSection {
-        if (ApplicationConfiguration.applicationFeatureFlags.hasFeatureFlag<ApplicationFeatureFlag.ContactsJourneyFeatureFlag>()) {
-            if (userEntitlementsRepository.entitlements.contains(UserEntitlements.Contact.view)) {
-                val switchIconColor =
-                    DeferredColor.Resource(com.backbase.android.design.R.color.bds_onDanger)
-                +MenuItem(
-                    title = DeferredText.Resource(R.string.more_menu_contacts),
-                    icon = DeferredDrawable.Resource(com.backbase.android.design.R.drawable.backbase_ic_contacts) {
-                        setTint(switchIconColor.resolve(it))
-                    },
-                ) {
-                    NavigateTo(R.id.contactsJourney)
-                }
-            }
         }
     }
 }

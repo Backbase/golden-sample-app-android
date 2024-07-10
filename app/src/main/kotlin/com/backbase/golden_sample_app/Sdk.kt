@@ -2,7 +2,6 @@ package com.backbase.golden_sample_app
 
 import android.content.Context
 import com.backbase.android.Backbase
-import com.backbase.android.client.contactmanagerclient2.api.ContactsApi
 import com.backbase.android.client.gen2.accesscontrolclient3.api.UserContextApi
 import com.backbase.android.client.gen2.accesscontrolclient3.api.UsersApi
 import com.backbase.android.client.gen2.arrangementclient2.api.ArrangementsApi
@@ -41,7 +40,6 @@ object Sdk {
             getUsersProfileApi(context, networkDBSDataProvider),
             getProductSummaryApi(context, networkDBSDataProvider),
             getArrangementsApi(context, networkDBSDataProvider),
-            getContactsApi(context, networkDBSDataProvider),
         )
     }
 
@@ -114,20 +112,7 @@ object Sdk {
         backbase = Backbase.requireInstance()
     )
 
-    private fun getContactsApi(
-        context: Context,
-        dataProvider: DBSDataProvider
-    ) = ContactsApi(
-        context = context,
-        moshi = moshi,
-        parser = responseBodyParser,
-        serverUri = URI(CONTACT_MANAGER_ENDPOINT),
-        provider = dataProvider,
-        backbase = Backbase.requireInstance()
-    )
-
     private const val ACCESS_CONTROL_ENDPOINT = "/access-control"
     private const val ARRANGEMENT_MANAGER_ENDPOINT = "/arrangement-manager"
-    private const val CONTACT_MANAGER_ENDPOINT = "/contact-manager"
     private const val USER_MANAGER_ENDPOINT = "user-manager"
 }
