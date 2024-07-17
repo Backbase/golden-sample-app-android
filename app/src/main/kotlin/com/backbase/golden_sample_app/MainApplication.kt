@@ -8,15 +8,10 @@ import com.backbase.android.Backbase
 import com.backbase.android.business.journey.workspaces.WorkspacesJourney
 import com.backbase.android.core.utils.BBLogger
 import com.backbase.android.identity.client.BBIdentityAuthClient
-import com.backbase.android.identity.device.BBDeviceAuthenticator
 import com.backbase.android.identity.fido.FidoUafFacetUtils
 import com.backbase.android.identity.journey.authentication.initAuthenticationJourney
 import com.backbase.android.identity.journey.authentication.stopAuthenticationJourney
-import com.backbase.android.listeners.ModelListener
-import com.backbase.android.model.Model
-import com.backbase.android.model.ModelSource
 import com.backbase.android.utils.net.NetworkConnectorBuilder
-import com.backbase.android.utils.net.response.Response
 import com.backbase.golden_sample_app.authentication.CompositeSessionListener
 import com.backbase.golden_sample_app.common.TAG
 import com.backbase.golden_sample_app.koin.accountsModule
@@ -41,11 +36,8 @@ import java.net.URI
 class MainApplication : Application() {
 
     private val sessionEmitter = CompositeSessionListener()
-
     private val authClient: BBIdentityAuthClient by lazy {
-        BBIdentityAuthClient(this, "").apply {
-            addAuthenticator(BBDeviceAuthenticator())
-        }
+        BBIdentityAuthClient(this, "")
     }
 
     override fun onCreate() {
@@ -66,20 +58,7 @@ class MainApplication : Application() {
         backbaseConfigAssetPath: String = "backbase/config.json",
         encrypted: Boolean = false
     ) {
-        Backbase.initialize(this@MainApplication, backbaseConfigAssetPath, encrypted)
-        with(Backbase.requireInstance()) {
-            // We need to keep a local model in our code so that Authenticators can be injected there at runtime.
-            getModel(
-                object : ModelListener<Model> {
-                    override fun onModelReady(model: Model) = BBLogger.debug(TAG, "Model loaded")
-
-                    override fun onError(response: Response) = throw IllegalArgumentException(
-                        "backbaseConfigAssetPath must point to a valid model. Instead, ${response.errorMessage}"
-                    )
-                },
-                ModelSource.LOCAL
-            )
-        }
+        Backbase.initialize(applicationContext, backbaseConfigAssetPath, encrypted)
     }
 
     private fun setupRemoteClients() {
@@ -91,7 +70,7 @@ class MainApplication : Application() {
     }
 
     private fun setupAuthClient() {
-        val backbase = checkNotNull(Backbase.getInstance())
+        val backbase = Backbase.requireInstance()
         backbase.registerAuthClient(authClient)
         backbase.authClient.startSessionObserver(sessionEmitter)
     }

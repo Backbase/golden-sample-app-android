@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle.State.STARTED
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import com.backbase.android.design.header.AvatarConfiguration
 import com.backbase.android.design.header.TabHeaderViewModel
 import com.backbase.android.design.header.TopBarConfiguration
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navController = findNavController(R.id.nav_host_container)
+        val navController = findNavController()
         navigator.bind(navController)
 
         updateStatusBarColor(isInRootScreen = tabHeaderViewModel.uiState.map { it.isInRootScreen })
@@ -68,12 +68,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadScopedDependencies() {
-        val navController = Navigation.findNavController(this@MainActivity, R.id.nav_host_container)
+        val navController = findNavController()
         loadKoinModules(
             listOf(
                 sessionModule(navController),
                 moreMenuModule(navController),
             )
         )
+    }
+
+    internal fun MainActivity.findNavController(): NavController {
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_container) as NavHostFragment
+        return navHostFragment.navController
     }
 }

@@ -52,6 +52,7 @@ private fun demoSection(): MenuSection {
             icon = DeferredDrawable.Resource(com.backbase.android.design.R.drawable.backbase_ic_curtains_closed) {
                 setTint(switchIconColor.resolve(it))
             },
+            iconBackgroundColor = DeferredColor.Resource(com.backbase.android.design.R.color.bds_primary)
         ) {
             NavigateTo(R.id.upcoming_fragment)
         }
@@ -62,15 +63,14 @@ private fun logOutSection(
     sessionManager: SessionManager,
     navController: NavController
 ) = MenuSection {
-    val switchBackgroundColor =
-        DeferredColor.Resource(com.backbase.android.design.R.color.bds_danger)
     val switchIconColor =
         DeferredColor.Resource(com.backbase.android.design.R.color.bds_onDanger)
     +MenuItem(
         title = DeferredText.Resource(R.string.more_menu_log_out),
         icon = DeferredDrawable.Resource(com.backbase.android.design.R.drawable.backbase_ic_logout) {
             setTint(switchIconColor.resolve(it))
-        }
+        },
+        iconBackgroundColor = DeferredColor.Resource(com.backbase.android.design.R.color.bds_primary)
     ) {
         sessionManager.logOut()
         navController.popBackStack(R.id.workspaces_selector, true)
@@ -81,7 +81,7 @@ private fun logOutSection(
         icon = DeferredDrawable.Resource(com.backbase.android.design.R.drawable.backbase_ic_person) {
             setTint(switchIconColor.resolve(it))
         },
-        iconBackgroundColor = switchBackgroundColor
+        iconBackgroundColor = DeferredColor.Resource(com.backbase.android.design.R.color.bds_danger)
     ) {
         sessionManager.switchUser()
         navController.popBackStack(R.id.workspaces_selector, true)

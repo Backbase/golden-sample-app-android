@@ -42,11 +42,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
     buildFeatures {
         viewBinding = true
@@ -87,15 +87,28 @@ dependencies {
 
     // Backbase libraries
     implementation(backbase.bundles.access.control.client)
-    implementation(backbase.bundles.arrangements.client)
+//    implementation(backbase.bundles.arrangements.client)
+    implementation(clientLibs.accessControl)
+    implementation(clientLibs.arrangements)
+
     implementation(backbase.bundles.authentication)
-    implementation(backbase.bundles.common)
+
+//    implementation(backbase.bundles.common)
+    implementation(midTierLibs.retail.journey.common)
+    implementation(midTierLibs.retail.journey.commonKoin)
+    implementation(midTierLibs.clients.common)
+    implementation(midTierLibs.business.journeyCommon)
+    implementation(midTierLibs.retail.journey.test)
+
     implementation(backbase.bundles.feature.filter)
     implementation(backbase.bundles.more)
-    implementation(backbase.bundles.sdk)
     implementation(backbase.bundles.workspaces)
-    implementation(backbase.bundles.ui)
+//    implementation(backbase.bundles.sdk)
+    implementation(foundationLibs.msdk)
+//    implementation(backbase.bundles.ui)
+    implementation(foundationLibs.designSystem)
 
-    implementation(backbase.user.manager.client)
+//    implementation(backbase.user.manager.client)
+    implementation(clientLibs.userManager)
 
 }

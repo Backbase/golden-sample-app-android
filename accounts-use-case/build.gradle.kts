@@ -11,5 +11,6 @@ dependencies {
     implementation(project(":accounts-journey"))
 
     // Backbase libraries
-    implementation(backbase.bundles.arrangements.client)
+//    implementation(backbase.bundles.arrangements.client)
+    implementation(clientLibs.arrangements)
 }
