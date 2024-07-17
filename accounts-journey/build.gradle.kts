@@ -11,13 +11,12 @@ android {
 
 dependencies {
     // Backbase libraries
-//    implementation(backbase.bundles.common)
     implementation(midTierLibs.retail.journey.common)
     implementation(midTierLibs.retail.journey.commonKoin)
-    implementation(midTierLibs.clients.common)
-    implementation(midTierLibs.business.journeyCommon)
     implementation(midTierLibs.retail.journey.test)
+    implementation(midTierLibs.business.journeyCommon)
+    implementation(midTierLibs.clients.common)
 
     implementation(libs.bundles.navigation)
-    androidTestImplementation(project("path" to ":fake-accounts-use-case"))
+    androidTestImplementation(project(":fake-accounts-use-case"))
 }

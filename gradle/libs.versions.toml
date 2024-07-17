@@ -27,7 +27,7 @@ junit5-android = "1.10.0.0"
 ## K
 koin = "3.5.6"
 kotlin = "1.9.24"
-kotlin-parcelize = " 1.9.0"
+kotlin-parcelize = " 1.9.24"
 
 ## L
 lifecycle-runtime-ktx = "2.8.3"
