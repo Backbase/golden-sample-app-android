@@ -86,22 +86,10 @@ dependencies {
     testImplementation(libs.bundles.test)
 
     // Backbase libraries
-    implementation(clientLibs.accessControl)
-    implementation(clientLibs.arrangements)
-    implementation(clientLibs.userManager)
-
-    implementation(midTierLibs.retail.journey.common)
-    implementation(midTierLibs.retail.journey.commonKoin)
-    implementation(midTierLibs.clients.common)
-    implementation(midTierLibs.business.journeyCommon)
-    implementation(midTierLibs.retail.journey.test)
-
-    implementation(backbase.access.control.client.entitlements.use.case)
-    implementation(backbase.bundles.authentication)
-    implementation(backbase.bundles.workspaces)
-    implementation(backbase.feature.filter.use.case)
-    implementation(backbase.more.menu.journey)
-
-    implementation(foundationLibs.msdk)
-    implementation(foundationLibs.designSystem)
+    implementation(backbase.bom)
+    implementation(backbase.bundles.clients)
+    implementation(backbase.bundles.common)
+    implementation(backbase.bundles.foundation)
+    implementation(backbase.bundles.journeys)
+    implementation(backbase.bundles.use.cases)
 }

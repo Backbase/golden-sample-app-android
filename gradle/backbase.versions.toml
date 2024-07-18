@@ -3,6 +3,9 @@
 access-control-client-2-entitlements-use-case = "6.0.0"
 authentication-journey = "7.1.0"
 
+## B
+bom = "2024.07.01"
+
 ## F
 feature-filter-use-case = "6.0.0"
 
@@ -18,11 +21,36 @@ access-control-client-entitlements-use-case = { group = "com.backbase.android.re
 authentication-journey = { group = "com.backbase.android.identity.journey", name = "authentication-journey", version.ref = "authentication-journey" }
 authentication-use-case = { group = "com.backbase.android.identity.journey", name = "identity-auth-client-1-authentication-use-case", version.ref = "authentication-journey" }
 
+## B
+bom = { module = "com.backbase.android.platform:bom", version.ref = "bom" }
+business-journey-common = { group = "com.backbase.android.business.journey", name = "journey-common", version = "" }
+
+## C
+clients-common-coroutines = { group = "com.backbase.android.clients", name = "clients-common-coroutines", version = "" }
+
+## D
+design-system = { group = "com.backbase.android.design", name = "design-system", version = "" }
+
 ## F
 feature-filter-use-case = { group = "com.backbase.android.retail.feature_filter", name = "feature-filter-use-case", version.ref = "feature-filter-use-case" }
 
+## G
+gen-access-control-client = { group = "com.backbase.android.clients", name = "gen2-accesscontrol-client-3", version = "" }
+gen-arrangements-client = { group = "com.backbase.android.clients", name = "gen2-arrangement-client-2", version = "" }
+
+## J
+journey-test = { group = "com.backbase.android.retail.journey", name = "journey-test", version = "" }
+
 ## M
 more-menu-journey = { group = "com.backbase.android.retail.journey", name = "more-journey", version.ref = "more-menu-journey" }
+msdk = { group = "com.backbase.android.sdk", name = "backbase", version = "" }
+
+## R
+retail-journey-common = { group = "com.backbase.android.retail.journey", name = "journey-common", version = "" }
+retail-journey-common-koin = { group = "com.backbase.android.retail.journey", name = "journey-common-koin", version = "" }
+
+## U
+user-manager-client = { group = "com.backbase.android.clients", name = "gen-usermanager-client-2", version = "" }
 
 ## W
 workspaces-journey = { group = "com.backbase.android.business.journey", name = "workspaces-journey", version.ref = "workspaces-journey" }
@@ -42,14 +70,38 @@ dependency-updates = { id = "dependency-updates" }
 feature-android-module = { id = "feature-android-module" }
 
 [bundles]
-## A
-authentication = [
-    "authentication-journey",
-    "authentication-use-case",
+## C
+clients = [
+    "gen-access-control-client",
+    "gen-arrangements-client",
+    "user-manager-client",
 ]
 
-## W
-workspaces = [
+common = [
+    "business-journey-common",
+    "clients-common-coroutines",
+    "retail-journey-common",
+    "retail-journey-common-koin",
+    "journey-test",
+]
+
+## F
+foundation = [
+    "design-system",
+    "msdk",
+]
+
+## J
+journeys = [
+    "authentication-journey",
+    "more-menu-journey",
     "workspaces-journey",
+]
+
+## U
+use-cases = [
+    "access-control-client-entitlements-use-case",
+    "authentication-use-case",
+    "feature-filter-use-case",
     "workspaces-use-case",
 ]

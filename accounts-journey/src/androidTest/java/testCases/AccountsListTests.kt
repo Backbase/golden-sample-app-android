@@ -1,11 +1,14 @@
 package testCases
 
+import androidx.fragment.app.testing.launchFragmentInContainer
+import androidx.navigation.Navigation
+import androidx.navigation.testing.TestNavHostController
+import androidx.test.core.app.ApplicationProvider
 import app_common.BaseTest
 import app_common.provideAccountsJourneyDependencies
 import app_common.shouldBeDisplayed
 import com.backbase.accounts_journey.R
 import com.backbase.accounts_journey.presentation.accountlist.ui.AccountListFragment
-import com.backbase.android.retail.journey.test.launchScreen
 import org.junit.Before
 import org.junit.Test
 import screens.accountListScreen
@@ -15,7 +18,12 @@ class AccountsListTests : BaseTest() {
     @Before
     fun setupConfigurationAndLaunchScreen() {
         provideAccountsJourneyDependencies()
-        launchScreen<AccountListFragment>()
+        
+        val navController = TestNavHostController(ApplicationProvider.getApplicationContext())
+        launchFragmentInContainer<AccountListFragment>().onFragment { fragment ->
+            navController.setGraph(R.navigation.account_journey_nav_graph)
+            Navigation.setViewNavController(fragment.requireView(), navController)
+        }
     }
 
     @Test

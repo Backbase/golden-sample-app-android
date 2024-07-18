@@ -11,5 +11,6 @@ dependencies {
     implementation(project(":accounts-journey"))
 
     // Backbase libraries
-    implementation(clientLibs.arrangements)
+    implementation(backbase.bom)
+    implementation(backbase.gen.arrangements.client)
 }
