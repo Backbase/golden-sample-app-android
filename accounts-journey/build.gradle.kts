@@ -18,5 +18,5 @@ dependencies {
     implementation(backbase.bom)
     implementation(backbase.bundles.common)
 
-    androidTestImplementation(project(":fake-accounts-use-case"))
+    androidTestImplementation(projects.fakeAccountsUseCase)
 }

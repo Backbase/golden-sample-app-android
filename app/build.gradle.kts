@@ -73,8 +73,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":accounts-journey"))
-    implementation(project(":accounts-use-case"))
+    implementation(projects.accountsJourney)
+    implementation(projects.accountsUseCase)
 
     implementation(platform(libs.kotlin.bom))
     implementation(libs.bundles.android.core)

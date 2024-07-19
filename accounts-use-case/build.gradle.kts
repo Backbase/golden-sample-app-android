@@ -8,7 +8,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":accounts-journey"))
+    implementation(projects.accountsJourney)
 
     // Backbase libraries
     implementation(backbase.bom)
