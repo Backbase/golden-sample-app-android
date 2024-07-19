@@ -18,7 +18,7 @@ class AccountsListTests : BaseTest() {
     @Before
     fun setupConfigurationAndLaunchScreen() {
         provideAccountsJourneyDependencies()
-        
+
         val navController = TestNavHostController(ApplicationProvider.getApplicationContext())
         launchFragmentInContainer<AccountListFragment>().onFragment { fragment ->
             navController.setGraph(R.navigation.account_journey_nav_graph)

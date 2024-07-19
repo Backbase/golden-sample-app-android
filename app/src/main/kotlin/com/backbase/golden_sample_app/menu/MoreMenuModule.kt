@@ -1,6 +1,8 @@
 package com.backbase.golden_sample_app.menu
 
+import androidx.core.os.bundleOf
 import androidx.navigation.NavController
+import com.backbase.android.identity.journey.authentication.AuthenticationJourney
 import com.backbase.android.retail.journey.more.MenuItem
 import com.backbase.android.retail.journey.more.MenuSection
 import com.backbase.android.retail.journey.more.MenuSections
@@ -27,19 +29,18 @@ internal fun moreMenuModule(
             MoreMenuRouterImpl(navController)
         }
 
-        scoped { demoMoreConfig(get(), navController) }
+        scoped { demoMoreConfig(get()) }
     }
 }
 
 fun demoMoreConfig(
-    sessionManager: SessionManager,
-    navController: NavController
+    sessionManager: SessionManager
 ) = MoreConfiguration {
     showIcons = true
     contentDescription = DeferredText.Resource(R.string.more_menu_title)
     sections = MenuSections {
         +demoSection()
-        +logOutSection(sessionManager, navController)
+        +logOutSection(sessionManager)
     }
 }
 
@@ -60,8 +61,7 @@ private fun demoSection(): MenuSection {
 }
 
 private fun logOutSection(
-    sessionManager: SessionManager,
-    navController: NavController
+    sessionManager: SessionManager
 ) = MenuSection {
     val switchIconColor =
         DeferredColor.Resource(com.backbase.android.design.R.color.bds_onDanger)
@@ -73,8 +73,7 @@ private fun logOutSection(
         iconBackgroundColor = DeferredColor.Resource(com.backbase.android.design.R.color.bds_primary)
     ) {
         sessionManager.logOut()
-        navController.popBackStack(R.id.workspaces_selector, true)
-        BackToAuth
+        BackToAuth(AuthenticationJourney.LAUNCH_ACTION_END_SESSION)
     }
     +MenuItem(
         title = DeferredText.Resource(R.string.more_menu_switch_user),
@@ -84,10 +83,9 @@ private fun logOutSection(
         iconBackgroundColor = DeferredColor.Resource(com.backbase.android.design.R.color.bds_danger)
     ) {
         sessionManager.switchUser()
-        navController.popBackStack(R.id.workspaces_selector, true)
-        BackToAuth
+        BackToAuth(AuthenticationJourney.LAUNCH_ACTION_LOG_OUT)
     }
     title = DeferredText.Resource(R.string.more_menu_security_section_title)
 }
 
-internal object BackToAuth : NavigateTo(R.id.authenticationJourney)
+internal class BackToAuth(arg: String) : NavigateTo(R.id.authenticationJourney, bundleOf(arg to true))
