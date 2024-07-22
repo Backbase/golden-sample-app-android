@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     id("com.android.application")
     kotlin("android")
@@ -42,11 +44,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = "11"
+    kotlin {
+        compilerOptions { jvmTarget.set(JvmTarget.JVM_17) }
     }
     buildFeatures {
         viewBinding = true
@@ -73,8 +75,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":accounts-journey"))
-    implementation(project(":accounts-use-case"))
+    implementation(projects.accountsJourney)
+    implementation(projects.accountsUseCase)
 
     implementation(platform(libs.kotlin.bom))
     implementation(libs.bundles.android.core)
@@ -86,16 +88,10 @@ dependencies {
     testImplementation(libs.bundles.test)
 
     // Backbase libraries
-    implementation(backbase.bundles.access.control.client)
-    implementation(backbase.bundles.arrangements.client)
-    implementation(backbase.bundles.authentication)
+    implementation(backbase.bom)
+    implementation(backbase.bundles.clients)
     implementation(backbase.bundles.common)
-    implementation(backbase.bundles.feature.filter)
-    implementation(backbase.bundles.more)
-    implementation(backbase.bundles.sdk)
-    implementation(backbase.bundles.workspaces)
-    implementation(backbase.bundles.ui)
-
-    implementation(backbase.user.manager.client)
-
+    implementation(backbase.bundles.foundation)
+    implementation(backbase.bundles.journeys)
+    implementation(backbase.bundles.use.cases)
 }

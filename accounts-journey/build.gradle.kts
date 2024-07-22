@@ -10,8 +10,13 @@ android {
 }
 
 dependencies {
-    // Backbase libraries
-    implementation(backbase.bundles.common)
     implementation(libs.bundles.navigation)
-    androidTestImplementation(project("path" to ":fake-accounts-use-case"))
+
+    androidTestImplementation(libs.navigation.testing)
+
+    // Backbase libraries
+    implementation(backbase.bom)
+    implementation(backbase.bundles.common)
+
+    androidTestImplementation(projects.fakeAccountsUseCase)
 }
