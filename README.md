@@ -12,18 +12,13 @@ You can discuss samples, request new examples and report problems on Github Disc
 
 ## 
 ## 💻 Getting started
-This project depends on various artifacts published to repositories on [Backbase Repo](https://repo.backbase.com). You must have read access to these repositories to build this project. The project also require a specific keystore in order for the app to communicate with the backend.
+This project depends on various artifacts published to repositories on [Backbase Repo](https://repo.backbase.com). You must have read access to these repositories to build this project. The project also requires a specific keystore in order for the app to communicate with the backend.
 In order to configure the project, please follow this [guide on Backbase.io](https://backbase.io/developers/documentation/mobile-devkit/getting-started/set-up-android-development/).
 
-Note that this project connects to the EBP Sandbox Environment, for that you need to request an API key as [mentioned here](https://backbase.io/developers/documentation/api-sandbox/retail-banking-usa/android-guide/). Add the key to the `config.json` file in the assets folder.
+Note that this project connects to the EBP Sandbox Environment, for that you need to request an API key as [mentioned here](https://backbase.io/developers/documentation/api-sandbox/retail-banking-usa/android-guide/). Add the key to the [config.json](app%2Fsrc%2Fmain%2Fassets%2Fbackbase%2Fconfig.json) file in the assets folder.
 
 ### 📱 Login
 In order to login you can find user credentials at [user-credentials page](https://backbase.io/ebp-sandbox/user-credentials?experience=retail)
 
 ## The Journey Architecture
-Bakcbase mobile is built with the journey architecture, where a journey is an independent set of screens that form a typical user journey. to lean more about the Backbase journey architecture read this [article](https://backbase.io/developers/documentation/retail-banking-universal/latest/system-wide/architecture/mobile-journey-architecture-understand/)
-
-
-
-## The Journey Architecture
-Bakcbase mobile is built with the journey architecture, where a journey is an independent set of screens that form a typical user journey. to lean more about the Backbase journey architecture read this [article](https://backbase.io/developers/documentation/retail-banking-universal/latest/system-wide/architecture/mobile-journey-architecture-understand/)
+Backbase mobile is built with the journey architecture, where a journey is an independent set of screens that form a typical user journey. To learn more about the Backbase journey architecture read this [article](https://backbase.io/developers/documentation/retail-banking-universal/latest/system-wide/architecture/mobile-journey-architecture-understand/).
