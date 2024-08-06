@@ -21,4 +21,4 @@ Note that this project connects to the EBP Sandbox Environment, for that you nee
 In order to login you can find user credentials at [user-credentials page](https://backbase.io/ebp-sandbox/user-credentials?experience=retail)
 
 ## The Journey Architecture
-Backbase mobile is built with the journey architecture, where a journey is an independent set of screens that form a typical user journey. To learn more about the Backbase journey architecture read this [article](https://backbase.io/developers/documentation/retail-banking-universal/latest/system-wide/architecture/mobile-journey-architecture-understand/).
+Backbase mobile is built with the journey architecture, where a journey is an independent set of screens that form a typical user journey. To learn more about the Backbase journey architecture read this [guide](https://backbase.io/developers/documentation/retail-banking-universal/latest/system-wide/architecture/mobile-journey-architecture-understand/).
