@@ -31,6 +31,13 @@ An implementation of Backbase OpenTelemetry Connector to track screen views and 
 \
 LTS 24.03
 
+## [sample/devs/multi-theming](https://github.com/Backbase/golden-sample-app-android/tree/sample/devs/multi-theming)
+This example explains how to use multiple themes in an application.
+\
+**Status**: Maintained
+\
+LTS 24.03
+
 ## [sample/devs/custom-network](https://github.com/Backbase/golden-sample-app-android/tree/sample/devs/custom-networking)
 This example shows how to connect to a Backbase powered backend with a custom networking library.
 \
