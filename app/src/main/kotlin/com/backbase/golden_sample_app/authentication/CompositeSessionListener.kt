@@ -29,7 +29,4 @@ internal class CompositeSessionListener : SessionListener, SessionEmitter {
         BBLogger.debug("", "Passing session state <$state> to ${listeners.size} listeners")
         listeners.forEach { it.onSessionStateChange(state, errorResponse) }
     }
-
-    @Deprecated("Function cannot be removed because it was declared abstract")
-    override fun onSessionStateChange(p0: SessionState) = Unit
 }

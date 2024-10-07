@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     id("com.android.application")
     kotlin("android")
@@ -43,11 +45,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = "11"
+    kotlin {
+        compilerOptions { jvmTarget.set(JvmTarget.JVM_17) }
     }
     buildFeatures {
         viewBinding = true
@@ -60,23 +62,11 @@ android {
             excludes += "META-INF/LICENSE-notice.md"
         }
     }
-
-    configurations.all {
-        resolutionStrategy {
-            // Reverting to an older version of objenesis due to build failure during androidTest using mockK
-            // Issue link => https://github.com/mockk/mockk/issues/281
-            force("org.objenesis:objenesis:2.6")
-            // Excluding to avoid "More than one file was found with OS independent path 'META-INF/AL2.0' & 'META-INF/LGPL2.1'"
-            // Issue link => https://github.com/Kotlin/kotlinx.coroutines/issues/2023
-            exclude(group = "org.jetbrains.kotlinx", module = "kotlinx-coroutines-debug")
-        }
-    }
 }
 
 dependencies {
-    implementation(project(":analytics"))
-    implementation(project(":accounts-journey"))
-    implementation(project(":accounts-use-case"))
+    implementation(projects.accountsJourney)
+    implementation(projects.accountsUseCase)
 
     implementation(platform(libs.kotlin.bom))
     implementation(libs.bundles.android.core)
@@ -88,19 +78,10 @@ dependencies {
     testImplementation(libs.bundles.test)
 
     // Backbase libraries
-    implementation(backbase.bundles.access.control.client)
-    implementation(backbase.bundles.arrangements.client)
-    implementation(backbase.bundles.authentication)
+    implementation(backbase.bom)
+    implementation(backbase.bundles.clients)
     implementation(backbase.bundles.common)
-    implementation(backbase.bundles.feature.filter)
-    implementation(backbase.bundles.more)
-    implementation(backbase.bundles.retail.contacts)
-    implementation(backbase.bundles.retail.payments)
-    implementation(backbase.bundles.sdk)
-    implementation(backbase.bundles.workspaces)
-    implementation(backbase.bundles.ui)
-
-    implementation(backbase.observability)
-    implementation(backbase.user.manager.client)
-
+    implementation(backbase.bundles.foundation)
+    implementation(backbase.bundles.journeys)
+    implementation(backbase.bundles.use.cases)
 }

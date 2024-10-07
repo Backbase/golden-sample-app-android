@@ -1,3 +1,5 @@
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 pluginManagement {
     repositories {
         google()
@@ -22,9 +24,8 @@ dependencyResolutionManagement {
         create("backbase") { from(files("gradle/backbase.versions.toml")) }
     }
 }
-rootProject.name = "Golden Sample App Android"
+rootProject.name = "Golden_Sample_App_Android"
 include(":app")
 include(":accounts-journey")
 include(":accounts-use-case")
 include(":fake-accounts-use-case")
-include(":analytics")

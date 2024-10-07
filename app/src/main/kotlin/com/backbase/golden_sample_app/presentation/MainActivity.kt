@@ -6,15 +6,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle.State.STARTED
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import com.backbase.android.design.header.AvatarConfiguration
 import com.backbase.android.design.header.TabHeaderViewModel
 import com.backbase.android.design.header.TopBarConfiguration
 import com.backbase.golden_sample_app.R
 import com.backbase.golden_sample_app.databinding.ActivityMainBinding
 import com.backbase.golden_sample_app.menu.moreMenuModule
-import com.backbase.golden_sample_app.payments.paymentsMenuModule
 import com.backbase.golden_sample_app.presentation.bottom.setupBottomBar
 import com.backbase.golden_sample_app.presentation.header.updateStatusBarColor
 import com.backbase.golden_sample_app.router.AppRouting
@@ -36,6 +35,10 @@ class MainActivity : AppCompatActivity() {
     private val navigator: AppRouting by inject()
 
     private val mainViewModel: MainViewModel by inject()
+
+    /**
+     * Shared VM between the activity and all the instances of TabHeaderFragment
+     */
     private val tabHeaderViewModel: TabHeaderViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navController = findNavController(R.id.nav_host_container)
+        val navController = findNavController()
         navigator.bind(navController)
 
         updateStatusBarColor(isInRootScreen = tabHeaderViewModel.uiState.map { it.isInRootScreen })
@@ -54,6 +57,10 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch { repeatOnLifecycle(STARTED) { mainViewModel.uiState.collect(::update) } }
     }
 
+    /**
+     * Updates the [TopBarConfiguration] in all the TabHeaderFragment. This will update
+     * the toolbar content with the information passed in the configuration.
+     */
     private fun update(uiState: MainViewModel.UiState) = tabHeaderViewModel update TopBarConfiguration {
         title = uiState.fullName
         subtitle = uiState.serviceAgreementName
@@ -61,13 +68,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadScopedDependencies() {
-        val navController = Navigation.findNavController(this@MainActivity, R.id.nav_host_container)
+        val navController = findNavController()
         loadKoinModules(
             listOf(
                 sessionModule(navController),
                 moreMenuModule(navController),
-                paymentsMenuModule(navController)
             )
         )
+    }
+
+    internal fun MainActivity.findNavController(): NavController {
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_container) as NavHostFragment
+        return navHostFragment.navController
     }
 }
