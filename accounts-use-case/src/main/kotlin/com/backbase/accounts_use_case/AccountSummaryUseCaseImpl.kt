@@ -19,7 +19,7 @@ import kotlinx.coroutines.withContext
  *
  * Created by Backbase R&D B.V on 19/09/2023.
  */
-class AccountSummaryUseCaseImpl constructor(
+class AccountSummaryUseCaseImpl(
     private val productSummaryApi: ProductSummaryApi,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : AccountsUseCase {
