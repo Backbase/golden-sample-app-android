@@ -9,7 +9,7 @@
         android:id="@+id/accountListFragment"
         android:name="com.backbase.accounts_journey.presentation.accountlist.ui.AccountListFragment"
         android:label="fragment_account_list"
-        tools:layout="@layout/fragment_account_list">
+        tools:layout="@layout/fragment_account_list" >
         <action
             android:id="@+id/action_accountListFragment_to_accountDetailFragment"
             app:destination="@id/accountDetailFragment" />
@@ -18,10 +18,9 @@
         android:id="@+id/accountDetailFragment"
         android:name="com.backbase.accounts_journey.presentation.accountdetail.ui.AccountDetailFragment"
         android:label="fragment_account_detail"
-        tools:layout="@layout/fragment_account_detail">
+        tools:layout="@layout/fragment_account_detail" >
         <argument
             android:name="id"
             app:argType="string" />
     </fragment>
-
 </navigation>

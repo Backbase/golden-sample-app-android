@@ -9,6 +9,6 @@ class MoreMenuRouterImpl(
 
 ) : MoreRouter {
     override fun onExit(navigationActionId: Int, args: Bundle?) {
-        navController.navigate(navigationActionId)
+        navController.navigate(navigationActionId, args)
     }
 }

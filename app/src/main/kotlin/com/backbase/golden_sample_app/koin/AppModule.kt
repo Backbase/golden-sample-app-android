@@ -16,6 +16,7 @@ import org.koin.dsl.module
  */
 internal fun appModule(context: Context) = module {
     factory { CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate) }
-    single<AppRouting> { AppRouter() }
     single { NetworkDBSDataProvider(context) }
+    // Navigation dependencies
+    single<AppRouting> { AppRouter(tabListConfig = get()) }
 }

@@ -8,8 +8,9 @@ android {
 }
 
 dependencies {
-    implementation(project(":accounts-journey"))
+    implementation(projects.accountsJourney)
 
     // Backbase libraries
-    implementation(backbase.bundles.arrangements.client)
+    implementation(backbase.bom)
+    implementation(backbase.gen.arrangements.client)
 }

@@ -9,7 +9,7 @@
         android:id="@+id/authenticationJourney"
         android:name="com.backbase.android.identity.journey.authentication.AuthenticationJourney"
         android:label="Authentication Journey"
-        tools:layout="@layout/identity_authentication_journey">
+        tools:layout="@layout/identity_username_screen">
         <action
             android:id="@+id/action_authenticationJourneyFragment_to_workspaceSelector"
             app:destination="@id/workspaces_selector"
@@ -42,95 +42,18 @@
         android:id="@+id/action_global_authenticationJourney"
         app:destination="@id/authenticationJourney" />
 
-    <fragment
-        android:id="@+id/accountListFragment"
-        android:name="com.backbase.accounts_journey.presentation.accountlist.ui.AccountListFragment"
-        android:label="AccountListFragment"
-        tools:layout="@layout/fragment_account_list">
-        <argument
-            android:name="workspaceName"
-            app:argType="string" />
-        <action
-            android:id="@+id/action_accountListFragment_to_accountDetailFragment"
-            app:destination="@id/accountDetailFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/accountDetailFragment"
-        android:name="com.backbase.accounts_journey.presentation.accountdetail.ui.AccountDetailFragment"
-        android:label="AccountDetailFragment"
-        tools:layout="@layout/fragment_account_detail">
-        <argument
-            android:name="accountId"
-            app:argType="string" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/contactsJourney"
-        android:name="com.backbase.android.retail.journey.contacts.ContactsJourney" />
+    <include app:graph="@navigation/account_journey_nav_graph" />
 
     <fragment
         android:id="@+id/more"
         android:name="com.backbase.android.retail.journey.more.MoreJourney"
         android:label="More menu"
-        tools:layout="@layout/more_journey">
-        <action
-            android:id="@+id/action_more_to_contactsJourney"
-            app:destination="@id/contactsJourney" />
-    </fragment>
+        tools:layout="@layout/more_journey" />
 
     <fragment
-        android:id="@+id/move_money"
-        android:name="com.backbase.android.retail.journey.more.MoreJourney"
-        android:label="Move money"
-        tools:layout="@layout/more_journey">
-
-        <action
-            android:id="@+id/move_money_to_payments_journey"
-            app:destination="@id/paymentJourney" />
-
-
-        <action
-            android:id="@+id/move_money_to_bill_pay_sso"
-            app:destination="@id/billPaySsoJourney" />
-
-
-
-        <action
-            android:id="@+id/move_money_to_upcoming_payments"
-            app:destination="@id/upcomingPaymentsJourney"/>
-    </fragment>
-
-    <fragment
-        android:id="@+id/paymentJourney"
-        android:name="com.backbase.android.retail.journey.payments.PaymentJourney"
-        android:label="Payment Journey"
-        tools:layout="@layout/payments_journey">
-
-        <action
-            android:id="@+id/action_paymentJourney_to_upcomingPaymentsJourney"
-            app:destination="@id/upcomingPaymentsJourney"
-            app:popUpTo="@id/upcomingPaymentsJourney"
-            app:popUpToInclusive="true"/>
-    </fragment>
-
-
-
-    <fragment
-        android:id="@+id/upcomingPaymentsJourney"
-        android:name="com.backbase.android.retail.journey.payments.upcoming.UpcomingPaymentsJourney"
-        android:label="Upcoming Payments Journey"
-        tools:layout="@layout/upcoming_payment_journey" >
-
-        <action
-            android:id="@+id/action_upcomingPaymentsJourney_edit_payment"
-            app:destination="@id/paymentJourney"/>
-    </fragment>
-
-
-    <fragment
-        android:id="@+id/billPaySsoJourney"
-        android:name="com.backbase.android.retail.journey.billPaySso.BillPayIntegratorSsoJourney"
-        android:label="BillPaySsoJourney" />
+        android:id="@+id/upcoming_fragment"
+        android:name="com.backbase.golden_sample_app.presentation.header.UpComingJourneyFragment"
+        tools:layout="@layout/fragment_upcoming_journey" />
 
     <fragment
         android:id="@+id/cardsJourney"

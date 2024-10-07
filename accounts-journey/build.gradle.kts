@@ -1,8 +1,8 @@
 plugins {
     id(backbase.plugins.feature.android.module.get().pluginId)
     id(libs.plugins.kotlin.parcelize.get().pluginId)
-    id(libs.plugins.navigation.safe.args.get().pluginId)
     id(backbase.plugins.configured.detekt.get().pluginId)
+    id(libs.plugins.navigation.safe.args.get().pluginId)
 }
 
 android {
@@ -10,11 +10,13 @@ android {
 }
 
 dependencies {
-    implementation(project(":analytics"))
+    implementation(libs.bundles.navigation)
+
+    androidTestImplementation(libs.navigation.testing)
 
     // Backbase libraries
-    implementation(backbase.observability)
+    implementation(backbase.bom)
     implementation(backbase.bundles.common)
-    implementation(libs.bundles.navigation)
-    androidTestImplementation(project("path" to ":fake-accounts-use-case"))
+
+    androidTestImplementation(projects.fakeAccountsUseCase)
 }

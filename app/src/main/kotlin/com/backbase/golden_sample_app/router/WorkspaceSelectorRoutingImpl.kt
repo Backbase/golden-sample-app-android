@@ -39,6 +39,7 @@ class WorkspaceSelectorRoutingImpl(
     override fun onWorkspaceSelectedV2(workspaceInfo: WorkspaceInfo): Int {
         user.userContext = workspaceInfo.workspace.name
         userEntitlementsRepository.entitlements = workspaceInfo.entitlements ?: emptyList()
-        return R.id.accountListFragment
+
+        return R.id.dashboard
     }
 }

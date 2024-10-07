@@ -4,21 +4,13 @@ import android.app.Application
 import com.backbase.accounts_journey.AccountsJourney
 import com.backbase.accounts_journey.configuration.AccountsJourneyConfiguration
 import com.backbase.accounts_journey.configuration.accountlist.AccountListScreenConfiguration
-import com.backbase.analytics.observabilityModule
 import com.backbase.android.Backbase
 import com.backbase.android.business.journey.workspaces.WorkspacesJourney
 import com.backbase.android.core.utils.BBLogger
 import com.backbase.android.identity.client.BBIdentityAuthClient
-import com.backbase.android.identity.device.BBDeviceAuthenticator
 import com.backbase.android.identity.fido.FidoUafFacetUtils
 import com.backbase.android.identity.journey.authentication.initAuthenticationJourney
 import com.backbase.android.identity.journey.authentication.stopAuthenticationJourney
-import com.backbase.android.listeners.ModelListener
-import com.backbase.android.model.Model
-import com.backbase.android.model.ModelSource
-import com.backbase.android.observability.Tracker
-import com.backbase.android.observability.event.ScreenViewEvent
-import com.backbase.android.observability.event.UserActionEvent
 import com.backbase.android.utils.net.NetworkConnectorBuilder
 import com.backbase.android.utils.net.response.Response
 import com.backbase.cards_journey.impl.cardsJourneyModule
@@ -27,18 +19,14 @@ import com.backbase.golden_sample_app.authentication.CompositeSessionListener
 import com.backbase.golden_sample_app.common.TAG
 import com.backbase.golden_sample_app.koin.accountsModule
 import com.backbase.golden_sample_app.koin.appModule
-import com.backbase.golden_sample_app.koin.contactsModule
 import com.backbase.golden_sample_app.koin.featureFilterModule
 import com.backbase.golden_sample_app.koin.identityAuthModule
+import com.backbase.golden_sample_app.koin.presentationModule
 import com.backbase.golden_sample_app.koin.navigationModule
 import com.backbase.golden_sample_app.koin.securityModule
 import com.backbase.golden_sample_app.koin.userModule
 import com.backbase.golden_sample_app.koin.workspacesModule
 import com.google.gson.internal.LinkedTreeMap
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
@@ -52,15 +40,8 @@ import java.net.URI
 class MainApplication : Application() {
 
     private val sessionEmitter = CompositeSessionListener()
-
-    private val tracker: Tracker by inject()
-
-    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
-
     private val authClient: BBIdentityAuthClient by lazy {
-        BBIdentityAuthClient(this, "").apply {
-            addAuthenticator(BBDeviceAuthenticator())
-        }
+        BBIdentityAuthClient(this, "")
     }
 
     override fun onCreate() {
@@ -75,27 +56,13 @@ class MainApplication : Application() {
         setupHttpHeaders()
         setupDependencies()
         initAuthenticationJourney()
-        setupAnalytics()
     }
 
     private fun initializeBackbase(
         backbaseConfigAssetPath: String = "backbase/config.json",
         encrypted: Boolean = false
     ) {
-        Backbase.initialize(this@MainApplication, backbaseConfigAssetPath, encrypted)
-        with(Backbase.requireInstance()) {
-            // We need to keep a local model in our code so that Authenticators can be injected there at runtime.
-            getModel(
-                object : ModelListener<Model> {
-                    override fun onModelReady(model: Model) = BBLogger.debug(TAG, "Model loaded")
-
-                    override fun onError(response: Response) = throw IllegalArgumentException(
-                        "backbaseConfigAssetPath must point to a valid model. Instead, ${response.errorMessage}"
-                    )
-                },
-                ModelSource.LOCAL
-            )
-        }
+        Backbase.initialize(applicationContext, backbaseConfigAssetPath, encrypted)
     }
 
     private fun setupRemoteClients() {
@@ -107,7 +74,7 @@ class MainApplication : Application() {
     }
 
     private fun setupAuthClient() {
-        val backbase = checkNotNull(Backbase.getInstance())
+        val backbase = Backbase.requireInstance()
         backbase.registerAuthClient(authClient)
         backbase.authClient.startSessionObserver(sessionEmitter)
     }
@@ -143,11 +110,11 @@ class MainApplication : Application() {
             listOf(
                 navigationModule,
                 securityModule(this@MainApplication),
-                userModule,
+                userModule(context = this@MainApplication),
                 featureFilterModule,
                 appModule(this@MainApplication),
+                presentationModule(context = this@MainApplication),
                 identityAuthModule(sessionEmitter),
-                contactsModule(),
                 workspacesModule,
                 WorkspacesJourney.create(),
                 accountsModule,
@@ -157,22 +124,6 @@ class MainApplication : Application() {
                 cardsJourneyModule
             )
         )
-    }
-
-    private fun setupAnalytics() {
-        tracker.subscribe(this, ScreenViewEvent::class, scope) { event ->
-            // In this code block we can start receiving events from the analytics framework.
-            // After that, you can start forwarding it to the Analytics tools of your choice.
-            // Here we receive the Screen View Events.
-
-            // Samples (Actual method call could be different, please refer to the actual Analytics tools documentation)
-            // Firebase.logEvent(${event.name})
-            // Adjust.screen(${event.name})
-            // Log.d("Tracker", "Tracked screen view: ${event.name}")
-        }
-        tracker.subscribe(this, UserActionEvent::class, scope) { event ->
-            // Same can be done with the User Action Events.
-        }
     }
 
     override fun onTerminate() {
