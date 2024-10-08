@@ -11,9 +11,10 @@ android {
 
 dependencies {
     // Backbase libraries
+    implementation(backbase.bom)
     implementation(backbase.bundles.common)
     implementation(libs.bundles.navigation)
     implementation(backbase.bundles.card.client.common)
-    implementation(project(":card-journey:api"))
-    implementation(project(":core-ui"))
+    implementation(projects.cardJourney.api)
+    implementation(projects.coreUi)
 }

@@ -12,5 +12,6 @@ android {
 dependencies {
 
     // Backbase libraries
+    implementation(backbase.bom)
     implementation(backbase.bundles.card.client.common)
 }
