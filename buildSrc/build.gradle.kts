@@ -20,6 +20,7 @@ dependencies {
     implementation(libs.gradle)
     implementation(libs.gradle.api)
     implementation(libs.kotlin.gradle.plugin)
+    implementation(libs.karumi.gradle.plugin)
 
     implementation(libs.detekt.gradle.plugin)
     implementation(libs.gradle.versions.gradle.plugin)
