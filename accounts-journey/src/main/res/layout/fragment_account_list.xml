@@ -103,6 +103,14 @@
                 android:visibility="gone"
                 app:constraint_referenced_ids="no_account_image,accounts_result_text"
                 tools:visibility="gone" />
+
+            <Button
+                android:id="@+id/btnCards"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cards"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 

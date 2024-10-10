@@ -78,6 +78,9 @@ android {
 dependencies {
     implementation(projects.accountsJourney)
     implementation(projects.accountsUseCase)
+    implementation(projects.cardJourney.impl)
+    implementation(projects.cardJourney.api)
+
 
     implementation(platform(libs.kotlin.bom))
     implementation(libs.bundles.android.core)
@@ -95,4 +98,5 @@ dependencies {
     implementation(backbase.bundles.foundation)
     implementation(backbase.bundles.journeys)
     implementation(backbase.bundles.use.cases)
+
 }

@@ -19,6 +19,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import com.backbase.accounts_journey.router.AccountsRouter
 
 /**
  * The Fragment of the account list.
@@ -40,6 +41,8 @@ class AccountListFragment : Fragment() {
     private val accountListAdapter: AccountListAdapter = AccountListAdapter(
         onClick = { itemClicked(it) }
     )
+    private val cardNavigationAction: AccountsRouter by inject()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -75,6 +78,11 @@ class AccountListFragment : Fragment() {
             .onEach { handleUiState(it) }
             .launchIn(lifecycleScope)
         viewModel.onEvent(AccountListEvent.OnGetAccounts)
+
+        //Remove this button and its action later
+        binding.btnCards.setOnClickListener {
+            cardNavigationAction.exit(findNavController())
+        }
     }
 
     private fun handleUiState(uiState: AccountListScreenState) {

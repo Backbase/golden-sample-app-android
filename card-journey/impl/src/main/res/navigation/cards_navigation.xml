@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cards_navigation"
+    app:startDestination="@id/cardListFragment">
+
+    <fragment
+        android:id="@+id/cardListFragment"
+        android:name="com.backbase.cards_journey.impl.ui.list.CardListFragment"
+        android:label="fragment_card_list"
+        tools:layout="@layout/fragment_card_list">
+        <action
+            android:id="@+id/action_cardListFragment_to_cardDetailsFragment"
+            app:destination="@id/cardDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cardDetailsFragment"
+        android:name="com.backbase.cards_journey.impl.ui.details.CardDetailsFragment"
+        android:label="CardDetailsFragment"
+        tools:layout="@layout/fragment_card_details">
+        <argument
+            android:name="cardId"
+            app:argType="string" />
+    </fragment>
+</navigation>
