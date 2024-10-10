@@ -5,6 +5,11 @@ pluginManagement {
         google()
         gradlePluginPortal()
         mavenCentral()
+        maven {
+            name = "backbaseRepo"
+            url = uri("https://repo.backbase.com/repo")
+            credentials(PasswordCredentials::class)
+        }
     }
 }
 
