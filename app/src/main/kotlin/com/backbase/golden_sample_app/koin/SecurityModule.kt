@@ -19,7 +19,10 @@ import org.koin.dsl.module
 internal fun securityModule(
     context: Context
 ) = module {
-    factory<StorageComponent> { get<Backbase>().getRegisteredPlugin(EncryptedStorage::class.java)!!.storageComponent }
+    val encryptedStorage = Backbase.requireInstance().getRegisteredPlugin(
+        EncryptedStorage::class.java
+    ) as EncryptedStorage
+    factory<StorageComponent> { encryptedStorage.storageComponent }
 
     runBlocking(Dispatchers.IO) {
         val result: SecureStorageInfo = SecureStorageFactory.createWithMigration(context)
