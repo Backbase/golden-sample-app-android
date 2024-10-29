@@ -89,7 +89,7 @@ dependencies {
     testImplementation(libs.bundles.test)
 
     // Backbase libraries
-    implementation(backbase.bom)
+    implementation(platform(backbase.bom))
     implementation(backbase.bundles.clients)
     implementation(backbase.bundles.common)
     implementation(backbase.bundles.foundation)
