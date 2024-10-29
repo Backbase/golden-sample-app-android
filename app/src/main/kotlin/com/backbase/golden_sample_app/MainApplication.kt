@@ -10,18 +10,13 @@ import com.backbase.android.Backbase
 import com.backbase.android.business.journey.workspaces.WorkspacesJourney
 import com.backbase.android.core.utils.BBLogger
 import com.backbase.android.identity.client.BBIdentityAuthClient
-import com.backbase.android.identity.device.BBDeviceAuthenticator
 import com.backbase.android.identity.fido.FidoUafFacetUtils
 import com.backbase.android.identity.journey.authentication.initAuthenticationJourney
 import com.backbase.android.identity.journey.authentication.stopAuthenticationJourney
-import com.backbase.android.listeners.ModelListener
-import com.backbase.android.model.Model
-import com.backbase.android.model.ModelSource
 import com.backbase.android.observability.Tracker
 import com.backbase.android.observability.event.ScreenViewEvent
 import com.backbase.android.observability.event.UserActionEvent
 import com.backbase.android.utils.net.NetworkConnectorBuilder
-import com.backbase.android.utils.net.response.Response
 import com.backbase.golden_sample_app.authentication.CompositeSessionListener
 import com.backbase.golden_sample_app.common.TAG
 import com.backbase.golden_sample_app.koin.accountsModule
@@ -30,6 +25,7 @@ import com.backbase.golden_sample_app.koin.featureFilterModule
 import com.backbase.golden_sample_app.koin.identityAuthModule
 import com.backbase.golden_sample_app.koin.presentationModule
 import com.backbase.golden_sample_app.koin.securityModule
+import com.backbase.golden_sample_app.koin.servicesModule
 import com.backbase.golden_sample_app.koin.userModule
 import com.backbase.golden_sample_app.koin.workspacesModule
 import com.google.gson.internal.LinkedTreeMap
@@ -40,7 +36,6 @@ import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
-import java.net.URI
 
 /**
  * Setup the necessary dependencies and configurations.
@@ -56,9 +51,7 @@ class MainApplication : Application() {
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
 
     private val authClient: BBIdentityAuthClient by lazy {
-        BBIdentityAuthClient(this, "").apply {
-            addAuthenticator(BBDeviceAuthenticator())
-        }
+        BBIdentityAuthClient(this, "")
     }
 
     override fun onCreate() {
@@ -68,7 +61,6 @@ class MainApplication : Application() {
             BBLogger.debug(TAG, "Facet ID: <${FidoUafFacetUtils.getFacetID(this)}>")
         }
         initializeBackbase()
-        setupRemoteClients()
         setupAuthClient()
         setupHttpHeaders()
         setupDependencies()
@@ -80,32 +72,11 @@ class MainApplication : Application() {
         backbaseConfigAssetPath: String = "backbase/config.json",
         encrypted: Boolean = false
     ) {
-        Backbase.initialize(this@MainApplication, backbaseConfigAssetPath, encrypted)
-        with(Backbase.requireInstance()) {
-            // We need to keep a local model in our code so that Authenticators can be injected there at runtime.
-            getModel(
-                object : ModelListener<Model> {
-                    override fun onModelReady(model: Model) = BBLogger.debug(TAG, "Model loaded")
-
-                    override fun onError(response: Response) = throw IllegalArgumentException(
-                        "backbaseConfigAssetPath must point to a valid model. Instead, ${response.errorMessage}"
-                    )
-                },
-                ModelSource.LOCAL
-            )
-        }
-    }
-
-    private fun setupRemoteClients() {
-        val baseUri = URI(Sdk.serverUrl + "/api")
-        Sdk.clients(this@MainApplication).forEach { client ->
-            client.setBaseURI(URI("$baseUri${client.baseURI}"))
-            Backbase.requireInstance().registerClient(client)
-        }
+        Backbase.initialize(applicationContext, backbaseConfigAssetPath, encrypted)
     }
 
     private fun setupAuthClient() {
-        val backbase = checkNotNull(Backbase.getInstance())
+        val backbase = Backbase.requireInstance()
         backbase.registerAuthClient(authClient)
         backbase.authClient.startSessionObserver(sessionEmitter)
     }
@@ -140,16 +111,17 @@ class MainApplication : Application() {
         loadKoinModules(
             listOf(
                 securityModule(this@MainApplication),
-                userModule(context = this@MainApplication),
+                servicesModule(this@MainApplication),
+                userModule(),
                 featureFilterModule,
-                appModule(this@MainApplication),
+                appModule(),
                 presentationModule(context = this@MainApplication),
                 identityAuthModule(sessionEmitter),
                 workspacesModule,
                 WorkspacesJourney.create(),
                 accountsModule,
                 AccountsJourney.create(configuration = setupAccountsJourneyConfiguration()),
-                observabilityModule(scope),
+                observabilityModule(scope, this@MainApplication),
             )
         )
     }

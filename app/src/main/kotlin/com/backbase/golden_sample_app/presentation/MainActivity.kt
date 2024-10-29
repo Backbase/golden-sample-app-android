@@ -1,13 +1,14 @@
 package com.backbase.golden_sample_app.presentation
 
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle.State.STARTED
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import com.backbase.android.design.header.AvatarConfiguration
 import com.backbase.android.design.header.TabHeaderViewModel
 import com.backbase.android.design.header.TopBarConfiguration
@@ -15,7 +16,6 @@ import com.backbase.golden_sample_app.R
 import com.backbase.golden_sample_app.databinding.ActivityMainBinding
 import com.backbase.golden_sample_app.menu.moreMenuModule
 import com.backbase.golden_sample_app.presentation.bottom.setupBottomBar
-import com.backbase.golden_sample_app.presentation.header.updateStatusBarColor
 import com.backbase.golden_sample_app.router.AppRouting
 import com.backbase.golden_sample_app.session.sessionModule
 import kotlinx.coroutines.flow.map
@@ -44,12 +44,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        enableEdgeToEdge()
         setContentView(binding.root)
 
-        val navController = findNavController(R.id.nav_host_container)
+        val navController = findNavController()
         navigator.bind(navController)
 
-        updateStatusBarColor(isInRootScreen = tabHeaderViewModel.uiState.map { it.isInRootScreen })
         setupBottomBar(isInRootScreen = tabHeaderViewModel.uiState.map { it.isInRootScreen })
 
         if (savedInstanceState == null) { loadScopedDependencies() }
@@ -68,12 +68,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadScopedDependencies() {
-        val navController = Navigation.findNavController(this@MainActivity, R.id.nav_host_container)
+        val navController = findNavController()
         loadKoinModules(
             listOf(
                 sessionModule(navController),
                 moreMenuModule(navController),
             )
         )
+    }
+
+    internal fun MainActivity.findNavController(): NavController {
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_container) as NavHostFragment
+        return navHostFragment.navController
     }
 }

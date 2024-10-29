@@ -9,19 +9,9 @@
     <string name="more_menu_log_out">Log out</string>
     <string name="more_menu_switch_user">Switch user</string>
     <string name="more_menu_security_section_title">Security</string>
-
-
-    <string name="move_money_title">Move Money</string>
-    <string name="move_money_make_a_transfer">Make a transfer</string>
-    <string name="move_money_make_a_transfer_description">Move money between own accounts</string>
-    <string name="move_money_send_to_someone">Send money to someone</string>
-    <string name="move_money_send_to_someone_description">Send money using phone number or email</string>
-    <string name="move_money_activity">Activity</string>
-    <string name="move_money_activity_description">Scheduled and executed transfers</string>
-    <string name="move_money_bill_pay">Bill Pay</string>
+    <string name="more_menu_demo_title">Demo</string>
 
     <string name="top_bar_tab_accounts">Accounts</string>
-    <string name="top_bar_tab_payments">Payments</string>
     <string name="top_bar_tab_three">Tab 3</string>
     <string name="top_bar_tab_two">Tab 2</string>
 
