@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:fullBackupContent,android:theme"
-        tools:targetApi="34">
+        tools:targetApi="35">
         <activity
             android:name=".presentation.MainActivity"
             android:exported="true">

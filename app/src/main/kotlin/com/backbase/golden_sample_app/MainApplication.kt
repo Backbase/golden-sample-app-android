@@ -12,12 +12,15 @@ import com.backbase.android.identity.fido.FidoUafFacetUtils
 import com.backbase.android.identity.journey.authentication.initAuthenticationJourney
 import com.backbase.android.identity.journey.authentication.stopAuthenticationJourney
 import com.backbase.android.utils.net.NetworkConnectorBuilder
+import com.backbase.cards_journey.impl.cardsJourneyModule
+import com.backbase.cards_journey.impl.koin.cardModule
 import com.backbase.golden_sample_app.authentication.CompositeSessionListener
 import com.backbase.golden_sample_app.common.TAG
 import com.backbase.golden_sample_app.koin.accountsModule
 import com.backbase.golden_sample_app.koin.appModule
 import com.backbase.golden_sample_app.koin.featureFilterModule
 import com.backbase.golden_sample_app.koin.identityAuthModule
+import com.backbase.golden_sample_app.koin.navigationModule
 import com.backbase.golden_sample_app.koin.presentationModule
 import com.backbase.golden_sample_app.koin.securityModule
 import com.backbase.golden_sample_app.koin.servicesModule
@@ -95,6 +98,7 @@ class MainApplication : Application() {
         androidContext(this@MainApplication)
         loadKoinModules(
             listOf(
+                navigationModule,
                 securityModule(this@MainApplication),
                 servicesModule(this@MainApplication),
                 userModule(),
@@ -106,6 +110,8 @@ class MainApplication : Application() {
                 WorkspacesJourney.create(),
                 accountsModule,
                 AccountsJourney.create(configuration = setupAccountsJourneyConfiguration()),
+                cardModule(this@MainApplication),
+                cardsJourneyModule
             )
         )
     }
