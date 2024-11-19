@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.backbase.cards_journey.impl.databinding.FragmentCardsJourneyBinding
 
-
 class CardsJourney : Fragment() {
     private val scope by viewModels<CardsJourneyScopeImpl>()
 
@@ -16,14 +15,14 @@ class CardsJourney : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         scope.launchWithArguments()
         _binding = FragmentCardsJourneyBinding.inflate(inflater, container, false)
         return binding.root
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -14,12 +14,12 @@ import com.backbase.accounts_journey.R
 import com.backbase.accounts_journey.configuration.AccountsJourneyConfiguration
 import com.backbase.accounts_journey.configuration.accountlist.AccountListScreenConfiguration
 import com.backbase.accounts_journey.databinding.FragmentAccountListBinding
+import com.backbase.accounts_journey.router.AccountsRouter
 import com.backbase.accounts_journey.routing.AccountsRouting
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import com.backbase.accounts_journey.router.AccountsRouter
 
 /**
  * The Fragment of the account list.
@@ -79,7 +79,7 @@ class AccountListFragment : Fragment() {
             .launchIn(lifecycleScope)
         viewModel.onEvent(AccountListEvent.OnGetAccounts)
 
-        //Remove this button and its action later
+        // Remove this button and its action later
         binding.btnCards.setOnClickListener {
             cardNavigationAction.exit(findNavController())
         }

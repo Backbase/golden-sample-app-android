@@ -28,7 +28,8 @@ class CardListViewModel(private val useCase: CustomCardUseCase) :
                 onSuccess = { result ->
                     setState {
                         copy(
-                            isLoading = false, cards = result
+                            isLoading = false,
+                            cards = result
                         )
                     }
                 },

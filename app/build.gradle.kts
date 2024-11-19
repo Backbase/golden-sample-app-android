@@ -6,6 +6,18 @@ plugins {
     id(libs.plugins.kotlin.parcelize.get().pluginId)
     id(libs.plugins.navigation.safe.args.get().pluginId)
     id(backbase.plugins.configured.detekt.get().pluginId)
+    alias(backbase.plugins.visualiser)
+}
+
+visualizer {
+    themes {
+        register("Theme.Backbase.Premium") {
+            jsonFile = layout.projectDirectory.file("themes/premiumTokens.json")
+        }
+        register("Theme.Backbase.Default") {
+            jsonFile = layout.projectDirectory.file("themes/defaultTokens.json")
+        }
+    }
 }
 
 android {
@@ -80,7 +92,7 @@ dependencies {
     testImplementation(libs.bundles.test)
 
     // Backbase libraries
-    implementation(backbase.bom)
+    implementation(platform(backbase.bom))
     implementation(backbase.bundles.clients)
     implementation(backbase.bundles.common)
     implementation(backbase.bundles.foundation)

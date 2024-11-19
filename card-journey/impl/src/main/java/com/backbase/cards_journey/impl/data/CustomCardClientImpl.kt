@@ -29,7 +29,8 @@ class CustomCardClientImpl(
         ).let {
             Call(
                 it,
-                provider, parser,
+                provider,
+                parser,
                 Types.newParameterizedType(List::class.java, CardItem::class.java)
             )
         }
@@ -44,10 +45,10 @@ class CustomCardClientImpl(
         ).let {
             Call(
                 it,
-                provider, parser,
+                provider,
+                parser,
                 CardItem::class.java
             )
         }
     }
-
 }

@@ -11,8 +11,10 @@ import kotlinx.coroutines.withContext
 class CustomCardUseCaseImpl(private val customCardClient: CustomCardClient) : CustomCardUseCase {
     override suspend fun getCards(): Result<List<CardItem>> {
         return withContext(Dispatchers.IO) {
-            when (val callResult =
-                customCardClient.getCards().executeAsSuspended()) {
+            when (
+                val callResult =
+                    customCardClient.getCards().executeAsSuspended()
+            ) {
                 is CallResult.Success -> {
                     Result.success(callResult.data)
                 }
@@ -35,8 +37,10 @@ class CustomCardUseCaseImpl(private val customCardClient: CustomCardClient) : Cu
 
     override suspend fun getCardDetails(id: String): Result<CardItem> {
         return withContext(Dispatchers.IO) {
-            when (val callResult =
-                customCardClient.getCardDetails(id).executeAsSuspended()) {
+            when (
+                val callResult =
+                    customCardClient.getCardDetails(id).executeAsSuspended()
+            ) {
                 is CallResult.Success -> {
                     Result.success(callResult.data)
                 }
@@ -56,5 +60,4 @@ class CustomCardUseCaseImpl(private val customCardClient: CustomCardClient) : Cu
             }
         }
     }
-
 }

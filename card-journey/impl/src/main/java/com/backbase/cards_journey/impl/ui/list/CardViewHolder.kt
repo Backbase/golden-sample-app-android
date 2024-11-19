@@ -16,6 +16,4 @@ class CardViewHolder(private val binding: InflateCardBinding) :
             }
         }
     }
-
-
 }

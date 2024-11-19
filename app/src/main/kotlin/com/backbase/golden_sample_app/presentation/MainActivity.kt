@@ -1,6 +1,7 @@
 package com.backbase.golden_sample_app.presentation
 
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle.State.STARTED
@@ -15,7 +16,6 @@ import com.backbase.golden_sample_app.R
 import com.backbase.golden_sample_app.databinding.ActivityMainBinding
 import com.backbase.golden_sample_app.menu.moreMenuModule
 import com.backbase.golden_sample_app.presentation.bottom.setupBottomBar
-import com.backbase.golden_sample_app.presentation.header.updateStatusBarColor
 import com.backbase.golden_sample_app.router.AppRouting
 import com.backbase.golden_sample_app.session.sessionModule
 import kotlinx.coroutines.flow.map
@@ -44,12 +44,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        enableEdgeToEdge()
         setContentView(binding.root)
 
         val navController = findNavController()
         navigator.bind(navController)
 
-        updateStatusBarColor(isInRootScreen = tabHeaderViewModel.uiState.map { it.isInRootScreen })
         setupBottomBar(isInRootScreen = tabHeaderViewModel.uiState.map { it.isInRootScreen })
 
         if (savedInstanceState == null) { loadScopedDependencies() }

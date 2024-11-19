@@ -19,7 +19,6 @@ import com.backbase.cards_journey.impl.utils.getMaskedText
 import kotlinx.coroutines.launch
 import org.koin.core.parameter.parametersOf
 
-
 class CardDetailsFragment : Fragment() {
 
     private var _binding: FragmentCardDetailsBinding? = null
@@ -35,9 +34,10 @@ class CardDetailsFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentCardDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -72,8 +72,9 @@ class CardDetailsFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.effect.collect { effect ->
                     when (effect) {
-                        CardDetailsScreenEffect.HandleErrorResponse -> binding.error.isVisible =
-                            true
+                        CardDetailsScreenEffect.HandleErrorResponse ->
+                            binding.error.isVisible =
+                                true
                     }
                 }
             }

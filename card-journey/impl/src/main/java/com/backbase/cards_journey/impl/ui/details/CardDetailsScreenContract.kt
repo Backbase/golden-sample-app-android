@@ -5,7 +5,6 @@ import com.backbase.core_ui.mvi.mvi.UiEffect
 import com.backbase.core_ui.mvi.mvi.UiEvent
 import com.backbase.core_ui.mvi.mvi.UiState
 
-
 data class CardDetailsScreenViewState(
     val isLoading: Boolean,
     val card: CardItem? = null

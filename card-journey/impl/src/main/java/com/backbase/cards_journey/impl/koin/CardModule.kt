@@ -26,7 +26,6 @@ private val moshi = Moshi.Builder()
     .build()
 
 fun cardModule(context: Context) = module {
-
     val backbase = Backbase.requireInstance()
     single { backbase.getClient(com.backbase.cards_journey.impl.data.CustomCardClientImpl::class.java) }
     factory<CustomCardUseCase> {
@@ -43,5 +42,4 @@ fun cardModule(context: Context) = module {
             backbase = Backbase.requireInstance()
         )
     }
-
 }

@@ -61,4 +61,3 @@ class CardsJourneyScopeImpl :
         scopeModule?.let { unloadKoinModules(it) }
     }
 }
-

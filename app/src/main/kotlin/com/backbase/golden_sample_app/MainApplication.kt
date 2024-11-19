@@ -12,7 +12,6 @@ import com.backbase.android.identity.fido.FidoUafFacetUtils
 import com.backbase.android.identity.journey.authentication.initAuthenticationJourney
 import com.backbase.android.identity.journey.authentication.stopAuthenticationJourney
 import com.backbase.android.utils.net.NetworkConnectorBuilder
-import com.backbase.android.utils.net.response.Response
 import com.backbase.cards_journey.impl.cardsJourneyModule
 import com.backbase.cards_journey.impl.koin.cardModule
 import com.backbase.golden_sample_app.authentication.CompositeSessionListener
@@ -21,16 +20,16 @@ import com.backbase.golden_sample_app.koin.accountsModule
 import com.backbase.golden_sample_app.koin.appModule
 import com.backbase.golden_sample_app.koin.featureFilterModule
 import com.backbase.golden_sample_app.koin.identityAuthModule
-import com.backbase.golden_sample_app.koin.presentationModule
 import com.backbase.golden_sample_app.koin.navigationModule
+import com.backbase.golden_sample_app.koin.presentationModule
 import com.backbase.golden_sample_app.koin.securityModule
+import com.backbase.golden_sample_app.koin.servicesModule
 import com.backbase.golden_sample_app.koin.userModule
 import com.backbase.golden_sample_app.koin.workspacesModule
 import com.google.gson.internal.LinkedTreeMap
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
-import java.net.URI
 
 /**
  * Setup the necessary dependencies and configurations.
@@ -51,7 +50,6 @@ class MainApplication : Application() {
             BBLogger.debug(TAG, "Facet ID: <${FidoUafFacetUtils.getFacetID(this)}>")
         }
         initializeBackbase()
-        setupRemoteClients()
         setupAuthClient()
         setupHttpHeaders()
         setupDependencies()
@@ -63,14 +61,6 @@ class MainApplication : Application() {
         encrypted: Boolean = false
     ) {
         Backbase.initialize(applicationContext, backbaseConfigAssetPath, encrypted)
-    }
-
-    private fun setupRemoteClients() {
-        val baseUri = URI(Sdk.serverUrl + "/api")
-        Sdk.clients(this@MainApplication).forEach { client ->
-            client.setBaseURI(URI("$baseUri${client.baseURI}"))
-            Backbase.requireInstance().registerClient(client)
-        }
     }
 
     private fun setupAuthClient() {
@@ -110,9 +100,10 @@ class MainApplication : Application() {
             listOf(
                 navigationModule,
                 securityModule(this@MainApplication),
-                userModule(context = this@MainApplication),
+                servicesModule(this@MainApplication),
+                userModule(),
                 featureFilterModule,
-                appModule(this@MainApplication),
+                appModule(),
                 presentationModule(context = this@MainApplication),
                 identityAuthModule(sessionEmitter),
                 workspacesModule,

@@ -13,7 +13,9 @@ class CardListAdapter(val onclick: (CardItem) -> Unit) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
         return CardViewHolder(
             InflateCardBinding.inflate(
-                LayoutInflater.from(parent.context), parent, false
+                LayoutInflater.from(parent.context),
+                parent,
+                false
             )
         )
     }
@@ -24,11 +26,13 @@ class CardListAdapter(val onclick: (CardItem) -> Unit) :
 
     private class BillsDiffCallBack : DiffUtil.ItemCallback<CardItem>() {
         override fun areItemsTheSame(
-            oldItem: CardItem, newItem: CardItem
+            oldItem: CardItem,
+            newItem: CardItem
         ): Boolean = oldItem.id == newItem.id
 
         override fun areContentsTheSame(
-            oldItem: CardItem, newItem: CardItem
+            oldItem: CardItem,
+            newItem: CardItem
         ): Boolean = oldItem == newItem
     }
 }

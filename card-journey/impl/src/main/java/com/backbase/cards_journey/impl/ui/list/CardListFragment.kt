@@ -18,7 +18,6 @@ import com.backbase.cards_journey.impl.journeyScopedViewModel
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
-
 class CardListFragment : Fragment() {
 
     private val viewModel by journeyScopedViewModel<CardListViewModel>()
@@ -34,9 +33,10 @@ class CardListFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentCardListBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -80,8 +80,9 @@ class CardListFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.effect.collect { effect ->
                     when (effect) {
-                        CardListScreenEffect.HandleErrorResponse -> binding.error.isVisible =
-                            true
+                        CardListScreenEffect.HandleErrorResponse ->
+                            binding.error.isVisible =
+                                true
                     }
                 }
             }

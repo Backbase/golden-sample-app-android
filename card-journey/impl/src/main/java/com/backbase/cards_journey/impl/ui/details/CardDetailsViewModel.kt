@@ -26,7 +26,8 @@ class CardDetailsViewModel(val cardId: String, private val useCase: CustomCardUs
                 onSuccess = { result ->
                     setState {
                         copy(
-                            isLoading = false, card = result
+                            isLoading = false,
+                            card = result
                         )
                     }
                 },
