@@ -13,7 +13,7 @@ feature-filter-use-case = "6.0.0"
 more-menu-journey = "6.1.0"
 
 ## W
-workspaces-journey = "7.0.0"
+workspaces-journey = "7.1.0"
 
 [libraries]
 ## A
@@ -68,6 +68,9 @@ dependency-updates = { id = "dependency-updates" }
 
 ## F
 feature-android-module = { id = "feature-android-module" }
+
+## V
+visualiser = { id = "com.backbase.android.visualizer", version = "1.0.0" }
 
 [bundles]
 ## C

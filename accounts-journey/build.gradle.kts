@@ -18,7 +18,7 @@ dependencies {
     androidTestImplementation(libs.navigation.testing)
 
     // Backbase libraries
-    implementation(backbase.bom)
+    implementation(platform(backbase.bom))
     implementation(backbase.bundles.common)
     implementation(libs.bundles.navigation)
 
