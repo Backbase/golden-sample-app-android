@@ -101,7 +101,6 @@ navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fr
 navigation-safe-args-gradle-plugin = { group = "androidx.navigation", name = "navigation-safe-args-gradle-plugin", version.ref = "navigation-component" }
 navigation-testing = { group = "androidx.navigation", name = "navigation-testing", version.ref = "navigation-component"}
 navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation-component" }
-navigation-testing = { group = "androidx.navigation", name = "navigation-testing", version.ref = "navigation-component" }
 
 ## P
 poko-gradle-plugin = { group = "dev.drewhamilton.poko", name = "dev.drewhamilton.poko.gradle.plugin", version.ref = "poko" }
