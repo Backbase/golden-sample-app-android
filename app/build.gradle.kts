@@ -6,6 +6,7 @@ plugins {
     id(libs.plugins.kotlin.parcelize.get().pluginId)
     id(libs.plugins.navigation.safe.args.get().pluginId)
     id(backbase.plugins.configured.detekt.get().pluginId)
+    id(libs.plugins.karumi.get().pluginId)
     alias(backbase.plugins.visualiser)
 }
 

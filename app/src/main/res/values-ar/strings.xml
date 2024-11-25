@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">تطبيق العينة الذهبية للاندرويد</string>
+    <string name="accounts_screen_title">أموالي</string>
+    <string name="label_menu_dashboard">لوحة القيادة</string>
+    <string name="label_menu_more">أكثر</string>
+    <string name="label_menu_move_money">نقل المال</string>
+
+    <string name="more_menu_title">المزيد من القائمة</string>
+    <string name="more_menu_contacts">جهات الاتصال</string>
+    <string name="more_menu_log_out">تسجيل خروج</string>
+    <string name="more_menu_switch_user">تغير المستخدم</string>
+    <string name="more_menu_security_section_title">حماية</string>
+
+
+    <string name="move_money_title">نقل المال</string>
+    <string name="move_money_make_a_transfer">إجراء تحويل</string>
+    <string name="move_money_make_a_transfer_description">نقل الأموال بين الحسابات الخاصة</string>
+    <string name="move_money_send_to_someone">إرسال الأموال إلى شخص ما</string>
+    <string name="move_money_send_to_someone_description">إرسال الأموال باستخدام رقم الهاتف أو البريد الإلكتروني</string>
+    <string name="move_money_activity">نشاط</string>
+    <string name="move_money_activity_description">التحويلات المجدولة والمنفذة</string>
+    <string name="move_money_bill_pay">دفع الفاتورة</string>
+</resources>
