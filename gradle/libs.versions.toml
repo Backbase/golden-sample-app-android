@@ -2,41 +2,44 @@
 ## A
 android = "8.0.2"
 appcompat = "1.7.0"
+archCore = "2.2.0"
 
 ## C
-constraintlayout = "2.1.4"
-core-ktx = "1.13.1"
+coroutines = "1.8.1"
+constraintlayout = "2.2.0"
+core-ktx = "1.15.0"
 
 ## D
 detekt = "1.23.6"
 
 ## E
-espresso = "3.4.0"
+espresso = "3.6.1"
 ext-junit = "1.1.5"
 
 ## G
-gradle = "8.1.4"
-gradle-versions-plugin = "0.47.0"
+gradle = "8.6.1"
+gradle-versions-plugin = "0.51.0"
 
 ## J
 junit4 = "4.13.2"
 junit4-android = "1.2.1"
-junit5 = "5.10.3"
+junit5 = "5.11.3"
 junit5-android = "1.10.0.0"
 
 ## K
+karumi = "6.1.0"
 koin = "3.5.6"
 kotlin = "1.9.24"
 kotlin-parcelize = " 1.9.24"
 
 ## L
-lifecycle-runtime-ktx = "2.8.3"
+lifecycle-runtime-ktx = "2.8.7"
 
 ## M
 material = "1.12.0"
 
 ## N
-navigation-component = "2.7.7"
+navigation-component = "2.8.4"
 
 ## P
 poko = "0.13.1"
@@ -45,13 +48,17 @@ poko = "0.13.1"
 swiperefreshlayout = "1.1.0"
 
 ## T
+testParameterInjector = "1.18"
 truth = "1.4.4"
 
 [libraries]
 ## A
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+archCore = { module = "androidx.arch.core:core-testing", name = "archCore", version.ref = "archCore"}
 
 ## C
+coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines"}
+coroutinesTest = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines"}
 constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
 
@@ -77,7 +84,9 @@ junit5-jupiter-engine = { group = "org.junit.jupiter", name = "junit-jupiter-eng
 junit5-vintage-engine = { group = "org.junit.vintage", name = "junit-vintage-engine", version.ref = "junit5" }
 
 ## K
+karumi-gradle-plugin = { group = "com.karumi", name = "shot", version.ref = "karumi" }
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
+koinTest = { group = "io.insert-koin", name = "koin-test", version.ref = "koin" }
 kotlin-bom = { group = "org.jetbrains.kotlin", name = "kotlin-bom", version.ref = "kotlin" }
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 
@@ -90,8 +99,8 @@ material = { module = "com.google.android.material:material", version.ref = "mat
 ## N
 navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation-component" }
 navigation-safe-args-gradle-plugin = { group = "androidx.navigation", name = "navigation-safe-args-gradle-plugin", version.ref = "navigation-component" }
+navigation-testing = { group = "androidx.navigation", name = "navigation-testing", version.ref = "navigation-component"}
 navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation-component" }
-navigation-testing = { group = "androidx.navigation", name = "navigation-testing", version.ref = "navigation-component" }
 
 ## P
 poko-gradle-plugin = { group = "dev.drewhamilton.poko", name = "dev.drewhamilton.poko.gradle.plugin", version.ref = "poko" }
@@ -100,6 +109,7 @@ poko-gradle-plugin = { group = "dev.drewhamilton.poko", name = "dev.drewhamilton
 swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
 
 ## T
+testParameterInjector = { group = "com.google.testparameterinjector", name = "test-parameter-injector", version.ref = "testParameterInjector"}
 truth = { module = "com.google.truth:truth", version.ref = "truth" }
 
 [plugins]
@@ -114,6 +124,7 @@ detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 gradle-versions-plugin = { id = "com.github.ben-manes.versions", version.ref = "gradle-versions-plugin" }
 
 ## K
+karumi = { id = "shot", version.ref = "karumi" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin-parcelize" }
 

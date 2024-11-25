@@ -20,7 +20,7 @@ class AccountsListTests : BaseTest() {
         provideAccountsJourneyDependencies()
 
         val navController = TestNavHostController(ApplicationProvider.getApplicationContext())
-        launchFragmentInContainer<AccountListFragment>().onFragment { fragment ->
+        launchFragmentInContainer<AccountListFragment>(themeResId = R.style.AppThemeX).onFragment { fragment ->
             navController.setGraph(R.navigation.account_journey_nav_graph)
             Navigation.setViewNavController(fragment.requireView(), navController)
         }

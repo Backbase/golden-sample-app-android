@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppThemeX" parent="Theme.Backbase.Fullscreen">
+<!--        <item name="iconAppLogoSquare">@drawable/ic_backbase_logo_square</item>-->
+<!--        <item name="iconAppLogoWide">@drawable/backbase_logo</item>-->
+    </style>
+</resources>
