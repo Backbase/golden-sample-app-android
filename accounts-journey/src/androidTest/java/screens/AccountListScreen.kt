@@ -1,6 +1,5 @@
 package screens
 
-import android.os.Bundle
 import androidx.lifecycle.ViewModelStore
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -52,7 +51,7 @@ class AccountListScreen : BaseScreen() {
                 }
             }
         }.also {
-            it.onFragment { screen ->
+            it.onFragment { _ ->
                 // If you need to perform any additional configuration, you can do it here
             }
         }

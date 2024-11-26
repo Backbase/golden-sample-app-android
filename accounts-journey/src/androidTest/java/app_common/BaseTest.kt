@@ -11,7 +11,6 @@ import org.koin.core.context.stopKoin
 import org.koin.test.KoinTest
 import java.util.Locale
 
-
 @ExperimentalCoroutinesApi
 open class BaseTest : KoinTest {
 

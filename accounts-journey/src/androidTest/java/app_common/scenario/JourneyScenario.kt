@@ -75,6 +75,7 @@ class FragmentJourneyScenario<F : Fragment> private constructor(
             containerViewId = android.R.id.content
         )
 
+        @Suppress("LongParameterList")
         @SuppressLint("RestrictedApi")
         internal fun <F : Fragment> internalJourneyLaunch(
             fragmentClass: Class<F>,
@@ -115,7 +116,6 @@ class FragmentJourneyScenario<F : Fragment> private constructor(
             return scenario
         }
     }
-
 }
 
 object FragmentJourneyScenarioUtils {
@@ -127,7 +127,7 @@ object FragmentJourneyScenarioUtils {
         return if (fragment != null) {
             fragment!!
         } else {
-            throw IllegalStateException("The fragment scenario could not be initialized.")
+            error("The fragment scenario could not be initialized.")
         }
     }
 }

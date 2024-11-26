@@ -3,7 +3,6 @@ package app_common.scenario
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.backbase.android.retail.journey.R
 
 class UiTestJourneyActivity : AppCompatActivity() {
 

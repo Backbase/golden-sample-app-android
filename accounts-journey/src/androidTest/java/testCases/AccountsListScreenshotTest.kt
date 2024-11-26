@@ -30,7 +30,7 @@ class AccountsListScreenshotTest : BaseTest(), ScreenshotTest {
         prepare {
             loadModule(
                 accountsUseCase = FakeAccountsUseCase(TEST_ACCOUNTS),
-                journeyConfiguration = AccountsJourneyConfiguration {  }
+                journeyConfiguration = AccountsJourneyConfiguration { }
             )
         }
 

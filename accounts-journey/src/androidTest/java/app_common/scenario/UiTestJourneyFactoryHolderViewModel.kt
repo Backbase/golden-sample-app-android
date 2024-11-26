@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentFactory
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
-class UiTestJourneyFactoryHolderViewModel: ViewModel() {
+class UiTestJourneyFactoryHolderViewModel : ViewModel() {
     var fragmentFactory: FragmentFactory? = null
 
     override fun onCleared() {
@@ -16,7 +16,7 @@ class UiTestJourneyFactoryHolderViewModel: ViewModel() {
 
     companion object {
 
-         private val FACTORY: ViewModelProvider.Factory =
+        private val FACTORY: ViewModelProvider.Factory =
             object : ViewModelProvider.Factory {
                 @Suppress("UNCHECKED_CAST")
                 override fun <T : ViewModel> create(modelClass: Class<T>): T {

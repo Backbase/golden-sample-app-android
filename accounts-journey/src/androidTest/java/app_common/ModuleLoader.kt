@@ -35,7 +35,7 @@ class ModuleLoader {
                         single { androidContext().applicationContext as Application }
                         single<AccountsJourneyConfiguration> { journeyConfiguration }
                         single<AccountsUseCase> { accountsUseCase }
-                        single<AccountUiMapper> { AccountUiMapper(get())  }
+                        single<AccountUiMapper> { AccountUiMapper(get()) }
                         single<AccountsRouting> { AccountsRoutingImpl() }
                     },
                     viewModelModule
