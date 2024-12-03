@@ -20,9 +20,15 @@ class AccountsListTests : BaseTest() {
         provideAccountsJourneyDependencies()
 
         val navController = TestNavHostController(ApplicationProvider.getApplicationContext())
-        launchFragmentInContainer<AccountListFragment>().onFragment { fragment ->
-            navController.setGraph(R.navigation.account_journey_nav_graph)
-            Navigation.setViewNavController(fragment.requireView(), navController)
+        launchFragmentInContainer(themeResId = R.style.AppTheme) {
+            AccountListFragment().also { fragment ->
+                fragment.viewLifecycleOwnerLiveData.observeForever { viewLifecycleOwner ->
+                    if (viewLifecycleOwner != null) {
+                        navController.setGraph(R.navigation.account_journey_nav_graph)
+                        Navigation.setViewNavController(fragment.requireView(), navController)
+                    }
+                }
+            }
         }
     }
 

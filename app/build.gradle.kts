@@ -6,6 +6,7 @@ plugins {
     id(libs.plugins.kotlin.parcelize.get().pluginId)
     id(libs.plugins.navigation.safe.args.get().pluginId)
     id(backbase.plugins.configured.detekt.get().pluginId)
+    id(libs.plugins.karumi.get().pluginId)
     alias(backbase.plugins.visualiser)
 }
 
@@ -56,6 +57,7 @@ android {
         }
     }
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
@@ -84,6 +86,7 @@ dependencies {
     implementation(libs.bundles.navigation)
     implementation(libs.bundles.ui)
 
+    coreLibraryDesugaring(libs.desugar.jdk.libs)
     androidTestImplementation(libs.bundles.test.instrumented)
 
     testImplementation(libs.bundles.test)

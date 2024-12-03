@@ -1,25 +1,33 @@
 package app_common
 
 import android.content.Context
+import android.content.res.Configuration
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.platform.app.InstrumentationRegistry
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Before
-import org.koin.android.ext.koin.androidContext
-import org.koin.core.context.startKoin
+import org.junit.Rule
 import org.koin.core.context.stopKoin
+import org.koin.test.KoinTest
+import java.util.Locale
 
-open class BaseTest {
+@ExperimentalCoroutinesApi
+open class BaseTest : KoinTest {
 
-    private val targetContext: Context
-        get() = InstrumentationRegistry.getInstrumentation().targetContext
+    @get:Rule
+    var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @Before
-    fun startKoinBeforeTest() {
+    open fun setup() {
         stopKoin()
-        startKoin {
-            androidContext(targetContext.applicationContext)
-            setUp()
-        }
+        // change the local to run the tests in different local
+        setLocale("en")
     }
 
-    open fun setUp() = Unit
+    fun setLocale(language: String) {
+        val context: Context = InstrumentationRegistry.getInstrumentation().getTargetContext()
+        val config: Configuration = context.getResources().getConfiguration()
+        config.setLocale(Locale(language))
+        context.createConfigurationContext(config)
+    }
 }
