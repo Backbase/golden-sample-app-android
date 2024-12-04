@@ -2,4 +2,5 @@
 plugins {
     id(backbase.plugins.dependency.updates.get().pluginId)
     alias(backbase.plugins.visualiser)
+    alias(libs.plugins.poko) apply false
 }

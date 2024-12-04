@@ -81,6 +81,8 @@ dependencies {
     implementation(projects.accountsJourney)
     implementation(projects.accountsUseCase)
 
+    implementation(platform(backbase.bom))
+
     implementation(platform(libs.kotlin.bom))
     implementation(libs.bundles.android.core)
     implementation(libs.bundles.navigation)
@@ -92,7 +94,6 @@ dependencies {
     testImplementation(libs.bundles.test)
 
     // Backbase libraries
-    implementation(platform(backbase.bom))
     implementation(backbase.bundles.clients)
     implementation(backbase.bundles.common)
     implementation(backbase.bundles.foundation)
