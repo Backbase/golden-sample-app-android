@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     id("com.android.library")
     kotlin("android")
+    id("dev.drewhamilton.poko")
 }
 
 internal val Project.libs: VersionCatalog

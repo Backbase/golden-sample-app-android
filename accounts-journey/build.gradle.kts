@@ -4,7 +4,6 @@ plugins {
     id(backbase.plugins.configured.detekt.get().pluginId)
     id(libs.plugins.karumi.get().pluginId)
     id(libs.plugins.navigation.safe.args.get().pluginId)
-    id(libs.plugins.poko.get().pluginId)
 }
 android {
     namespace = "com.backbase.accounts_journey"

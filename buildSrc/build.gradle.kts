@@ -25,4 +25,5 @@ dependencies {
     implementation(libs.detekt.gradle.plugin)
     implementation(libs.gradle.versions.gradle.plugin)
     implementation(libs.navigation.safe.args.gradle.plugin)
+    implementation(libs.poko.gradle.plugin)
 }
