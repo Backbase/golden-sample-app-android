@@ -1,18 +1,13 @@
 package com.backbase.accounts_use_case
 
+import com.backbase.accounts_journey.common.ConnectionException
 import com.backbase.accounts_journey.common.FailedGetDataException
-import com.backbase.accounts_journey.common.NoInternetException
-import com.backbase.accounts_journey.common.NoResponseException
 import com.backbase.accounts_journey.data.usecase.AccountsUseCase
 import com.backbase.accounts_journey.domain.model.account_summary.AccountSummary
 import com.backbase.accounts_use_case.mapper.mapToDomain
+import com.backbase.accounts_use_case.service.ArrangementManagerService
 import com.backbase.android.client.gen2.arrangementclient2.api.ProductSummaryApi
-import com.backbase.android.client.gen2.arrangementclient2.api.ProductSummaryApiParams
-import com.backbase.android.clients.common.CallResult
-import com.backbase.android.core.errorhandling.ErrorCodes
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import com.backbase.network.common.isConnectionError
 
 /**
  * An implementation of [AccountsUseCase] based on [ProductSummaryApi].
@@ -20,40 +15,27 @@ import kotlinx.coroutines.withContext
  * Created by Backbase R&D B.V on 19/09/2023.
  */
 class AccountSummaryUseCaseImpl(
-    private val productSummaryApi: ProductSummaryApi,
-    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
+    private val arrangementManagerService: ArrangementManagerService,
 ) : AccountsUseCase {
 
     private var cache: AccountSummary? = null
 
+    @Suppress("TooGenericExceptionCaught")
     override suspend fun getAccountSummary(useCache: Boolean): Result<AccountSummary> {
         if (useCache && cache != null) {
             return Result.success(cache!!)
         }
 
-        val callResult = withContext(ioDispatcher) {
-            productSummaryApi
-                .getProductSummary(ProductSummaryApiParams.GetProductSummary { })
-                .parseExecute()
-        }
-
-        return when (callResult) {
-            is CallResult.Success -> {
-                val dataModel = callResult.data
-                val domainModel = dataModel.mapToDomain()
-                cache = domainModel
-                Result.success(domainModel)
+        return try {
+            val dataModel = arrangementManagerService.getProductSummary()
+            val domainModel = dataModel.mapToDomain()
+            cache = domainModel
+            Result.success(domainModel)
+        } catch (e: Exception) {
+            when {
+                e.isConnectionError() -> Result.failure(ConnectionException(e.message))
+                else -> Result.failure(FailedGetDataException(e.message))
             }
-
-            is CallResult.Error -> {
-                val errorResponse = callResult.errorResponse
-                when (errorResponse.responseCode) {
-                    ErrorCodes.NO_INTERNET.code -> Result.failure(NoInternetException(errorResponse.errorMessage))
-                    else -> Result.failure(FailedGetDataException(errorResponse.errorMessage))
-                }
-            }
-
-            is CallResult.None -> Result.failure(NoResponseException())
         }
     }
 }

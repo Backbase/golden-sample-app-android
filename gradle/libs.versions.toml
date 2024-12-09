@@ -32,6 +32,7 @@ karumi = "6.1.0"
 koin = "3.5.6"
 kotlin = "1.9.24"
 kotlin-parcelize = " 1.9.24"
+ktor = "3.0.2"
 
 ## L
 lifecycle-runtime-ktx = "2.8.7"
@@ -91,6 +92,10 @@ koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = 
 koinTest = { group = "io.insert-koin", name = "koin-test", version.ref = "koin" }
 kotlin-bom = { group = "org.jetbrains.kotlin", name = "kotlin-bom", version.ref = "kotlin" }
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
+ktor-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
+ktor-okhttp = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor" }
 
 ## L
 lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-ktx" }
@@ -147,6 +152,13 @@ android-core = [
 ## K
 koin = [
     "koin-android"
+]
+
+ktor = [
+    "ktor-client-content-negotiation",
+    "ktor-client-logging",
+    "ktor-core",
+    "ktor-okhttp",
 ]
 
 ## N

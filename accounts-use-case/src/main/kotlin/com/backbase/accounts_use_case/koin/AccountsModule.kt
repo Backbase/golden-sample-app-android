@@ -1,12 +1,14 @@
-package com.backbase.golden_sample_app.koin
+package com.backbase.accounts_use_case.koin
 
 import com.backbase.accounts_journey.data.usecase.AccountDetailUseCase
 import com.backbase.accounts_journey.data.usecase.AccountsUseCase
 import com.backbase.accounts_use_case.AccountDetailUseCaseImpl
 import com.backbase.accounts_use_case.AccountSummaryUseCaseImpl
+import com.backbase.accounts_use_case.service.ArrangementManagerService
 import com.backbase.android.Backbase
 import com.backbase.android.client.gen2.arrangementclient2.api.ArrangementsApi
 import com.backbase.android.client.gen2.arrangementclient2.api.ProductSummaryApi
+import com.backbase.network.HttpClientFactoryImpl
 import org.koin.dsl.module
 
 /**
@@ -15,13 +17,22 @@ import org.koin.dsl.module
  * Created by Backbase R&D B.V on 19/09/2023.
  */
 val accountsModule = module {
+    single {
+        HttpClientFactoryImpl().createClient(
+            baseUrl = "https://app.stg.sdbxaz.azure.backbaseservices.com",
+            okHttpClient = get(),
+            moshi = get()
+        )
+    }
+
     val backbase = Backbase.requireInstance()
     single { backbase.getClient(ProductSummaryApi::class.java) }
     single { backbase.getClient(ArrangementsApi::class.java) }
+    factory { ArrangementManagerService(httpClient = get()) }
     factory<AccountsUseCase> {
-        AccountSummaryUseCaseImpl(productSummaryApi = get())
+        AccountSummaryUseCaseImpl(arrangementManagerService = get())
     }
     factory<AccountDetailUseCase> {
-        AccountDetailUseCaseImpl(arrangementsApi = get())
+        AccountDetailUseCaseImpl(arrangementManagerService = get())
     }
 }

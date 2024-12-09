@@ -4,6 +4,7 @@ import android.app.Application
 import com.backbase.accounts_journey.AccountsJourney
 import com.backbase.accounts_journey.configuration.AccountsJourneyConfiguration
 import com.backbase.accounts_journey.configuration.accountlist.AccountListScreenConfiguration
+import com.backbase.accounts_use_case.koin.accountsModule
 import com.backbase.android.Backbase
 import com.backbase.android.business.journey.workspaces.WorkspacesJourney
 import com.backbase.android.core.utils.BBLogger
@@ -14,7 +15,6 @@ import com.backbase.android.identity.journey.authentication.stopAuthenticationJo
 import com.backbase.android.utils.net.NetworkConnectorBuilder
 import com.backbase.golden_sample_app.authentication.CompositeSessionListener
 import com.backbase.golden_sample_app.common.TAG
-import com.backbase.golden_sample_app.koin.accountsModule
 import com.backbase.golden_sample_app.koin.appModule
 import com.backbase.golden_sample_app.koin.featureFilterModule
 import com.backbase.golden_sample_app.koin.identityAuthModule
@@ -23,6 +23,7 @@ import com.backbase.golden_sample_app.koin.securityModule
 import com.backbase.golden_sample_app.koin.servicesModule
 import com.backbase.golden_sample_app.koin.userModule
 import com.backbase.golden_sample_app.koin.workspacesModule
+import com.backbase.network.koin.networkModule
 import com.google.gson.internal.LinkedTreeMap
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.loadKoinModules
@@ -95,6 +96,7 @@ class MainApplication : Application() {
         androidContext(this@MainApplication)
         loadKoinModules(
             listOf(
+                networkModule,
                 securityModule(this@MainApplication),
                 servicesModule(this@MainApplication),
                 userModule(),

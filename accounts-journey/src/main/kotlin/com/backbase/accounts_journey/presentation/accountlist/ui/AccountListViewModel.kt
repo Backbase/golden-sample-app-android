@@ -56,6 +56,7 @@ class AccountListViewModel(
                     }
                 }
                 result.onFailure { throwable ->
+                    println(throwable.message)
                     val error = throwable.mapErrorToMessage()
                     _uiState.update {
                         it.copy(
