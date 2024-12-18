@@ -23,7 +23,7 @@ dependencies {
     implementation(libs.bundles.navigation)
 
     testImplementation(libs.archCore)
-    androidTestImplementation(project("path" to ":fake-accounts-use-case"))
+    androidTestImplementation(projects.fakeAccountsUseCase)
     androidTestImplementation(libs.archCore)
     androidTestImplementation(libs.navigation.testing)
     androidTestImplementation(libs.koinTest)
