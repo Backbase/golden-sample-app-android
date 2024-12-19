@@ -14,12 +14,12 @@ import com.backbase.accounts_journey.R
 import com.backbase.accounts_journey.configuration.AccountsJourneyConfiguration
 import com.backbase.accounts_journey.configuration.accountlist.AccountListScreenConfiguration
 import com.backbase.accounts_journey.databinding.FragmentAccountListBinding
-import com.backbase.accounts_journey.presentation.accountScreenViewEvent
+import com.backbase.accounts_journey.presentation.ObservabilityLifecycleEventTracker
+import com.backbase.accounts_journey.presentation.ScreenName
 import com.backbase.accounts_journey.presentation.clickUserActionEvent
 import com.backbase.accounts_journey.presentation.refreshUserActionEvent
 import com.backbase.accounts_journey.presentation.searchUserActionEvent
 import com.backbase.accounts_journey.routing.AccountsRouting
-import com.backbase.analytics.publishScreenViewEvent
 import com.backbase.analytics.publishUserActionEvent
 import com.backbase.android.observability.Tracker
 import kotlinx.coroutines.flow.launchIn
@@ -46,9 +46,16 @@ class AccountListFragment : Fragment() {
 
     private val tracker: Tracker by inject()
 
+    private val lifecycleEventTracker = ObservabilityLifecycleEventTracker(
+        tracker,
+        lifecycleScope,
+        ScreenName.ACCOUNTS
+    )
+
     private val accountListAdapter: AccountListAdapter = AccountListAdapter(
         onClick = { itemClicked(it) }
     )
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -66,6 +73,8 @@ class AccountListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        lifecycle.addObserver(lifecycleEventTracker)
 
         routing.bind(findNavController())
 
@@ -123,10 +132,6 @@ class AccountListFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    override fun onStart() {
-        super.onStart()
-        publishScreenViewEvent(tracker, accountScreenViewEvent)
+        lifecycle.removeObserver(lifecycleEventTracker)
     }
 }
