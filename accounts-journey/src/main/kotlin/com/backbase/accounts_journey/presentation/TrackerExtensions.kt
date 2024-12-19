@@ -13,12 +13,19 @@ private const val REFRESH_ACCOUNTS = "refresh_accounts"
 private const val SEARCH_ACCOUNTS = "search_accounts"
 private const val CLICK_ACCOUNTS = "click_accounts"
 
-private const val ACCOUNT_DETAILS = "account_details"
-private const val ACCOUNTS = "accounts"
-
 val clickUserActionEvent = UserActionEvent(CLICK_ACCOUNTS, JOURNEY_NAME)
 val refreshUserActionEvent = UserActionEvent(REFRESH_ACCOUNTS, JOURNEY_NAME)
 val searchUserActionEvent = UserActionEvent(SEARCH_ACCOUNTS, JOURNEY_NAME)
 
-val accountScreenViewEvent = ScreenViewEvent(ACCOUNTS, JOURNEY_NAME)
-val accountDetailsScreenViewEvent = ScreenViewEvent(ACCOUNT_DETAILS, JOURNEY_NAME)
+internal enum class ScreenName {
+    ACCOUNTS,
+    ACCOUNT_DETAILS
+}
+
+internal fun ScreenViewEvent(screenName: ScreenName, addition: String? = null): ScreenViewEvent {
+    return ScreenViewEvent(
+        name = screenName.name.lowercase(),
+        journey = JOURNEY_NAME,
+        addition = addition
+    )
+}
