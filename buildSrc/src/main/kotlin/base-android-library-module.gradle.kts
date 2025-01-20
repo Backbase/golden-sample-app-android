@@ -11,9 +11,9 @@ internal val Project.libs: VersionCatalog
         project.extensions.getByType<VersionCatalogsExtension>().named("libs")
 
 android {
-    compileSdk = 35
+    compileSdk = Version.compileSdk
     defaultConfig {
-        minSdk = 26
+        minSdk = Version.minSdk
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
