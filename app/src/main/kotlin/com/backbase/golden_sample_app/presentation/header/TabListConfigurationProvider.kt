@@ -32,7 +32,7 @@ class TabListConfigurationProvider(private val context: Context) {
         name = context.getString(R.string.top_bar_tab_two)
         navigation = NavigationConfiguration {
             navGraphId = R.navigation.navigation_main
-            destination = DestinationByIdConfiguration { id = R.id.upcoming_fragment }
+            destination = DestinationByIdConfiguration { id = R.id.account_fragment_2 }
         }
     }
 

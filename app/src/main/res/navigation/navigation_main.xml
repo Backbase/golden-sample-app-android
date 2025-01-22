@@ -44,6 +44,12 @@
 
     <include app:graph="@navigation/account_journey_nav_graph" />
 
+
+    <fragment
+        android:id="@+id/account_fragment_2"
+        android:name="com.bartburg.accounts_journey_2.AccountsJourneyFragment"
+        android:label="Accounts Journey 2" />
+
     <fragment
         android:id="@+id/more"
         android:name="com.backbase.android.retail.journey.more.MoreJourney"

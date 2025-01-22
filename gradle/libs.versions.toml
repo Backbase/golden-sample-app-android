@@ -46,6 +46,16 @@ archCore = { module = "androidx.arch.core:core-testing", name = "archCore", vers
 ## C
 coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version = ""}
 coroutinesTest = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version = ""}
+composeActivity = { group = "androidx.activity", name = "activity-compose", version = ""}
+composeBom = { group = "androidx.compose", name = "compose-bom", version = ""}
+composeMaterial = { group = "androidx.compose.material", name = "material", version = ""}
+composeNavigation = { group = "androidx.navigation", name = "navigation-compose", version = ""}
+composeUI = { group = "androidx.compose.ui", name = "ui", version = ""}
+composeUiTooling = { group = "androidx.compose.ui", name = "ui-tooling", version = "" }
+composeUiToolingPreview = { group = "androidx.compose.ui", name = "ui-tooling-preview", version = "" }
+composeViewModel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version = "2.7.0" }
+
+
 constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version = "" }
 core-ktx = { module = "androidx.core:core-ktx", version = "" }
 
@@ -128,6 +138,17 @@ android-core = [
     "appcompat",
     "core-ktx",
     "lifecycle-runtime-ktx",
+]
+
+compose = [
+    "composeActivity",
+    "composeBom",
+    "composeMaterial",
+    "composeNavigation",
+    "composeUI",
+    "composeUiTooling",
+    "composeUiToolingPreview",
+    "composeViewModel"
 ]
 
 ## K
