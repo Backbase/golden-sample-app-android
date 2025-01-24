@@ -80,7 +80,7 @@ android {
 dependencies {
     implementation(projects.accountsJourney)
     implementation(projects.accountsUseCase)
-    implementation(projects.accountsJourney2)
+    implementation(projects.contactsJourney)
 
     implementation(platform(backbase.bom))
 

@@ -6,6 +6,10 @@ authentication-journey = "7.2.0"
 ## B
 bom = "2024.09.01"
 
+## C
+contacts-client = "1.4.0"
+contacts-client-gen2 = "1.4.0"
+
 ## F
 feature-filter-use-case = "6.0.0"
 
@@ -27,6 +31,7 @@ business-journey-common = { group = "com.backbase.android.business.journey", nam
 
 ## C
 clients-common-coroutines = { group = "com.backbase.android.clients", name = "clients-common-coroutines", version = "" }
+contacts-client-gen2 = { group = "com.backbase.android.clients", name = "gen2-contactmanager-client-2", version.ref = "contacts-client-gen2" }
 
 ## D
 design-system = { group = "com.backbase.android.design", name = "design-system", version = "" }
@@ -78,6 +83,7 @@ clients = [
     "gen-access-control-client",
     "gen-arrangements-client",
     "user-manager-client",
+    "contacts-client-gen2"
 ]
 
 common = [

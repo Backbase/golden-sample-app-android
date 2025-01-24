@@ -46,8 +46,8 @@
 
 
     <fragment
-        android:id="@+id/account_fragment_2"
-        android:name="com.bartburg.accounts_journey_2.AccountsJourneyFragment"
+        android:id="@+id/contact_fragment"
+        android:name="com.bartburg.contacts_journey.ContactsJourneyFragment"
         android:label="Accounts Journey 2" />
 
     <fragment

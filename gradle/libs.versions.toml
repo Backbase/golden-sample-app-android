@@ -24,6 +24,7 @@ junit5-android = "1.10.0.0"
 karumi = "6.1.0"
 koin = "3.5.6"
 kotlin = "1.9.24"
+ktor = "3.0.2"
 
 ## N
 navigation-component = "2.7.7"
@@ -87,6 +88,13 @@ koin-android = { group = "io.insert-koin", name = "koin-android", version = "" }
 koinTest = { group = "io.insert-koin", name = "koin-test", version.ref = "koin" }
 kotlin-bom = { group = "org.jetbrains.kotlin", name = "kotlin-bom", version.ref = "kotlin" }
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test" }
+kotlin-test-junit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5" }
+ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
+ktor-client-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
+ktor-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
+ktor-okhttp = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor" }
 
 ## L
 lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version = "" }
@@ -154,6 +162,12 @@ compose = [
 ## K
 koin = [
     "koin-android"
+]
+ktor = [
+    "ktor-client-content-negotiation",
+    "ktor-client-logging",
+    "ktor-core",
+    "ktor-okhttp",
 ]
 
 ## N
