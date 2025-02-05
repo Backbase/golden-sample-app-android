@@ -12,6 +12,7 @@ dependencies {
 
     implementation(platform(libs.kotlin.bom))
     // Backbase libraries
+    implementation(backbase.bundles.clients)
     implementation(backbase.bundles.common)
     implementation(backbase.bundles.foundation)
     implementation(backbase.bundles.journeys)

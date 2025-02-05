@@ -20,7 +20,7 @@ internal fun userModule() = module {
     factory<UserRepository> {
         UserRepositoryImpl(
             secureStorage = get(),
-            coroutineScope = get(),
+            coroutineScope = get(qualifier = COMMON_MAIN_COROUTINE_SCOPE_QUALIFIER),
         )
     }
 

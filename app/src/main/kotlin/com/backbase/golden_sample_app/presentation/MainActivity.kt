@@ -16,7 +16,6 @@ import com.backbase.golden_sample_app.R
 import com.backbase.golden_sample_app.databinding.ActivityMainBinding
 import com.backbase.golden_sample_app.menu.moreMenuModule
 import com.backbase.golden_sample_app.presentation.bottom.setupBottomBar
-import com.backbase.golden_sample_app.router.AppRouting
 import com.backbase.golden_sample_app.session.sessionModule
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -32,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
 
-    private val navigator: AppRouting by inject()
+//    private val navigator: AppRouting by inject()
 
     private val mainViewModel: MainViewModel by inject()
 
@@ -48,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val navController = findNavController()
-        navigator.bind(navController)
+//        navigator.bind(navController)
 
         setupBottomBar(isInRootScreen = tabHeaderViewModel.uiState.map { it.isInRootScreen })
 

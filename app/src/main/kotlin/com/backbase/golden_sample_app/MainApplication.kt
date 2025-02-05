@@ -1,28 +1,25 @@
 package com.backbase.golden_sample_app
 
 import android.app.Application
-import com.backbase.accounts_journey.AccountsJourney
 import com.backbase.accounts_journey.configuration.AccountsJourneyConfiguration
 import com.backbase.accounts_journey.configuration.accountlist.AccountListScreenConfiguration
-import com.backbase.android.business.journey.workspaces.WorkspacesJourney
 import com.backbase.android.core.utils.BBLogger
 import com.backbase.android.identity.fido.FidoUafFacetUtils
 import com.backbase.android.identity.journey.authentication.initAuthenticationJourney
 import com.backbase.android.identity.journey.authentication.stopAuthenticationJourney
+import com.backbase.app_common.auth.initIdentityAuthModule
 import com.backbase.app_common.sdk.initializeAuthClient
 import com.backbase.app_common.sdk.initializeBackbase
 import com.backbase.app_common.sdk.startKoinIfNotStarted
+import com.backbase.golden_sample_app.auth.retailAuthModule
 import com.backbase.golden_sample_app.authentication.CompositeSessionListener
 import com.backbase.golden_sample_app.common.TAG
-import com.backbase.golden_sample_app.koin.accountsModule
 import com.backbase.golden_sample_app.koin.appModule
 import com.backbase.golden_sample_app.koin.featureFilterModule
-import com.backbase.golden_sample_app.koin.identityAuthModule
 import com.backbase.golden_sample_app.koin.presentationModule
 import com.backbase.golden_sample_app.koin.securityModule
 import com.backbase.golden_sample_app.koin.servicesModule
 import com.backbase.golden_sample_app.koin.userModule
-import com.backbase.golden_sample_app.koin.workspacesModule
 import org.koin.core.context.loadKoinModules
 
 /**
@@ -64,11 +61,14 @@ class MainApplication : Application() {
                 featureFilterModule,
                 appModule(),
                 presentationModule(context = this@MainApplication),
-                identityAuthModule(CompositeSessionListener),
-                workspacesModule,
-                WorkspacesJourney.create(),
-                accountsModule,
-                AccountsJourney.create(configuration = setupAccountsJourneyConfiguration()),
+                initIdentityAuthModule {
+                    retailAuthModule()
+                }
+//                identityAuthModule(CompositeSessionListener),
+//                workspacesModule(),
+//                WorkspacesJourney.create(),
+//                accountsModule,
+//                AccountsJourney.create(configuration = setupAccountsJourneyConfiguration()),
             )
         )
     }
