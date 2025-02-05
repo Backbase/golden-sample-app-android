@@ -1,17 +1,20 @@
 package com.backbase.golden_sample_app.journey.workspaces
 
 import android.app.Application
+import com.backbase.android.business.journey.workspaces.WorkspacesJourney
 import com.backbase.android.business.journey.workspaces.accesscontrol_client_2.WorkspacesUseCaseImpl
 import com.backbase.android.client.gen2.accesscontrolclient3.api.UserContextApi
 import com.backbase.android.client.gen2.accesscontrolclient3.api.UsersApi
 import com.backbase.app_common.workspaces.workspacesModule
 import com.backbase.golden_sample_app.koin.apiRoot
 import com.backbase.golden_sample_app.router.WorkspaceSelectorRoutingImpl
+import org.koin.core.context.loadKoinModules
 import org.koin.core.module.Module
 import org.koin.dsl.module
+import org.koin.java.KoinJavaComponent.getKoin
 import java.net.URI
 
-fun workspacesModule(): Module = module {
+internal fun workspacesModule(): Module = module {
     single {
         val uri = URI("${apiRoot()}/access-control")
         UserContextApi(
@@ -67,4 +70,10 @@ fun workspacesModule(): Module = module {
 //            )
 //        }
     }
+}
+
+internal fun injectWorkspacesJourney() {
+    loadKoinModules(
+        WorkspacesJourney.create(getKoin().get())
+    )
 }

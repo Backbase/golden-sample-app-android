@@ -6,8 +6,8 @@ import com.backbase.golden_sample_app.router.AuthenticationRouterImpl
 import org.koin.core.definition.Definition
 import org.koin.core.module.Module
 
-internal fun Module.retailAuthModule(block: RetailAuthDependenciesScope.() -> Unit) {
-    val dependencies = RetailAuthDependenciesScope().apply(block)
+internal fun Module.appAuthModule(block: AppAuthDependenciesScope.() -> Unit) {
+    val dependencies = AppAuthDependenciesScope().apply(block)
     single(definition = dependencies.authenticationConfiguration)
     factory<AuthenticationRouter>(definition = dependencies.authenticationRouter)
 //    factory<AuthenticationJourneyRouter>(definition = dependencies.authenticationJourneyRouter)
@@ -21,10 +21,10 @@ internal fun Module.retailAuthModule(block: RetailAuthDependenciesScope.() -> Un
 //    factory<OutOfBandTransactionSigningRouter>(definition = dependencies.outOfBandTransactionSigningRouter)
 }
 
-internal fun Module.retailAuthModule() {
-    retailAuthModule {
+internal fun Module.appAuthModule() {
+    appAuthModule {
         authenticationConfiguration = {
-            RetailIdentityAuthenticationConfiguration()
+            AppIdentityAuthenticationConfiguration()
         }
         authenticationRouter = {
 //            RetailAuthenticationRouter(get())
@@ -66,7 +66,7 @@ internal fun Module.retailAuthModule() {
     }
 }
 
-internal class RetailAuthDependenciesScope {
+internal class AppAuthDependenciesScope {
     lateinit var authenticationConfiguration: Definition<AuthenticationConfiguration>
     lateinit var authenticationRouter: Definition<AuthenticationRouter>
 //    lateinit var authenticationJourneyRouter: Definition<AuthenticationJourneyRouter>
@@ -82,7 +82,7 @@ internal class RetailAuthDependenciesScope {
 
 @Suppress("FunctionName") // factory function
 @JvmSynthetic
-internal fun RetailIdentityAuthenticationConfiguration(): AuthenticationConfiguration =
+internal fun AppIdentityAuthenticationConfiguration(): AuthenticationConfiguration =
     AuthenticationConfiguration.Builder().apply {
 //        nguxConfiguration = NGUXConfiguration.Builder().apply {
 //            // Uncomment to demo the next-gen UX
