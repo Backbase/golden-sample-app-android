@@ -1,29 +1,33 @@
 package com.backbase.golden_sample_app
 
 import android.app.Application
+import com.backbase.app_common.AppRouting
+import com.backbase.app_common.appModule
 import com.backbase.app_common.auth.initIdentityAuthModule
 import com.backbase.app_common.storage.storageModule
+import com.backbase.golden_sample_app.accounts.accountsModule
 import com.backbase.golden_sample_app.auth.appAuthModule
+import com.backbase.golden_sample_app.feature_filter.featureFilterModule
+import com.backbase.golden_sample_app.journey.profile.userProfileModule
 import com.backbase.golden_sample_app.journey.workspaces.workspacesModule
-import com.backbase.golden_sample_app.koin.appModule
-import com.backbase.golden_sample_app.koin.featureFilterModule
-import com.backbase.golden_sample_app.koin.presentationModule
-import com.backbase.golden_sample_app.koin.securityModule
-import com.backbase.golden_sample_app.koin.servicesModule
-import com.backbase.golden_sample_app.koin.userModule
+import com.backbase.golden_sample_app.presentation.presentationModule
+import com.backbase.golden_sample_app.router.AppRouter
+import com.backbase.golden_sample_app.user.userModule
 import org.koin.core.module.Module
+import org.koin.dsl.module
 
 internal fun Application.getDependenciesDeclaration(): List<Module> =
     listOf(
-        securityModule(this),
-        storageModule(this),
-        servicesModule(this),
+        module { single<AppRouting> { AppRouter(tabListConfig = get()) } },
+        storageModule(context = this),
         userModule(),
-        featureFilterModule,
+        featureFilterModule(),
         appModule(),
         presentationModule(context = this),
         initIdentityAuthModule {
             appAuthModule()
         },
+        userProfileModule(),
         workspacesModule(),
+        accountsModule(),
     )

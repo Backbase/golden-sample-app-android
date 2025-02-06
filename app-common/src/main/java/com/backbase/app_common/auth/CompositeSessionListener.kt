@@ -1,4 +1,4 @@
-package com.backbase.golden_sample_app.authentication
+package com.backbase.app_common.auth
 
 import com.backbase.android.core.utils.BBLogger
 import com.backbase.android.listeners.SessionListener

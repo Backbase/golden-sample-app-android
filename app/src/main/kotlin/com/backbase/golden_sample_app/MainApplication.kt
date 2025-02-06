@@ -1,6 +1,7 @@
 package com.backbase.golden_sample_app
 
 import android.app.Application
+import com.backbase.accounts_journey.AccountsJourney.injectAccountsJourney
 import com.backbase.accounts_journey.configuration.AccountsJourneyConfiguration
 import com.backbase.accounts_journey.configuration.accountlist.AccountListScreenConfiguration
 import com.backbase.android.core.utils.BBLogger
@@ -10,7 +11,7 @@ import com.backbase.android.identity.journey.authentication.stopAuthenticationJo
 import com.backbase.app_common.sdk.initializeAuthClient
 import com.backbase.app_common.sdk.initializeBackbase
 import com.backbase.app_common.sdk.startKoinIfNotStarted
-import com.backbase.golden_sample_app.authentication.CompositeSessionListener
+import com.backbase.app_common.auth.CompositeSessionListener
 import com.backbase.golden_sample_app.common.TAG
 import com.backbase.golden_sample_app.journey.workspaces.injectWorkspacesJourney
 import org.koin.core.context.loadKoinModules
@@ -50,23 +51,7 @@ class MainApplication : Application() {
             getDependenciesDeclaration()
         )
         injectWorkspacesJourney()
-//        loadKoinModules(
-//            listOf(
-//                securityModule(this@MainApplication),
-//                servicesModule(this@MainApplication),
-//                userModule(),
-//                featureFilterModule,
-//                appModule(),
-//                presentationModule(context = this@MainApplication),
-//                initIdentityAuthModule {
-//                    appAuthModule()
-//                }
-//                WorkspacesJourney.create(),
-//                accountsModule,
-//                AccountsJourney.create(configuration = setupAccountsJourneyConfiguration()),
-//            )
-//        )
-
+        injectAccountsJourney()
     }
 
     override fun onTerminate() {

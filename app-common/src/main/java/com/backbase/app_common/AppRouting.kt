@@ -1,4 +1,4 @@
-package com.backbase.golden_sample_app.router
+package com.backbase.app_common
 
 import androidx.navigation.NavController
 

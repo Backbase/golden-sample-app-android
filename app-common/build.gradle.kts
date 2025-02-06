@@ -8,10 +8,11 @@ android {
 }
 
 dependencies {
-    implementation(platform(backbase.bom))
-
     implementation(platform(libs.kotlin.bom))
+    implementation(libs.bundles.navigation)
+
     // Backbase libraries
+    implementation(platform(backbase.bom))
     implementation(backbase.bundles.clients)
     implementation(backbase.bundles.common)
     implementation(backbase.bundles.foundation)

@@ -16,7 +16,7 @@ import com.backbase.golden_sample_app.R
 import com.backbase.golden_sample_app.databinding.ActivityMainBinding
 import com.backbase.golden_sample_app.menu.moreMenuModule
 import com.backbase.golden_sample_app.presentation.bottom.setupBottomBar
-import com.backbase.golden_sample_app.router.AppRouting
+import com.backbase.app_common.AppRouting
 import com.backbase.golden_sample_app.session.sessionModule
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch

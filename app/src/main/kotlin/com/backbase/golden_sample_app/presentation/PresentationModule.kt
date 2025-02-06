@@ -1,7 +1,6 @@
-package com.backbase.golden_sample_app.koin
+package com.backbase.golden_sample_app.presentation
 
 import android.content.Context
-import com.backbase.golden_sample_app.presentation.MainViewModel
 import com.backbase.golden_sample_app.presentation.header.TabListConfigurationProvider
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module

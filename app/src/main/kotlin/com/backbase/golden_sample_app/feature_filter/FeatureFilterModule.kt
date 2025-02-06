@@ -1,4 +1,4 @@
-package com.backbase.golden_sample_app.koin
+package com.backbase.golden_sample_app.feature_filter
 
 import com.backbase.android.retail.feature_filter.FeatureFilterUseCase
 import com.backbase.android.retail.feature_filter.UserEntitlementFeatureFilterUseCase
@@ -12,7 +12,7 @@ import org.koin.dsl.module
  *
  * Created by Backbase R&D B.V on 17/08/2023.
  */
-internal val featureFilterModule = module {
+internal fun featureFilterModule() = module {
     single<EntitlementsUseCase> { AccessControlClient2EntitlementsUseCase(get()) }
     single<FeatureFilterUseCase<UserEntitlement>> { UserEntitlementFeatureFilterUseCase(get()) }
 }

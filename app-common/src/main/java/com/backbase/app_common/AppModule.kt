@@ -1,4 +1,4 @@
-package com.backbase.golden_sample_app.koin
+package com.backbase.app_common
 
 import com.backbase.android.Backbase
 import com.backbase.android.clients.auth.AuthClient
@@ -11,9 +11,7 @@ import com.backbase.android.clients.common.dateTimeAdapter
 import com.backbase.android.dbs.DBSDataProvider
 import com.backbase.android.dbs.dataproviders.NetworkDBSDataProvider
 import com.backbase.android.retail.journey.SessionEmitter
-import com.backbase.golden_sample_app.authentication.CompositeSessionListener
-import com.backbase.golden_sample_app.router.AppRouter
-import com.backbase.golden_sample_app.router.AppRouting
+import com.backbase.app_common.auth.CompositeSessionListener
 import com.squareup.moshi.Moshi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -66,7 +64,7 @@ val COMMON_MAIN_COROUTINE_SCOPE_QUALIFIER: Qualifier =
  * - A configured [Moshi] instance for JSON serialization/deserialization, including a workaround for non-standard date formats.
  * - [ResponseBodyParser] for handling API responses.
  */
-internal fun appModule() = module {
+fun appModule() = module {
     factory(qualifier = COMMON_MAIN_COROUTINE_SCOPE_QUALIFIER) {
         CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
     }
@@ -101,7 +99,4 @@ internal fun appModule() = module {
     }
 
     factory<ResponseBodyParser> { MoshiResponseBodyParser(get()) }
-
-    // Navigation dependencies
-    single<AppRouting> { AppRouter(tabListConfig = get()) }
 }
