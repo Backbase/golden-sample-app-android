@@ -37,9 +37,11 @@ class SecureStorageWrapper(private val secureStorage: SecureStorage) {
      *
      * @param context The [Context] used to initialize the [SecureStorage] instance.
      */
-    constructor(context: Context) : this(secureStorage = runBlocking {
-        SecureStorageFactory.createWithMigration(context).storage
-    })
+    constructor(context: Context) : this(
+        secureStorage = runBlocking {
+            SecureStorageFactory.createWithMigration(context).storage
+        }
+    )
 
     /**
      * Deletes all entries in the secure storage.
@@ -122,4 +124,3 @@ class SecureStorageWrapper(private val secureStorage: SecureStorage) {
         }
     }
 }
-

@@ -1,4 +1,4 @@
-package com.backbase.golden_sample_app.router
+package com.backbase.golden_sample_app.workspaces
 
 import android.os.Bundle
 import androidx.navigation.NavController
@@ -7,9 +7,9 @@ import com.backbase.android.business.journey.workspaces.model.WorkspaceInfo
 import com.backbase.android.business.journey.workspaces.navigation.WorkspaceSelectorRouting
 import com.backbase.android.core.utils.BBLogger
 import com.backbase.app_common.AppRouting
+import com.backbase.app_common.feature_filter.UserEntitlementsRepository
 import com.backbase.golden_sample_app.R
 import com.backbase.golden_sample_app.common.TAG
-import com.backbase.golden_sample_app.user.UserEntitlementsRepository
 
 /**
  * Workspace selector router implementation

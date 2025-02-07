@@ -1,4 +1,4 @@
-package com.backbase.golden_sample_app.user
+package com.backbase.app_common.feature_filter
 
 import com.backbase.android.retail.feature_filter.entitlements.UserEntitlement
 

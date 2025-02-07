@@ -8,7 +8,6 @@ import org.koin.dsl.module
 import java.net.URI
 
 internal fun Module.userProfileModule() {
-
     factory {
         UserProfileManagementApi(
             context = get<Application>(),

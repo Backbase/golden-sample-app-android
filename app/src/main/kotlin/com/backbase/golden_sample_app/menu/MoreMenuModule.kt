@@ -10,23 +10,20 @@ import com.backbase.android.retail.journey.more.MoreConfiguration
 import com.backbase.android.retail.journey.more.MoreJourneyScope
 import com.backbase.android.retail.journey.more.MoreRouter
 import com.backbase.android.retail.journey.more.OnActionComplete.NavigateTo
+import com.backbase.app_common.auth.session.SessionManager
 import com.backbase.deferredresources.DeferredColor
 import com.backbase.deferredresources.DeferredDrawable
 import com.backbase.deferredresources.DeferredText
 import com.backbase.golden_sample_app.R
-import com.backbase.golden_sample_app.router.MoreMenuRouterImpl
-import com.backbase.golden_sample_app.session.SessionManager
 import org.koin.dsl.module
 
 /**
  * Created by Backbase R&D B.V. on 23/07/2020.
  */
-internal fun moreMenuModule(
-    navController: NavController,
-) = module {
+internal fun moreMenuModule() = module {
     scope<MoreJourneyScope> {
         factory<MoreRouter> {
-            MoreMenuRouterImpl(navController)
+            MoreMenuRouterImpl(get<NavController>())
         }
 
         scoped { demoMoreConfig(get()) }

@@ -27,7 +27,6 @@ import org.koin.dsl.module
  * Created by Backbase R&D B.V on 17/08/2023.
  */
 
-
 /**
  *  The Koin [Qualifier] used to denote the API root for the application.
  * This qualifier helps in identifying and retrieving the API root string from the Koin dependency graph.

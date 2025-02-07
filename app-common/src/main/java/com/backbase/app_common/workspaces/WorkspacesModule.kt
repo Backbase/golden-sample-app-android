@@ -1,10 +1,8 @@
 package com.backbase.app_common.workspaces
 
 import com.backbase.android.business.journey.workspaces.config.WorkspaceSelectorScreenConfiguration
-import com.backbase.android.business.journey.workspaces.config.WorkspaceSwitcherScreenConfiguration
 import com.backbase.android.business.journey.workspaces.config.WorkspacesJourneyConfiguration
 import com.backbase.android.business.journey.workspaces.navigation.WorkspaceSelectorRouting
-import com.backbase.android.business.journey.workspaces.navigation.WorkspaceSwitcherRouting
 import com.backbase.android.business.journey.workspaces.usecase.WorkspacesUseCase
 import org.koin.core.definition.Definition
 import org.koin.core.module.Module
@@ -14,7 +12,6 @@ fun Module.workspacesModule(block: WorkspacesJourneyDependenciesScope.() -> Unit
 
     factory(definition = dependencies.configuration)
     factory(definition = dependencies.workspaceSelectorRouting)
-//    factory(definition = dependencies.workspaceSwitcherRouting)
     single(definition = dependencies.workspacesUseCase)
     single { WorkspaceUpdater }
 }
@@ -39,11 +36,6 @@ class WorkspacesJourneyDependenciesScope internal constructor() {
     lateinit var workspaceSelectorRouting: Definition<WorkspaceSelectorRouting>
 
     /**
-     * The definition for the [WorkspaceSwitcherRouting].
-     */
-//    lateinit var workspaceSwitcherRouting: Definition<WorkspaceSwitcherRouting>
-
-    /**
      * The definition for the [WorkspacesUseCase].
      */
     lateinit var workspacesUseCase: Definition<WorkspacesUseCase>
@@ -61,5 +53,4 @@ fun DefaultWorkspacesJourneyConfiguration(
     customizations: WorkspacesJourneyConfiguration.Builder.() -> Unit = {}
 ): WorkspacesJourneyConfiguration = WorkspacesJourneyConfiguration.Builder().apply {
     workspacesSelectorScreenConfiguration = WorkspaceSelectorScreenConfiguration { }
-    workspacesSwitcherScreenConfiguration = WorkspaceSwitcherScreenConfiguration { }
 }.apply(customizations).build()

@@ -1,4 +1,4 @@
-package com.backbase.golden_sample_app.accounts
+package com.backbase.golden_sample_app.journey.accounts
 
 import android.app.Application
 import com.backbase.accounts_journey.data.usecase.AccountDetailUseCase
@@ -17,21 +17,25 @@ import java.net.URI
  * Created by Backbase R&D B.V on 19/09/2023.
  */
 internal fun accountsModule() = module {
-    single { ProductSummaryApi(
-        context = get<Application>(),
-        moshi = get(),
-        parser = get(),
-        serverUri = URI("${apiRoot()}/arrangement-manager"),
-        backbase = get()
-    ) }
+    single {
+        ProductSummaryApi(
+            context = get<Application>(),
+            moshi = get(),
+            parser = get(),
+            serverUri = URI("${apiRoot()}/arrangement-manager"),
+            backbase = get()
+        )
+    }
 
-    single { ArrangementsApi(
-        context = get<Application>(),
-        moshi = get(),
-        parser = get(),
-        serverUri = URI("${apiRoot()}/arrangement-manager"),
-        backbase = get()
-    )}
+    single {
+        ArrangementsApi(
+            context = get<Application>(),
+            moshi = get(),
+            parser = get(),
+            serverUri = URI("${apiRoot()}/arrangement-manager"),
+            backbase = get()
+        )
+    }
 
     factory<AccountsUseCase> {
         AccountSummaryUseCaseImpl(productSummaryApi = get())

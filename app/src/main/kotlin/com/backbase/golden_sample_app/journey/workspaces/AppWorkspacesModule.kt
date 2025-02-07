@@ -5,9 +5,9 @@ import com.backbase.android.business.journey.workspaces.WorkspacesJourney
 import com.backbase.android.business.journey.workspaces.accesscontrol_client_2.WorkspacesUseCaseImpl
 import com.backbase.android.client.gen2.accesscontrolclient3.api.UserContextApi
 import com.backbase.android.client.gen2.accesscontrolclient3.api.UsersApi
-import com.backbase.app_common.workspaces.workspacesModule
 import com.backbase.app_common.apiRoot
-import com.backbase.golden_sample_app.router.WorkspaceSelectorRoutingImpl
+import com.backbase.app_common.workspaces.workspacesModule
+import com.backbase.golden_sample_app.workspaces.WorkspaceSelectorRoutingImpl
 import org.koin.core.context.loadKoinModules
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -38,9 +38,6 @@ internal fun workspacesModule(): Module = module {
     }
 
     workspacesModule {
-//        configuration = {
-//            retailWorkspaceJourneyConfiguration()
-//        }
         workspacesUseCase = {
             WorkspacesUseCaseImpl(
                 userContextApi = get(),
@@ -48,25 +45,12 @@ internal fun workspacesModule(): Module = module {
             )
         }
         workspaceSelectorRouting = {
-            WorkspaceSelectorRoutingImpl(get(), get(), get())
-//            RetailWorkspacesSelectorRouting(
-//                appRouting = get(),
-//                userRepository = get(),
-//                coroutineScope = get(qualifier = COMMON_MAIN_COROUTINE_SCOPE_QUALIFIER),
-//                featureFilterUseCase = get(),
-//                deviceManagementTokenSynchronizer = get(),
-//                authClient = get(),
-//                secureStorageWrapper = get<SecureStorageWrapper>()
-//            )
+            WorkspaceSelectorRoutingImpl(
+                appRouter = get(),
+                user = get(),
+                userEntitlementsRepository = get()
+            )
         }
-//        workspaceSwitcherRouting = {
-//            RetailWorkspaceSwitcherRouting(
-//                featureFilterUseCase = get(),
-//                userRepository = get(),
-//                coroutineScope = get(qualifier = COMMON_MAIN_COROUTINE_SCOPE_QUALIFIER),
-//                secureStorageWrapper = get<SecureStorageWrapper>(),
-//            )
-//        }
     }
 }
 

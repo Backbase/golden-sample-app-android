@@ -3,6 +3,7 @@ package com.backbase.golden_sample_app.user
 import com.backbase.android.business.journey.common.user.User
 import com.backbase.android.business.journey.common.user.UserRepository
 import com.backbase.app_common.COMMON_MAIN_COROUTINE_SCOPE_QUALIFIER
+import com.backbase.app_common.feature_filter.UserEntitlementsRepository
 import org.koin.dsl.module
 
 /**

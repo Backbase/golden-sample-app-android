@@ -1,4 +1,4 @@
-package com.backbase.golden_sample_app.router
+package com.backbase.golden_sample_app.auth
 
 import com.backbase.android.business.journey.common.user.UserRepository
 import com.backbase.android.identity.journey.authentication.routing.api.AuthenticationRouter
