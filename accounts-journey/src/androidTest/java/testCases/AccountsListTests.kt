@@ -9,10 +9,12 @@ import app_common.provideAccountsJourneyDependencies
 import app_common.shouldBeDisplayed
 import com.backbase.accounts_journey.R
 import com.backbase.accounts_journey.presentation.accountlist.ui.AccountListFragment
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Before
 import org.junit.Test
 import screens.accountListScreen
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class AccountsListTests : BaseTest() {
 
     @Before
