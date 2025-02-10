@@ -1,14 +1,17 @@
 package com.backbase.golden_sample_app.journey.accounts
 
 import android.app.Application
-import com.backbase.accounts_journey.data.usecase.AccountDetailUseCase
-import com.backbase.accounts_journey.data.usecase.AccountsUseCase
+import com.backbase.accounts_journey.AccountsJourney
+import com.backbase.accounts_journey.routing.AccountsRoutingImpl
 import com.backbase.accounts_use_case.AccountDetailUseCaseImpl
 import com.backbase.accounts_use_case.AccountSummaryUseCaseImpl
 import com.backbase.android.client.gen2.arrangementclient2.api.ArrangementsApi
 import com.backbase.android.client.gen2.arrangementclient2.api.ProductSummaryApi
+import com.backbase.app_common.accounts.accountsModule
 import com.backbase.app_common.apiRoot
+import org.koin.core.context.loadKoinModules
 import org.koin.dsl.module
+import org.koin.java.KoinJavaComponent.getKoin
 import java.net.URI
 
 /**
@@ -37,10 +40,21 @@ internal fun accountsModule() = module {
         )
     }
 
-    factory<AccountsUseCase> {
-        AccountSummaryUseCaseImpl(productSummaryApi = get())
+    accountsModule {
+        accountsRouting = {
+            AccountsRoutingImpl()
+        }
+        accountSummaryUseCase = {
+            AccountSummaryUseCaseImpl(productSummaryApi = get())
+        }
+        accountDetailUseCase = {
+            AccountDetailUseCaseImpl(arrangementsApi = get())
+        }
     }
-    factory<AccountDetailUseCase> {
-        AccountDetailUseCaseImpl(arrangementsApi = get())
-    }
+}
+
+internal fun injectAccountsJourney() {
+    loadKoinModules(
+        AccountsJourney.create(getKoin().get())
+    )
 }

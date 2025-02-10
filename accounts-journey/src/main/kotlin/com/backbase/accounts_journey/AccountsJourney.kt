@@ -28,10 +28,4 @@ object AccountsJourney {
             )
         )
     }
-
-    fun injectAccountsJourney() {
-        loadKoinModules(
-            create()
-        )
-    }
 }
