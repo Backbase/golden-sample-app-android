@@ -54,7 +54,6 @@ fun Application.initIdentityAuthModule(additionalDependencies: ModuleDeclaration
         single {
             SessionManager(
                 authClient = get(),
-                navController = get(),
                 userRepository = get(),
                 userEntitlementsRepository = get()
             )

@@ -15,12 +15,14 @@ import com.backbase.deferredresources.DeferredColor
 import com.backbase.deferredresources.DeferredDrawable
 import com.backbase.deferredresources.DeferredText
 import com.backbase.golden_sample_app.R
+import org.koin.core.definition.Definition
+import org.koin.core.module.Module
 import org.koin.dsl.module
 
 /**
  * Created by Backbase R&D B.V. on 23/07/2020.
  */
-internal fun moreMenuModule() = module {
+internal fun Module.moreMenuModule(block: MoreMenuDependenciesScope.() -> Unit) {
     scope<MoreJourneyScope> {
         factory<MoreRouter> {
             MoreMenuRouterImpl(get<NavController>())
@@ -28,6 +30,22 @@ internal fun moreMenuModule() = module {
 
         scoped { demoMoreConfig(get()) }
     }
+}
+
+
+internal fun moreMenuModule() = module {
+    moreMenuModule {
+        moreMenuJourneyConfiguration = {
+            demoMoreConfig(get())
+        }
+    }
+}
+
+internal class MoreMenuDependenciesScope {
+    /**
+     * The definition for the [MoreConfiguration] to be used within the scope.
+     */
+    lateinit var moreMenuJourneyConfiguration: Definition<MoreConfiguration>
 }
 
 fun demoMoreConfig(
