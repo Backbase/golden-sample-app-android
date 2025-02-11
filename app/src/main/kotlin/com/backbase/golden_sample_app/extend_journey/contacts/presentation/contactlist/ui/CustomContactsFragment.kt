@@ -10,9 +10,9 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.backbase.app_common.AppRouting
 import com.backbase.golden_sample_app.R
 import com.backbase.golden_sample_app.databinding.FragmentCustomContactsBinding
-import com.backbase.golden_sample_app.router.AppRouting
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.koin.android.ext.android.inject
