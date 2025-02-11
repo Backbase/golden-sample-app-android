@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.backbase.accounts_journey.databinding.FragmentAccountDetailBinding
 import com.backbase.accounts_journey.presentation.ObservabilityLifecycleEventTracker
 import com.backbase.accounts_journey.presentation.ScreenName
+import com.backbase.accounts_journey.presentation.utils.UiUtils
 import com.backbase.android.observability.Tracker
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -47,6 +48,8 @@ class AccountDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAccountDetailBinding.inflate(inflater, container, false)
+        UiUtils.applyWindowInsets(binding.contentMain)
+        UiUtils.applyWindowInsets(binding.toolbar)
         return binding.root
     }
 

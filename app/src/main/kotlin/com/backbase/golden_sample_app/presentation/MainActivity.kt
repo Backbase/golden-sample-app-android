@@ -12,16 +12,15 @@ import androidx.navigation.fragment.NavHostFragment
 import com.backbase.android.design.header.AvatarConfiguration
 import com.backbase.android.design.header.TabHeaderViewModel
 import com.backbase.android.design.header.TopBarConfiguration
+import com.backbase.app_common.AppRouting
 import com.backbase.golden_sample_app.R
 import com.backbase.golden_sample_app.databinding.ActivityMainBinding
-import com.backbase.golden_sample_app.menu.moreMenuModule
 import com.backbase.golden_sample_app.presentation.bottom.setupBottomBar
-import com.backbase.golden_sample_app.router.AppRouting
-import com.backbase.golden_sample_app.session.sessionModule
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.core.context.loadKoinModules
+import org.koin.dsl.module
 
 /**
  * Single activity approach and the setup of the navigation.
@@ -50,9 +49,13 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController()
         navigator.bind(navController)
 
-        setupBottomBar(isInRootScreen = tabHeaderViewModel.uiState.map { it.isInRootScreen })
+        loadKoinModules(
+            module {
+                factory<NavController> { findNavController() }
+            }
+        )
 
-        if (savedInstanceState == null) { loadScopedDependencies() }
+        setupBottomBar(isInRootScreen = tabHeaderViewModel.uiState.map { it.isInRootScreen })
 
         lifecycleScope.launch { repeatOnLifecycle(STARTED) { mainViewModel.uiState.collect(::update) } }
     }
@@ -61,21 +64,12 @@ class MainActivity : AppCompatActivity() {
      * Updates the [TopBarConfiguration] in all the TabHeaderFragment. This will update
      * the toolbar content with the information passed in the configuration.
      */
-    private fun update(uiState: MainViewModel.UiState) = tabHeaderViewModel update TopBarConfiguration {
-        title = uiState.fullName
-        subtitle = uiState.serviceAgreementName
-        avatar = AvatarConfiguration { initials = uiState.userInitials }
-    }
-
-    private fun loadScopedDependencies() {
-        val navController = findNavController()
-        loadKoinModules(
-            listOf(
-                sessionModule(navController),
-                moreMenuModule(navController),
-            )
-        )
-    }
+    private fun update(uiState: MainViewModel.UiState) =
+        tabHeaderViewModel update TopBarConfiguration {
+            title = uiState.fullName
+            subtitle = uiState.serviceAgreementName
+            avatar = AvatarConfiguration { initials = uiState.userInitials }
+        }
 
     internal fun MainActivity.findNavController(): NavController {
         val navHostFragment =
