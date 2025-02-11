@@ -2,10 +2,7 @@ package com.bartburg.contacts_journey.domain.usecase
 
 import com.bartburg.contacts_journey.domain.model.ContactModel
 import com.bartburg.contacts_journey.domain.model.PaginatedResult
-import com.bartburg.contacts_journey.domain.repository.ContactsRepository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
-import javax.inject.Inject
 
 interface GetContactsUseCase<T : ContactModel> {
     suspend operator fun invoke(
@@ -18,23 +15,22 @@ interface GetContactsUseCase<T : ContactModel> {
     }
 }
 
-class GetContactsUseCaseImpl @Inject constructor(
-    private val contactsRepository: ContactsRepository
-) : GetContactsUseCase<ContactModel>  {
-    override suspend operator fun invoke(
-        page: Int,
-        pageSize: Int
-    ): Flow<PaginatedResult<ContactModel>>? {
-        return contactsRepository.getContacts(
-            page = page,
-            pageSize = pageSize
-        ).map { contacts ->
-                PaginatedResult(
-                    items = contacts,
-                    page = page,
-                    pageSize = pageSize,
-                    hasMore = contacts.size == pageSize
-                )
-        }
-    }
+
+sealed class ResourceState<out T>(){
+    data class Idle<T>(val data: T?) : ResourceState<T>()
+    data class Loading<T>(val data: T?) : ResourceState<T>()
+    data class Success<T>(val data: T) : ResourceState<T>()
+    data class Error<T>(val data: T?, val message: String) : ResourceState<T>()
+}
+
+sealed class ResourceListState<out T>(){
+    data class Idle<T>(val data: List<T>?) : ResourceState<T>()
+    data class Loading<T>(val data: List<T>?) : ResourceState<T>()
+    data class Success<T>(val data: List<T>) : ResourceState<T>()
+    data class Error<T>(val data: List<T>?, val message: String) : ResourceState<Nothing>()
+}
+
+fun test(){
+    val idleState = ResourceState.Idle<ContactModel>(data = null)
+    idleState.data?.country
 }

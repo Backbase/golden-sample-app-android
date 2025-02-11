@@ -13,4 +13,4 @@ class EditContactUseCaseImpl(
     override suspend operator fun invoke(contact: ContactModel) {
         contactsRepository.updateContact(contact)
     }
-} 
+}

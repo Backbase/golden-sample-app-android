@@ -2,6 +2,7 @@ package com.bartburg.contacts_journey.domain.model
 
 import dev.drewhamilton.poko.Poko
 
+
 @Poko
 class AccountModel private constructor(
     val bankCountry: String, // ISO format
@@ -44,4 +45,4 @@ class AccountModel private constructor(
 
 fun AccountModel(initializer: AccountModel.Builder.() -> Unit): AccountModel {
     return AccountModel.Builder().apply(initializer).build()
-} 
+}

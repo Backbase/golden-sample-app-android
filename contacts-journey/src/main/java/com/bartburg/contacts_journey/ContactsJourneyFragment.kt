@@ -15,7 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
-import com.bartburg.contacts_journey.data.service.GreetingService
+import com.bartburg.contacts_journey.data.service.MockContactsService
 import kotlinx.coroutines.launch
 
 class ContactsJourneyFragment : Fragment() {
@@ -36,7 +36,7 @@ class ContactsJourneyFragment : Fragment() {
                         LaunchedEffect(true) {
                             scope.launch {
                                 text = try {
-                                    GreetingService().greeting()
+                                    MockContactsService().greeting()
                                 } catch (e: Exception) {
                                     e.localizedMessage ?: "error"
                                 }

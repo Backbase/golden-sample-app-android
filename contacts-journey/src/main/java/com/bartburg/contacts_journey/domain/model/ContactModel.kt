@@ -8,7 +8,6 @@ open class ContactModel private constructor(
     val country: String, // ISO format
     val name: String,
     val alias: String?,
-    val address: AddressModel,
     val accounts: List<AccountModel>,
 ) {
     /**
@@ -22,7 +21,6 @@ open class ContactModel private constructor(
         lateinit var country: String
         lateinit var name: String
         var alias: String? = null
-        lateinit var address: AddressModel
         var accounts: List<AccountModel> = emptyList()
 
         /**
@@ -34,7 +32,6 @@ open class ContactModel private constructor(
             country = country,
             name = name,
             alias = alias,
-            address = address,
             accounts = accounts,
         )
     }
@@ -45,7 +42,6 @@ open class ContactModel private constructor(
  *
  * @see [ContactModel]
  */
-@Suppress("FunctionName")
 fun ContactModel(initializer: ContactModel.Builder.() -> Unit): ContactModel {
     return ContactModel.Builder().apply(initializer).build()
 }

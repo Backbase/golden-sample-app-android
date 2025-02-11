@@ -78,6 +78,7 @@ android {
 }
 
 dependencies {
+    implementation(projects.network)
     implementation(projects.accountsJourney)
     implementation(projects.accountsUseCase)
     implementation(projects.contactsJourney)

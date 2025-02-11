@@ -27,6 +27,7 @@ import com.google.gson.internal.LinkedTreeMap
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
+import com.backbase.network.koin.networkModule
 
 /**
  * Setup the necessary dependencies and configurations.
@@ -95,6 +96,7 @@ class MainApplication : Application() {
         androidContext(this@MainApplication)
         loadKoinModules(
             listOf(
+                networkModule,
                 securityModule(this@MainApplication),
                 servicesModule(this@MainApplication),
                 userModule(),

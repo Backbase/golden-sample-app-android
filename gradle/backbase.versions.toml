@@ -30,7 +30,7 @@ bom = { module = "com.backbase.android.platform:bom", version.ref = "bom" }
 business-journey-common = { group = "com.backbase.android.business.journey", name = "journey-common", version = "" }
 
 ## C
-clients-common-coroutines = { group = "com.backbase.android.clients", name = "clients-common-coroutines", version = "" }
+clients-common-coroutines = { group = "com.backbase.android.clients", name = "clients-common-coroutines", version = "2.0.0" }
 contacts-client-gen2 = { group = "com.backbase.android.clients", name = "gen2-contactmanager-client-2", version.ref = "contacts-client-gen2" }
 
 ## D
