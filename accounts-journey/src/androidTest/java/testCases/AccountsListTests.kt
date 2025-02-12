@@ -9,20 +9,33 @@ import app_common.provideAccountsJourneyDependencies
 import app_common.shouldBeDisplayed
 import com.backbase.accounts_journey.R
 import com.backbase.accounts_journey.presentation.accountlist.ui.AccountListFragment
+import com.backbase.android.observability.Tracker
+import com.backbase.android.observability.TrackerProvider
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Before
 import org.junit.Test
 import screens.accountListScreen
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class AccountsListTests : BaseTest() {
+
+    private val tracker: Tracker = TrackerProvider.create(Dispatchers.Main.immediate)
 
     @Before
     fun setupConfigurationAndLaunchScreen() {
-        provideAccountsJourneyDependencies()
+        provideAccountsJourneyDependencies(tracker = tracker)
 
         val navController = TestNavHostController(ApplicationProvider.getApplicationContext())
-        launchFragmentInContainer<AccountListFragment>().onFragment { fragment ->
-            navController.setGraph(R.navigation.account_journey_nav_graph)
-            Navigation.setViewNavController(fragment.requireView(), navController)
+        launchFragmentInContainer(themeResId = R.style.AppTheme) {
+            AccountListFragment().also { fragment ->
+                fragment.viewLifecycleOwnerLiveData.observeForever { viewLifecycleOwner ->
+                    if (viewLifecycleOwner != null) {
+                        navController.setGraph(R.navigation.account_journey_nav_graph)
+                        Navigation.setViewNavController(fragment.requireView(), navController)
+                    }
+                }
+            }
         }
     }
 

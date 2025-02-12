@@ -11,8 +11,9 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.backbase.accounts_journey.databinding.FragmentAccountDetailBinding
-import com.backbase.accounts_journey.presentation.accountDetailsScreenViewEvent
-import com.backbase.analytics.publishScreenViewEvent
+import com.backbase.accounts_journey.presentation.ObservabilityLifecycleEventTracker
+import com.backbase.accounts_journey.presentation.ScreenName
+import com.backbase.accounts_journey.presentation.utils.UiUtils
 import com.backbase.android.observability.Tracker
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -31,6 +32,12 @@ class AccountDetailFragment : Fragment() {
 
     private val tracker: Tracker by inject()
 
+    private val lifecycleEventTracker = ObservabilityLifecycleEventTracker(
+        tracker,
+        lifecycleScope,
+        ScreenName.ACCOUNT_DETAILS
+    )
+
     private val id by lazy {
         AccountDetailFragmentArgs.fromBundle(requireArguments()).id
     }
@@ -41,11 +48,15 @@ class AccountDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAccountDetailBinding.inflate(inflater, container, false)
+        UiUtils.applyWindowInsets(binding.contentMain)
+        UiUtils.applyWindowInsets(binding.toolbar)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        lifecycle.addObserver(lifecycleEventTracker)
 
         binding.toolbar.apply {
             setNavigationIcon(com.backbase.android.design.R.drawable.backbase_ic_arrow_back)
@@ -115,10 +126,6 @@ class AccountDetailFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    override fun onStart() {
-        super.onStart()
-        publishScreenViewEvent(tracker, accountDetailsScreenViewEvent)
+        lifecycle.removeObserver(lifecycleEventTracker)
     }
 }
