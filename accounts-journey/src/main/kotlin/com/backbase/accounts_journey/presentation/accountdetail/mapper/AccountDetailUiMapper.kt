@@ -36,7 +36,7 @@ class AccountDetailUiMapper(accountsJourneyConfiguration: AccountsJourneyConfigu
             },
             accruedInterest = formatCurrency(domain.currency, domain.accruedInterest),
             creditLimit = formatCurrency(domain.currency, domain.creditLimit),
-            accountOpeningDate = domain.accountOpeningDate!!.format(DateTimeFormatter.ofPattern("MMMM d, yyyy")),
+            accountOpeningDate = domain.accountOpeningDate?.format(DateTimeFormatter.ofPattern("MMMM d, yyyy")),
             icon = getIcon(domain.product?.externalId)
         )
     }

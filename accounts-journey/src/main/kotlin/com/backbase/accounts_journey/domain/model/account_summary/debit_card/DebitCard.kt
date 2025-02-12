@@ -462,7 +462,7 @@ class DebitCard internal constructor(
          * Builds an instance of [DebitCard].
          */
         fun build() = DebitCard(
-            debitCardsItems = debitCardsItems!!,
+            debitCardsItems = debitCardsItems ?: setOf(),
             number = number,
             urgentTransferAllowed = urgentTransferAllowed,
             cardNumber = cardNumber,
