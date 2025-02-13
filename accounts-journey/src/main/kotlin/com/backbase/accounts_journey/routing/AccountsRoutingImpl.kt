@@ -6,7 +6,7 @@ import com.backbase.accounts_journey.presentation.accountlist.ui.AccountListFrag
 /**
  * Created by Backbase R&D B.V. on 26/06/2024.
  */
-internal class AccountsRoutingImpl : AccountsRouting {
+class AccountsRoutingImpl : AccountsRouting {
 
     private var navController: NavController? = null
 

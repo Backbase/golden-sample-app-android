@@ -78,6 +78,7 @@ android {
 }
 
 dependencies {
+    implementation(projects.appCommon)
     implementation(projects.accountsJourney)
     implementation(projects.accountsUseCase)
 

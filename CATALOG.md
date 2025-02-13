@@ -9,16 +9,24 @@ The minimal sample that includes all the required Backbase SDKs to get started t
 - Workspaces Journey
 - Example More Menu Journey
 - Example how to build a custom Accounts Journey
+- Example how to use feature flag
 - NEO header
 - Screenshot tests
 - Automated UI tests
 
 **Status**: Maintained
 \
-LTS 24.03
+LTS 24.09
 
 ## [sample/devs/extending-a-journey](https://github.com/Backbase/golden-sample-app-android/tree/sample/devs/extending-a-journey)
 This example explains how to extend a journey.
+\
+**Status**: Maintained
+\
+LTS 24.09
+
+## [sample/devs/feature-flag](https://github.com/Backbase/golden-sample-app-android/tree/sample/devs/feature-flag)
+This example explains how to use feature flag.
 \
 **Status**: Maintained
 \
