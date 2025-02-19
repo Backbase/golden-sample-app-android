@@ -31,8 +31,8 @@ class AccountDetailUseCaseImpl(
                 ArrangementsApiParams.GetArrangementById {
                     arrangementId = params.id
                 }
-            )
-        }.executeAsSuspended()
+            ).executeAsSuspended()
+        }
 
         return when (callResult) {
             is CallResult.Success -> {
