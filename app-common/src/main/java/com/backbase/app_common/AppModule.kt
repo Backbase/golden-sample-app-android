@@ -9,7 +9,6 @@ import com.backbase.android.clients.common.bigDecimalAdapter
 import com.backbase.android.clients.common.dateAdapter
 import com.backbase.android.clients.common.dateTimeAdapter
 import com.backbase.android.dbs.DBSDataProvider
-import com.backbase.android.dbs.dataproviders.NetworkDBSDataProvider
 import com.backbase.android.retail.journey.SessionEmitter
 import com.backbase.app_common.auth.CompositeSessionListener
 import com.squareup.moshi.Moshi
@@ -77,7 +76,9 @@ fun appModule() = module {
     }
 
     single<DBSDataProvider> {
-        NetworkDBSDataProvider(get())
+        CustomNetworkDBSDataProvider(
+            tracker = get()
+        )
     }
 
     factory<AuthClient> {

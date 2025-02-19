@@ -9,6 +9,7 @@ import com.backbase.accounts_use_case.mapper.mapToDomain
 import com.backbase.android.client.gen2.arrangementclient2.api.ArrangementsApi
 import com.backbase.android.client.gen2.arrangementclient2.api.ArrangementsApiParams
 import com.backbase.android.clients.common.CallResult
+import com.backbase.android.clients.common.coroutines.executeAsSuspended
 import com.backbase.android.core.errorhandling.ErrorCodes
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -31,7 +32,7 @@ class AccountDetailUseCaseImpl(
                     arrangementId = params.id
                 }
             )
-        }.parseExecute()
+        }.executeAsSuspended()
 
         return when (callResult) {
             is CallResult.Success -> {

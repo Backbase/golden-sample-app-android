@@ -11,6 +11,7 @@ dependencies {
     implementation(platform(libs.kotlin.bom))
     implementation(projects.accountsJourney)
     implementation(projects.accountsUseCase)
+    implementation(projects.analytics)
     implementation(libs.bundles.navigation)
 
     // Backbase libraries

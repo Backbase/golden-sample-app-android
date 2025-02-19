@@ -2,6 +2,7 @@ package com.backbase.golden_sample_app
 
 import android.app.Application
 import android.util.Log
+import com.backbase.analytics.event.ApiEvent
 import com.backbase.android.core.utils.BBLogger
 import com.backbase.android.identity.fido.FidoUafFacetUtils
 import com.backbase.android.identity.journey.authentication.initAuthenticationJourney
@@ -9,6 +10,7 @@ import com.backbase.android.identity.journey.authentication.stopAuthenticationJo
 import com.backbase.android.observability.Tracker
 import com.backbase.android.observability.event.ScreenViewEvent
 import com.backbase.android.observability.event.UserActionEvent
+import com.backbase.app_common.COMMON_MAIN_COROUTINE_SCOPE_QUALIFIER
 import com.backbase.app_common.auth.CompositeSessionListener
 import com.backbase.app_common.sdk.initializeAuthClient
 import com.backbase.app_common.sdk.initializeBackbase
@@ -17,8 +19,6 @@ import com.backbase.golden_sample_app.common.TAG
 import com.backbase.golden_sample_app.journey.accounts.injectAccountsJourney
 import com.backbase.golden_sample_app.journey.workspaces.injectWorkspacesJourney
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
 import org.koin.android.ext.android.inject
 import org.koin.core.context.loadKoinModules
 
@@ -31,7 +31,7 @@ class MainApplication : Application() {
 
     private val tracker: Tracker by inject()
 
-    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
+    private val scope: CoroutineScope by inject(qualifier = COMMON_MAIN_COROUTINE_SCOPE_QUALIFIER)
 
     override fun onCreate() {
         super.onCreate()
@@ -71,6 +71,10 @@ class MainApplication : Application() {
         tracker.subscribe(this, UserActionEvent::class, scope) { event ->
             // Same can be done with the User Action Events.
             Log.d("Tracker", "Tracked user action: ${event.name}")
+        }
+        tracker.subscribe(this, ApiEvent::class, scope) { event ->
+            // Our custom event to track API Events.
+            Log.d("Tracker", "${event.name}: ${event.value}")
         }
     }
 

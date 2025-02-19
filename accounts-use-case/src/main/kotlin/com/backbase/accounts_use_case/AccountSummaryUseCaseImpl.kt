@@ -9,6 +9,7 @@ import com.backbase.accounts_use_case.mapper.mapToDomain
 import com.backbase.android.client.gen2.arrangementclient2.api.ProductSummaryApi
 import com.backbase.android.client.gen2.arrangementclient2.api.ProductSummaryApiParams
 import com.backbase.android.clients.common.CallResult
+import com.backbase.android.clients.common.coroutines.executeAsSuspended
 import com.backbase.android.core.errorhandling.ErrorCodes
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -19,7 +20,7 @@ import kotlinx.coroutines.withContext
  *
  * Created by Backbase R&D B.V on 19/09/2023.
  */
-class AccountSummaryUseCaseImpl constructor(
+class AccountSummaryUseCaseImpl(
     private val productSummaryApi: ProductSummaryApi,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : AccountsUseCase {
@@ -34,7 +35,7 @@ class AccountSummaryUseCaseImpl constructor(
         val callResult = withContext(ioDispatcher) {
             productSummaryApi
                 .getProductSummary(ProductSummaryApiParams.GetProductSummary { })
-                .parseExecute()
+                .executeAsSuspended()
         }
 
         return when (callResult) {

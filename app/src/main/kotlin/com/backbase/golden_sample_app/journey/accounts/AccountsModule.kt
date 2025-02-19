@@ -26,6 +26,7 @@ internal fun accountsModule() = module {
             moshi = get(),
             parser = get(),
             serverUri = URI("${apiRoot()}/arrangement-manager"),
+            provider = get(),
             backbase = get()
         )
     }
@@ -36,6 +37,7 @@ internal fun accountsModule() = module {
             moshi = get(),
             parser = get(),
             serverUri = URI("${apiRoot()}/arrangement-manager"),
+            provider = get(),
             backbase = get()
         )
     }
