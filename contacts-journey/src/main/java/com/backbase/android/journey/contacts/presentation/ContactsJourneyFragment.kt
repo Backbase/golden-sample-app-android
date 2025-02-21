@@ -44,20 +44,22 @@ class ContactsJourneyFragment : Fragment() {
                     navController = navController,
                     startDestination = "contacts"
                 ) {
-                    composable("contacts") {
+                    composable(Routing.List.ROUTE) {
                         ContactListScreen(
                             viewModel = contactsListViewModel,
                             onNavigateToDetails = { contact ->
-                                navController.navigate("contacts/${contact.id}")
+                                navController.navigate(
+                                    Routing.Details.detailsUrl(contact.id)
+                                )
                             }
                         )
                     }
                     
-                    composable("contacts/{contactId}", arguments = listOf(
-                        navArgument("contactId") { type = NavType.StringType }
+                    composable(Routing.Details.ROUTE, arguments = listOf(
+                        navArgument(Routing.Details.NAVARG_ID) { type = NavType.StringType }
                     )) { backStackEntry ->
                         contactDetailsViewModel.handleIntent(
-                            ContactDetailsIntent.LoadContact(backStackEntry.arguments?.getString("contactId") ?: "")
+                            ContactDetailsIntent.LoadContact(backStackEntry.arguments?.getString(Routing.Details.NAVARG_ID) ?: "")
                         )
                         ContactDetailsScreen(
                             viewModel = contactDetailsViewModel
