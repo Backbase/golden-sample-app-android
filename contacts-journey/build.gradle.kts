@@ -29,6 +29,7 @@ dependencies {
     // Backbase libraries
     implementation(platform(backbase.bom))
     implementation(backbase.bundles.common)
+    implementation(libs.coroutines)
     implementation(libs.bundles.ktor)
     implementation(backbase.contacts.client.gen2)
     implementation(libs.bundles.navigation)
@@ -39,7 +40,6 @@ dependencies {
     androidTestImplementation(libs.archCore)
     androidTestImplementation(libs.navigation.testing)
     androidTestImplementation(libs.koinTest)
-    androidTestImplementation(libs.coroutines)
     androidTestImplementation(libs.coroutinesTest)
     androidTestImplementation(libs.testParameterInjector)
     androidTestImplementation(projects.fakeAccountsUseCase)
