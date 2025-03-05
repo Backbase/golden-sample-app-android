@@ -42,6 +42,7 @@ truth = "1.4.4"
 ## A
 appcompat = { group = "androidx.appcompat", name = "appcompat", version = "" }
 archCore = { module = "androidx.arch.core:core-testing", name = "archCore", version.ref = "archCore"}
+assertj-core = { module = "org.assertj:assertj-core", version = "" }
 
 ## C
 coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version = ""}
@@ -83,6 +84,8 @@ lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", v
 
 ## M
 material = { module = "com.google.android.material:material", version = "" }
+mockK = { module = "io.mockk:mockk", version = "" }
+mockK-android = { module = "io.mockk:mockk-android", version = "" }
 
 ## N
 navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version = "" }
@@ -145,9 +148,11 @@ navigation = [
 ## T
 # testImplementation(libs.bundles.test)
 test = [
+    "assertj-core",
     "junit4",
     "junit5-jupiter",
-    "truth",
+    "coroutinesTest",
+    "mockK",
 ]
 
 # testImplementation Android module only
