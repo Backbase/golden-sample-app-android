@@ -1,15 +1,15 @@
-package com.backbase.accounts_journey.generator
+package com.backbase.android.test_data
 
 import java.util.UUID
 import kotlin.random.Random
 
 object StringGenerator {
-    const val STRING_LENGTH = 10
-    val charPool: List<Char> = ('a'..'z') + ('A'..'Z')
+    private const val STRING_LENGTH = 10
+    private val charPool: List<Char> = ('a'..'z') + ('A'..'Z')
 
     fun randomName() =
         (1..STRING_LENGTH)
-            .map { Random.nextInt(0, charPool.size).let { charPool[it] } }
+            .map { _ -> Random.nextInt(0, charPool.size).let { charPool[it] } }
             .joinToString("")
 
     fun randomString(): String = UUID.randomUUID().toString()

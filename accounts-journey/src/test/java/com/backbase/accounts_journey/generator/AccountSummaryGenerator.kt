@@ -6,11 +6,11 @@ import com.backbase.accounts_journey.domain.model.account_summary.UserPreference
 import com.backbase.accounts_journey.domain.model.account_summary.current_accounts.CurrentAccount
 import com.backbase.accounts_journey.domain.model.account_summary.current_accounts.CurrentAccounts
 import com.backbase.accounts_journey.domain.model.common.ProductState
-import com.backbase.accounts_journey.generator.NumberGenerator.randomFloat
-import com.backbase.accounts_journey.generator.StringGenerator.generateRandomBBAN
-import com.backbase.accounts_journey.generator.StringGenerator.generateRandomBIC
-import com.backbase.accounts_journey.generator.StringGenerator.generateRandomCurrency
-import com.backbase.accounts_journey.generator.StringGenerator.randomString
+import com.backbase.android.test_data.NumberGenerator.randomFloat
+import com.backbase.android.test_data.StringGenerator.generateRandomBBAN
+import com.backbase.android.test_data.StringGenerator.generateRandomBIC
+import com.backbase.android.test_data.StringGenerator.generateRandomCurrency
+import com.backbase.android.test_data.StringGenerator.randomString
 import java.math.BigDecimal
 import java.time.OffsetDateTime
 import java.time.ZoneOffset

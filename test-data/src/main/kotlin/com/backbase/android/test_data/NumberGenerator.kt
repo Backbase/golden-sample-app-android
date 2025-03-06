@@ -1,4 +1,4 @@
-package com.backbase.accounts_journey.generator
+package com.backbase.android.test_data
 
 import java.math.BigDecimal
 import java.math.RoundingMode

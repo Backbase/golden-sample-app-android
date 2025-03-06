@@ -9,8 +9,10 @@ android {
 
 dependencies {
     implementation(projects.accountsJourney)
+    testImplementation(projects.testData)
 
     // Backbase libraries
     implementation(platform(backbase.bom))
     implementation(backbase.gen.arrangements.client)
+
 }

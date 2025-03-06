@@ -14,6 +14,7 @@ android {
 }
 dependencies {
     implementation(libs.bundles.navigation)
+    testImplementation(projects.testData)
 
     androidTestImplementation(libs.navigation.testing)
 

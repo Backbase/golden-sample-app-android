@@ -1,16 +1,16 @@
 package com.backbase.accounts_journey.presentation.accountdetail.ui
 
-import com.backbase.accounts_journey.CoroutineTest
 import com.backbase.accounts_journey.common.FailedGetDataException
 import com.backbase.accounts_journey.data.usecase.AccountDetailUseCase
 import com.backbase.accounts_journey.data.usecase.Params
 import com.backbase.accounts_journey.generator.AccountDetailGenerator.generateAccountDetail
-import com.backbase.accounts_journey.generator.StringGenerator
 import com.backbase.accounts_journey.presentation.accountdetail.mapper.AccountDetailUiMapper
+import com.backbase.android.test_data.CoroutineTest
+import com.backbase.android.test_data.StringGenerator
 import io.mockk.coEvery
 import io.mockk.mockk
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.TestDispatcher
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runTest
 import org.assertj.core.api.BDDAssertions.then
@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test
 class AccountDetailViewModelTest : CoroutineTest {
 
     override lateinit var testScope: TestScope
+    override lateinit var testDispatcherProvider: TestDispatcher
 
     private val accountDetailUseCase: AccountDetailUseCase = mockk()
 
@@ -27,7 +28,7 @@ class AccountDetailViewModelTest : CoroutineTest {
         AccountDetailViewModel(
             useCase = accountDetailUseCase,
             mapper = AccountDetailUiMapper(mockk(relaxed = true)),
-            defaultDispatcher = Dispatchers.Unconfined
+            defaultDispatcher = testDispatcherProvider
         )
     }
 

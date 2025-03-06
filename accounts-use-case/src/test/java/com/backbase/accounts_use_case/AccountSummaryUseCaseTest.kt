@@ -9,16 +9,23 @@ import com.backbase.android.client.gen2.arrangementclient2.api.ProductSummaryApi
 import com.backbase.android.client.gen2.arrangementclient2.model.ProductSummary
 import com.backbase.android.clients.common.CallResult
 import com.backbase.android.core.errorhandling.ErrorCodes
+import com.backbase.android.test_data.CoroutineTest
 import com.backbase.android.utils.net.response.Response
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.TestDispatcher
+import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runTest
 import org.assertj.core.api.BDDAssertions.then
 import org.junit.jupiter.api.Test
 
-class AccountSummaryUseCaseTest {
+@OptIn(ExperimentalCoroutinesApi::class)
+class AccountSummaryUseCaseTest : CoroutineTest {
+
+    override lateinit var testScope: TestScope
+    override lateinit var testDispatcherProvider: TestDispatcher
 
     @Test
     fun `should get AccountSummary when success`() = runTest {
@@ -26,7 +33,8 @@ class AccountSummaryUseCaseTest {
         val callResult = CallResult.Success(
             data = ProductSummaryGenerator.generateProductSummary()
         )
-        val useCase = AccountSummaryUseCaseImpl(productSummaryApi, Dispatchers.Unconfined)
+        val useCase = AccountSummaryUseCaseImpl(productSummaryApi, testDispatcherProvider)
+
         every {
             productSummaryApi.getProductSummary(ProductSummaryApiParams.GetProductSummary { })
                 .parseExecute()
@@ -35,8 +43,8 @@ class AccountSummaryUseCaseTest {
         val actual = useCase.getAccountSummary(false)
 
         then(actual.isSuccess).isTrue
-        actual.onSuccess { domain ->
-            then(domain).isNotNull
+        actual.onSuccess { accountSummary ->
+            then(accountSummary).isNotNull
         }
     }
 
@@ -46,7 +54,7 @@ class AccountSummaryUseCaseTest {
         val callResult = CallResult.Success(
             data = ProductSummaryGenerator.generateProductSummary()
         )
-        val useCase = AccountSummaryUseCaseImpl(productSummaryApi, Dispatchers.Unconfined)
+        val useCase = AccountSummaryUseCaseImpl(productSummaryApi, testDispatcherProvider)
 
         every {
             productSummaryApi.getProductSummary(ProductSummaryApiParams.GetProductSummary { })
@@ -65,7 +73,7 @@ class AccountSummaryUseCaseTest {
         val callResult = CallResult.Error<ProductSummary>(
             errorResponse = Response(500, "Internal Server Error")
         )
-        val useCase = AccountSummaryUseCaseImpl(productSummaryApi, Dispatchers.Unconfined)
+        val useCase = AccountSummaryUseCaseImpl(productSummaryApi, testDispatcherProvider)
 
         every {
             productSummaryApi.getProductSummary(ProductSummaryApiParams.GetProductSummary { })
@@ -86,7 +94,7 @@ class AccountSummaryUseCaseTest {
         val callResult = CallResult.Error<ProductSummary>(
             errorResponse = Response(ErrorCodes.NO_INTERNET.code, "No internet")
         )
-        val useCase = AccountSummaryUseCaseImpl(productSummaryApi, Dispatchers.Unconfined)
+        val useCase = AccountSummaryUseCaseImpl(productSummaryApi, testDispatcherProvider)
 
         every {
             productSummaryApi.getProductSummary(ProductSummaryApiParams.GetProductSummary { })
@@ -105,7 +113,7 @@ class AccountSummaryUseCaseTest {
     fun `should get NoResponseException when there is nothing happens`() = runTest {
         val productSummaryApi = mockk<ProductSummaryApi>()
         val callResult = CallResult.None<ProductSummary>()
-        val useCase = AccountSummaryUseCaseImpl(productSummaryApi, Dispatchers.Unconfined)
+        val useCase = AccountSummaryUseCaseImpl(productSummaryApi, testDispatcherProvider)
 
         every {
             productSummaryApi.getProductSummary(ProductSummaryApiParams.GetProductSummary { })
