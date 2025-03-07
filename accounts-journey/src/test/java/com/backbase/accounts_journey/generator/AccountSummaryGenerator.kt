@@ -21,7 +21,10 @@ import kotlin.random.Random
  */
 object AccountSummaryGenerator {
 
-    fun generateAccountSummary(id: String = randomString()): AccountSummary {
+    fun generateAccountSummary(
+        id: String = randomString(),
+        displayName: String = randomString()
+    ): AccountSummary {
         return AccountSummary {
             currentAccounts = CurrentAccounts {
                 products = listOf(
@@ -64,7 +67,7 @@ object AccountSummaryGenerator {
                             externalStateId = "Active"
                             state = "Active"
                         }
-                        displayName = "Alpha"
+                        this.displayName = displayName
                     }
                 )
                 name = "Current Accounts"
