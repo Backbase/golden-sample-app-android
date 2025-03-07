@@ -39,6 +39,13 @@ An implementation of Backbase Observability that makes it easy to add 3rd party 
 \
 LTS 24.09
 
+## [sample/devs/O11Y-API](https://github.com/Backbase/golden-sample-app-android/tree/sample/devs/O11Y-API)
+Extending Backbase Observability to capture API responses.
+\
+**Status**: Maintained
+\
+LTS 24.09
+
 ## [sample/devs/open-telemetry](https://github.com/Backbase/golden-sample-app-android/tree/sample/devs/open-telemetry)
 An implementation of Backbase OpenTelemetry Connector to track screen views and user actions.
 \
