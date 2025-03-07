@@ -69,6 +69,10 @@ dependency-updates = { id = "dependency-updates" }
 ## F
 feature-android-module = { id = "feature-android-module" }
 
+## J
+jacoco-codecoverage = { id = "jacoco-codecoverage" }
+jacoco-root-codecoverage = { id = "jacoco-root-codecoverage" }
+
 ## V
 visualiser = { id = "com.backbase.android.visualizer", version = "1.0.0" }
 
