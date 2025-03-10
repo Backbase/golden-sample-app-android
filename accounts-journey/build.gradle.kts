@@ -29,22 +29,15 @@ dependencies {
     implementation(libs.bundles.navigation)
     testImplementation(projects.testData)
 
-    androidTestImplementation(libs.navigation.testing)
-
     // Backbase libraries
     implementation(platform(backbase.bom))
-    implementation(backbase.bundles.common)
+    implementation(midTier.bundles.common)
     implementation(libs.bundles.navigation)
 
     testImplementation(libs.archCore)
-    androidTestImplementation(projects.fakeAccountsUseCase)
-    androidTestImplementation(libs.archCore)
-    androidTestImplementation(libs.navigation.testing)
-    androidTestImplementation(libs.koinTest)
-    androidTestImplementation(libs.coroutines)
-    androidTestImplementation(libs.coroutinesTest)
-    androidTestImplementation(libs.testParameterInjector)
-    androidTestUtil(libs.orchestrator)
 
     androidTestImplementation(projects.fakeAccountsUseCase)
+    androidTestImplementation(libs.bundles.test.instrumented)
+
+    androidTestUtil(libs.orchestrator)
 }

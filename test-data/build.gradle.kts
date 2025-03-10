@@ -11,6 +11,6 @@ dependencies {
     implementation(platform(backbase.bom))
 
     implementation(libs.coroutinesTest)
-    implementation(platform(libs.junit5.bom))
-    implementation(libs.junit5.jupiter)
+    implementation(platform(libs.junit.bom))
+    implementation(libs.junit.jupiter)
 }

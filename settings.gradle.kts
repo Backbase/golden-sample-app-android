@@ -27,6 +27,9 @@ dependencyResolutionManagement {
 
     versionCatalogs {
         create("backbase") { from(files("gradle/backbase.versions.toml")) }
+        create("clients") { from(files("gradle/clients.versions.toml")) }
+        create("foundation") { from(files("gradle/foundation.versions.toml")) }
+        create("midTier") { from(files("gradle/midTier.versions.toml")) }
     }
 }
 rootProject.name = "Golden_Sample_App_Android"
