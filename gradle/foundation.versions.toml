@@ -1,0 +1,17 @@
+[versions]
+
+[libraries]
+## D
+design-system = { group = "com.backbase.android.design", name = "design-system", version = "" }
+
+# M
+msdk = { group = "com.backbase.android.sdk", name = "backbase", version = "" }
+
+[plugins]
+
+[bundles]
+## F
+foundation = [
+    "design-system",
+    "msdk",
+]

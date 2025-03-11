@@ -91,10 +91,8 @@ dependencies {
     implementation(libs.findBundle("koin").get())
     implementation(libs.findBundle("ui").get())
 
-    testImplementation(platform(libs.findLibrary("junit5-bom").get()))
+    testImplementation(platform(libs.findLibrary("junit-bom").get()))
     testImplementation(libs.findBundle("test").get())
 
     testRuntimeOnly(libs.findBundle("test-runtime").get())
-
-    androidTestImplementation(libs.findBundle("test-instrumented").get())
 }

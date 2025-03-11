@@ -14,6 +14,5 @@ dependencies {
 
     // Backbase libraries
     implementation(platform(backbase.bom))
-    implementation(backbase.gen.arrangements.client)
-
+    implementation(clients.arrangements)
 }
