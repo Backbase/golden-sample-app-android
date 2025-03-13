@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="contacts.create.field.name.empty_error">Name cannot be empty.</string>
+    <string name="contacts.create.field.name.invalid_characters">Characters for name cannot contain any digits.</string>
+</resources>

@@ -21,6 +21,10 @@ import com.backbase.android.journey.contacts.presentation.screens.detail.Contact
 import com.backbase.android.journey.contacts.presentation.screens.list.ContactListScreen
 import com.backbase.android.journey.contacts.presentation.screens.list.ContactsListViewModel
 import com.backbase.android.journey.contacts.presentation.screens.list.ContactsListViewModelFactory
+import com.backbase.android.journey.contacts.presentation.screens.create.CreateContactScreen
+import com.backbase.android.journey.contacts.presentation.screens.create.CreateContactViewModel
+import com.backbase.android.journey.contacts.presentation.screens.create.CreateContactViewModelFactory
+import com.backbase.android.journey.contacts.domain.usecase.SaveNewContactUseCaseImpl
 
 class ContactsJourneyFragment : Fragment() {
     private val contactsRepository = DefaultContactsRepository(MockContactsService())
@@ -29,6 +33,11 @@ class ContactsJourneyFragment : Fragment() {
     }
     private val contactDetailsViewModel: ContactDetailsViewModel<Unit, Unit> by viewModels{
         ContactDetailsViewModelFactory<Unit, Unit>(contactsRepository)
+    }
+    
+    private val saveNewContactUseCase = SaveNewContactUseCaseImpl(contactsRepository)
+    private val createContactViewModel: CreateContactViewModel<Unit, Unit> by viewModels {
+        CreateContactViewModelFactory(saveNewContactUseCase)
     }
 
     override fun onCreateView(
@@ -44,25 +53,37 @@ class ContactsJourneyFragment : Fragment() {
                     navController = navController,
                     startDestination = "contacts"
                 ) {
-                    composable(Routing.List.ROUTE) {
+                    composable(ContactsRouting.List.ROUTE) {
                         ContactListScreen(
                             viewModel = contactsListViewModel,
                             onNavigateToDetails = { contact ->
                                 navController.navigate(
-                                    Routing.Details.detailsUrl(contact.id)
+                                    ContactsRouting.Details.detailsUrl(contact.id)
                                 )
+                            },
+                            onNavigateToCreate = {
+                                navController.navigate(ContactsRouting.Create.ROUTE)
                             }
                         )
                     }
                     
-                    composable(Routing.Details.ROUTE, arguments = listOf(
-                        navArgument(Routing.Details.NAVARG_ID) { type = NavType.StringType }
+                    composable(ContactsRouting.Details.ROUTE, arguments = listOf(
+                        navArgument(ContactsRouting.Details.NAVARG_ID) { type = NavType.StringType }
                     )) { backStackEntry ->
                         contactDetailsViewModel.handleIntent(
-                            ContactDetailsIntent.LoadContact(backStackEntry.arguments?.getString(Routing.Details.NAVARG_ID) ?: "")
+                            ContactDetailsIntent.LoadContact(backStackEntry.arguments?.getString(ContactsRouting.Details.NAVARG_ID) ?: "")
                         )
                         ContactDetailsScreen(
                             viewModel = contactDetailsViewModel
+                        )
+                    }
+
+                    composable(ContactsRouting.Create.ROUTE) {
+                        CreateContactScreen(
+                            viewModel = createContactViewModel,
+                            onNavigateBack = {
+                                navController.popBackStack()
+                            }
                         )
                     }
                 }

@@ -2,13 +2,13 @@ package com.backbase.android.journey.contacts.domain.model
 
 
 data class AccountModel<Extension> (
-    val bankCountry: String?, // ISO format
-    val accountName: String?,
-    val alias: String?,
-    val iban: String?,
+    val bankCountry: String? = null, // ISO format
+    val accountName: String? = null,
+    val alias: String? = null,
+    val iban: String? = null,
     val accountNumber: String?,
-    val bankBranchCode: String?,
-    val accountType: String?,
-    val bankName: String?,
+    val bankBranchCode: String? = null,
+    val accountType: String? = null,
+    val bankName: String? = null,
     val extension: Extension? = null
 )

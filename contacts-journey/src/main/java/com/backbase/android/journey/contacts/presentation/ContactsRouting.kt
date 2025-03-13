@@ -1,6 +1,6 @@
 package com.backbase.android.journey.contacts.presentation
 
-object Routing {
+object ContactsRouting {
 
     object Details {
         const val NAVARG_ID = "contactId"
@@ -11,5 +11,9 @@ object Routing {
 
     object List {
         const val ROUTE = "contacts"
+    }
+
+    object Create {
+        const val ROUTE = "contacts/create"
     }
 }

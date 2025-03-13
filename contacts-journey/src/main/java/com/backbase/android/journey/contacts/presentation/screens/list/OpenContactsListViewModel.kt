@@ -8,10 +8,10 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class ContactsListViewModel<ContactExtension, AccountExtension>(
-    private val repository: ContactsRepository<ContactExtension, AccountExtension>
+open class OpenContactsListViewModel<ContactExtension, AccountExtension>(
+    private val repository: ContactsRepository<ContactExtension, AccountExtension>,
+    private val _state: MutableStateFlow<ContactsListState<ContactExtension, AccountExtension>> = MutableStateFlow(ContactsListState<ContactExtension, AccountExtension>())
 ) : ViewModel() {
-    private val _state = MutableStateFlow(ContactsListState<ContactExtension, AccountExtension>())
     val state: StateFlow<ContactsListState<ContactExtension, AccountExtension>> = _state.asStateFlow()
 
     private val pageSize = 20
@@ -20,7 +20,7 @@ class ContactsListViewModel<ContactExtension, AccountExtension>(
         loadContacts()
     }
 
-    fun handleIntent(intent: ContactsListIntent) {
+    open fun handleIntent(intent: ContactsListIntent) {
         when (intent) {
             is ContactsListIntent.Search -> performSearch(intent.query)
             ContactsListIntent.LoadMore -> loadContacts()
@@ -61,4 +61,31 @@ class ContactsListViewModel<ContactExtension, AccountExtension>(
         )
         loadContacts()
     }
-} 
+}
+
+class ExtendedContactListViewModel(
+    private val repository: ContactsRepository<Unit, Unit>,
+    private val _state: MutableStateFlow<ContactsListState<Unit, Unit>> = MutableStateFlow(ContactsListState<Unit, Unit>())
+): OpenContactsListViewModel<Unit, Unit>(
+    repository = repository,
+    _state = _state
+) {
+
+    override fun handleIntent(intent: ContactsListIntent){
+        when (intent) {
+            is ContactsListIntent.LoadMore -> TODO()
+            is ContactsListIntent.Refresh -> TODO()
+            is ContactsListIntent.Search -> TODO()
+        }
+    }
+
+    fun handleIntent(intent: ExtensionIntent){
+        when (intent) {
+            is ExtensionIntent.DeleteContact -> TODO()
+        }
+    }
+}
+
+sealed class ExtensionIntent{
+    class DeleteContact(contactId: String): ExtensionIntent()
+}
