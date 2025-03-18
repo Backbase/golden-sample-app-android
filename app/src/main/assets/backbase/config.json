@@ -21,7 +21,7 @@
   },
   "custom": {
     "default-http-headers": {
-      "X-SDBXAZ-API-KEY": "bb-306fc262-lfil-0017-d9un-1111d5a694b0"
+      "X-SDBXAZ-API-KEY": ""
     }
   },
   "bankTimeZone": "Europe/Amsterdam"
