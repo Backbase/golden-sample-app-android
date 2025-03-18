@@ -74,7 +74,13 @@ class MainApplication : Application() {
         }
         tracker.subscribe(this, ApiEvent::class, scope) { event ->
             // Our custom event to track API Events.
-            Log.d("Tracker", "${event.name}: ${event.value}")
+            Log.d("Tracker", event.uri)
+
+//            firebaseAnalytics.logEvent("api_event") {
+//                param("uri", event.uri)
+//                param("request_method", event.requestMethod)
+//                param("body", event.body)
+//            }
         }
     }
 

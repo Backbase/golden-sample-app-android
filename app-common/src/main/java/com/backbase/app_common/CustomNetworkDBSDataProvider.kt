@@ -26,21 +26,45 @@ class CustomNetworkDBSDataProvider(
         try {
             coroutineScope.launch {
                 val response = buildConnectionForRequest(request).connect()
-                tracker.publish(coroutineScope, ApiEvent.ApiMethodEvent(request.requestMethod))
-                tracker.publish(coroutineScope, ApiEvent.ApiUrlEvent(request.uri))
-                tracker.publish(coroutineScope, ApiEvent.ApiBodyEvent(request.body))
-                tracker.publish(coroutineScope, ApiEvent.ApiResponseCodeEvent(response.responseCode))
-                tracker.publish(coroutineScope, ApiEvent.ApiSuccessEvent(response.stringResponse))
 
+                tracker.publish(
+                    coroutineScope,
+                    ApiEvent(
+                        uri = request.uri.toString(),
+                        requestMethod = request.requestMethod,
+                        body = request.body,
+                        requestHeaders = request.headers?.entries?.joinToString(),
+                        responseHeaders = response.headers?.entries?.joinToString(),
+                        responseCode = response.responseCode,
+                        requestCode = response.requestCode,
+                        byteResponse = response.byteResponse?.toString(),
+                        statusText = response.statusText,
+                        errorMessage = response.errorMessage
+                    )
+                )
                 listener.onSuccess(response)
             }
         } catch (e: Exception) {
-            val errorResponse = Response()
-            errorResponse.errorMessage = e.localizedMessage
-            tracker.publish(coroutineScope, ApiEvent.ApiResponseCodeEvent(errorResponse.responseCode))
-            tracker.publish(coroutineScope, ApiEvent.ApiErrorEvent(errorResponse.errorMessage))
+            val response = Response()
+            response.errorMessage = e.localizedMessage
 
-            listener.onError(errorResponse)
+            tracker.publish(
+                coroutineScope,
+                ApiEvent(
+                    uri = request.uri.toString(),
+                    requestMethod = request.requestMethod,
+                    body = request.body,
+                    requestHeaders = request.headers?.entries?.joinToString(),
+                    responseHeaders = response.headers?.entries?.joinToString(),
+                    responseCode = response.responseCode,
+                    requestCode = response.requestCode,
+                    byteResponse = response.byteResponse?.toString(),
+                    statusText = response.statusText,
+                    errorMessage = response.errorMessage
+                )
+            )
+
+            listener.onError(response)
         }
     }
 
