@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="contacts.create.field.name.empty_error">Name cannot be empty.</string>
-    <string name="contacts.create.field.name.invalid_characters">Characters for name cannot contain any digits.</string>
+    <string name="contacts_create_field_name_empty_error">Name cannot be empty</string>
+    <string name="contacts_create_field_name_no_digits">Name cannot contain numbers</string>
+    <string name="contacts_account_create_field_empty_error">Account number cannot be empty</string>
+    <string name="contacts_account_create_field_wrong_format">Account number is incorrect (must be IBAN).</string>
 </resources>

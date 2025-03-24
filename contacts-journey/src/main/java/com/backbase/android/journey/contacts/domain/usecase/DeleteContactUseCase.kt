@@ -1,5 +1,6 @@
 package com.backbase.android.journey.contacts.domain.usecase
 
+import android.provider.ContactsContract
 import com.backbase.android.journey.contacts.domain.repository.ContactsRepository
 
 interface DeleteContactUseCase {
@@ -12,4 +13,10 @@ class DeleteContactUseCaseImpl<ContactExtension, AccountExtension>(
     override suspend operator fun invoke(contactId: String) {
         contactsRepository.deleteContact(contactId)
     }
-} 
+}
+
+data class Contact(val name: String, val contactDTO: ContactDto)
+
+data class ContactExtension(val nickname: String)
+
+val contact: Contact<ContactExtension> = Contact("John Doe", ContactExtension("Johnny"))

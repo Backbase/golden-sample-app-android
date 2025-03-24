@@ -1,4 +1,4 @@
-package com.backbase.android.journey.contacts.presentation.screens.create
+package com.backbase.android.journey.contacts.presentation.screens.create_contact
 
 import androidx.annotation.StringRes
 
@@ -10,7 +10,12 @@ data class CreateContactState(
     val name: FieldValue<String> = FieldValue(""),
     val accountNumber: FieldValue<String> = FieldValue(""),
     val email: FieldValue<String> = FieldValue("")
-)
+){
+    fun isValid() =
+        name.fieldStatus is FieldStatus.Valid &&
+                accountNumber.fieldStatus is FieldStatus.Valid &&
+                email.fieldStatus is FieldStatus.Valid
+}
 
 data class FieldValue<T>(
     val value: T,

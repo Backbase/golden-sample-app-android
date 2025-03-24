@@ -1,4 +1,4 @@
-package com.backbase.android.journey.contacts.presentation.screens.create
+package com.backbase.android.journey.contacts.presentation.screens.create_contact
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -21,7 +21,8 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun CreateContactScreen(
     viewModel: CreateContactViewModel<Unit, Unit>,
-    onNavigateBack: () -> Unit
+    onNavigateBack: () -> Unit,
+    onNavigateAfterSuccess: () -> Unit
 ) {
     val state by viewModel.state.collectAsState()
 
@@ -84,4 +85,4 @@ fun CreateContactScreen(
             Text("Save Contact")
         }
     }
-} 
+}

@@ -1,4 +1,4 @@
-package com.backbase.android.journey.contacts.presentation.screens.create
+package com.backbase.android.journey.contacts.presentation.screens.create_contact
 
 sealed class CreateContactIntent {
 

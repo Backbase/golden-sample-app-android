@@ -13,4 +13,4 @@ class GetContactDetailsUseCaseImpl<ContactExtension, AccountExtension> (
     override suspend operator fun invoke(contactId: String): Result<ContactModel<ContactExtension, AccountExtension>> {
         return contactsRepository.getContactDetails(contactId)
     }
-} 
+}

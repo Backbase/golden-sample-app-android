@@ -21,23 +21,22 @@ import com.backbase.android.journey.contacts.presentation.screens.detail.Contact
 import com.backbase.android.journey.contacts.presentation.screens.list.ContactListScreen
 import com.backbase.android.journey.contacts.presentation.screens.list.ContactsListViewModel
 import com.backbase.android.journey.contacts.presentation.screens.list.ContactsListViewModelFactory
-import com.backbase.android.journey.contacts.presentation.screens.create.CreateContactScreen
-import com.backbase.android.journey.contacts.presentation.screens.create.CreateContactViewModel
-import com.backbase.android.journey.contacts.presentation.screens.create.CreateContactViewModelFactory
+import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactScreen
+import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactViewModel
+import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactViewModelFactory
 import com.backbase.android.journey.contacts.domain.usecase.SaveNewContactUseCaseImpl
 
 class ContactsJourneyFragment : Fragment() {
     private val contactsRepository = DefaultContactsRepository(MockContactsService())
-    private val contactsListViewModel: ContactsListViewModel<Unit, Unit> by viewModels {
-        ContactsListViewModelFactory<Unit, Unit>(contactsRepository)
-    }
+
     private val contactDetailsViewModel: ContactDetailsViewModel<Unit, Unit> by viewModels{
         ContactDetailsViewModelFactory<Unit, Unit>(contactsRepository)
     }
-    
-    private val saveNewContactUseCase = SaveNewContactUseCaseImpl(contactsRepository)
+
     private val createContactViewModel: CreateContactViewModel<Unit, Unit> by viewModels {
-        CreateContactViewModelFactory(saveNewContactUseCase)
+        CreateContactViewModelFactory(
+            SaveNewContactUseCaseImpl(contactsRepository)
+        )
     }
 
     override fun onCreateView(
@@ -54,6 +53,9 @@ class ContactsJourneyFragment : Fragment() {
                     startDestination = "contacts"
                 ) {
                     composable(ContactsRouting.List.ROUTE) {
+                         val contactsListViewModel: ContactsListViewModel<Unit, Unit> by viewModels {
+                            ContactsListViewModelFactory<Unit, Unit>(contactsRepository)
+                        }
                         ContactListScreen(
                             viewModel = contactsListViewModel,
                             onNavigateToDetails = { contact ->
@@ -83,6 +85,13 @@ class ContactsJourneyFragment : Fragment() {
                             viewModel = createContactViewModel,
                             onNavigateBack = {
                                 navController.popBackStack()
+                            },
+                            onNavigateAfterSuccess = {
+                                navController.navigate(ContactsRouting.List.ROUTE) {
+                                    popUpTo(ContactsRouting.List.ROUTE) {
+                                        inclusive = true
+                                    }
+                                }
                             }
                         )
                     }

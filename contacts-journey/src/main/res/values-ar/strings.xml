@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="contacts_create_field_name_empty_error">لا يمكن أن يكون الاسم فارغاً</string>
+    <string name="contacts_create_field_name_no_digits">لا يمكن أن يحتوي الاسم على أرقام</string>
+    <string name="contacts_account_create_field_wrong_format">رقم الحساب غير صحيح (يجب أن يكون بصيغة IBAN)</string>
+    <string name="contacts_account_create_field_empty_error">رقم الحساب لا يمكن أن يكون فارغًا.</string>
+</resources> 

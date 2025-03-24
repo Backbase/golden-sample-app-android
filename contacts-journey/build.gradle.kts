@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.backbase.accounts_journey"
+    namespace = "com.backbase.android.journey.contacts"
     defaultConfig {
         testApplicationId = "com.backbase.accounts_journey.test"
         testInstrumentationRunner = "com.karumi.shot.ShotTestRunner"
