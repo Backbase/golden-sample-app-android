@@ -2,15 +2,19 @@ package com.backbase.android.journey.contacts.presentation.screens.create_contac
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import com.backbase.android.journey.contacts.R
+import com.backbase.android.journey.contacts.domain.model.AccountModel
+import com.backbase.android.journey.contacts.domain.model.ContactModel
 import com.backbase.android.journey.contacts.domain.usecase.SaveNewContactUseCase
-import com.backbase.android.journey.contacts.presentation.screens.create_contact_account.CreateContactAccountIntent
-import com.backbase.android.journey.contacts.presentation.screens.create_contact_account.CreateContactAccountState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
+import java.util.UUID
 
 class CreateContactViewModel<ContactExtension, AccountExtension>(
+    private val saveNewContactUseCase: SaveNewContactUseCase<ContactExtension, AccountExtension>,
     val validationFunctions: MutableList<(CreateContactState) -> CreateContactState> = mutableListOf()
 ) : ViewModel() {
 
@@ -18,13 +22,15 @@ class CreateContactViewModel<ContactExtension, AccountExtension>(
     val state: StateFlow<CreateContactState> = _state.asStateFlow()
 
     init {
-        validationFunctions.add(::accountNumberValidation)
+        validationFunctions.add(::nameValidation) //TODO use validations
     }
 
-    fun handleIntent(intent: CreateContactAccountIntent) {
+    fun handleIntent(intent: CreateContactIntent) {
         when (intent) {
-            is CreateContactAccountIntent.ChangeAccountName -> TODO()
-            is CreateContactAccountIntent.ChangeAccountNumber -> TODO()
+            is CreateContactIntent.SaveContact -> saveContact(intent)
+            is CreateContactIntent.UpdateAccountNumber -> updateAccountNumber(intent)
+            is CreateContactIntent.UpdateEmail -> updateEmail(intent)
+            is CreateContactIntent.UpdateName -> updateName(intent)
         }
     }
 
@@ -33,18 +39,18 @@ class CreateContactViewModel<ContactExtension, AccountExtension>(
             name = _state.value.name.copy(value = intent.value)
         )
 
-        _state.value = accountNumberValidation(_state.value)
+        _state.value = nameValidation(_state.value)
     }
 
-    fun accountNumberValidation(currentState: CreateContactAccountState): CreateContactAccountState {
-        return if(currentState.accountNumber.fieldStatus is FieldStatus.Init) {
+    fun nameValidation(currentState: CreateContactState): CreateContactState {
+        return if(currentState.name.fieldStatus is FieldStatus.Init) {
             currentState //Does not validate when on Init
-        } else if (currentState.accountNumber.value.isEmpty()){
-            currentState.copy(accountNumber = currentState.accountNumber.copy(fieldStatus = FieldStatus.Invalid(R.string.contacts_create_field_name_empty_error)))
-        } else if (currentState.accountNumber.value.contains(regex = Regex("^[A-Z]{2}\\d{2}[A-Z0-9]{11,30}\$"))){
-            currentState.copy(accountNumber = currentState.accountNumber.copy(fieldStatus = FieldStatus.Invalid(R.string.contacts_account_create_field_wrong_format)))
+        } else if (currentState.name.value.isEmpty()){
+            currentState.copy(name = currentState.name.copy(fieldStatus = FieldStatus.Invalid(R.string.contacts_create_field_name_empty_error)))
+        } else if (currentState.name.value.contains(regex = Regex("[0-9]"))){
+            currentState.copy(name = currentState.name.copy(fieldStatus = FieldStatus.Invalid(R.string.contacts_create_field_name_no_digits)))
         } else {
-            currentState.copy(accountNumber = currentState.accountNumber.copy(fieldStatus = FieldStatus.Valid))
+            currentState.copy(name = currentState.name.copy(fieldStatus = FieldStatus.Valid))
         }
     }
 
@@ -57,9 +63,32 @@ class CreateContactViewModel<ContactExtension, AccountExtension>(
     }
 
     private fun saveContact(intent: CreateContactIntent.SaveContact) {
+        // TODO
+
         runValidations()
 
-        // TODO
+        if (_state.value.name.fieldStatus is FieldStatus.Invalid) {
+            return
+        }
+
+        viewModelScope.launch {
+            _state.value = _state.value.copy(isLoading = true)
+            try {
+                val account = AccountModel<AccountExtension>(accountNumber = state.value.accountNumber.value)
+                val contact = ContactModel<ContactExtension, AccountExtension>(
+                    id = UUID.randomUUID().toString(),
+                    name = state.value.name.value,
+                    accounts = listOf(account)
+                )
+                saveNewContactUseCase(contact)
+                _state.value = _state.value.copy(isLoading = false, isSaved = true)
+            } catch (e: Exception) {
+                _state.value = _state.value.copy(
+                    isLoading = false,
+                    error = e.message
+                )
+            }
+        }
     }
 
     private fun runValidations() {
