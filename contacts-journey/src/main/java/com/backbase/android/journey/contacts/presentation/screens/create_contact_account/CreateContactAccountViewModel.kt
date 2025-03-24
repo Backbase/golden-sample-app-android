@@ -57,13 +57,22 @@ class CreateContactAccountViewModelFactory<StateExtension, IntentExtension>(
 
 class CustomFragment: Fragment(){
     private val viewModel: CreateContactAccountViewModel2<CustomCreateContactStateExtension, CustomCreateContactAccountIntent2> by viewModels {
-        CreateContactAccountViewModelFactory<CustomCreateContactStateExtension, CustomCreateContactAccountIntent2>({
-                state, intent, stateFlow -> {
-                    when(intent){
-                        CustomCreateContactAccountIntent2.CustomIntent -> TODO()
-                        CustomCreateContactAccountIntent2.CustomIntent2 -> TODO()
-                    }
+        CreateContactAccountViewModelFactory<CustomCreateContactStateExtension, CustomCreateContactAccountIntent2> { state, intent, stateFlow ->
+            {
+                when (intent) {
+                    CustomCreateContactAccountIntent2.CustomIntent -> TODO()
+                    CustomCreateContactAccountIntent2.CustomIntent2 -> TODO()
+                }
             }
-        })
+        }
+    }
+
+    private val viewModelNoCustomization: DefaultViewModel by viewModels {
+        createDefaultViewModel()
     }
 }
+
+typealias DefaultViewModel = CreateContactAccountViewModel2<Unit, Unit>
+
+fun createDefaultViewModel(): CreateContactAccountViewModelFactory<Unit, Unit> =
+    CreateContactAccountViewModelFactory<Unit, Unit> { _, _, _ -> {} }
