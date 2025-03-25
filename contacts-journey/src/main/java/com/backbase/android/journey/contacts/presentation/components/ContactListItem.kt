@@ -16,9 +16,9 @@ import androidx.compose.ui.unit.dp
 import com.backbase.android.journey.contacts.domain.model.ContactModel
 
 @Composable
-fun <ContactExtension, AccountExtension> ContactListItem(
-    contact: ContactModel<ContactExtension, AccountExtension>,
-    onContactClick: (ContactModel<ContactExtension, AccountExtension>) -> Unit
+fun  ContactListItem(
+    contact: ContactModel,
+    onContactClick: (ContactModel) -> Unit
 ) {
     Row(
         modifier = Modifier

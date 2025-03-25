@@ -11,7 +11,7 @@ class DefaultContactsRepository (
     private val contactsApi: ContactsApi,
     // private val contactsDao: ContactsDao
     private val cacheValidityDuration: Long = 5 * 60 * 1000 // 5 minutes in milliseconds
-) : ContactsRepository<Unit, Unit> {
+) : ContactsRepository {
     private var cachedContacts: List<DefaultContactModel>? = null
     private var lastFetchTimestamp: Long = 0
 

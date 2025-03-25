@@ -5,7 +5,7 @@ import com.backbase.android.journey.contacts.domain.model.DefaultContactModel
 import com.backbase.android.journey.contacts.domain.repository.ContactsRepository
 import kotlinx.coroutines.delay
 
-class MockContactsRepository: ContactsRepository<Unit, Unit> {
+class MockContactsRepository: ContactsRepository {
 
     var cachedContacts: List<DefaultContactModel>? = null
     private var lastFetchTimestamp: Long = 0

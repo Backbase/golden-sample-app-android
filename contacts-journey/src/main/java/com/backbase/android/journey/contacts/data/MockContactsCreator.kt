@@ -6,12 +6,12 @@ import com.backbase.android.journey.contacts.domain.model.ContactModel
 import com.backbase.android.journey.contacts.domain.model.DefaultContactModel
 import java.util.UUID
 
-interface MockContactsCreator<ContactExtension, AccountExtension> {
+interface MockContactsCreator {
     fun createMockContactGetResponseBody(amount: Int = 20): List<ContactGetResponseBody>
-    fun createMockContactsList(amount: Int = 20): List<ContactModel<ContactExtension, AccountExtension>>
+    fun createMockContactsList(amount: Int = 20): List<ContactModel>
 }
 
-object MockContactsCreatorImpl: MockContactsCreator<Unit, Unit> {
+object MockContactsCreatorImpl: MockContactsCreator {
     override fun createMockContactGetResponseBody(amount: Int): List<ContactGetResponseBody> {
         val contacts = mutableListOf<ContactGetResponseBody>()
         repeat(amount) { index ->

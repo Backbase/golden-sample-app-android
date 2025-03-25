@@ -29,11 +29,11 @@ import com.backbase.android.journey.contacts.domain.usecase.SaveNewContactUseCas
 class ContactsJourneyFragment : Fragment() {
     private val contactsRepository = DefaultContactsRepository(MockContactsService())
 
-    private val contactDetailsViewModel: ContactDetailsViewModel<Unit, Unit> by viewModels{
-        ContactDetailsViewModelFactory<Unit, Unit>(contactsRepository)
+    private val contactDetailsViewModel: ContactDetailsViewModel by viewModels{
+        ContactDetailsViewModelFactory(contactsRepository)
     }
 
-    private val createContactViewModel: CreateContactViewModel<Unit, Unit> by viewModels {
+    private val createContactViewModel: CreateContactViewModel by viewModels {
         CreateContactViewModelFactory(
             SaveNewContactUseCaseImpl(contactsRepository)
         )
@@ -53,8 +53,8 @@ class ContactsJourneyFragment : Fragment() {
                     startDestination = "contacts"
                 ) {
                     composable(ContactsRouting.List.ROUTE) {
-                         val contactsListViewModel: ContactsListViewModel<Unit, Unit> by viewModels {
-                            ContactsListViewModelFactory<Unit, Unit>(contactsRepository)
+                         val contactsListViewModel: ContactsListViewModel by viewModels {
+                            ContactsListViewModelFactory(contactsRepository)
                         }
                         ContactListScreen(
                             viewModel = contactsListViewModel,

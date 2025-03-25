@@ -13,8 +13,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import java.util.UUID
 
-class CreateContactViewModel<ContactExtension, AccountExtension>(
-    private val saveNewContactUseCase: SaveNewContactUseCase<ContactExtension, AccountExtension>,
+class CreateContactViewModel(
+    private val saveNewContactUseCase: SaveNewContactUseCase,
     val validationFunctions: MutableList<(CreateContactState) -> CreateContactState> = mutableListOf()
 ) : ViewModel() {
 
@@ -74,8 +74,8 @@ class CreateContactViewModel<ContactExtension, AccountExtension>(
         viewModelScope.launch {
             _state.value = _state.value.copy(isLoading = true)
             try {
-                val account = AccountModel<AccountExtension>(accountNumber = state.value.accountNumber.value)
-                val contact = ContactModel<ContactExtension, AccountExtension>(
+                val account = AccountModel(accountNumber = state.value.accountNumber.value)
+                val contact = ContactModel(
                     id = UUID.randomUUID().toString(),
                     name = state.value.name.value,
                     accounts = listOf(account)
@@ -98,8 +98,8 @@ class CreateContactViewModel<ContactExtension, AccountExtension>(
     }
 }
 
-class CreateContactViewModelFactory<ContactExtension, AccountExtension>(
-    private val saveNewContactUseCase: SaveNewContactUseCase<ContactExtension, AccountExtension>
+class CreateContactViewModelFactory(
+    private val saveNewContactUseCase: SaveNewContactUseCase
 ) : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

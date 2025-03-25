@@ -19,7 +19,7 @@ import com.backbase.android.journey.contacts.presentation.components.ContactDeta
 
 @Composable
 fun ContactDetailsScreen(
-    viewModel: ContactDetailsViewModel<Unit, Unit>
+    viewModel: ContactDetailsViewModel
 ) {
     val state by viewModel.state.collectAsState()
 
@@ -29,8 +29,8 @@ fun ContactDetailsScreen(
 }
 
 @Composable
-fun <ContactExtension, AccountExtension> ContactDetails(
-    contact: ContactModel<ContactExtension, AccountExtension>
+fun  ContactDetails(
+    contact: ContactModel
 ) {
     Column(Modifier.padding(16.dp)) {
         Text(contact.name, style = MaterialTheme.typography.h5)

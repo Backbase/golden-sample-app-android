@@ -7,16 +7,10 @@ interface DeleteContactUseCase {
     suspend operator fun invoke(contactId: String)
 }
 
-class DeleteContactUseCaseImpl<ContactExtension, AccountExtension>(
-    private val contactsRepository: ContactsRepository<ContactExtension, AccountExtension>
+class DeleteContactUseCaseImpl(
+    private val contactsRepository: ContactsRepository
 ) : DeleteContactUseCase {
     override suspend operator fun invoke(contactId: String) {
         contactsRepository.deleteContact(contactId)
     }
 }
-
-data class Contact(val name: String, val contactDTO: ContactDto)
-
-data class ContactExtension(val nickname: String)
-
-val contact: Contact<ContactExtension> = Contact("John Doe", ContactExtension("Johnny"))

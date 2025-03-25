@@ -5,8 +5,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.backbase.android.journey.contacts.domain.repository.ContactsRepository
 import com.backbase.android.journey.contacts.presentation.screens.list.ContactsListViewModel
 
-class ContactDetailsViewModelFactory<ContactExtension, AccountExtension>(
-    private val repository: ContactsRepository<ContactExtension, AccountExtension>
+class ContactDetailsViewModelFactory(
+    private val repository: ContactsRepository
 ) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")

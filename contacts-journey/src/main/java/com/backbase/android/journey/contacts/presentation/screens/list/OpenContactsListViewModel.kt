@@ -8,11 +8,11 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-open class OpenContactsListViewModel<ContactExtension, AccountExtension>(
-    private val repository: ContactsRepository<ContactExtension, AccountExtension>,
-    private val _state: MutableStateFlow<ContactsListState<ContactExtension, AccountExtension>> = MutableStateFlow(ContactsListState<ContactExtension, AccountExtension>())
+open class OpenContactsListViewModel(
+    private val repository: ContactsRepository,
+    private val _state: MutableStateFlow<ContactsListState> = MutableStateFlow(ContactsListState())
 ) : ViewModel() {
-    val state: StateFlow<ContactsListState<ContactExtension, AccountExtension>> = _state.asStateFlow()
+    val state: StateFlow<ContactsListState> = _state.asStateFlow()
 
     private val pageSize = 20
 
@@ -64,9 +64,9 @@ open class OpenContactsListViewModel<ContactExtension, AccountExtension>(
 }
 
 class ExtendedContactListViewModel(
-    private val repository: ContactsRepository<Unit, Unit>,
-    private val _state: MutableStateFlow<ContactsListState<Unit, Unit>> = MutableStateFlow(ContactsListState<Unit, Unit>())
-): OpenContactsListViewModel<Unit, Unit>(
+    private val repository: ContactsRepository,
+    private val _state: MutableStateFlow<ContactsListState> = MutableStateFlow(ContactsListState())
+): OpenContactsListViewModel(
     repository = repository,
     _state = _state
 ) {

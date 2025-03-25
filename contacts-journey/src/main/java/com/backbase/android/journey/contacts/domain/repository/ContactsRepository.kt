@@ -17,15 +17,15 @@ import com.backbase.android.journey.contacts.domain.model.ContactModel
  * repository implementation that suits their specific data source and caching requirements. An example
  would be caching with a Room database instead of our defailt strategy of caching with local data only.
  */
-interface ContactsRepository<ContactExtension, AccountExtension> {
-    suspend fun getContacts(page: Int, pageSize: Int): Result<List<ContactModel<ContactExtension, AccountExtension>>>
-    suspend fun getContactDetails(contactId: String): Result<ContactModel<ContactExtension, AccountExtension>>
-    suspend fun saveContact(contact: ContactModel<ContactExtension, AccountExtension>): Result<Unit>
-    suspend fun updateContact(contact: ContactModel<ContactExtension, AccountExtension>): Result<Unit>
+interface ContactsRepository {
+    suspend fun getContacts(page: Int, pageSize: Int): Result<List<ContactModel>>
+    suspend fun getContactDetails(contactId: String): Result<ContactModel>
+    suspend fun saveContact(contact: ContactModel): Result<Unit>
+    suspend fun updateContact(contact: ContactModel): Result<Unit>
     suspend fun deleteContact(contactId: String): Result<Unit>
 
-    suspend fun getCachedContacts(): List<ContactModel<ContactExtension, AccountExtension>>?
-    fun cacheContacts(contacts: List<ContactModel<ContactExtension, AccountExtension>>)
+    suspend fun getCachedContacts(): List<ContactModel>?
+    fun cacheContacts(contacts: List<ContactModel>)
     fun isCacheExpired(): Boolean
     fun clearCache()
 }

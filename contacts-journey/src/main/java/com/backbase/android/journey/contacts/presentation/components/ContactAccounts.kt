@@ -15,7 +15,7 @@ import com.backbase.android.journey.contacts.data.MockContactsCreatorImpl
 import com.backbase.android.journey.contacts.domain.model.AccountModel
 
 @Composable
-fun <AccountExtension> ContactAccountsList(accounts: List<AccountModel<AccountExtension>>) {
+fun  ContactAccountsList(accounts: List<AccountModel>) {
     Column(Modifier.padding(top = 8.dp)) {
         Spacer(
             Modifier
@@ -41,7 +41,7 @@ fun <AccountExtension> ContactAccountsList(accounts: List<AccountModel<AccountEx
 }
 
 @Composable
-fun <AccountExtension> ContactAccountItem(account: AccountModel<AccountExtension>) {
+fun  ContactAccountItem(account: AccountModel) {
     Column(Modifier.padding(horizontal = 0.dp, vertical = 8.dp)) {
         account.accountName?.let { Text(it, fontWeight = FontWeight.Bold) }
         account.iban?.let { Text("IBAN: $it") }
@@ -66,5 +66,5 @@ fun ContactAccountItemPreview() {
 @Preview(showBackground = true)
 @Composable
 fun EmptyContactAccountsListPreview() {
-    ContactAccountsList<Unit>(accounts = emptyList())
+    ContactAccountsList(accounts = emptyList())
 } 

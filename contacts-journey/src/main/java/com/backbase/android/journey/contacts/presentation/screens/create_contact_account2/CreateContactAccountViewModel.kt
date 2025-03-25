@@ -45,10 +45,10 @@ class CreateContactAccountViewModelFactory<StateExtension, IntentExtension>(
     }
 }
 
-typealias DefaultViewModel = CreateContactAccountViewModel2<Unit, Unit>
+typealias DefaultViewModel = CreateContactAccountViewModel2
 
-fun defaultViewModelFactory(): CreateContactAccountViewModelFactory<Unit, Unit> =
-    CreateContactAccountViewModelFactory<Unit, Unit>(intentExtensionHandler = null)
+fun defaultViewModelFactory(): CreateContactAccountViewModelFactory =
+    CreateContactAccountViewModelFactory(intentExtensionHandler = null)
 
 //Custom project implementation example below
 sealed class CustomCreateContactAccountIntent2 {

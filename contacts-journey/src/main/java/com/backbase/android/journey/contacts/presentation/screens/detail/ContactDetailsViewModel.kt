@@ -13,17 +13,17 @@ sealed interface ContactDetailsIntent {
     data class LoadContact(val id: String) : ContactDetailsIntent
 }
 
-data class ContactDetailsState<ContactExtension, AccountExtension>(
-    val contact: ContactModel<ContactExtension, AccountExtension>? = null,
+data class ContactDetailsState(
+    val contact: ContactModel? = null,
     val isLoading: Boolean = false,
     val error: String? = null
 )
 
-class ContactDetailsViewModel<ContactExtension, AccountExtension>(
-    private val repository: ContactsRepository<ContactExtension, AccountExtension>
+class ContactDetailsViewModel(
+    private val repository: ContactsRepository
 ) : ViewModel() {
-    private val _state = MutableStateFlow(ContactDetailsState<ContactExtension, AccountExtension>())
-    val state: StateFlow<ContactDetailsState<ContactExtension, AccountExtension>> = _state.asStateFlow()
+    private val _state = MutableStateFlow(ContactDetailsState())
+    val state: StateFlow<ContactDetailsState> = _state.asStateFlow()
 
     fun handleIntent(intent: ContactDetailsIntent) {
         when (intent) {

@@ -8,7 +8,7 @@ import com.backbase.android.journey.contacts.domain.model.DefaultContactModel
 
 
 // Extension functions for mapping between domain and data models
-fun ContactGetResponseBody.toContactModel(): ContactModel<Unit, Unit> {
+fun ContactGetResponseBody.toContactModel(): ContactModel {
     return DefaultContactModel(
         id = this@toContactModel.id,
         name = this@toContactModel.name,
@@ -35,7 +35,7 @@ fun DefaultContactModel.toContactGetResponseBody(): ContactGetResponseBody {
 }
 
 fun AccountInformation.toAccountModel() =
-    AccountModel<Unit>(
+    AccountModel(
         bankCountry = this.bankCountry,
         accountName = this.name,
         alias = this.alias,

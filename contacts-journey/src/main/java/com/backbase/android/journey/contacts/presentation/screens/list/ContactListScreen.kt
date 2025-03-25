@@ -10,7 +10,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Button
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.FloatingActionButton
-import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -28,7 +27,7 @@ import com.backbase.android.journey.contacts.presentation.components.SearchBar
 
 @Composable
 fun ContactListScreen(
-    viewModel: ContactsListViewModel<Unit, Unit>,
+    viewModel: ContactsListViewModel,
     onNavigateToDetails: (DefaultContactModel) -> Unit,
     onNavigateToCreate: () -> Unit
 ) {
@@ -60,9 +59,9 @@ fun ContactListScreen(
 }
 
 @Composable
-fun <ContactExtension, AccountExtension> ContactList(
-    state: ContactsListState<ContactExtension, AccountExtension>,
-    onContactClick: (ContactModel<ContactExtension, AccountExtension>) -> Unit,
+fun  ContactList(
+    state: ContactsListState,
+    onContactClick: (ContactModel) -> Unit,
     onSearch: (String) -> Unit,
     onLoadMore: () -> Unit,
     modifier: Modifier = Modifier
@@ -112,7 +111,7 @@ fun <ContactExtension, AccountExtension> ContactList(
 @Preview(showBackground = true)
 @Composable
 fun ContactsListPreview() {
-    ContactList<Unit, Unit>(
+    ContactList(
         state = ContactsListState(
             contacts = MockContactsCreatorImpl.createMockContactsList(10),
             isLoading = false,

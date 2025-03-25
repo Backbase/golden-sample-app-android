@@ -3,15 +3,15 @@ package com.backbase.android.journey.contacts.domain.usecase
 import com.backbase.android.journey.contacts.domain.model.ContactModel
 import com.backbase.android.journey.contacts.domain.repository.ContactsRepository
 
-interface SaveNewContactUseCase<ContactExtension, AccountExtension> {
-    suspend operator fun invoke(contact: ContactModel<ContactExtension, AccountExtension>)
+interface SaveNewContactUseCase {
+    suspend operator fun invoke(contact: ContactModel)
 }
 
-class SaveNewContactUseCaseImpl<ContactExtension, AccountExtension> (
-    private val contactsRepository: ContactsRepository<ContactExtension, AccountExtension>
-) : SaveNewContactUseCase<ContactExtension, AccountExtension> {
+class SaveNewContactUseCaseImpl (
+    private val contactsRepository: ContactsRepository
+) : SaveNewContactUseCase {
     override suspend fun invoke(
-        contact: ContactModel<ContactExtension, AccountExtension>
+        contact: ContactModel
     ) {
         contactsRepository.saveContact(contact)
     }

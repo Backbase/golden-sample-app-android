@@ -3,14 +3,14 @@ package com.backbase.android.journey.contacts.domain.usecase
 import com.backbase.android.journey.contacts.domain.model.ContactModel
 import com.backbase.android.journey.contacts.domain.repository.ContactsRepository
 
-interface EditContactUseCase<ContactExtension, AccountExtension> {
-    suspend operator fun invoke(contact: ContactModel<ContactExtension, AccountExtension>)
+interface EditContactUseCase {
+    suspend operator fun invoke(contact: ContactModel)
 }
 
-class EditContactUseCaseImpl<ContactExtension, AccountExtension>(
-    private val contactsRepository: ContactsRepository<ContactExtension, AccountExtension>
-) : EditContactUseCase<ContactExtension, AccountExtension> {
-    override suspend operator fun invoke(contact: ContactModel<ContactExtension, AccountExtension>) {
+class EditContactUseCaseImpl(
+    private val contactsRepository: ContactsRepository
+) : EditContactUseCase {
+    override suspend operator fun invoke(contact: ContactModel) {
         contactsRepository.updateContact(contact)
     }
 }

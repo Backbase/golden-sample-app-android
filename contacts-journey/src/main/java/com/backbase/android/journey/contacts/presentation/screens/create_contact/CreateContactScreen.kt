@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun CreateContactScreen(
-    viewModel: CreateContactViewModel<Unit, Unit>,
+    viewModel: CreateContactViewModel,
     onNavigateBack: () -> Unit,
     onNavigateAfterSuccess: () -> Unit
 ) {
