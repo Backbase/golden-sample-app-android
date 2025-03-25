@@ -1,4 +1,4 @@
-package com.backbase.android.journey.contacts.presentation
+package com.backbase.android.journey.contacts
 
 object ContactsRouting {
 

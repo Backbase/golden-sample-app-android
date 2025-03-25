@@ -47,7 +47,7 @@
 
     <fragment
         android:id="@+id/contact_fragment"
-        android:name="com.backbase.android.journey.contacts.presentation.ContactsJourneyFragment"
+        android:name="com.backbase.android.journey.contacts.ContactsJourneyFragment"
         android:label="Accounts Journey 2" />
 
     <fragment
