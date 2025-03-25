@@ -47,7 +47,7 @@ class CreateContactAccountViewModelFactory<StateExtension, IntentExtension>(
 
 typealias DefaultViewModel = CreateContactAccountViewModel2<Unit, Unit>
 
-fun createDefaultViewModel(): CreateContactAccountViewModelFactory<Unit, Unit> =
+fun defaultViewModelFactory(): CreateContactAccountViewModelFactory<Unit, Unit> =
     CreateContactAccountViewModelFactory<Unit, Unit>(intentExtensionHandler = null)
 
 //Custom project implementation example below
@@ -66,7 +66,7 @@ class CustomFragment: Fragment(){
     }
 
     private val viewModelNoCustomization: DefaultViewModel by viewModels {
-        createDefaultViewModel()
+        defaultViewModelFactory()
     }
 }
 
