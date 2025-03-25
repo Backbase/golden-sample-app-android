@@ -51,20 +51,3 @@ class CreateContactAccountIntentHandler<StateExtension> {
         }
     }
 }
-
-object CustomCreateContactAccountIntentHandler{
-
-    val defaultHandler = CreateContactAccountIntentHandler<CustomCreateContactStateExtension>()
-
-    fun handleIntent(
-        intent: CustomCreateContactAccountIntent,
-        stateFlow: MutableStateFlow<CreateContactAccountState<CustomCreateContactStateExtension>>,
-        scope: CoroutineScope){
-        when(intent){
-            is CustomCreateContactAccountIntent.DefaultIntent -> {
-                defaultHandler.handleIntent(intent.value, stateFlow, scope)
-            }
-            CustomCreateContactAccountIntent.CustomIntent -> TODO()
-        }
-    }
-}

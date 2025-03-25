@@ -1,10 +1,8 @@
 package com.backbase.android.journey.contacts.presentation.screens.create_contact_account
 
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.backbase.android.journey.contacts.presentation.screens.create_contact.FieldValue
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -20,59 +18,49 @@ class CreateContactAccountViewModel : ViewModel() {
     }
 }
 
+// Below are examples for customer implementations
+sealed class CustomCreateContactAccountIntent {
+    class DefaultIntent(val value: CreateContactAccountIntent): CustomCreateContactAccountIntent()
+    object CustomIntent: CustomCreateContactAccountIntent()
+    object CustomIntent2: CustomCreateContactAccountIntent()
+}
 
-class CreateContactAccountViewModel2<StateExtension, IntentExtension>(
-    private val intentExtensionHandler: (CreateContactAccountState<StateExtension>, IntentExtension, MutableStateFlow<CreateContactAccountState<StateExtension>>) -> Unit
-) : ViewModel() {
-    private val intentHandler = CreateContactAccountIntentHandler<StateExtension>()
+data class CustomCreateContactStateExtension (
+    val accountAlias: FieldValue<String> = FieldValue("")
+)
 
-    private val _state = MutableStateFlow(CreateContactAccountState<StateExtension>())
-    val state: StateFlow<CreateContactAccountState<StateExtension>> = _state.asStateFlow()
+class CustomCreateContactAccountViewModel : ViewModel() {
+    private val intentHandler = CreateContactAccountIntentHandler<CustomCreateContactStateExtension>()
 
-    fun handleIntent(intent: CreateContactAccountIntent2<IntentExtension>) {
+    private val _state = MutableStateFlow(CreateContactAccountState<CustomCreateContactStateExtension>())
+    val state: StateFlow<CreateContactAccountState<CustomCreateContactStateExtension>> = _state.asStateFlow()
+
+    fun handleIntent(intent: CustomCreateContactAccountIntent) {
         when(intent){
-            is CreateContactAccountIntent2.ChangeAccountName -> TODO()
-            is CreateContactAccountIntent2.ChangeAccountNumber -> TODO()
-            is CreateContactAccountIntent2.SaveAccount -> TODO()
-            is CreateContactAccountIntent2.GenericIntent -> intentExtensionHandler(_state.value, intent.data, _state)
+            CustomCreateContactAccountIntent.CustomIntent -> TODO()
+            CustomCreateContactAccountIntent.CustomIntent2 -> TODO()
+            is CustomCreateContactAccountIntent.DefaultIntent -> intentHandler.handleIntent(intent.value, _state, viewModelScope)
         }
     }
 }
 
-class CreateContactAccountViewModelFactory<StateExtension, IntentExtension>(
-    private val intentExtensionHandler: (
-        CreateContactAccountState<StateExtension>,
-        IntentExtension,
-        MutableStateFlow<CreateContactAccountState<StateExtension>>
-    ) -> Unit
-) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(CreateContactAccountViewModel2::class.java)) {
-            @Suppress("UNCHECKED_CAST")
-            return CreateContactAccountViewModel2(intentExtensionHandler) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
-    }
-}
+class CustomCreateContactAccountViewModel2 : ViewModel() {
+    private val intentHandler = CreateContactAccountIntentHandler<CustomCreateContactStateExtension>()
 
-class CustomFragment: Fragment(){
-    private val viewModel: CreateContactAccountViewModel2<CustomCreateContactStateExtension, CustomCreateContactAccountIntent2> by viewModels {
-        CreateContactAccountViewModelFactory<CustomCreateContactStateExtension, CustomCreateContactAccountIntent2> { state, intent, stateFlow ->
-            {
-                when (intent) {
-                    CustomCreateContactAccountIntent2.CustomIntent -> TODO()
-                    CustomCreateContactAccountIntent2.CustomIntent2 -> TODO()
+    private val _state = MutableStateFlow(CreateContactAccountState<CustomCreateContactStateExtension>())
+    val state: StateFlow<CreateContactAccountState<CustomCreateContactStateExtension>> = _state.asStateFlow()
+
+    fun handleIntent(intent: CustomCreateContactAccountIntent) {
+        when(intent){
+            CustomCreateContactAccountIntent.CustomIntent -> TODO()
+            CustomCreateContactAccountIntent.CustomIntent2 -> TODO()
+            is CustomCreateContactAccountIntent.DefaultIntent -> {
+                when(intent.value){
+                    is CreateContactAccountIntent.ChangeAccountName -> intentHandler.handleIntent(intent.value, _state, viewModelScope)
+                    is CreateContactAccountIntent.ChangeAccountNumber -> intentHandler.handleIntent(intent.value, _state, viewModelScope)
+                    CreateContactAccountIntent.SaveAccount -> TODO()
                 }
             }
         }
     }
-
-    private val viewModelNoCustomization: DefaultViewModel by viewModels {
-        createDefaultViewModel()
-    }
 }
-
-typealias DefaultViewModel = CreateContactAccountViewModel2<Unit, Unit>
-
-fun createDefaultViewModel(): CreateContactAccountViewModelFactory<Unit, Unit> =
-    CreateContactAccountViewModelFactory<Unit, Unit> { _, _, _ -> {} }

@@ -12,8 +12,4 @@ data class CreateContactAccountState<StateExtension> (
     val extension: StateExtension? = null
 )
 
-data class CustomCreateContactStateExtension (
-    val accountAlias: FieldValue<String> = FieldValue("")
-)
-
 typealias CustomCreateContactAccountState = CreateContactAccountState<CustomCreateContactStateExtension>
