@@ -30,6 +30,7 @@ dependencies {
     implementation(platform(backbase.bom))
     implementation(backbase.bundles.common)
     implementation(libs.coroutines)
+    implementation(libs.coroutinesCore)
     implementation(libs.bundles.ktor)
     implementation(backbase.contacts.client.gen2)
     implementation(libs.bundles.navigation)

@@ -1,6 +1,7 @@
 package com.backbase.android.journey.contacts.presentation.screens.create_contact_account
 
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
@@ -8,17 +9,19 @@ class CreateContactAccountIntentHandler<StateExtension> {
     fun handleIntent(
         intent: CreateContactAccountIntent,
         stateFlow: MutableStateFlow<CreateContactAccountState<StateExtension>>,
+        effectFlow: MutableSharedFlow<CreateContactAccountViewEffect>,
         scope: CoroutineScope
     ){
         when(intent){
-            is CreateContactAccountIntent.ChangeAccountName -> stateFlow.value = stateFlow.value.copy(accountName = stateFlow.value.accountName.copy(value = intent.accountName))
-            is CreateContactAccountIntent.ChangeAccountNumber -> stateFlow.value = stateFlow.value.copy(accountNumber = stateFlow.value.accountNumber.copy(value = intent.accountNumber))
-            CreateContactAccountIntent.SaveAccount -> scope.launch{ saveAccount(stateFlow) }
+            is CreateContactAccountIntent.UpdateAccountName -> stateFlow.value = stateFlow.value.copy(accountName = stateFlow.value.accountName.copy(value = intent.accountName))
+            is CreateContactAccountIntent.UpdateAccountNumber -> stateFlow.value = stateFlow.value.copy(accountNumber = stateFlow.value.accountNumber.copy(value = intent.accountNumber))
+            CreateContactAccountIntent.Submit -> scope.launch{ saveAccount(stateFlow, effectFlow) }
         }
     }
 
     suspend fun saveAccount(
-        stateFlow: MutableStateFlow<CreateContactAccountState<StateExtension>>
+        stateFlow: MutableStateFlow<CreateContactAccountState<StateExtension>>,
+        effectFlow: MutableSharedFlow<CreateContactAccountViewEffect>
     ) {
         // Set loading state
         stateFlow.value = stateFlow.value.copy(isLoading = true)
@@ -32,6 +35,7 @@ class CreateContactAccountIntentHandler<StateExtension> {
                 isLoading = false,
                 error = "Account name and number cannot be empty" //Would be error from BE so no translation
             )
+            effectFlow.emit(CreateContactAccountViewEffect.ToContactCreateResult)
             return
         }
 
@@ -49,5 +53,6 @@ class CreateContactAccountIntentHandler<StateExtension> {
                 isSaved = false
             )
         }
+        effectFlow.emit(CreateContactAccountViewEffect.ToContactCreateResult)
     }
 }

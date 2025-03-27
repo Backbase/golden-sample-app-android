@@ -1,6 +1,7 @@
 package com.backbase.android.journey.contacts.presentation.screens.create_contact_account2
 
-import com.backbase.android.journey.contacts.presentation.screens.create_contact.FieldValue
+import com.backbase.android.journey.contacts.presentation.util.FieldValue
+
 
 data class CreateContactAccountState<StateExtension> (
     val accountNumber: FieldValue<String> = FieldValue(""),

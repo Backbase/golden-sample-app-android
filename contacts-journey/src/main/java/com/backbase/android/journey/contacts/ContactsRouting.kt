@@ -16,4 +16,11 @@ object ContactsRouting {
     object Create {
         const val ROUTE = "contacts/create"
     }
+
+    object CreateAccount {
+        const val NAVARG_ID = "contactId"
+        const val ROUTE = "contacts/{$NAVARG_ID}/account/create"
+
+        fun createAccountUrl(contactId: String) = "contacts/$contactId/account/create"
+    }
 }

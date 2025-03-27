@@ -17,6 +17,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.CreateContactIntent
 
 @Composable
 fun CreateContactScreen(
@@ -77,7 +78,7 @@ fun CreateContactScreen(
         Button(
             onClick = {
                 viewModel.handleIntent(
-                    CreateContactIntent.SaveContact
+                    CreateContactIntent.Submit
                 )
             },
             modifier = Modifier.fillMaxWidth()

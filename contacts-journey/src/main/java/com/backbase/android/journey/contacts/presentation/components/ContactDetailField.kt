@@ -23,4 +23,4 @@ fun ContactDetailFieldPreview() {
         label = "Test Label",
         value = "Test Value"
     )
-} 
+}

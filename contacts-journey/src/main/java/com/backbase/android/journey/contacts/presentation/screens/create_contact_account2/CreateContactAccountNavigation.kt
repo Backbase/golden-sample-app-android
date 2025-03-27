@@ -7,8 +7,7 @@ import com.backbase.android.journey.contacts.ContactsRouting
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactScreen
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactViewModel
 
-
-fun NavGraphBuilder.createContactNavigation(
+fun NavGraphBuilder.createContactAccountNavigation(
     navController: NavController,
     createContactViewModel: CreateContactViewModel,
     onNavigateBack: () -> Unit = {
@@ -23,7 +22,7 @@ fun NavGraphBuilder.createContactNavigation(
     }
 ){
     composable(ContactsRouting.Create.ROUTE) {
-        CreateContactScreen(
+        CreateContactAccountScreen(
             viewModel = createContactViewModel,
             onNavigateBack = onNavigateBack,
             onNavigateAfterSuccess = onNavigateAfterSuccess

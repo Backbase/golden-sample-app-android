@@ -18,7 +18,7 @@ import com.backbase.android.journey.contacts.presentation.screens.list.ContactsL
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactViewModel
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactViewModelFactory
 import com.backbase.android.journey.contacts.domain.usecase.SaveNewContactUseCaseImpl
-import com.backbase.android.journey.contacts.presentation.screens.create_contact_account2.createContactNavigation
+import com.backbase.android.journey.contacts.presentation.screens.create_contact.createContactNavigation
 import com.backbase.android.journey.contacts.presentation.screens.detail.contactDetailsNavigation
 import com.backbase.android.journey.contacts.presentation.screens.list.contactListNavigation
 import com.backbase.android.journey.contacts.presentation.screens.result.contactCreateResultNavigation

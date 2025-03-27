@@ -7,6 +7,8 @@ import com.backbase.android.journey.contacts.R
 import com.backbase.android.journey.contacts.domain.model.AccountModel
 import com.backbase.android.journey.contacts.domain.model.ContactModel
 import com.backbase.android.journey.contacts.domain.usecase.SaveNewContactUseCase
+import com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.CreateContactIntent
+import com.backbase.android.journey.contacts.presentation.util.FieldStatus
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -15,11 +17,11 @@ import java.util.UUID
 
 class CreateContactViewModel(
     private val saveNewContactUseCase: SaveNewContactUseCase,
-    val validationFunctions: MutableList<(CreateContactState) -> CreateContactState> = mutableListOf()
+    val validationFunctions: MutableList<(DefaultCreateContactState) -> DefaultCreateContactState> = mutableListOf()
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow(CreateContactState())
-    val state: StateFlow<CreateContactState> = _state.asStateFlow()
+    private val _state = MutableStateFlow(DefaultCreateContactState())
+    val state: StateFlow<DefaultCreateContactState> = _state.asStateFlow()
 
     init {
         validationFunctions.add(::nameValidation) //TODO use validations
@@ -27,7 +29,7 @@ class CreateContactViewModel(
 
     fun handleIntent(intent: CreateContactIntent) {
         when (intent) {
-            is CreateContactIntent.SaveContact -> saveContact(intent)
+            is CreateContactIntent.Submit -> saveContact(intent)
             is CreateContactIntent.UpdateAccountNumber -> updateAccountNumber(intent)
             is CreateContactIntent.UpdateEmail -> updateEmail(intent)
             is CreateContactIntent.UpdateName -> updateName(intent)
@@ -42,7 +44,7 @@ class CreateContactViewModel(
         _state.value = nameValidation(_state.value)
     }
 
-    fun nameValidation(currentState: CreateContactState): CreateContactState {
+    fun nameValidation(currentState: DefaultCreateContactState): DefaultCreateContactState {
         return if(currentState.name.fieldStatus is FieldStatus.Init) {
             currentState //Does not validate when on Init
         } else if (currentState.name.value.isEmpty()){
@@ -62,7 +64,7 @@ class CreateContactViewModel(
         // TODO
     }
 
-    private fun saveContact(intent: CreateContactIntent.SaveContact) {
+    private fun saveContact(intent: CreateContactIntent.Submit) {
         // TODO
 
         runValidations()

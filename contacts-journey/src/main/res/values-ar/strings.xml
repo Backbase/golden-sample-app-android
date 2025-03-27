@@ -4,4 +4,9 @@
     <string name="contacts_create_field_name_no_digits">لا يمكن أن يحتوي الاسم على أرقام</string>
     <string name="contacts_account_create_field_wrong_format">رقم الحساب غير صحيح (يجب أن يكون بصيغة IBAN)</string>
     <string name="contacts_account_create_field_empty_error">رقم الحساب لا يمكن أن يكون فارغًا.</string>
+    
+    <string name="create_contact_account_title">إنشاء حساب جهة اتصال</string>
+    <string name="account_name_label">اسم الحساب</string>
+    <string name="account_number_label">رقم الحساب (IBAN)</string>
+    <string name="create_contact_submit">إنشاء الحساب</string>
 </resources> 
