@@ -25,6 +25,7 @@ class ContactsListViewModel(
             is ContactsListIntent.Search -> performSearch(intent.query)
             ContactsListIntent.LoadMore -> loadContacts()
             ContactsListIntent.Refresh -> refresh()
+            is ContactsListIntent.SelectContact -> TODO()
         }
     }
 

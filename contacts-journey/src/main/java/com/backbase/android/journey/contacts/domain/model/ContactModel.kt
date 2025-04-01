@@ -1,5 +1,7 @@
 package com.backbase.android.journey.contacts.domain.model
 
+import com.backbase.android.journey.contacts.domain.model.util.ModelExtension
+
 typealias DefaultContactModel = ContactModel
 
 data class ContactModel(
@@ -13,5 +15,6 @@ data class ContactModel(
     val country: String? = null, // ISO format
     val stateOrArea: String? = null,
     val additionalLine1: String? = null,
-    val additionalLine2: String? = null
+    val additionalLine2: String? = null,
+    val extension: ModelExtension<*>? = null
 )

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="contacts_create_field_name_empty_error">Name cannot be empty</string>
-    <string name="contacts_create_field_name_no_digits">Name cannot contain numbers</string>
+    <string name="contacts_create_field_name_illegal_characters">Name contains illegal characters</string>
     <string name="contacts_account_create_field_empty_error">Account number cannot be empty</string>
     <string name="contacts_account_create_field_wrong_format">Account number is incorrect (must be IBAN).</string>
     
@@ -9,4 +9,6 @@
     <string name="account_name_label">Account Name</string>
     <string name="account_number_label">Account Number (IBAN)</string>
     <string name="create_contact_submit">Create Account</string>
+    <string name="contacts_create_field_email_empty_error">Incorrect email</string>
+
 </resources>

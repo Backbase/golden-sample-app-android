@@ -18,10 +18,6 @@ import com.backbase.android.journey.contacts.presentation.screens.list.ContactsL
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactViewModel
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactViewModelFactory
 import com.backbase.android.journey.contacts.domain.usecase.SaveNewContactUseCaseImpl
-import com.backbase.android.journey.contacts.presentation.screens.create_contact.createContactNavigation
-import com.backbase.android.journey.contacts.presentation.screens.detail.contactDetailsNavigation
-import com.backbase.android.journey.contacts.presentation.screens.list.contactListNavigation
-import com.backbase.android.journey.contacts.presentation.screens.result.contactCreateResultNavigation
 
 class ContactsJourneyFragment : Fragment() {
     private val contactsRepository = DefaultContactsRepository(MockContactsService())
@@ -51,26 +47,13 @@ class ContactsJourneyFragment : Fragment() {
                 
                 NavHost(
                     navController = navController,
-                    startDestination = "contacts"
+                    startDestination = ContactsRouting.startDestination
                 ) {
-                    contactListNavigation(
+                    contactsJourneyNavigation(
                         navController = navController,
-                        contactsListViewModel = contactsListViewModel
-                    )
-
-                    contactDetailsNavigation(
-                        navController = navController,
+                        contactsListViewModel = contactsListViewModel,
+                        createContactViewModel = createContactViewModel,
                         contactDetailsViewModel = contactDetailsViewModel
-                    )
-
-                    createContactNavigation(
-                        navController = navController,
-                        createContactViewModel = createContactViewModel
-                    )
-
-                    contactCreateResultNavigation(
-                        navController = navController,
-                        contactsListViewModel = contactsListViewModel
                     )
                 }
             }

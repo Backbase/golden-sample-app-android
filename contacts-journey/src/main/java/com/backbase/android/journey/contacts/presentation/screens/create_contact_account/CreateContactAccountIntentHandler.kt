@@ -1,33 +1,34 @@
 package com.backbase.android.journey.contacts.presentation.screens.create_contact_account
 
+import com.backbase.android.journey.contacts.domain.model.AccountModel
+import com.backbase.android.journey.contacts.domain.usecase.SaveNewAccountUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
-class CreateContactAccountIntentHandler<StateExtension> {
+class CreateContactAccountIntentHandler<StateExtension>(
+    private val saveNewAccountUseCase: SaveNewAccountUseCase,
+    private val stateFlow: MutableStateFlow<CreateContactAccountState<StateExtension>>,
+    private val effectFlow: MutableSharedFlow<CreateContactAccountViewEffect>,
+    private val scope: CoroutineScope
+) {
     fun handleIntent(
-        intent: CreateContactAccountIntent,
-        stateFlow: MutableStateFlow<CreateContactAccountState<StateExtension>>,
-        effectFlow: MutableSharedFlow<CreateContactAccountViewEffect>,
-        scope: CoroutineScope
+        intent: CreateContactAccountIntent
     ){
         when(intent){
             is CreateContactAccountIntent.UpdateAccountName -> stateFlow.value = stateFlow.value.copy(accountName = stateFlow.value.accountName.copy(value = intent.accountName))
             is CreateContactAccountIntent.UpdateAccountNumber -> stateFlow.value = stateFlow.value.copy(accountNumber = stateFlow.value.accountNumber.copy(value = intent.accountNumber))
-            CreateContactAccountIntent.Submit -> scope.launch{ saveAccount(stateFlow, effectFlow) }
+            CreateContactAccountIntent.Submit -> scope.launch{ saveAccount(stateFlow, effectFlow, scope, saveNewAccountUseCase) }
         }
     }
 
     suspend fun saveAccount(
         stateFlow: MutableStateFlow<CreateContactAccountState<StateExtension>>,
-        effectFlow: MutableSharedFlow<CreateContactAccountViewEffect>
+        effectFlow: MutableSharedFlow<CreateContactAccountViewEffect>,
+        scope: CoroutineScope,
+        saveNewAccountUseCase: SaveNewAccountUseCase
     ) {
-        // Set loading state
-        stateFlow.value = stateFlow.value.copy(isLoading = true)
-
-        // Simulate network delay and validation
-        kotlinx.coroutines.delay(1000)
 
         // Validate inputs
         if (stateFlow.value.accountName.value.isBlank() || stateFlow.value.accountNumber.value.isBlank()) {
@@ -35,23 +36,27 @@ class CreateContactAccountIntentHandler<StateExtension> {
                 isLoading = false,
                 error = "Account name and number cannot be empty" //Would be error from BE so no translation
             )
-            effectFlow.emit(CreateContactAccountViewEffect.ToContactCreateResult)
             return
         }
 
-        // Simulate success (90%) or failure (10%) randomly
-        if ((0..100).random() < 90) {
-            stateFlow.value = stateFlow.value.copy(
-                isLoading = false,
-                error = null,
-                isSaved = true
+        stateFlow.value = stateFlow.value.copy(isLoading = true)
+
+        scope.launch {
+            val result = saveNewAccountUseCase(
+                account = AccountModel(
+                    accountName = stateFlow.value.accountName.value,
+                    accountNumber = stateFlow.value.accountNumber.value
+                )
             )
-        } else {
-            stateFlow.value = stateFlow.value.copy(
-                isLoading = false,
-                error = "Failed to save account. Please try again.",//Would be error from BE so no translation
-                isSaved = false
-            )
+            if (result.isSuccess) {
+                stateFlow.value = stateFlow.value.copy(
+                    isSaved = true
+                )
+            } else {
+                stateFlow.value = stateFlow.value.copy(
+                    error = result.exceptionOrNull()?.message
+                )
+            }
         }
         effectFlow.emit(CreateContactAccountViewEffect.ToContactCreateResult)
     }

@@ -9,16 +9,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-sealed interface ContactDetailsIntent {
-    data class LoadContact(val id: String) : ContactDetailsIntent
-}
-
-data class ContactDetailsState(
-    val contact: ContactModel? = null,
-    val isLoading: Boolean = false,
-    val error: String? = null
-)
-
 class ContactDetailsViewModel(
     private val repository: ContactsRepository
 ) : ViewModel() {

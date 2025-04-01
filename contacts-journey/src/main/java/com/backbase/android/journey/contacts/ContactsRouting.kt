@@ -4,23 +4,38 @@ object ContactsRouting {
 
     object Details {
         const val NAVARG_ID = "contactId"
-        const val ROUTE = "contacts/{$NAVARG_ID}"
+        private const val ROUTE = "contacts/{$NAVARG_ID}"
 
-        fun detailsUrl(contactId: String) = "contacts/$contactId"
+        fun registerRoute(routePrefix: String = "") = routePrefix + ROUTE
+        fun navigationRoute(
+            contactId: String,
+            routePrefix: String = ""
+        ) = routePrefix + "${routePrefix}contacts/$contactId"
     }
 
     object List {
-        const val ROUTE = "contacts"
+        private const val ROUTE = "contacts"
+
+        fun route(routePrefix: String = "") = routePrefix + ROUTE
     }
 
     object Create {
-        const val ROUTE = "contacts/create"
+        private const val ROUTE = "contacts/create"
+
+        fun route(routePrefix: String = "") = routePrefix + ROUTE
     }
 
     object CreateAccount {
         const val NAVARG_ID = "contactId"
-        const val ROUTE = "contacts/{$NAVARG_ID}/account/create"
+        private const val ROUTE = "contacts/{$NAVARG_ID}/account/create"
 
-        fun createAccountUrl(contactId: String) = "contacts/$contactId/account/create"
+        fun navigationRoute(
+            contactId: String,
+            routePrefix: String = ""
+        ) = "${routePrefix}contacts/$contactId/account/create"
+        fun registerRoute(routePrefix: String = "") = routePrefix + ROUTE
     }
+
+    fun startDestination(routePrefix: String) = List.route(routePrefix)
+
 }

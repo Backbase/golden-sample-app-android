@@ -23,7 +23,7 @@ class CreateContactLocalFormValidatorImpl<StateExtension>(
         } else if (currentState.name.value.isEmpty()){
             currentState.copy(name = currentState.name.copy(fieldStatus = FieldStatus.Invalid(R.string.contacts_create_field_name_empty_error)))
         } else if (currentState.name.value.contains(regex = Regex("[0-9]"))){
-            currentState.copy(name = currentState.name.copy(fieldStatus = FieldStatus.Invalid(R.string.contacts_create_field_name_no_digits)))
+            currentState.copy(name = currentState.name.copy(fieldStatus = FieldStatus.Invalid(R.string.contacts_create_field_name_illegal_characters)))
         } else {
             currentState.copy(name = currentState.name.copy(fieldStatus = FieldStatus.Valid))
         }
