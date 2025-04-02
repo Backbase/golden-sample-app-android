@@ -2,9 +2,7 @@ package com.backbase.android.journey.contacts.presentation.screens.list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.backbase.android.journey.contacts.domain.repository.ContactsRepository
 import com.backbase.android.journey.contacts.domain.usecase.GetContactsUseCase
-import com.backbase.android.journey.contacts.domain.usecase.GetContactsUseCase.Companion.DEFAULT_PAGE_SIZE
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -47,13 +45,12 @@ class ContactsListViewModel(
                         isLoading = false,
                         error = null
                     )
-                }
-                .onFailure { error ->
-                    _state.value = _state.value.copy(
-                        isLoading = false,
-                        error = error.message
-                    )
-                }
+            }.onFailure { error ->
+                _state.value = _state.value.copy(
+                    isLoading = false,
+                    error = error.message
+                )
+            }
         }
     }
 
