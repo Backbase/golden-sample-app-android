@@ -3,8 +3,8 @@ package com.backbase.android.journey.contacts
 object ContactsRouting {
 
     object Details {
-        const val NAVARG_ID = "contactId"
-        private const val ROUTE = "contacts/{$NAVARG_ID}"
+        const val CONTACT_ID = "contactId"
+        private const val ROUTE = "contacts/{$CONTACT_ID}"
 
         fun registerRoute(routePrefix: String = "") = routePrefix + ROUTE
         fun navigationRoute(
@@ -26,8 +26,8 @@ object ContactsRouting {
     }
 
     object CreateAccount {
-        const val NAVARG_ID = "contactId"
-        private const val ROUTE = "contacts/{$NAVARG_ID}/account/create"
+        const val CONTACT_ID = "contactId"
+        private const val ROUTE = "contacts/{$CONTACT_ID}/account/create"
 
         fun navigationRoute(
             contactId: String,

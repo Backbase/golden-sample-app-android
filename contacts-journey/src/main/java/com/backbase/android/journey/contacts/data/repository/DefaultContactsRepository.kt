@@ -15,7 +15,7 @@ class DefaultContactsRepository (
     private var cachedContacts: List<DefaultContactModel>? = null
     private var lastFetchTimestamp: Long = 0
 
-    override suspend fun getContacts(page: Int, pageSize: Int): Result<List<DefaultContactModel>> {
+    override suspend fun getContacts(page: Int, pageSize: Int, query: String?): Result<List<DefaultContactModel>> {
         return try {
             val result = contactsApi.getContacts(page, pageSize)
             result.fold(

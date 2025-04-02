@@ -27,15 +27,22 @@ class MockContactsService(private val delayMilis: Long = 1000) : ContactsApi {
 
     override suspend fun getContacts(
         page: Int,
-        pageSize: Int
+        pageSize: Int,
+        query: String?
     ): Result<List<ContactGetResponseBody>> {
+        val filteredContacts = if (!query.isNullOrBlank()) {
+            mockContacts.filter { it.name.contains(query, ignoreCase = true) }
+        } else {
+            mockContacts
+        }
+
         val startIndex = (page -1) * pageSize
         val endIndex = minOf(startIndex + pageSize, mockContacts.size)
 
         delay(delayMilis)
 
-        return if (startIndex <= mockContacts.size) {
-            Result.success(mockContacts.subList(startIndex, endIndex))
+        return if (startIndex <= filteredContacts.size) {
+            Result.success(filteredContacts.subList(startIndex, endIndex))
         } else {
             Result.success(emptyList())
         }

@@ -1,10 +1,13 @@
-package com.backbase.android.journey.contacts.presentation.screens.detail
+package com.backbase.android.journey.contacts.presentation.screens.create_contact_account
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.backbase.android.journey.contacts.ContactsRouting
+import com.backbase.android.journey.contacts.presentation.screens.detail.ContactDetailsIntent
+import com.backbase.android.journey.contacts.presentation.screens.detail.ContactDetailsScreen
+import com.backbase.android.journey.contacts.presentation.screens.detail.ContactDetailsViewModel
 
 fun NavGraphBuilder.contactDetailsNavigation(
     contactDetailsViewModel: ContactDetailsViewModel,

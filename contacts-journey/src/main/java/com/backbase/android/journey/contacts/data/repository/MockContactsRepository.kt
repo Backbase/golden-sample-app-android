@@ -14,6 +14,7 @@ class MockContactsRepository: ContactsRepository {
     override suspend fun getContacts(
         page: Int,
         pageSize: Int,
+        query: String?
     ): Result<List<DefaultContactModel>> {
         if(cachedContacts != null && !isCacheExpired()){
             return Result.success(cachedContacts!!)

@@ -25,6 +25,7 @@ open class OpenContactsListViewModel(
             is ContactsListIntent.Search -> performSearch(intent.query)
             ContactsListIntent.LoadMore -> loadContacts()
             ContactsListIntent.Refresh -> refresh()
+            is ContactsListIntent.SelectContact -> TODO()
         }
     }
 
@@ -76,6 +77,7 @@ class ExtendedContactListViewModel(
             is ContactsListIntent.LoadMore -> TODO()
             is ContactsListIntent.Refresh -> TODO()
             is ContactsListIntent.Search -> TODO()
+            is ContactsListIntent.SelectContact -> TODO()
         }
     }
 

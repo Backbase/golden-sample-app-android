@@ -18,7 +18,7 @@ import com.backbase.android.journey.contacts.domain.model.ContactModel
  would be caching with a Room database instead of our defailt strategy of caching with local data only.
  */
 interface ContactsRepository {
-    suspend fun getContacts(page: Int, pageSize: Int): Result<List<ContactModel>>
+    suspend fun getContacts(page: Int, pageSize: Int, query: String? = null): Result<List<ContactModel>>
     suspend fun getContactDetails(contactId: String): Result<ContactModel>
     suspend fun saveContact(contact: ContactModel): Result<Unit>
     suspend fun updateContact(contact: ContactModel): Result<Unit>

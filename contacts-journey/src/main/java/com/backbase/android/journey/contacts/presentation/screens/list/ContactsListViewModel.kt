@@ -3,14 +3,17 @@ package com.backbase.android.journey.contacts.presentation.screens.list
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.backbase.android.journey.contacts.domain.repository.ContactsRepository
+import com.backbase.android.journey.contacts.domain.usecase.GetContactsUseCase
+import com.backbase.android.journey.contacts.domain.usecase.GetContactsUseCase.Companion.DEFAULT_PAGE_SIZE
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class ContactsListViewModel(
-    private val repository: ContactsRepository
+    private val getContactsUseCase: GetContactsUseCase,
 ) : ViewModel() {
+
     private val _state = MutableStateFlow(ContactsListState())
     val state: StateFlow<ContactsListState> = _state.asStateFlow()
 
@@ -30,10 +33,14 @@ class ContactsListViewModel(
     }
 
     private fun loadContacts() {
+        if(state.value.isLoading) return
         viewModelScope.launch {
             _state.value = _state.value.copy(isLoading = true)
-            repository.getContacts(_state.value.currentPage, pageSize)
-                .onSuccess { newContacts ->
+            getContactsUseCase(
+                page = _state.value.currentPage,
+                pageSize = pageSize,
+                query = _state.value.searchQuery,
+            ).onSuccess { newContacts ->
                     _state.value = _state.value.copy(
                         contacts = _state.value.contacts + newContacts,
                         currentPage = _state.value.currentPage + 1,

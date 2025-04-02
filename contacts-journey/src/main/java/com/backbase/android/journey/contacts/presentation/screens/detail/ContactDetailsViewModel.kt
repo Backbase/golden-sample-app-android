@@ -2,7 +2,6 @@ package com.backbase.android.journey.contacts.presentation.screens.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.backbase.android.journey.contacts.domain.model.ContactModel
 import com.backbase.android.journey.contacts.domain.repository.ContactsRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -17,7 +16,7 @@ class ContactDetailsViewModel(
 
     fun handleIntent(intent: ContactDetailsIntent) {
         when (intent) {
-            is ContactDetailsIntent.LoadContact -> loadContact(intent.id)
+            is ContactDetailsIntent.LoadContact -> loadContact(intent.contactId)
         }
     }
 

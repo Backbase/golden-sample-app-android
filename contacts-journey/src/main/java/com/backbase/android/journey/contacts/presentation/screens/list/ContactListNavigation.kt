@@ -11,7 +11,7 @@ fun NavGraphBuilder.contactListNavigation(
     onNavigateToCreate: () -> Unit,
     routePrefix: String = ""
 ){
-    composable(routePrefix + ContactsRouting.List.ROUTE) {
+    composable(ContactsRouting.List.route(routePrefix)) {
         ContactListScreen(
             viewModel = contactsListViewModel,
             onNavigateToDetails = onNavigateToDetails,

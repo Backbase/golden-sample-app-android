@@ -4,7 +4,7 @@ import com.backbase.android.journey.contacts.domain.model.ContactModel
 import com.backbase.android.journey.contacts.domain.repository.ContactsRepository
 
 interface SaveNewContactUseCase {
-    suspend operator fun invoke(contact: ContactModel)
+    suspend operator fun invoke(contact: ContactModel): Result<Unit>
 }
 
 class SaveNewContactUseCaseImpl (
@@ -12,7 +12,6 @@ class SaveNewContactUseCaseImpl (
 ) : SaveNewContactUseCase {
     override suspend fun invoke(
         contact: ContactModel
-    ) {
+    ): Result<Unit> =
         contactsRepository.saveContact(contact)
-    }
 } 
