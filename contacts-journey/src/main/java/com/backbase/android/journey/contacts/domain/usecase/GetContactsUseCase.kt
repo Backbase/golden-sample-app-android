@@ -10,7 +10,7 @@ interface GetContactsUseCase {
         page: Int,
         pageSize: Int = DEFAULT_PAGE_SIZE,
         query: String? = null
-    ): Flow<PaginatedResult<ContactModel>>?
+    ): Result<List<ContactModel>>?
 
     companion object {
         const val DEFAULT_PAGE_SIZE = 20
@@ -24,11 +24,10 @@ class GetContactsUseCaseImpl(
         page: Int,
         pageSize: Int,
         query: String?
-    ): Flow<PaginatedResult<ContactModel>>? {
+    ): Result<List<ContactModel>>? =
         contactsRepository.getContacts(
             page = page,
-            pageSize = pageSize
+            pageSize = pageSize,
+            query = query
         )
-    }
-
 }
