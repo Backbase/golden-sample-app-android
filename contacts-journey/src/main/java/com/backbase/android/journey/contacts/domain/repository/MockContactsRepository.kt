@@ -1,9 +1,7 @@
-package com.backbase.android.journey.contacts.data.repository
+package com.backbase.android.journey.contacts.domain.repository
 
 import com.backbase.android.journey.contacts.data.MockContactsCreatorImpl
 import com.backbase.android.journey.contacts.domain.model.DefaultContactModel
-import com.backbase.android.journey.contacts.domain.repository.ContactsRepository
-import kotlinx.coroutines.delay
 
 class MockContactsRepository: ContactsRepository {
 

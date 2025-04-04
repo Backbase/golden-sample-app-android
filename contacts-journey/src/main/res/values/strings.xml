@@ -11,4 +11,9 @@
     <string name="create_contact_submit">Create Account</string>
     <string name="contacts_create_field_email_empty_error">Incorrect email</string>
 
+    <string name="contacts_create_success_title">Contact Created Successfully!</string>
+    <string name="contacts_create_success_message">The new contact has been added to your list.</string>
+    <string name="contacts_create_success_button_create_new">Create New Contact</string>
+    <string name="contacts_create_success_button_go_to_list">Go to Contact List</string>
+
 </resources>

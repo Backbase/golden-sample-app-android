@@ -10,4 +10,9 @@
     <string name="account_number_label">رقم الحساب (IBAN)</string>
     <string name="create_contact_submit">إنشاء الحساب</string>
     <string name="contacts_create_field_email_empty_error">البريد الإلكتروني غير صحيح</string>
+
+    <string name="contacts_create_success_title">تم إنشاء جهة الاتصال بنجاح!</string>
+    <string name="contacts_create_success_message">تمت إضافة جهة الاتصال الجديدة إلى قائمتك.</string>
+    <string name="contacts_create_success_button_create_new">إنشاء جهة اتصال جديدة</string>
+    <string name="contacts_create_success_button_go_to_list">الذهاب إلى قائمة جهات الاتصال</string>
 </resources> 

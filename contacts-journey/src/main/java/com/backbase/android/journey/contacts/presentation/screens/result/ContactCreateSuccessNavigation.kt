@@ -1,12 +1,19 @@
 package com.backbase.android.journey.contacts.presentation.screens.result
 
 import androidx.navigation.NavGraphBuilder
-import com.backbase.android.journey.contacts.presentation.screens.list.ContactsListViewModel
+import androidx.navigation.compose.composable
+import com.backbase.android.journey.contacts.ContactsRouting
 
 
 fun NavGraphBuilder.contactCreateSuccessNavigation(
-    contactsListViewModel: ContactsListViewModel,
+    onNavigateToCreateContact: () -> Unit,
+    onNavigateToContactList: () -> Unit,
     routePrefix: String = ""
 ){
-    TODO("Not yet implemented")
+    composable(ContactsRouting.Create.Success.route(routePrefix)) {
+        ContactCreateSuccessScreen(
+            onNavigateToCreateContact = onNavigateToCreateContact,
+            onNavigateToContactList = onNavigateToContactList
+        )
+    }
 }

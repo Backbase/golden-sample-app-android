@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 
+//Variation of the ViewModel where the Intent handlers are separated.
 class CreateContactViewModel(
     private val saveNewContactUseCase: SaveNewContactUseCase,
     val validationFunctions: MutableList<(DefaultCreateContactState) -> DefaultCreateContactState> = mutableListOf()

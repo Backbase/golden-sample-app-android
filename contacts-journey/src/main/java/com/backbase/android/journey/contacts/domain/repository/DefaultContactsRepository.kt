@@ -1,10 +1,9 @@
-package com.backbase.android.journey.contacts.data.repository
+package com.backbase.android.journey.contacts.domain.repository
 
 import com.backbase.android.journey.contacts.data.service.ContactsApi
 import com.backbase.android.journey.contacts.data.toContactGetResponseBody
 import com.backbase.android.journey.contacts.data.toContactModel
 import com.backbase.android.journey.contacts.domain.model.DefaultContactModel
-import com.backbase.android.journey.contacts.domain.repository.ContactsRepository
 
 class DefaultContactsRepository (
     // Add your data sources here, e.g.:

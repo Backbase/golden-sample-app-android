@@ -23,6 +23,13 @@ object ContactsRouting {
         private const val ROUTE = "contacts/create"
 
         fun route(routePrefix: String = "") = routePrefix + ROUTE
+
+
+        object Success {
+            private const val ROUTE = "contacts/create/success"
+
+            fun route(routePrefix: String = "") = routePrefix + ROUTE
+        }
     }
 
     object CreateAccount {

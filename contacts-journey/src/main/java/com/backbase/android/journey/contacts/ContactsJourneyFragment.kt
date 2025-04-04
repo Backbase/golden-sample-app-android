@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.backbase.android.journey.contacts.data.repository.DefaultContactsRepository
+import com.backbase.android.journey.contacts.domain.repository.DefaultContactsRepository
 import com.backbase.android.journey.contacts.data.service.MockContactsService
 import com.backbase.android.journey.contacts.presentation.screens.detail.ContactDetailsViewModel
 import com.backbase.android.journey.contacts.presentation.screens.detail.ContactDetailsViewModelFactory
