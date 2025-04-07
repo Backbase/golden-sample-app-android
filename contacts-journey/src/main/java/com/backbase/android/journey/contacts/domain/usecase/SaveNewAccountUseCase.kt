@@ -13,6 +13,6 @@ class SaveNewAccountUseCaseImpl (
     override suspend fun invoke(
         account: AccountModel
     ): Result<Unit> {
-        TODO("Not implemented yet")
+        contactsRepository.saveNewAccount(account)
     }
 } 

@@ -25,4 +25,4 @@ class ContactDetailsViewModel(
     fun handleIntent(intent: ContactDetailsIntent) =
         contactDetailsIntentHandler.handleIntent(intent)
 
-} 
+}

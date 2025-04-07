@@ -13,4 +13,7 @@ data class AccountModel(
     val accountType: String? = null,
     val bankName: String? = null,
     val extension: ModelExtension<*>? = null
+
+    // alternative:
+    // val extension: Any? = null
 )

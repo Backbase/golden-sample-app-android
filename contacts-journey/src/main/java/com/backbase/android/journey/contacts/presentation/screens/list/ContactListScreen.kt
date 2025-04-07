@@ -19,18 +19,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.backbase.android.journey.contacts.data.MockContactsCreatorImpl
 import com.backbase.android.journey.contacts.domain.model.ContactModel
 import com.backbase.android.journey.contacts.domain.model.DefaultContactModel
-import com.backbase.android.journey.contacts.presentation.components.ContactListItem
+import com.backbase.android.journey.contacts.domain.repository.MockContactsCreatorImpl
+import com.backbase.android.journey.contacts.presentation.components.ContactsComponents
 import com.backbase.android.journey.contacts.presentation.components.SearchBar
 
 @Composable
 fun ContactListScreen(
     viewModel: ContactsListViewModel,
+    contactsComponents: ContactsComponents = ContactsComponents(),
     onNavigateToDetails: (DefaultContactModel) -> Unit,
     onNavigateToCreate: () -> Unit
-) {
+    ) {
     val state by viewModel.state.collectAsState()
 
     Scaffold(
@@ -53,7 +54,8 @@ fun ContactListScreen(
                     ContactsListIntent.LoadMore
                 )
             },
-            modifier = Modifier.padding(padding)
+            modifier = Modifier.padding(padding),
+            contactsComponents = contactsComponents
         )
     }
 }
@@ -64,7 +66,8 @@ fun  ContactList(
     onContactClick: (ContactModel) -> Unit,
     onSearch: (String) -> Unit,
     onLoadMore: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    contactsComponents: ContactsComponents = ContactsComponents()
 ) {
     Column(modifier.fillMaxSize()) {
         SearchBar(onSearch)
@@ -85,7 +88,7 @@ fun  ContactList(
         } else { // Not empty
             LazyColumn(Modifier.weight(1f)) {
                 items(state.contacts) { contact ->
-                    ContactListItem(contact, onContactClick)
+                    contactsComponents.contactListItem(contact, onContactClick)
                 }
                 if (state.isLoading) { // Load more
                     item {
@@ -113,7 +116,7 @@ fun  ContactList(
 fun ContactsListPreview() {
     ContactList(
         state = ContactsListState(
-            contacts = MockContactsCreatorImpl.createMockContactsList(10),
+            contacts = MockContactsCreatorImpl().createMockContactModels(10),
             isLoading = false,
             error = null,
             currentPage = 1,

@@ -46,7 +46,7 @@ archCore = { module = "androidx.arch.core:core-testing", name = "archCore", vers
 
 ## C
 coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version = ""}
-coroutinesCore = { group = "org.jetbrains.kotlinx", name = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version = ""}
+coroutinesCore = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version = ""}
 coroutinesTest = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version = ""}
 composeActivity = { group = "androidx.activity", name = "activity-compose", version = ""}
 composeBom = { group = "androidx.compose", name = "compose-bom", version = ""}

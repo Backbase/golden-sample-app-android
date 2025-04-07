@@ -17,16 +17,16 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 //Variation of the ViewModel where the Intent handlers are separated.
-class CreateContactViewModel(
+class CreateContactViewModelImpl(
     private val saveNewContactUseCase: SaveNewContactUseCase,
-    val validationFunctions: MutableList<(DefaultCreateContactState) -> DefaultCreateContactState> = mutableListOf()
-) : ViewModel() {
+    val validationFunctions: MutableList<(CreateContactState<Unit>) -> CreateContactState<Unit>> = mutableListOf()
+) : ViewModel(), CreateContactViewModel<Unit> {
 
-    private val _state = MutableStateFlow(DefaultCreateContactState())
-    val state: StateFlow<DefaultCreateContactState> = _state.asStateFlow()
+    private val _state = MutableStateFlow(CreateContactState<Unit>())
+    override val state: StateFlow<CreateContactState<Unit>> = _state.asStateFlow()
 
     private val _effect = MutableSharedFlow<CreateContactViewEffect?>()
-    val effect: SharedFlow<CreateContactViewEffect?> = _effect.asSharedFlow()
+    override val effect: SharedFlow<CreateContactViewEffect?> = _effect.asSharedFlow()
 
     private val saveContactIntentHandler = SaveContactIntentHandler<Unit>(
         saveNewContactUseCase = saveNewContactUseCase,
@@ -40,7 +40,7 @@ class CreateContactViewModel(
     private val updateNameHandler = UpdateNameHandler<Unit>(stateFlow = _state)
 
 
-    fun handleIntent(intent: CreateContactIntent) {
+    override fun handleIntent(intent: CreateContactIntent) {
         when (intent) {
             is CreateContactIntent.Submit -> saveContactIntentHandler()
             is CreateContactIntent.UpdateAccountNumber -> updateAccountNumberHandler(intent)
@@ -50,11 +50,17 @@ class CreateContactViewModel(
     }
 }
 
+interface CreateContactViewModel<T> {
+    val state: StateFlow<CreateContactState<T>>
+    val effect: SharedFlow<CreateContactViewEffect?>
+    fun handleIntent(intent: CreateContactIntent)
+}
+
 class CreateContactViewModelFactory(
     private val saveNewContactUseCase: SaveNewContactUseCase
 ) : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return CreateContactViewModel(saveNewContactUseCase) as T
+        return CreateContactViewModelImpl(saveNewContactUseCase) as T
     }
 } 

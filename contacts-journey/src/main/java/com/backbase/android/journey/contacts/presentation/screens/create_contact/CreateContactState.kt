@@ -19,5 +19,3 @@ data class CreateContactState<StateExtension>(
                 accountNumber.fieldStatus is FieldStatus.Valid &&
                 email.fieldStatus is FieldStatus.Valid //TODO move to a changeable spot
 }
-
-typealias DefaultCreateContactState = CreateContactState<Unit>

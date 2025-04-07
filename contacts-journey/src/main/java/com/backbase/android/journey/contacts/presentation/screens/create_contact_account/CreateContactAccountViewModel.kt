@@ -10,15 +10,22 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class CreateContactAccountViewModel(
+interface CreateContactAccountViewModel<T> {
+    val state: StateFlow<CreateContactAccountState<T>>
+    val effect: SharedFlow<CreateContactAccountViewEffect>
+    fun handleIntent(intent: CreateContactAccountIntent)
+}
+
+class CreateContactAccountViewModelImpl(
     saveNewAccountUseCase: SaveNewAccountUseCase
-) : ViewModel() {
+) : ViewModel(),
+    CreateContactAccountViewModel<Unit> {
 
     private val _state = MutableStateFlow(CreateContactAccountState<Unit>())
-    val state: StateFlow<CreateContactAccountState<Unit>> = _state.asStateFlow()
+    override val state: StateFlow<CreateContactAccountState<Unit>> = _state.asStateFlow()
 
     private val _effect = MutableSharedFlow<CreateContactAccountViewEffect>()
-    val effect: SharedFlow<CreateContactAccountViewEffect> = _effect.asSharedFlow()
+    override val effect: SharedFlow<CreateContactAccountViewEffect> = _effect.asSharedFlow()
 
     private val intentHandler = CreateContactAccountIntentHandler<Unit>(
         stateFlow = _state,
@@ -27,7 +34,7 @@ class CreateContactAccountViewModel(
         saveNewAccountUseCase = saveNewAccountUseCase
     )
 
-    fun handleIntent(intent: CreateContactAccountIntent) {
+    override fun handleIntent(intent: CreateContactAccountIntent) {
         intentHandler.handleIntent(
             intent = intent
         )

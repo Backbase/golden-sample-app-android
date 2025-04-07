@@ -16,5 +16,8 @@ data class ContactModel(
     val stateOrArea: String? = null,
     val additionalLine1: String? = null,
     val additionalLine2: String? = null,
-    val extension: ModelExtension<*>? = null
+    val extension: Any? = null
+
+    // alternative:
+    // val extension: ModelExtension<*>? = null
 )

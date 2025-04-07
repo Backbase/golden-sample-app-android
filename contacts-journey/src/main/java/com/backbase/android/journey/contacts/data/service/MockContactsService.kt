@@ -1,7 +1,7 @@
 package com.backbase.android.journey.contacts.data.service
 
 import com.backbase.android.client.gen2.contactmanagerclient2.model.ContactGetResponseBody
-import com.backbase.android.journey.contacts.data.MockContactsCreatorImpl
+import com.backbase.android.journey.contacts.domain.repository.MockContactsCreatorImpl
 import kotlinx.coroutines.delay
 import java.util.*
 
@@ -22,7 +22,7 @@ class MockContactsService(private val delayMilis: Long = 1000) : ContactsApi {
 
     init {
         // Add some mock data
-        mockContacts.addAll(MockContactsCreatorImpl.createMockContactGetResponseBody(40))
+        mockContacts.addAll(MockContactsCreatorImpl().createMockContactModels(40))
     }
 
     override suspend fun getContacts(
