@@ -5,7 +5,7 @@ import androidx.navigation.compose.composable
 import com.backbase.android.journey.contacts.ContactsRouting
 
 fun NavGraphBuilder.createContactNavigation(
-    createContactViewModel: CreateContactViewModelImpl,
+    createContactViewModel: CreateContactViewModel,
     onNavigateBack: () -> Unit,
     onNavigateAfterSuccess: () -> Unit,
     routePrefix: String = ""

@@ -12,13 +12,12 @@ import androidx.navigation.compose.rememberNavController
 import com.backbase.android.journey.contacts.domain.repository.DefaultContactsRepository
 import com.backbase.android.journey.contacts.data.service.MockContactsService
 import com.backbase.android.journey.contacts.domain.usecase.GetContactDetailsUseCaseImpl
-import com.backbase.android.journey.contacts.domain.usecase.GetContactsUseCase
 import com.backbase.android.journey.contacts.domain.usecase.GetContactsUseCaseImpl
 import com.backbase.android.journey.contacts.presentation.screens.detail.ContactDetailsViewModel
 import com.backbase.android.journey.contacts.presentation.screens.detail.ContactDetailsViewModelFactory
 import com.backbase.android.journey.contacts.presentation.screens.list.ContactsListViewModel
 import com.backbase.android.journey.contacts.presentation.screens.list.ContactsListViewModelFactory
-import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactViewModelImpl
+import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactViewModel
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactViewModelFactory
 import com.backbase.android.journey.contacts.domain.usecase.SaveNewContactUseCaseImpl
 
@@ -31,7 +30,7 @@ class ContactsJourneyFragment : Fragment() {
         )
     }
 
-    private val createContactViewModel: CreateContactViewModelImpl by viewModels {
+    private val createContactViewModel: CreateContactViewModel by viewModels {
         CreateContactViewModelFactory(
             SaveNewContactUseCaseImpl(contactsRepository)
         )

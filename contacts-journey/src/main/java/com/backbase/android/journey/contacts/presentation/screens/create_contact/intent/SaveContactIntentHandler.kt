@@ -12,16 +12,27 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import java.util.UUID
 
-class SaveContactIntentHandler<StateExtension>(
-    private val saveNewContactUseCase: SaveNewContactUseCase,
-    private val validationFunctions: MutableList<(CreateContactState<StateExtension>) -> CreateContactState<StateExtension>> = mutableListOf(),
-    private val stateFlow: MutableStateFlow<CreateContactState<StateExtension>>,
-    private val effectFlow: MutableSharedFlow<CreateContactViewEffect?>,
-    private val scope: CoroutineScope
-    ) {
+interface  SaveContactIntentHandler<StateExtension>{
+    operator fun invoke(
+        saveNewContactUseCase: SaveNewContactUseCase,
+        validationFunctions: MutableList<(CreateContactState<StateExtension>) -> CreateContactState<StateExtension>> = mutableListOf(),
+        stateFlow: MutableStateFlow<CreateContactState<StateExtension>>,
+        effectFlow: MutableSharedFlow<CreateContactViewEffect?>,
+        scope: CoroutineScope)
+}
 
-    operator fun invoke() {
-        runValidations(stateFlow)
+class SaveContactIntentHandlerImpl<StateExtension>(): SaveContactIntentHandler<StateExtension> {
+    override fun invoke(
+        saveNewContactUseCase: SaveNewContactUseCase,
+        validationFunctions: MutableList<(CreateContactState<StateExtension>) -> CreateContactState<StateExtension>>,
+        stateFlow: MutableStateFlow<CreateContactState<StateExtension>>,
+        effectFlow: MutableSharedFlow<CreateContactViewEffect?>,
+        scope: CoroutineScope,
+    ) {
+        runValidations(
+            stateFlow = stateFlow,
+            validationFunctions = validationFunctions
+        )
 
         if (stateFlow.value.name.fieldStatus is FieldStatus.Invalid) {
             return
@@ -48,9 +59,13 @@ class SaveContactIntentHandler<StateExtension>(
         }
     }
 
-    private fun runValidations(stateFlow: MutableStateFlow<CreateContactState<StateExtension>>) {
+    private fun runValidations(
+        stateFlow: MutableStateFlow<CreateContactState<StateExtension>>,
+        validationFunctions: MutableList<(CreateContactState<StateExtension>) -> CreateContactState<StateExtension>>
+    ) {
         for (validationFunction in validationFunctions) {
             stateFlow.value = validationFunction(stateFlow.value)
         }
     }
+
 }
