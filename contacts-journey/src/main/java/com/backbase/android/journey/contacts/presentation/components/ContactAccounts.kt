@@ -11,8 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.backbase.android.journey.contacts.data.MockContactsCreatorImpl
 import com.backbase.android.journey.contacts.domain.model.AccountModel
+import com.backbase.android.journey.contacts.domain.repository.MockContactsCreatorImpl
 
 @Composable
 fun  ContactAccountsList(accounts: List<AccountModel>) {
@@ -52,14 +52,14 @@ fun  ContactAccountItem(account: AccountModel) {
 @Preview(showBackground = true)
 @Composable
 fun ContactAccountsListPreview() {
-    val mockAccounts = MockContactsCreatorImpl.createMockContactsList(1)[0].accounts
+    val mockAccounts = MockContactsCreatorImpl().createMockContactModels(1)[0].accounts
     ContactAccountsList(accounts = mockAccounts)
 }
 
 @Preview(showBackground = true)
 @Composable
 fun ContactAccountItemPreview() {
-    val mockAccount = MockContactsCreatorImpl.createMockContactsList(1)[0].accounts[0]
+    val mockAccount = MockContactsCreatorImpl().createMockContactModels(1)[0].accounts[0]
     ContactAccountItem(account = mockAccount)
 }
 

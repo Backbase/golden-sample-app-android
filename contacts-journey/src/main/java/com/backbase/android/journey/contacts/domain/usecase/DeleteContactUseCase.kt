@@ -1,6 +1,5 @@
 package com.backbase.android.journey.contacts.domain.usecase
 
-import android.provider.ContactsContract
 import com.backbase.android.journey.contacts.domain.repository.ContactsRepository
 
 interface DeleteContactUseCase {

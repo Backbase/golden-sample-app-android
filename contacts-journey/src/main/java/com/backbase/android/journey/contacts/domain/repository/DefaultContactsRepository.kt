@@ -3,7 +3,7 @@ package com.backbase.android.journey.contacts.domain.repository
 import com.backbase.android.journey.contacts.data.service.ContactsApi
 import com.backbase.android.journey.contacts.data.toContactGetResponseBody
 import com.backbase.android.journey.contacts.data.toContactModel
-import com.backbase.android.journey.contacts.domain.model.DefaultContactModel
+import com.backbase.android.journey.contacts.domain.model.ContactModel
 
 class DefaultContactsRepository (
     // Add your data sources here, e.g.:
@@ -11,10 +11,10 @@ class DefaultContactsRepository (
     // private val contactsDao: ContactsDao
     private val cacheValidityDuration: Long = 5 * 60 * 1000 // 5 minutes in milliseconds
 ) : ContactsRepository {
-    private var cachedContacts: List<DefaultContactModel>? = null
+    private var cachedContacts: List<ContactModel>? = null
     private var lastFetchTimestamp: Long = 0
 
-    override suspend fun getContacts(page: Int, pageSize: Int, query: String?): Result<List<DefaultContactModel>> {
+    override suspend fun getContacts(page: Int, pageSize: Int, query: String?): Result<List<ContactModel>> {
         return try {
             val result = contactsApi.getContacts(page, pageSize)
             result.fold(
@@ -30,11 +30,11 @@ class DefaultContactsRepository (
         }
     }
 
-    override suspend fun getContactDetails(contactId: String): Result<DefaultContactModel> {
+    override suspend fun getContactDetails(contactId: String): Result<ContactModel> {
         return contactsApi.getContactDetails(contactId).map { it.toContactModel() }
     }
 
-    override suspend fun saveContact(contact: DefaultContactModel): Result<Unit> {
+    override suspend fun saveContact(contact: ContactModel): Result<Unit> {
         return try {
             contactsApi.saveContact(contact.toContactGetResponseBody()).also {
                 clearCache() // Invalidate cache after modification
@@ -44,7 +44,7 @@ class DefaultContactsRepository (
         }
     }
 
-    override suspend fun updateContact(contact: DefaultContactModel): Result<Unit> {
+    override suspend fun updateContact(contact: ContactModel): Result<Unit> {
         return try {
             contactsApi.updateContact(contact.toContactGetResponseBody()).also {
                 clearCache() // Invalidate cache after modification
@@ -64,12 +64,12 @@ class DefaultContactsRepository (
         }
     }
 
-    override suspend fun getCachedContacts(): List<DefaultContactModel>? {
+    override suspend fun getCachedContacts(): List<ContactModel>? {
         return cachedContacts
     }
 
     override fun cacheContacts(
-        contacts: List<DefaultContactModel>
+        contacts: List<ContactModel>
     ) {
         cachedContacts = contacts
         lastFetchTimestamp = System.currentTimeMillis()
@@ -84,7 +84,7 @@ class DefaultContactsRepository (
         lastFetchTimestamp = 0
     }
 
-    private fun updateCache(contacts: List<DefaultContactModel>) {
+    private fun updateCache(contacts: List<ContactModel>) {
         cachedContacts = contacts
         lastFetchTimestamp = System.currentTimeMillis()
     }

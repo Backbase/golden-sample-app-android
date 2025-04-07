@@ -22,7 +22,7 @@ class MockContactsService(private val delayMilis: Long = 1000) : ContactsApi {
 
     init {
         // Add some mock data
-        mockContacts.addAll(MockContactsCreatorImpl().createMockContactModels(40))
+        mockContacts.addAll(MockContactsCreatorImpl().createMockContactGetResponseBody(40))
     }
 
     override suspend fun getContacts(

@@ -20,7 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.backbase.android.journey.contacts.domain.model.ContactModel
-import com.backbase.android.journey.contacts.domain.model.DefaultContactModel
+import com.backbase.android.journey.contacts.domain.model.ContactModel
 import com.backbase.android.journey.contacts.domain.repository.MockContactsCreatorImpl
 import com.backbase.android.journey.contacts.presentation.components.ContactsComponents
 import com.backbase.android.journey.contacts.presentation.components.SearchBar
@@ -29,7 +29,7 @@ import com.backbase.android.journey.contacts.presentation.components.SearchBar
 fun ContactListScreen(
     viewModel: ContactsListViewModel,
     contactsComponents: ContactsComponents = ContactsComponents(),
-    onNavigateToDetails: (DefaultContactModel) -> Unit,
+    onNavigateToDetails: (ContactModel) -> Unit,
     onNavigateToCreate: () -> Unit
     ) {
     val state by viewModel.state.collectAsState()

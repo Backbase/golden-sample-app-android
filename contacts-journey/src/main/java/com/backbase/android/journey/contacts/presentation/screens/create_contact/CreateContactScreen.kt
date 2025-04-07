@@ -21,7 +21,7 @@ import com.backbase.android.journey.contacts.presentation.screens.create_contact
 
 @Composable
 fun CreateContactScreen(
-    viewModel: CreateContactViewModel<Any>,
+    viewModel: CreateContactViewModel<Unit>,
     onNavigateBack: () -> Unit,
     onNavigateAfterSuccess: () -> Unit
 ) {

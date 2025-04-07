@@ -4,12 +4,15 @@ import com.backbase.android.client.gen2.contactmanagerclient2.model.AccountInfor
 import com.backbase.android.client.gen2.contactmanagerclient2.model.ContactGetResponseBody
 import com.backbase.android.journey.contacts.domain.model.AccountModel
 import com.backbase.android.journey.contacts.domain.model.ContactModel
-import com.backbase.android.journey.contacts.domain.model.DefaultContactModel
+import java.math.BigDecimal
 
+data class ContactModelExtension(
+    val lastPaymentAmount: BigDecimal?
+)
 
 // Extension functions for mapping between domain and data models
 fun ContactGetResponseBody.toContactModel(): ContactModel {
-    return DefaultContactModel(
+    return ContactModel(
         id = this@toContactModel.id,
         name = this@toContactModel.name,
         alias = this@toContactModel.alias,
@@ -22,11 +25,14 @@ fun ContactGetResponseBody.toContactModel(): ContactModel {
         city = this@toContactModel.town ?: "",
         additionalLine1 = null,
         additionalLine2 = null,
-        stateOrArea = null
+        stateOrArea = null,
+        extension = ContactModelExtension(
+            this@toContactModel.lastPaymentAmount
+        )
     )
 }
 
-fun DefaultContactModel.toContactGetResponseBody(): ContactGetResponseBody {
+fun ContactModel.toContactGetResponseBody(): ContactGetResponseBody {
     return ContactGetResponseBody {
         id = this@toContactGetResponseBody.id
         name = this@toContactGetResponseBody.name

@@ -19,7 +19,7 @@ interface MockContactsCreator {
      */
     fun createMockContactModels(count: Int = 100): List<ContactModel>
 
-    fun createMockContacts(count: Int = 100): List<ContactGetResponseBody>
+    fun createMockContactGetResponseBody(count: Int = 100): List<ContactGetResponseBody>
 
     companion object {
         const val DEFAULT_SEED = 42L
@@ -40,7 +40,7 @@ class MockContactsCreatorImpl(
 
     private val random = Random(seed)
 
-    override fun createMockContacts(
+    override fun createMockContactGetResponseBody(
         count: Int
     ): List<ContactGetResponseBody> {
         return listOf(

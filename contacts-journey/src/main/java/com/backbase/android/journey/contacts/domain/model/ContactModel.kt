@@ -1,9 +1,5 @@
 package com.backbase.android.journey.contacts.domain.model
 
-import com.backbase.android.journey.contacts.domain.model.util.ModelExtension
-
-typealias DefaultContactModel = ContactModel
-
 data class ContactModel(
     val id: String,
     val name: String,
