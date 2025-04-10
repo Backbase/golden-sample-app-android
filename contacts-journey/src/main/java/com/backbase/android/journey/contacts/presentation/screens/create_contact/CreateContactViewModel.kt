@@ -10,6 +10,7 @@ import com.backbase.android.journey.contacts.presentation.screens.create_contact
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.UpdateAccountNumberHandler
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.UpdateEmailHandler
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.UpdateNameHandler
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow

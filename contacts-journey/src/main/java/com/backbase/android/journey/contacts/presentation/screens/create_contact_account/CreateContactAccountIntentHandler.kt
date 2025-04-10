@@ -19,11 +19,11 @@ class CreateContactAccountIntentHandler<StateExtension>(
         when(intent){
             is CreateContactAccountIntent.UpdateAccountName -> stateFlow.value = stateFlow.value.copy(accountName = stateFlow.value.accountName.copy(value = intent.accountName))
             is CreateContactAccountIntent.UpdateAccountNumber -> stateFlow.value = stateFlow.value.copy(accountNumber = stateFlow.value.accountNumber.copy(value = intent.accountNumber))
-            CreateContactAccountIntent.Submit -> scope.launch{ saveAccount(stateFlow, effectFlow, scope, saveNewAccountUseCase) }
+            CreateContactAccountIntent.Submit -> saveAccount(stateFlow, effectFlow, scope, saveNewAccountUseCase)
         }
     }
 
-    suspend fun saveAccount(
+    fun saveAccount(
         stateFlow: MutableStateFlow<CreateContactAccountState<StateExtension>>,
         effectFlow: MutableSharedFlow<CreateContactAccountViewEffect>,
         scope: CoroutineScope,
@@ -52,12 +52,12 @@ class CreateContactAccountIntentHandler<StateExtension>(
                 stateFlow.value = stateFlow.value.copy(
                     isSaved = true
                 )
+                effectFlow.emit(CreateContactAccountViewEffect.ToContactCreateResult)
             } else {
                 stateFlow.value = stateFlow.value.copy(
                     error = result.exceptionOrNull()?.message
                 )
             }
         }
-        effectFlow.emit(CreateContactAccountViewEffect.ToContactCreateResult)
     }
 }

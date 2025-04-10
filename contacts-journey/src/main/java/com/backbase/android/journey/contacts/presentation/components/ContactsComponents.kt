@@ -1,8 +1,11 @@
 package com.backbase.android.journey.contacts.presentation.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import com.backbase.android.journey.contacts.domain.model.AccountModel
 import com.backbase.android.journey.contacts.domain.model.ContactModel
+import io.ktor.websocket.Frame.Text
 
 /**
  * A composable class that provides customizable UI components for displaying contact-related information.
@@ -80,5 +83,11 @@ class ContactsComponents(
     },
     val searchBar: @Composable (onSearch: (String) -> Unit) -> Unit = { onSearch ->
         SearchBar(onSearch)
+    }
+)
+
+val customComponents = ContactsComponents(
+    contactListItem = { contact, onContactClick ->
+        Text(contact.name)
     }
 )

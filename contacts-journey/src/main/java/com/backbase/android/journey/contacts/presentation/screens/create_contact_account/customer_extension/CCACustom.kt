@@ -29,7 +29,9 @@ data class CustomCreateContactStateExtension (
 
 class CustomCreateContactAccountViewModel : ViewModel() {
 
-    private val _state = MutableStateFlow(CreateContactAccountState<CustomCreateContactStateExtension>())
+    private val _state = MutableStateFlow(
+        CreateContactAccountState<CustomCreateContactStateExtension>()
+    )
     val state: StateFlow<CreateContactAccountState<CustomCreateContactStateExtension>> = _state.asStateFlow()
 
     private val _effect = MutableSharedFlow<CreateContactAccountViewEffect>()
@@ -51,15 +53,15 @@ class CustomCreateContactAccountViewModel : ViewModel() {
                     )
                 )
             }
-            is CustomCreateContactAccountIntent.DefaultIntent -> intentHandler.handleIntent(intent.value)
+//            is CustomCreateContactAccountIntent.DefaultIntent -> intentHandler.handleIntent(intent.value)
             // Or alternatively if default override is needed for some intents:
-//            is CustomCreateContactAccountIntent.DefaultIntent -> {
-//                when(intent.value){
-//                    is CreateContactAccountIntent.UpdateAccountName -> intentHandler.handleIntent(intent.value)
-//                    is CreateContactAccountIntent.UpdateAccountNumber -> intentHandler.handleIntent(intent.value)
-//                    CreateContactAccountIntent.Submit -> TODO()
-//                }
-//            }
+            is CustomCreateContactAccountIntent.DefaultIntent -> {
+                when(intent.value){
+                    is CreateContactAccountIntent.UpdateAccountName -> intentHandler.handleIntent(intent.value)
+                    is CreateContactAccountIntent.UpdateAccountNumber -> intentHandler.handleIntent(intent.value)
+                    CreateContactAccountIntent.Submit -> TODO()
+                }
+            }
         }
     }
 }

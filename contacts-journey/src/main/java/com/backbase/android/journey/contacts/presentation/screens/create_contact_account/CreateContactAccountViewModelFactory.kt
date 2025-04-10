@@ -8,9 +8,9 @@ class CreateContactAccountViewModelFactory(
     val saveNewAccountUseCase: SaveNewAccountUseCase
 ): ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(CreateContactAccountViewModelImpl::class.java)) {
+        if (modelClass.isAssignableFrom(CreateContactAccountViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return CreateContactAccountViewModelImpl(
+            return CreateContactAccountViewModel(
                 saveNewAccountUseCase = saveNewAccountUseCase
             ) as T
         }
