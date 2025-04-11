@@ -1,8 +1,6 @@
 package com.backbase.android.journey.contacts.presentation.components
 
-import androidx.compose.foundation.clickable
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import com.backbase.android.journey.contacts.domain.model.AccountModel
 import com.backbase.android.journey.contacts.domain.model.ContactModel
 import io.ktor.websocket.Frame.Text

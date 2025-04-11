@@ -1,36 +1,28 @@
-package com.backbase.android.journey.contacts.presentation.screens.create_contact_account
+package com.backbase.android.journey.contacts.presentation.screens.create_contact_account.intent
 
 import com.backbase.android.journey.contacts.domain.model.AccountModel
 import com.backbase.android.journey.contacts.domain.usecase.SaveNewAccountUseCase
+import com.backbase.android.journey.contacts.presentation.screens.create_contact_account.CreateContactAccountState
+import com.backbase.android.journey.contacts.presentation.screens.create_contact_account.CreateContactAccountViewEffect
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
-class CreateContactAccountIntentHandler<StateExtension>(
-    private val saveNewAccountUseCase: SaveNewAccountUseCase,
-    private val stateFlow: MutableStateFlow<CreateContactAccountState<StateExtension>>,
-    private val effectFlow: MutableSharedFlow<CreateContactAccountViewEffect>,
-    private val scope: CoroutineScope
-) {
-    fun handleIntent(
-        intent: CreateContactAccountIntent
-    ){
-        when(intent){
-            is CreateContactAccountIntent.UpdateAccountName -> stateFlow.value = stateFlow.value.copy(accountName = stateFlow.value.accountName.copy(value = intent.accountName))
-            is CreateContactAccountIntent.UpdateAccountNumber -> stateFlow.value = stateFlow.value.copy(accountNumber = stateFlow.value.accountNumber.copy(value = intent.accountNumber))
-            CreateContactAccountIntent.Submit -> saveAccount(stateFlow, effectFlow, scope, saveNewAccountUseCase)
-        }
-    }
-
-    fun saveAccount(
+interface SaveAccountIntentHandler<StateExtension>{
+    operator fun invoke(
+        saveNewAccountUseCase: SaveNewAccountUseCase,
         stateFlow: MutableStateFlow<CreateContactAccountState<StateExtension>>,
         effectFlow: MutableSharedFlow<CreateContactAccountViewEffect>,
-        scope: CoroutineScope,
-        saveNewAccountUseCase: SaveNewAccountUseCase
-    ) {
+        scope: CoroutineScope)
+}
 
-        // Validate inputs
+class SaveAccountIntentHandlerImpl<StateExtension> : SaveAccountIntentHandler<StateExtension>{
+    override fun invoke(
+        saveNewAccountUseCase: SaveNewAccountUseCase,
+        stateFlow: MutableStateFlow<CreateContactAccountState<StateExtension>>,
+        effectFlow: MutableSharedFlow<CreateContactAccountViewEffect>,
+        scope: CoroutineScope){
         if (stateFlow.value.accountName.value.isBlank() || stateFlow.value.accountNumber.value.isBlank()) {
             stateFlow.value = stateFlow.value.copy(
                 isLoading = false,

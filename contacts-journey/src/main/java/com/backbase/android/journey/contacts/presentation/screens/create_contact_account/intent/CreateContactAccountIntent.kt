@@ -1,4 +1,4 @@
-package com.backbase.android.journey.contacts.presentation.screens.create_contact_account
+package com.backbase.android.journey.contacts.presentation.screens.create_contact_account.intent
 
 sealed class CreateContactAccountIntent {
     class UpdateAccountNumber(val accountNumber: String): CreateContactAccountIntent()

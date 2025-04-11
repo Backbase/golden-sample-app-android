@@ -3,6 +3,13 @@ package com.backbase.android.journey.contacts.presentation.screens.create_contac
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.backbase.android.journey.contacts.domain.usecase.SaveNewAccountUseCase
+import com.backbase.android.journey.contacts.presentation.screens.create_contact_account.intent.CreateContactAccountIntent
+import com.backbase.android.journey.contacts.presentation.screens.create_contact_account.intent.SaveAccountIntentHandler
+import com.backbase.android.journey.contacts.presentation.screens.create_contact_account.intent.SaveAccountIntentHandlerImpl
+import com.backbase.android.journey.contacts.presentation.screens.create_contact_account.intent.UpdateNameIntentHandler
+import com.backbase.android.journey.contacts.presentation.screens.create_contact_account.intent.UpdateNameIntentHandlerImpl
+import com.backbase.android.journey.contacts.presentation.screens.create_contact_account.intent.UpdateNumberIntentHandler
+import com.backbase.android.journey.contacts.presentation.screens.create_contact_account.intent.UpdateNumberIntentHandlerImpl
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -10,26 +17,25 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class CreateContactAccountViewModel(
-    saveNewAccountUseCase: SaveNewAccountUseCase
+class CreateContactAccountViewModel<StateExtension>(
+    private val saveNewAccountUseCase: SaveNewAccountUseCase,
+    private val saveAccountIntentHandler: SaveAccountIntentHandler<StateExtension> = SaveAccountIntentHandlerImpl<StateExtension>(),
+    private val updateNumberIntentHandler: UpdateNumberIntentHandler<StateExtension> = UpdateNumberIntentHandlerImpl<StateExtension>(),
+    private val updateNameIntentHandler: UpdateNameIntentHandler<StateExtension> = UpdateNameIntentHandlerImpl<StateExtension>(),
+    initialState: CreateContactAccountState<StateExtension> = CreateContactAccountState<StateExtension>()
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow(CreateContactAccountState<Unit>())
-    val state: StateFlow<CreateContactAccountState<Unit>> = _state.asStateFlow()
+    private val _state = MutableStateFlow(initialState)
+    val state: StateFlow<CreateContactAccountState<StateExtension>> = _state.asStateFlow()
 
     private val _effect = MutableSharedFlow<CreateContactAccountViewEffect>()
     val effect: SharedFlow<CreateContactAccountViewEffect> = _effect.asSharedFlow()
 
-    private val intentHandler = CreateContactAccountIntentHandler<Unit>(
-        stateFlow = _state,
-        effectFlow = _effect,
-        scope = viewModelScope,
-        saveNewAccountUseCase = saveNewAccountUseCase
-    )
-
     fun handleIntent(intent: CreateContactAccountIntent) {
-        intentHandler.handleIntent(
-            intent = intent
-        )
+        when(intent){
+            CreateContactAccountIntent.Submit -> saveAccountIntentHandler(saveNewAccountUseCase, _state, _effect, viewModelScope)
+            is CreateContactAccountIntent.UpdateAccountName -> updateNameIntentHandler(intent, _state)
+            is CreateContactAccountIntent.UpdateAccountNumber -> updateNumberIntentHandler(intent, _state)
+        }
     }
 }

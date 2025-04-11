@@ -9,13 +9,13 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.backbase.android.journey.contacts.presentation.screens.create_contact_account.CreateContactAccountIntent.*
+import com.backbase.android.journey.contacts.presentation.screens.create_contact_account.intent.CreateContactAccountIntent.*
 import com.backbase.android.journey.contacts.R
 
 @Composable
 fun CreateContactAccountScreen(
-    viewModel: CreateContactAccountViewModel,
-    onNavigateAfterSuccess: () -> Unit
+    viewModel: CreateContactAccountViewModel2<Unit>,
+    onNavigateAfterSuccess: () -> Unit = {}
 ) {
     val state by viewModel.state.collectAsState()
     val effect by viewModel.effect.collectAsState(initial = null)
