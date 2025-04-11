@@ -15,18 +15,17 @@ import java.util.UUID
 interface  SaveContactIntentHandler<StateExtension>{
     operator fun invoke(
         validationFunctions: MutableList<(CreateContactState<StateExtension>) -> CreateContactState<StateExtension>> = mutableListOf(),
-        stateFlow: MutableStateFlow<CreateContactState<StateExtension>>,
-        effectFlow: MutableSharedFlow<CreateContactViewEffect>,
         scope: CoroutineScope)
 }
 
 class SaveContactIntentHandlerImpl<StateExtension>(
     private val saveNewContactUseCase: SaveNewContactUseCase,
+    private val stateFlow: MutableStateFlow<CreateContactState<StateExtension>>,
+    private val effectFlow: MutableSharedFlow<CreateContactViewEffect>,
     ): SaveContactIntentHandler<StateExtension> {
+
     override fun invoke(
         validationFunctions: MutableList<(CreateContactState<StateExtension>) -> CreateContactState<StateExtension>>,
-        stateFlow: MutableStateFlow<CreateContactState<StateExtension>>,
-        effectFlow: MutableSharedFlow<CreateContactViewEffect>,
         scope: CoroutineScope,
     ) {
         runValidations(

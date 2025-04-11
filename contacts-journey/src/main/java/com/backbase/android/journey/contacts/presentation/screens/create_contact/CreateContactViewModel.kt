@@ -3,9 +3,7 @@ package com.backbase.android.journey.contacts.presentation.screens.create_contac
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.backbase.android.journey.contacts.domain.usecase.SaveNewContactUseCase
-import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactState
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.CreateContactIntent
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.handler.SaveContactIntentHandler
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.handler.SaveContactIntentHandlerImpl
@@ -26,33 +24,38 @@ import kotlinx.coroutines.flow.asStateFlow
 class CreateContactViewModel(
     saveNewContactUseCase: SaveNewContactUseCase,
 
+    private val _state: MutableStateFlow<CreateContactState<Unit>> = MutableStateFlow(CreateContactState<Unit>()),
+    private val _effect: MutableSharedFlow<CreateContactViewEffect> = MutableSharedFlow(),
 
     val validationFunctions: MutableList<(CreateContactState<Unit>) -> CreateContactState<Unit>> = mutableListOf(),
 
-    private val saveContactIntentHandler: SaveContactIntentHandler<Unit> = SaveContactIntentHandlerImpl(saveNewContactUseCase= saveNewContactUseCase),
-    private val updateAccountNumberHandler: UpdateAccountNumberHandler<Unit> = UpdateAccountNumberHandlerImpl<Unit>(),
-    private val updateEmailHandler: UpdateEmailHandler<Unit> = UpdateEmailHandlerImpl<Unit>(),
-    private val updateNameHandler: UpdateNameHandler<Unit> = UpdateNameHandlerImpl<Unit>()
+    private val saveContactIntentHandler: SaveContactIntentHandler<Unit> = SaveContactIntentHandlerImpl(
+        saveNewContactUseCase= saveNewContactUseCase,
+        stateFlow = _state,
+        effectFlow = _effect
+    ),
+    private val updateAccountNumberHandler: UpdateAccountNumberHandler<Unit> = UpdateAccountNumberHandlerImpl<Unit>(
+        stateFlow = _state
+    ),
+    private val updateEmailHandler: UpdateEmailHandler<Unit> = UpdateEmailHandlerImpl<Unit>(
+        stateFlow = _state
+    ),
+    private val updateNameHandler: UpdateNameHandler<Unit> = UpdateNameHandlerImpl<Unit>(
+        stateFlow = _state
+    )
 ) : ViewModel() {
 
-    private val _state: MutableStateFlow<CreateContactState<Unit>> = MutableStateFlow(CreateContactState<Unit>())
     val state: StateFlow<CreateContactState<Unit>> = _state.asStateFlow()
-
-    private val _effect: MutableSharedFlow<CreateContactViewEffect> = MutableSharedFlow()
     val effect: SharedFlow<CreateContactViewEffect?> = _effect.asSharedFlow()
 
     fun handleIntent(intent: CreateContactIntent) {
         when (intent) {
             is CreateContactIntent.Submit -> saveContactIntentHandler(
                 validationFunctions = validationFunctions,
-                stateFlow = _state,
-                effectFlow = _effect,
                 scope = viewModelScope
             )
             is CreateContactIntent.UpdateAccountNumber -> updateAccountNumberHandler(
-                intent,
-                stateFlow = _state,
-                effectFlow = _effect
+                intent
             )
             is CreateContactIntent.UpdateEmail -> updateEmailHandler(intent)
             is CreateContactIntent.UpdateName -> updateNameHandler(intent)
@@ -77,7 +80,13 @@ class CustomCreateContactViewModelFactory(
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return CreateContactViewModel(
-            saveNewContactUseCase= saveNewContactUseCase
+            saveNewContactUseCase= saveNewContactUseCase,
+            _state = MutableStateFlow(CreateContactState<Unit>()),
+            updateEmailHandler = object: UpdateEmailHandler<Unit>{
+                override fun invoke(intent: CreateContactIntent.UpdateEmail) {
+
+                }
+            }
         ) as T
     }
 }
