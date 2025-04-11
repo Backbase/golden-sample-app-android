@@ -1,6 +1,7 @@
-package com.backbase.android.journey.contacts.presentation.screens.create_contact_account.intent
+package com.backbase.android.journey.contacts.presentation.screens.create_contact_account.intent.handler
 
 import com.backbase.android.journey.contacts.presentation.screens.create_contact_account.CreateContactAccountState
+import com.backbase.android.journey.contacts.presentation.screens.create_contact_account.intent.CreateContactAccountIntent
 import kotlinx.coroutines.flow.MutableStateFlow
 
 interface UpdateNameIntentHandler<StateExtension>{

@@ -7,7 +7,7 @@ import androidx.navigation.navArgument
 import com.backbase.android.journey.contacts.ContactsRouting
 
 fun NavGraphBuilder.createContactAccountNavigation(
-    createContactAccountViewModel: CreateContactAccountViewModel2<Unit>,
+    createContactAccountViewModel: CreateContactAccountViewModel<Unit>,
     routePrefix: String = ""
 ){
     composable(ContactsRouting.Details.registerRoute(routePrefix), arguments = listOf(

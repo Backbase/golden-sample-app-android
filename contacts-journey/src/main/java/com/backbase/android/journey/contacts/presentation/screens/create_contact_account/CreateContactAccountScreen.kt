@@ -14,7 +14,7 @@ import com.backbase.android.journey.contacts.R
 
 @Composable
 fun CreateContactAccountScreen(
-    viewModel: CreateContactAccountViewModel2<Unit>,
+    viewModel: CreateContactAccountViewModel<Unit>,
     onNavigateAfterSuccess: () -> Unit = {}
 ) {
     val state by viewModel.state.collectAsState()

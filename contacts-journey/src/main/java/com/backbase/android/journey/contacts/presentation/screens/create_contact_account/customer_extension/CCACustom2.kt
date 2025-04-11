@@ -20,7 +20,7 @@ import com.backbase.android.journey.contacts.presentation.screens.create_contact
 import com.backbase.android.journey.contacts.presentation.screens.create_contact_account.CreateContactAccountViewEffect
 import com.backbase.android.journey.contacts.presentation.screens.create_contact_account.CreateContactAccountViewModel
 import com.backbase.android.journey.contacts.presentation.screens.create_contact_account.createContactAccountNavigation
-import com.backbase.android.journey.contacts.presentation.screens.create_contact_account.intent.SaveAccountIntentHandler
+import com.backbase.android.journey.contacts.presentation.screens.create_contact_account.intent.handler.SaveAccountIntentHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
