@@ -7,6 +7,9 @@ design-system = { group = "com.backbase.android.design", name = "design-system",
 # M
 msdk = { group = "com.backbase.android.sdk", name = "backbase", version = "" }
 
+## S
+secureStorage = { module = "com.backbase.android.sdk:secure-storage", version = "" }
+
 [plugins]
 
 [bundles]
@@ -14,4 +17,5 @@ msdk = { group = "com.backbase.android.sdk", name = "backbase", version = "" }
 foundation = [
     "design-system",
     "msdk",
+    "secureStorage",
 ]
