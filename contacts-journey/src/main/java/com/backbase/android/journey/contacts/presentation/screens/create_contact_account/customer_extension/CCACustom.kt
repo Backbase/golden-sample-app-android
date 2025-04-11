@@ -2,7 +2,7 @@ package com.backbase.android.journey.contacts.presentation.screens.create_contac
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.backbase.android.journey.contacts.domain.repository.MockContactsRepository
+import com.backbase.android.journey.contacts.data.repository.MockContactsRepository
 import com.backbase.android.journey.contacts.domain.usecase.SaveNewAccountUseCaseImpl
 import com.backbase.android.journey.contacts.presentation.screens.create_contact_account.CreateContactAccountIntent
 import com.backbase.android.journey.contacts.presentation.screens.create_contact_account.CreateContactAccountIntentHandler
