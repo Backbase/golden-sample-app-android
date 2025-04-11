@@ -1,16 +1,23 @@
-package com.backbase.android.journey.contacts.presentation.screens.create_contact.intent
+package com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.handler
 
 import com.backbase.android.journey.contacts.R
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactState
+import com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.CreateContactIntent
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.validation.EmailValidator
 import com.backbase.android.journey.contacts.presentation.util.FieldStatus
 import kotlinx.coroutines.flow.MutableStateFlow
 
-class UpdateEmailHandler<StateExtension>(
-    private val stateFlow: MutableStateFlow<CreateContactState<StateExtension>>
-) {
-
+interface UpdateEmailHandler<StateExtension>{
     operator fun invoke(
+        intent: CreateContactIntent.UpdateEmail
+    )
+}
+
+class UpdateEmailHandlerImpl<StateExtension>(
+    private val stateFlow: MutableStateFlow<CreateContactState<StateExtension>>
+): UpdateEmailHandler<StateExtension> {
+
+    override operator fun invoke(
         intent: CreateContactIntent.UpdateEmail
     ) {
         stateFlow.value = stateFlow.value.copy(

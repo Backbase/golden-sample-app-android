@@ -2,12 +2,13 @@ package com.backbase.android.journey.contacts.presentation.screens.create_contac
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.backbase.android.journey.contacts.domain.repository.MockContactsRepository
+import com.backbase.android.journey.contacts.data.repository.MockContactsRepository
 import com.backbase.android.journey.contacts.domain.usecase.SaveNewAccountUseCaseImpl
 import com.backbase.android.journey.contacts.presentation.screens.create_contact_account.CreateContactAccountIntent
 import com.backbase.android.journey.contacts.presentation.screens.create_contact_account.CreateContactAccountIntentHandler
 import com.backbase.android.journey.contacts.presentation.screens.create_contact_account.CreateContactAccountState
 import com.backbase.android.journey.contacts.presentation.screens.create_contact_account.CreateContactAccountViewEffect
+import com.backbase.android.journey.contacts.presentation.screens.create_contact_account.SaveAccountIntentHandlerImpl
 import com.backbase.android.journey.contacts.presentation.util.FieldValue
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -37,6 +38,8 @@ class CustomCreateContactAccountViewModel : ViewModel() {
     private val _effect = MutableSharedFlow<CreateContactAccountViewEffect>()
     val effect: SharedFlow<CreateContactAccountViewEffect> = _effect.asSharedFlow()
 
+    private val saveAccountIntentHandler = SaveAccountIntentHandlerImpl<CustomCreateContactStateExtension>()
+
     private val intentHandler = CreateContactAccountIntentHandler<CustomCreateContactStateExtension>(
         stateFlow = _state,
         effectFlow = _effect,
@@ -59,7 +62,12 @@ class CustomCreateContactAccountViewModel : ViewModel() {
                 when(intent.value){
                     is CreateContactAccountIntent.UpdateAccountName -> intentHandler.handleIntent(intent.value)
                     is CreateContactAccountIntent.UpdateAccountNumber -> intentHandler.handleIntent(intent.value)
-                    CreateContactAccountIntent.Submit -> TODO()
+                    CreateContactAccountIntent.Submit -> saveAccountIntentHandler(
+                        saveNewAccountUseCase = SaveNewAccountUseCaseImpl(MockContactsRepository()),
+                        stateFlow = _state,
+                        effectFlow = _effect,
+                        scope = viewModelScope
+                    )
                 }
             }
         }

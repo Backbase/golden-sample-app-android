@@ -1,4 +1,4 @@
-package com.backbase.android.journey.contacts.presentation.screens.create_contact.intent
+package com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.handler
 
 import com.backbase.android.journey.contacts.domain.model.AccountModel
 import com.backbase.android.journey.contacts.domain.model.ContactModel
@@ -14,19 +14,19 @@ import java.util.UUID
 
 interface  SaveContactIntentHandler<StateExtension>{
     operator fun invoke(
-        saveNewContactUseCase: SaveNewContactUseCase,
         validationFunctions: MutableList<(CreateContactState<StateExtension>) -> CreateContactState<StateExtension>> = mutableListOf(),
         stateFlow: MutableStateFlow<CreateContactState<StateExtension>>,
-        effectFlow: MutableSharedFlow<CreateContactViewEffect?>,
+        effectFlow: MutableSharedFlow<CreateContactViewEffect>,
         scope: CoroutineScope)
 }
 
-class SaveContactIntentHandlerImpl<StateExtension>(): SaveContactIntentHandler<StateExtension> {
+class SaveContactIntentHandlerImpl<StateExtension>(
+    private val saveNewContactUseCase: SaveNewContactUseCase,
+    ): SaveContactIntentHandler<StateExtension> {
     override fun invoke(
-        saveNewContactUseCase: SaveNewContactUseCase,
         validationFunctions: MutableList<(CreateContactState<StateExtension>) -> CreateContactState<StateExtension>>,
         stateFlow: MutableStateFlow<CreateContactState<StateExtension>>,
-        effectFlow: MutableSharedFlow<CreateContactViewEffect?>,
+        effectFlow: MutableSharedFlow<CreateContactViewEffect>,
         scope: CoroutineScope,
     ) {
         runValidations(

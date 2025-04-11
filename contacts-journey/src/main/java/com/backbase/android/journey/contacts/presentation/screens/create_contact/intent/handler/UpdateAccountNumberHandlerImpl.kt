@@ -1,16 +1,22 @@
-package com.backbase.android.journey.contacts.presentation.screens.create_contact.intent
+package com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.handler
 
 import com.backbase.android.journey.contacts.R
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactState
+import com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.CreateContactIntent
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.validation.BankAccountValidator
 import com.backbase.android.journey.contacts.presentation.util.FieldStatus
 import kotlinx.coroutines.flow.MutableStateFlow
 
-
-class UpdateAccountNumberHandler<StateExtension>(
-    val stateFlow: MutableStateFlow<CreateContactState<StateExtension>>
-) {
+interface UpdateAccountNumberHandler<StateExtension>{
     operator fun invoke(
+        intent: CreateContactIntent.UpdateAccountNumber
+    )
+}
+
+class UpdateAccountNumberHandlerImpl<StateExtension>(
+    val stateFlow: MutableStateFlow<CreateContactState<StateExtension>>
+): UpdateAccountNumberHandler<StateExtension> {
+    override operator fun invoke(
         intent: CreateContactIntent.UpdateAccountNumber
     ) {
         stateFlow.value = stateFlow.value.copy(

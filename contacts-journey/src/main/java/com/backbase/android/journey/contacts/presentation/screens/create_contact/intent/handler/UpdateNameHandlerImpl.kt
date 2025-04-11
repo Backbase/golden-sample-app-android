@@ -1,17 +1,24 @@
-package com.backbase.android.journey.contacts.presentation.screens.create_contact.intent
+package com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.handler
 
 import com.backbase.android.journey.contacts.R
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactState
+import com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.CreateContactIntent
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.validation.AccountNameValidator
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.validation.NameValidationResult
 import com.backbase.android.journey.contacts.presentation.util.FieldStatus
 import kotlinx.coroutines.flow.MutableStateFlow
 
-class UpdateNameHandler<StateExtension>(
-    private val stateFlow: MutableStateFlow<CreateContactState<StateExtension>>,
-) {
-
+interface UpdateNameHandler<StateExtension>{
     operator fun invoke(
+        intent: CreateContactIntent.UpdateName
+    )
+}
+
+class UpdateNameHandlerImpl<StateExtension>(
+    private val stateFlow: MutableStateFlow<CreateContactState<StateExtension>>,
+): UpdateNameHandler<StateExtension> {
+
+    override operator fun invoke(
         intent: CreateContactIntent.UpdateName
     ) {
         stateFlow.value = stateFlow.value.copy(
