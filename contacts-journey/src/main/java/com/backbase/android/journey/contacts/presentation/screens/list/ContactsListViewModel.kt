@@ -27,14 +27,14 @@ class ContactsListViewModel(
      * Includes fields like the current list of contacts, search query,
      * loading status, and pagination data.
      */
-    private val _state = MutableStateFlow(ContactsListState())
+    private val _state = MutableStateFlow(ContactsListState<Unit>())
 
     /**
      * Publicly exposed state flow to be collected by the UI layer.
      */
-    val state: StateFlow<ContactsListState> = _state.asStateFlow()
+    val state: StateFlow<ContactsListState<Unit>> = _state.asStateFlow()
 
-    private val intentHandler = ContactsListIntentHandler(
+    private val intentHandler = ContactsListIntentHandler<Unit>(
         getContactsUseCase = getContactsUseCase,
         scope = viewModelScope
     )

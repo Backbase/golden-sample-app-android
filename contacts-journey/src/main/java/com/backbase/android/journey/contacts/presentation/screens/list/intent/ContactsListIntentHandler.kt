@@ -19,7 +19,7 @@ import kotlin.collections.plus
  * @property getContactsUseCase Use case for retrieving contacts with pagination and search support.
  * @property scope Coroutine scope used for launching background tasks like loading and debouncing.
  */
-class ContactsListIntentHandler(
+class ContactsListIntentHandler<StateExtension>(
     private val getContactsUseCase: GetContactsUseCase,
     private val scope: CoroutineScope,
 ) {
@@ -35,8 +35,8 @@ class ContactsListIntentHandler(
      * @param stateFlow The mutable state flow used to update UI state.
      */
     fun handleInitLoadContacts(
-        state: ContactsListState,
-        stateFlow: MutableStateFlow<ContactsListState>
+        state: ContactsListState<StateExtension>,
+        stateFlow: MutableStateFlow<ContactsListState<StateExtension>>
     ) {
         scope.launch{
             loadContacts(
@@ -54,8 +54,8 @@ class ContactsListIntentHandler(
      * @param stateFlow The mutable state flow used to update UI state.
      */
     fun handleLoadMode(
-        state: ContactsListState,
-        stateFlow: MutableStateFlow<ContactsListState>
+        state: ContactsListState<StateExtension>,
+        stateFlow: MutableStateFlow<ContactsListState<StateExtension>>
     ) {
         if (state.isLoading) return
 
@@ -78,8 +78,8 @@ class ContactsListIntentHandler(
      */
     fun handleSearch(
         searchIntent: ContactsListIntent.Search,
-        state: ContactsListState,
-        stateFlow: MutableStateFlow<ContactsListState>
+        state: ContactsListState<StateExtension>,
+        stateFlow: MutableStateFlow<ContactsListState<StateExtension>>
     ) {
         stateFlow.value = state.copy(searchQuery = searchIntent.query)
         searchJob?.cancel()
@@ -100,8 +100,8 @@ class ContactsListIntentHandler(
      * @param stateFlow The mutable state flow used to update UI state.
      */
     fun handleRefresh(
-        state: ContactsListState,
-        stateFlow: MutableStateFlow<ContactsListState>
+        state: ContactsListState<StateExtension>,
+        stateFlow: MutableStateFlow<ContactsListState<StateExtension>>
     ) {
         if (state.isLoading) return
 
@@ -125,8 +125,8 @@ class ContactsListIntentHandler(
      * @param stateFlow The mutable state flow used to update UI state.
      */
     private suspend fun loadContacts(
-        state: ContactsListState,
-        stateFlow: MutableStateFlow<ContactsListState>
+        state: ContactsListState<StateExtension>,
+        stateFlow: MutableStateFlow<ContactsListState<StateExtension>>
     ) {
         stateFlow.value = state.copy(isLoading = true)
         getContactsUseCase(

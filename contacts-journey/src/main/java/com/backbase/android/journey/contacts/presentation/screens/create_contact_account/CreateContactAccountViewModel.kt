@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 
+
 class CreateContactAccountViewModel<StateExtension>(
     private val saveNewAccountUseCase: SaveNewAccountUseCase,
     private val saveAccountIntentHandler: SaveAccountIntentHandler<StateExtension> = SaveAccountIntentHandlerImpl<StateExtension>(),

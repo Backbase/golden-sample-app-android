@@ -62,7 +62,7 @@ fun ContactListScreen(
 
 @Composable
 fun  ContactList(
-    state: ContactsListState,
+    state: ContactsListState<Unit>,
     onContactClick: (ContactModel) -> Unit,
     onSearch: (String) -> Unit,
     onLoadMore: () -> Unit,
