@@ -12,26 +12,51 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import java.util.UUID
 
-interface  SaveContactIntentHandler<StateExtension>{
+/**
+ * Interface for handling the intent to save a newly created contact.
+ *
+ * This handler is responsible for:
+ * - Running a list of validation functions against the current contact state.
+ * - Launching a coroutine to persist the contact if validations pass.
+ *
+ * @param StateExtension A generic parameter used to extend the state on project if needed.
+ */
+interface SaveContactIntentHandler<StateExtension> {
+
+    /**
+     * Scope is passed on invoke because in Android, the ViewModel's scope it not accessible before
+     * ViewModel creation.
+     *
+     * @param scope The [CoroutineScope] in which the saving logic will be executed.
+     */
     operator fun invoke(
-        validationFunctions: MutableList<(CreateContactState<StateExtension>) -> CreateContactState<StateExtension>> = mutableListOf(),
-        scope: CoroutineScope)
+        scope: CoroutineScope
+    )
 }
 
+/**
+ * Implementation of [SaveContactIntentHandler] that validates and saves a new contact.
+ *
+ * Behavior:
+ * - Executes the provided validation functions against the current [CreateContactState].
+ * - Aborts the save operation if the name field is invalid.
+ * - If validations pass, builds a [ContactModel] with a generated ID and saves it using [SaveNewContactUseCase].
+ * - Emits a [CreateContactViewEffect.ToContactCreateResult] effect on successful save.
+ * - Updates the state with loading indicators and error messages as needed.
+ *
+ * @param saveNewContactUseCase Use case responsible for persisting the new contact.
+ * @param stateFlow Holds the current [CreateContactState].
+ * @param effectFlow Emits UI effects such as navigation or error messages.
+ */
 class SaveContactIntentHandlerImpl<StateExtension>(
     private val saveNewContactUseCase: SaveNewContactUseCase,
     private val stateFlow: MutableStateFlow<CreateContactState<StateExtension>>,
-    private val effectFlow: MutableSharedFlow<CreateContactViewEffect>,
+    private val effectFlow: MutableSharedFlow<CreateContactViewEffect>
     ): SaveContactIntentHandler<StateExtension> {
 
     override fun invoke(
-        validationFunctions: MutableList<(CreateContactState<StateExtension>) -> CreateContactState<StateExtension>>,
         scope: CoroutineScope,
     ) {
-        runValidations(
-            stateFlow = stateFlow,
-            validationFunctions = validationFunctions
-        )
 
         if (stateFlow.value.name.fieldStatus is FieldStatus.Invalid) {
             return
@@ -55,15 +80,6 @@ class SaveContactIntentHandlerImpl<StateExtension>(
                     error = e.message
                 )
             }
-        }
-    }
-
-    private fun runValidations(
-        stateFlow: MutableStateFlow<CreateContactState<StateExtension>>,
-        validationFunctions: MutableList<(CreateContactState<StateExtension>) -> CreateContactState<StateExtension>>
-    ) {
-        for (validationFunction in validationFunctions) {
-            stateFlow.value = validationFunction(stateFlow.value)
         }
     }
 

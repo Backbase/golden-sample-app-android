@@ -12,7 +12,7 @@ import com.backbase.android.journey.contacts.presentation.screens.list.contactLi
 fun NavGraphBuilder.contactsJourneyNavigation(
     navController: NavController,
     contactsListViewModel: ContactsListViewModel,
-    createContactViewModel: CreateContactViewModel,
+    createContactViewModel: CreateContactViewModel<*>,
     contactDetailsViewModel: ContactDetailsViewModel,
     routePrefix: String = ""
 ) {
@@ -43,11 +43,10 @@ fun NavGraphBuilder.contactsJourneyNavigation(
     createContactNavigation(
         createContactViewModel = createContactViewModel,
         routePrefix = routePrefix,
-        onNavigateBack = {
-            navController.popBackStack()
-         },
         onNavigateAfterSuccess = {
-            TODO("Not implemented yet")
+            navController.navigate(
+                ContactsRouting.Create.route(routePrefix)
+            )
         }
     )
 

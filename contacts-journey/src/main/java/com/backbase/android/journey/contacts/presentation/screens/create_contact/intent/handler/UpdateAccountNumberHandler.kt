@@ -7,12 +7,31 @@ import com.backbase.android.journey.contacts.presentation.screens.create_contact
 import com.backbase.android.journey.contacts.presentation.util.FieldStatus
 import kotlinx.coroutines.flow.MutableStateFlow
 
+/**
+ * Interface for handling the [CreateContactIntent.UpdateAccountNumber] intent.
+ *
+ * This handler is responsible for processing updates to the account number field during
+ * the contact creation flow.
+ *
+ * @param StateExtension A generic parameter used to extend the state on project if needed.
+ */
 interface UpdateAccountNumberHandler<StateExtension>{
     operator fun invoke(
         intent: CreateContactIntent.UpdateAccountNumber
     )
 }
 
+/**
+ * Implementation of [UpdateAccountNumberHandler] that updates the account number field in the
+ * [CreateContactState] and performs validation if the field has been interacted with.
+ *
+ * - Updates the state with the new account number value from the intent.
+ * - If the field status is not [FieldStatus.Init], validates the account number format.
+ * - Sets [FieldStatus.Valid] or [FieldStatus.Invalid] based on the validation result.
+ *
+ * @param StateExtension A generic parameter used to extend the state on project if needed.
+ * @property stateFlow The [MutableStateFlow] that holds the current [CreateContactState].
+ */
 class UpdateAccountNumberHandlerImpl<StateExtension>(
     val stateFlow: MutableStateFlow<CreateContactState<StateExtension>>
 ): UpdateAccountNumberHandler<StateExtension> {

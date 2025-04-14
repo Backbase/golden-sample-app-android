@@ -21,68 +21,61 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 //Variation of the ViewModel where the Intent handlers are separated.
-class CreateContactViewModel(
+class CreateContactViewModel<StateExtension>(
     saveNewContactUseCase: SaveNewContactUseCase,
 
-    private val _state: MutableStateFlow<CreateContactState<Unit>> = MutableStateFlow(CreateContactState<Unit>()),
+    private val _state: MutableStateFlow<CreateContactState<StateExtension>> = MutableStateFlow(CreateContactState<StateExtension>()),
     private val _effect: MutableSharedFlow<CreateContactViewEffect> = MutableSharedFlow(),
 
-    val validationFunctions: MutableList<(CreateContactState<Unit>) -> CreateContactState<Unit>> = mutableListOf(),
-
-    private val saveContactIntentHandler: SaveContactIntentHandler<Unit> = SaveContactIntentHandlerImpl(
+    private val saveContactIntentHandler: SaveContactIntentHandler<StateExtension> = SaveContactIntentHandlerImpl(
         saveNewContactUseCase= saveNewContactUseCase,
         stateFlow = _state,
         effectFlow = _effect
     ),
-    private val updateAccountNumberHandler: UpdateAccountNumberHandler<Unit> = UpdateAccountNumberHandlerImpl<Unit>(
+    private val updateAccountNumberHandler: UpdateAccountNumberHandler<StateExtension> = UpdateAccountNumberHandlerImpl<StateExtension>(
         stateFlow = _state
     ),
-    private val updateEmailHandler: UpdateEmailHandler<Unit> = UpdateEmailHandlerImpl<Unit>(
+    private val updateEmailHandler: UpdateEmailHandler<StateExtension> = UpdateEmailHandlerImpl<StateExtension>(
         stateFlow = _state
     ),
-    private val updateNameHandler: UpdateNameHandler<Unit> = UpdateNameHandlerImpl<Unit>(
+    private val updateNameHandler: UpdateNameHandler<StateExtension> = UpdateNameHandlerImpl<StateExtension>(
         stateFlow = _state
     )
 ) : ViewModel() {
 
-    val state: StateFlow<CreateContactState<Unit>> = _state.asStateFlow()
+    val state: StateFlow<CreateContactState<StateExtension>> = _state.asStateFlow()
     val effect: SharedFlow<CreateContactViewEffect?> = _effect.asSharedFlow()
 
     fun handleIntent(intent: CreateContactIntent) {
         when (intent) {
-            is CreateContactIntent.Submit -> saveContactIntentHandler(
-                validationFunctions = validationFunctions,
-                scope = viewModelScope
-            )
-            is CreateContactIntent.UpdateAccountNumber -> updateAccountNumberHandler(
-                intent
-            )
+            is CreateContactIntent.Submit -> saveContactIntentHandler(viewModelScope)
+            is CreateContactIntent.UpdateAccountNumber -> updateAccountNumberHandler(intent)
             is CreateContactIntent.UpdateEmail -> updateEmailHandler(intent)
             is CreateContactIntent.UpdateName -> updateNameHandler(intent)
         }
     }
 }
 
-class CreateContactViewModelFactory(
+class CreateContactViewModelFactory<Extension>(
     private val saveNewContactUseCase: SaveNewContactUseCase
 ) : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return CreateContactViewModel(saveNewContactUseCase) as T
+        return CreateContactViewModel<Extension>(saveNewContactUseCase) as T
     }
 }
 
 
 
-class CustomCreateContactViewModelFactory(
+class CustomCreateContactViewModelFactory<Extension>(
     private val saveNewContactUseCase: SaveNewContactUseCase
 ) : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return CreateContactViewModel(
             saveNewContactUseCase= saveNewContactUseCase,
-            _state = MutableStateFlow(CreateContactState<Unit>()),
-            updateEmailHandler = object: UpdateEmailHandler<Unit>{
+            _state = MutableStateFlow(CreateContactState<Extension>()),
+            updateEmailHandler = object: UpdateEmailHandler<Extension>{
                 override fun invoke(intent: CreateContactIntent.UpdateEmail) {
 
                 }
