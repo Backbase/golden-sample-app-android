@@ -36,9 +36,7 @@ data class CustomCreateContactStateExtension (
 // Custom ViewModel creation
 class CustomCreateContactAccountViewModel : ViewModel() {
 
-    private val _state = MutableStateFlow(
-        CreateContactAccountState<CustomCreateContactStateExtension>()
-    )
+    private val _state = MutableStateFlow(CreateContactAccountState<CustomCreateContactStateExtension>())
     val state: StateFlow<CreateContactAccountState<CustomCreateContactStateExtension>> = _state.asStateFlow()
 
     private val _effect = MutableSharedFlow<CreateContactAccountViewEffect>()

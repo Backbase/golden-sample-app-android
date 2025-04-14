@@ -27,7 +27,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlin.Unit
 import kotlin.getValue
 
-//Below is an example of using the screen out of the box, but overriding business logic for a single intent.
+//Below is an example of using the screen out of the box, but overriding business logic for some intent.
 
 //Create your own custom intent handling
 class CustomSaveAccountIntentHandler: SaveAccountIntentHandler<Unit>{
