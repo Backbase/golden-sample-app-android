@@ -26,9 +26,7 @@ fun ContactGetResponseBody.toContactModel(): ContactModel {
         additionalLine1 = null,
         additionalLine2 = null,
         stateOrArea = null,
-        extension = ContactModelExtension(
-            this@toContactModel.lastPaymentAmount
-        )
+        extension = this@toContactModel
     )
 }
 

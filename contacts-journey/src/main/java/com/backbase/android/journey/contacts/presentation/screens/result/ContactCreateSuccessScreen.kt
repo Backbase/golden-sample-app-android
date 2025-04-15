@@ -14,7 +14,38 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.backbase.android.journey.contacts.R
 
-
+/**
+ * `ContactCreateSuccessScreen` is a composable function that displays a success screen
+ * after a new contact has been successfully created.
+ *
+ * This screen informs the user that the contact creation was successful and provides
+ * options for further actions:
+ *
+ * - **Create New Contact:**  A button that navigates the user back to the contact creation
+ *   screen to add another contact. This button is only displayed if the
+ *   `onNavigateToCreateContact` lambda is provided (not null).
+ * - **Go to Contact List:** A button that navigates the user to the main contact list
+ *   screen. This button is only displayed if the `onNavigateToContactList` lambda is
+ *   provided (not null).
+ *
+ * **State Management:**
+ * This screen is a purely presentational component and **does not contain a ViewModel**.
+ * It does not interact with the domain or perform any business logic.  All navigation
+ * actions are handled by the provided lambda functions, which are typically managed
+ * by a higher-level component (e.g., a navigation host or a screen that *does* have a
+ * ViewModel).  This separation of concerns keeps the UI layer clean and focused on
+ * displaying information and handling user interactions.
+ *
+ * **Parameters:**
+ * @param onNavigateToCreateContact An optional lambda function (nullable) that, when
+ *                                 invoked, should navigate the user to the contact
+ *                                 creation screen. If `null`, the "Create New Contact"
+ *                                 button will not be displayed.
+ * @param onNavigateToContactList An optional lambda function (nullable) that, when
+ *                               invoked, should navigate the user to the contact list
+ *                               screen. If `null`, the "Go to Contact List" button
+ *                               will not be displayed.
+ */
 @Composable
 fun ContactCreateSuccessScreen(
     onNavigateToCreateContact: (() -> Unit)?,

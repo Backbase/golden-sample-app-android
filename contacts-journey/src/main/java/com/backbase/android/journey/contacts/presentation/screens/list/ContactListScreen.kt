@@ -20,10 +20,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.backbase.android.journey.contacts.domain.model.ContactModel
-import com.backbase.android.journey.contacts.domain.model.ContactModel
 import com.backbase.android.journey.contacts.domain.repository.MockContactsCreatorImpl
 import com.backbase.android.journey.contacts.presentation.components.ContactsComponents
 import com.backbase.android.journey.contacts.presentation.components.SearchBar
+import com.backbase.android.journey.contacts.presentation.screens.list.intent.ContactsListIntent
 
 @Composable
 fun ContactListScreen(
@@ -62,7 +62,7 @@ fun ContactListScreen(
 
 @Composable
 fun  ContactList(
-    state: ContactsListState,
+    state: ContactsListState<Unit>,
     onContactClick: (ContactModel) -> Unit,
     onSearch: (String) -> Unit,
     onLoadMore: () -> Unit,

@@ -17,20 +17,22 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactViewEffect.ToContactCreateResult
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.CreateContactIntent
 
 @Composable
 fun CreateContactScreen(
-    viewModel: CreateContactViewModel<Unit>,
-    onNavigateBack: () -> Unit,
+    viewModel: CreateContactViewModel<*>,
     onNavigateAfterSuccess: () -> Unit
 ) {
+
     val state by viewModel.state.collectAsState()
+    val effect by viewModel.effect.collectAsState(initial = null)
 
-
-    LaunchedEffect(state.isSaved) {
-        if (state.isSaved) {
-            onNavigateBack()
+    LaunchedEffect(effect) {
+        when (effect) {
+            is ToContactCreateResult -> onNavigateAfterSuccess()
+            null -> { /* no-op */ }
         }
     }
 
