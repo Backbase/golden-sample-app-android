@@ -4,7 +4,6 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.backbase.android.journey.contacts.ContactsRouting
 import com.backbase.android.journey.contacts.domain.model.ContactModel
-import com.backbase.android.journey.contacts.presentation.components.ContactsComponents
 
 fun NavGraphBuilder.contactListNavigation(
     contactsListViewModel: ContactsListViewModel,

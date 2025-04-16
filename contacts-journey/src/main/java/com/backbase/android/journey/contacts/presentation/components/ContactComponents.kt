@@ -4,6 +4,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.compose.composable
 import com.backbase.android.journey.contacts.domain.model.AccountModel
 import com.backbase.android.journey.contacts.domain.model.ContactModel
 import io.ktor.websocket.Frame.Text
@@ -87,23 +89,36 @@ class ContactComponents(
     }
 )
 
-val customComponents = ContactComponents(
-    contactListItem = { contact, onContactClick ->
-        Text(contact.name)
-    }
-)
-
 //example usage
 @Composable
 fun ExampleScreen(
     modifier: Modifier = Modifier,
     contacts: List<ContactModel>,
     contactsComponents: ContactComponents = ContactComponents(),
-    onContactClick: (ContactModel) -> Unit
+    onContactClick: (ContactModel) -> Unit = {}
 ) {
     LazyColumn(modifier) {
         items(contacts) { contact ->
             contactsComponents.contactListItem(contact, onContactClick)
         }
+    }
+}
+
+val customComponents = ContactComponents(
+    contactListItem = { contact, onContactClick ->
+        Text(contact.name)
+    }
+)
+
+//Example custom override
+fun NavGraphBuilder.contactListNavigation(
+    onNavigateToDetails: (ContactModel) -> Unit,
+){
+    composable("Example Route") {
+        ExampleScreen(
+            contacts = emptyList(),
+            contactsComponents = customComponents,
+            onContactClick = onNavigateToDetails
+        )
     }
 }
