@@ -12,8 +12,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.backbase.android.journey.contacts.data.MockContactsCreatorImpl
 import com.backbase.android.journey.contacts.domain.model.ContactModel
+import com.backbase.android.journey.contacts.domain.repository.MockContactsCreatorImpl
 import com.backbase.android.journey.contacts.presentation.components.ContactAccountsList
 import com.backbase.android.journey.contacts.presentation.components.ContactDetailField
 
@@ -48,6 +48,6 @@ fun  ContactDetails(
 @Preview(showBackground = true)
 @Composable
 fun ContactDetailsPreview() {
-    val mockContact = MockContactsCreatorImpl.createMockContactsList(1)[0]
+    val mockContact = MockContactsCreatorImpl().createMockContactModels(1)[0]
     ContactDetails(contact = mockContact)
 }

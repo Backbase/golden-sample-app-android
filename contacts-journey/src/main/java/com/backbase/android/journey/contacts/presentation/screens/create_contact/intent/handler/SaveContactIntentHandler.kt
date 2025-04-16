@@ -7,9 +7,11 @@ import com.backbase.android.journey.contacts.presentation.screens.create_contact
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactViewEffect
 import com.backbase.android.journey.contacts.presentation.util.FieldStatus
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.UUID
 
 /**
@@ -27,9 +29,10 @@ interface SaveContactIntentHandler<StateExtension> {
      * Scope is passed on invoke because in Android, the ViewModel's scope it not accessible before
      * ViewModel creation.
      *
-     * @param scope The [CoroutineScope] in which the saving logic will be executed.
      */
     operator fun invoke(
+        stateFlow: MutableStateFlow<CreateContactState<StateExtension>>,
+        effectFlow: MutableSharedFlow<CreateContactViewEffect>,
         scope: CoroutineScope
     )
 }
@@ -45,42 +48,39 @@ interface SaveContactIntentHandler<StateExtension> {
  * - Updates the state with loading indicators and error messages as needed.
  *
  * @param saveNewContactUseCase Use case responsible for persisting the new contact.
- * @param stateFlow Holds the current [CreateContactState].
- * @param effectFlow Emits UI effects such as navigation or error messages.
  */
 class SaveContactIntentHandlerImpl<StateExtension>(
-    private val saveNewContactUseCase: SaveNewContactUseCase,
-    private val stateFlow: MutableStateFlow<CreateContactState<StateExtension>>,
-    private val effectFlow: MutableSharedFlow<CreateContactViewEffect>
+    private val saveNewContactUseCase: SaveNewContactUseCase
     ): SaveContactIntentHandler<StateExtension> {
-
-    override fun invoke(
+    override operator fun invoke(
+        stateFlow: MutableStateFlow<CreateContactState<StateExtension>>,
+        effectFlow: MutableSharedFlow<CreateContactViewEffect>,
         scope: CoroutineScope,
     ) {
+        scope.launch{
+            if (stateFlow.value.name.fieldStatus is FieldStatus.Invalid) {
+                return@launch
+            }
 
-        if (stateFlow.value.name.fieldStatus is FieldStatus.Invalid) {
-            return
-        }
-
-        scope.launch {
-            stateFlow.value = stateFlow.value.copy(isLoading = true)
-            try {
-                val account = AccountModel(accountNumber = stateFlow.value.accountNumber.value)
-                val contact = ContactModel(
-                    id = UUID.randomUUID().toString(),
-                    name = stateFlow.value.name.value,
-                    accounts = listOf(account)
-                )
-                saveNewContactUseCase(contact)
-                stateFlow.value = stateFlow.value.copy(isLoading = false, isSaved = true)
-                effectFlow.emit(CreateContactViewEffect.ToContactCreateResult)
-            } catch (e: Exception) {
-                stateFlow.value = stateFlow.value.copy(
-                    isLoading = false,
-                    error = e.message
-                )
+            withContext(Dispatchers.IO) {
+                stateFlow.value = stateFlow.value.copy(isLoading = true)
+                try {
+                    val account = AccountModel(accountNumber = stateFlow.value.accountNumber.value)
+                    val contact = ContactModel(
+                        id = UUID.randomUUID().toString(),
+                        name = stateFlow.value.name.value,
+                        accounts = listOf(account)
+                    )
+                    saveNewContactUseCase(contact)
+                    stateFlow.value = stateFlow.value.copy(isLoading = false, isSaved = true)
+                    effectFlow.emit(CreateContactViewEffect.ToContactCreateResult)
+                } catch (e: Exception) {
+                    stateFlow.value = stateFlow.value.copy(
+                        isLoading = false,
+                        error = e.message
+                    )
+                }
             }
         }
     }
-
 }

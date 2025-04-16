@@ -5,6 +5,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.backbase.android.journey.contacts.ContactsRouting
+import com.backbase.android.journey.contacts.presentation.screens.detail.intent.ContactDetailsIntent
 
 fun NavGraphBuilder.contactDetailsNavigation(
     contactDetailsViewModel: ContactDetailsViewModel,

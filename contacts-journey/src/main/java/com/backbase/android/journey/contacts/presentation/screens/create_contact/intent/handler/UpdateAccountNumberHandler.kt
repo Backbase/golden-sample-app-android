@@ -2,9 +2,11 @@ package com.backbase.android.journey.contacts.presentation.screens.create_contac
 
 import com.backbase.android.journey.contacts.R
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactState
+import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactViewEffect
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.CreateContactIntent
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.validation.BankAccountValidator
 import com.backbase.android.journey.contacts.presentation.util.FieldStatus
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 
 /**
@@ -17,7 +19,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
  */
 interface UpdateAccountNumberHandler<StateExtension>{
     operator fun invoke(
-        intent: CreateContactIntent.UpdateAccountNumber
+        intent: CreateContactIntent.UpdateAccountNumber,
+        stateFlow: MutableStateFlow<CreateContactState<StateExtension>>,
+        effectFlow: MutableSharedFlow<CreateContactViewEffect>
     )
 }
 
@@ -30,13 +34,12 @@ interface UpdateAccountNumberHandler<StateExtension>{
  * - Sets [FieldStatus.Valid] or [FieldStatus.Invalid] based on the validation result.
  *
  * @param StateExtension A generic parameter used to extend the state on project if needed.
- * @property stateFlow The [MutableStateFlow] that holds the current [CreateContactState].
  */
-class UpdateAccountNumberHandlerImpl<StateExtension>(
-    val stateFlow: MutableStateFlow<CreateContactState<StateExtension>>
-): UpdateAccountNumberHandler<StateExtension> {
+class UpdateAccountNumberHandlerImpl<StateExtension>(): UpdateAccountNumberHandler<StateExtension> {
     override operator fun invoke(
-        intent: CreateContactIntent.UpdateAccountNumber
+        intent: CreateContactIntent.UpdateAccountNumber,
+        stateFlow: MutableStateFlow<CreateContactState<StateExtension>>,
+        effectFlow: MutableSharedFlow<CreateContactViewEffect>
     ) {
         stateFlow.value = stateFlow.value.copy(
             accountNumber = stateFlow.value.accountNumber.copy(value = intent.value)

@@ -2,12 +2,12 @@ package com.backbase.android.journey.contacts.presentation.screens.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.backbase.android.journey.contacts.domain.repository.ContactsRepository
 import com.backbase.android.journey.contacts.domain.usecase.GetContactDetailsUseCase
+import com.backbase.android.journey.contacts.presentation.screens.detail.intent.ContactDetailsIntent
+import com.backbase.android.journey.contacts.presentation.screens.detail.intent.ContactDetailsIntentHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
 
 class ContactDetailsViewModel(
     private val getContactDetailsUseCase: GetContactDetailsUseCase

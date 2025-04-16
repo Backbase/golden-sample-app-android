@@ -2,9 +2,11 @@ package com.backbase.android.journey.contacts.presentation.screens.create_contac
 
 import com.backbase.android.journey.contacts.R
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactState
+import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactViewEffect
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.CreateContactIntent
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.validation.EmailValidator
 import com.backbase.android.journey.contacts.presentation.util.FieldStatus
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 
 /**
@@ -16,7 +18,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
  */
 interface UpdateEmailHandler<StateExtension>{
     operator fun invoke(
-        intent: CreateContactIntent.UpdateEmail
+        intent: CreateContactIntent.UpdateEmail,
+        stateFlow: MutableStateFlow<CreateContactState<StateExtension>>,
+        effectFlow: MutableSharedFlow<CreateContactViewEffect>
     )
 }
 
@@ -29,14 +33,13 @@ interface UpdateEmailHandler<StateExtension>{
  * - Sets [FieldStatus.Valid] or [FieldStatus.Invalid] with an error message resource ID.
  *
  * @param StateExtension A generic parameter used to extend the state on project if needed.
- * @property stateFlow The [MutableStateFlow] holding the current [CreateContactState].
  */
-class UpdateEmailHandlerImpl<StateExtension>(
-    private val stateFlow: MutableStateFlow<CreateContactState<StateExtension>>
-): UpdateEmailHandler<StateExtension> {
+class UpdateEmailHandlerImpl<StateExtension>(): UpdateEmailHandler<StateExtension> {
 
     override operator fun invoke(
-        intent: CreateContactIntent.UpdateEmail
+        intent: CreateContactIntent.UpdateEmail,
+        stateFlow: MutableStateFlow<CreateContactState<StateExtension>>,
+        effectFlow: MutableSharedFlow<CreateContactViewEffect>
     ) {
         stateFlow.value = stateFlow.value.copy(
             email = stateFlow.value.email.copy(value = intent.value)

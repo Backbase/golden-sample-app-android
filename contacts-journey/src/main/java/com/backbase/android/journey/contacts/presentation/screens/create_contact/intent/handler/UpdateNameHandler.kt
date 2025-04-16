@@ -2,10 +2,12 @@ package com.backbase.android.journey.contacts.presentation.screens.create_contac
 
 import com.backbase.android.journey.contacts.R
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactState
+import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactViewEffect
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.CreateContactIntent
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.validation.AccountNameValidator
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.validation.NameValidationResult
 import com.backbase.android.journey.contacts.presentation.util.FieldStatus
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 
 /**
@@ -17,7 +19,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
  */
 interface UpdateNameHandler<StateExtension>{
     operator fun invoke(
-        intent: CreateContactIntent.UpdateName
+        intent: CreateContactIntent.UpdateName,
+        stateFlow: MutableStateFlow<CreateContactState<StateExtension>>,
+        effectFlow: MutableSharedFlow<CreateContactViewEffect>
     )
 }
 
@@ -32,14 +36,13 @@ interface UpdateNameHandler<StateExtension>{
  *   based on the validation result.
  *
  * @param StateExtension A generic parameter used to extend the state if needed.
- * @property stateFlow The [MutableStateFlow] holding the current [CreateContactState].
  */
-class UpdateNameHandlerImpl<StateExtension>(
-    private val stateFlow: MutableStateFlow<CreateContactState<StateExtension>>,
-): UpdateNameHandler<StateExtension> {
+class UpdateNameHandlerImpl<StateExtension>(): UpdateNameHandler<StateExtension> {
 
     override operator fun invoke(
-        intent: CreateContactIntent.UpdateName
+        intent: CreateContactIntent.UpdateName,
+        stateFlow: MutableStateFlow<CreateContactState<StateExtension>>,
+        effectFlow: MutableSharedFlow<CreateContactViewEffect>
     ) {
         stateFlow.value = stateFlow.value.copy(
             name = stateFlow.value.name.copy(value = intent.value)
@@ -48,6 +51,7 @@ class UpdateNameHandlerImpl<StateExtension>(
         if(stateFlow.value.name.fieldStatus is FieldStatus.Init) {
             return //Does not validate when on Init
         } else {
+            // Currently this is just as example for validation rules. This proposal does not dictate how this should work.
             val validationResult = AccountNameValidator.validate(stateFlow.value.name.value)
             when(validationResult){
                 is NameValidationResult.Valid -> stateFlow.value = stateFlow.value.copy(name = stateFlow.value.name.copy(fieldStatus = FieldStatus.Valid))

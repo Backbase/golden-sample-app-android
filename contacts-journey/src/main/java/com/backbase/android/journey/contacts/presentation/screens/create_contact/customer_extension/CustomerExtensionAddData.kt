@@ -7,7 +7,7 @@ import com.backbase.android.journey.contacts.domain.usecase.SaveNewContactUseCas
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactState
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactViewEffect
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.CreateContactIntent
-import com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.handler.DefaultCreateContactIntentHandlers
+import com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.handler.CreateContactIntentHandlers
 import com.backbase.android.journey.contacts.presentation.util.FieldValue
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -42,13 +42,9 @@ class CustomCreateContactViewModel : ViewModel() {
     private val _effect = MutableSharedFlow<CreateContactViewEffect>()
     val effect: SharedFlow<CreateContactViewEffect> = _effect.asSharedFlow()
 
-    private val defaultIntentHandlers = DefaultCreateContactIntentHandlers<CustomCreateContactStateExtension>(
-        saveNewContactUseCase = SaveNewContactUseCaseImpl(MockContactsRepository()),
-        stateFlow = _state,
-        effectFlow = _effect,
-        scope = viewModelScope
+    private val defaultIntentHandlers = CreateContactIntentHandlers<CustomCreateContactStateExtension>(
+        saveNewContactUseCase = SaveNewContactUseCaseImpl(MockContactsRepository())
     )
-
 
     fun handleIntent(intent: CustomCreateContactIntent) {
         when(intent){
@@ -59,13 +55,18 @@ class CustomCreateContactViewModel : ViewModel() {
                     )
                 )
             }
-            is CustomCreateContactIntent.DefaultIntent -> defaultIntentHandlers.handleIntent(intent.value)
+            is CustomCreateContactIntent.DefaultIntent -> defaultIntentHandlers.handleIntent(
+                intent.value,
+                _state,
+                _effect,
+                viewModelScope
+            )
             // Or alternatively if default override is needed for some intents:
 //            is CustomCreateContactIntent.DefaultIntent -> {
 //                when(intent.value){
-//                    is CreateContactIntent.UpdateName -> defaultIntentHandlers.handleIntent(intent.value)
-//                    is CreateContactIntent.UpdateAccountNumber -> defaultIntentHandlers.handleIntent(intent.value)
-//                    is CreateContactIntent.UpdateEmail -> defaultIntentHandlers.handleIntent(intent.value)
+//                    is CreateContactIntent.UpdateName -> defaultIntentHandlers.handleIntent(intent.value, _state, _effect, viewModelScope)
+//                    is CreateContactIntent.UpdateAccountNumber -> defaultIntentHandlers.handleIntent(intent.value, _state, _effect,  viewModelScope)
+//                    is CreateContactIntent.UpdateEmail -> defaultIntentHandlers.handleIntent(intent.value, _state, _effect,  viewModelScope)
 //                    CreateContactIntent.Submit -> {
 //                        //Custom customer logic
 //                    }

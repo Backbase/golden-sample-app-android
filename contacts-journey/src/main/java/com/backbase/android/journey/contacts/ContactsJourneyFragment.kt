@@ -30,8 +30,8 @@ class ContactsJourneyFragment : Fragment() {
         )
     }
 
-    private val createContactViewModel: CreateContactViewModel by viewModels {
-        CreateContactViewModelFactory(
+    private val createContactViewModel: CreateContactViewModel<Unit> by viewModels {
+        CreateContactViewModelFactory<Unit>(
             SaveNewContactUseCaseImpl(contactsRepository)
         )
     }

@@ -16,10 +16,15 @@ import com.backbase.android.journey.contacts.data.service.MockContactsService
 import com.backbase.android.journey.contacts.domain.repository.DefaultContactsRepository
 import com.backbase.android.journey.contacts.domain.usecase.SaveNewContactUseCase
 import com.backbase.android.journey.contacts.domain.usecase.SaveNewContactUseCaseImpl
+import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactState
+import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactViewEffect
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactViewModel
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.createContactNavigation
+import com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.handler.CreateContactIntentHandlers
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.handler.SaveContactIntentHandler
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlin.Unit
 import kotlin.getValue
 
@@ -28,7 +33,11 @@ import kotlin.getValue
 
 //Create your own custom intent handling
 class CustomSaveContactIntentHandler: SaveContactIntentHandler<Unit>{
-    override fun invoke(scope: CoroutineScope) {
+    override fun invoke(
+        stateFlow: MutableStateFlow<CreateContactState<Unit>>,
+        effectFlow: MutableSharedFlow<CreateContactViewEffect>,
+        scope: CoroutineScope
+    ) {
         // Custom logic here
     }
 }
@@ -43,7 +52,12 @@ class CustomContactViewModelFactory(
             @Suppress("UNCHECKED_CAST")
             return CreateContactViewModel<Unit>(
                 saveNewContactUseCase = saveNewContactUseCase,
-                saveContactIntentHandler = CustomSaveContactIntentHandler()
+                stateFlow = MutableStateFlow(CreateContactState<Unit>()),
+                effectFlow = MutableSharedFlow(),
+                createContactIntentHandlers = CreateContactIntentHandlers<Unit>(
+                    saveNewContactUseCase = saveNewContactUseCase,
+                    saveContactHandler = CustomSaveContactIntentHandler()
+                )
             ) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")

@@ -1,6 +1,7 @@
-package com.backbase.android.journey.contacts.presentation.screens.detail
+package com.backbase.android.journey.contacts.presentation.screens.detail.intent
 
 import com.backbase.android.journey.contacts.domain.usecase.GetContactDetailsUseCase
+import com.backbase.android.journey.contacts.presentation.screens.detail.ContactDetailsState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch

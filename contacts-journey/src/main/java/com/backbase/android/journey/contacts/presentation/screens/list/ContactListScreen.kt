@@ -21,14 +21,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.backbase.android.journey.contacts.domain.model.ContactModel
 import com.backbase.android.journey.contacts.domain.repository.MockContactsCreatorImpl
-import com.backbase.android.journey.contacts.presentation.components.ContactsComponents
+import com.backbase.android.journey.contacts.presentation.components.ContactListItem
 import com.backbase.android.journey.contacts.presentation.components.SearchBar
 import com.backbase.android.journey.contacts.presentation.screens.list.intent.ContactsListIntent
 
 @Composable
 fun ContactListScreen(
     viewModel: ContactsListViewModel,
-    contactsComponents: ContactsComponents = ContactsComponents(),
     onNavigateToDetails: (ContactModel) -> Unit,
     onNavigateToCreate: () -> Unit
     ) {
@@ -54,8 +53,7 @@ fun ContactListScreen(
                     ContactsListIntent.LoadMore
                 )
             },
-            modifier = Modifier.padding(padding),
-            contactsComponents = contactsComponents
+            modifier = Modifier.padding(padding)
         )
     }
 }
@@ -66,8 +64,7 @@ fun  ContactList(
     onContactClick: (ContactModel) -> Unit,
     onSearch: (String) -> Unit,
     onLoadMore: () -> Unit,
-    modifier: Modifier = Modifier,
-    contactsComponents: ContactsComponents = ContactsComponents()
+    modifier: Modifier = Modifier
 ) {
     Column(modifier.fillMaxSize()) {
         SearchBar(onSearch)
@@ -88,7 +85,7 @@ fun  ContactList(
         } else { // Not empty
             LazyColumn(Modifier.weight(1f)) {
                 items(state.contacts) { contact ->
-                    contactsComponents.contactListItem(contact, onContactClick)
+                    ContactListItem(contact, onContactClick)
                 }
                 if (state.isLoading) { // Load more
                     item {

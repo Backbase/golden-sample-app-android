@@ -6,7 +6,6 @@ import com.backbase.android.journey.contacts.domain.usecase.GetContactsUseCase
 import com.backbase.android.journey.contacts.presentation.screens.list.intent.ContactsListIntent
 import com.backbase.android.journey.contacts.presentation.screens.list.intent.ContactsListIntentHandler
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
 /**
  * ViewModel for the Contacts List screen.
  *
@@ -57,13 +56,11 @@ class ContactsListViewModel(
      * @param intent The intent representing a user action or screen event.
      */
     fun handleIntent(intent: ContactsListIntent) {
-        viewModelScope.launch {
-            when (intent) {
-                is ContactsListIntent.Search -> intentHandler.handleSearch(intent, state.value, _state)
-                ContactsListIntent.LoadMore -> intentHandler.handleLoadMode(state.value, _state)
-                ContactsListIntent.Refresh -> intentHandler.handleRefresh(state.value, _state)
-                ContactsListIntent.InitLoadContacts -> intentHandler.handleInitLoadContacts(state.value, _state)
-            }
+        when (intent) {
+            is ContactsListIntent.Search -> intentHandler.handleSearch(intent, state.value, _state)
+            ContactsListIntent.LoadMore -> intentHandler.handleLoadMode(state.value, _state)
+            ContactsListIntent.Refresh -> intentHandler.handleRefresh(state.value, _state)
+            ContactsListIntent.InitLoadContacts -> intentHandler.handleInitLoadContacts(state.value, _state)
         }
     }
 }
