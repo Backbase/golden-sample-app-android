@@ -36,6 +36,21 @@ android {
         compilerOptions { jvmTarget.set(JvmTarget.JVM_17) }
     }
 
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+            isReturnDefaultValues = true
+        }
+        compileOptions {
+            sourceCompatibility = JavaVersion.VERSION_17
+            targetCompatibility = JavaVersion.VERSION_17
+        }
+        kotlinOptions {
+            jvmTarget = JavaVersion.VERSION_17.toString()
+        }
+        execution = "ANDROIDX_TEST_ORCHESTRATOR"
+    }
+
     // JUnit 5 will bundle in files with identical paths; exclude them
     packaging {
         resources.excludes.addAll(
@@ -59,16 +74,25 @@ android {
     }
 }
 
+tasks.withType<Test>().configureEach {
+    useJUnitPlatform()
+    maxParallelForks = (Runtime.getRuntime().availableProcessors() / 2).coerceAtLeast(1)
+    minHeapSize = "256m"
+    maxHeapSize = "1024m"
+    reports {
+        html.required.set(false)
+        junitXml.required.set(false)
+    }
+}
+
 dependencies {
     implementation(platform(libs.findLibrary("kotlin-bom").get()))
     implementation(libs.findBundle("android-core").get())
     implementation(libs.findBundle("koin").get())
     implementation(libs.findBundle("ui").get())
 
-    testImplementation(platform(libs.findLibrary("junit5-bom").get()))
+    testImplementation(platform(libs.findLibrary("junit-bom").get()))
     testImplementation(libs.findBundle("test").get())
 
     testRuntimeOnly(libs.findBundle("test-runtime").get())
-
-    androidTestImplementation(libs.findBundle("test-instrumented").get())
 }

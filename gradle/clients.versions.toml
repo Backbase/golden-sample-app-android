@@ -1,0 +1,23 @@
+[versions]
+
+[libraries]
+## A
+accessControl = { group = "com.backbase.android.clients", name = "gen2-accesscontrol-client-3", version = "" }
+arrangements = { group = "com.backbase.android.clients", name = "gen2-arrangement-client-2", version = "" }
+
+## C
+contacts = { group = "com.backbase.android.clients", name ="gen-contactmanager-client-2", version = "" }
+
+## U
+userManager = { group = "com.backbase.android.clients", name = "gen-usermanager-client-2", version = "" }
+
+[plugins]
+
+[bundles]
+## C
+clients = [
+    "accessControl",
+    "arrangements",
+    "contacts",
+    "userManager",
+]
