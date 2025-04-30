@@ -90,15 +90,14 @@ dependencies {
     implementation(libs.bundles.navigation)
     implementation(libs.bundles.ui)
 
-    coreLibraryDesugaring(libs.desugar.jdk.libs)
-    androidTestImplementation(libs.bundles.test.instrumented)
+    coreLibraryDesugaring(libs.coreLibraryDesugaring)
 
     testImplementation(libs.bundles.test)
 
     // Backbase libraries
-    implementation(backbase.bundles.clients)
-    implementation(backbase.bundles.common)
-    implementation(backbase.bundles.foundation)
+    implementation(clients.bundles.clients)
+    implementation(midTier.bundles.common)
+    implementation(foundation.bundles.foundation)
     implementation(backbase.bundles.journeys)
-    implementation(backbase.bundles.use.cases)
+    implementation(backbase.bundles.useCases)
 }
