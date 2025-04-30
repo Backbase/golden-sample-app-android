@@ -1,0 +1,25 @@
+[versions]
+
+[libraries]
+## D
+design-system = { group = "com.backbase.android.design", name = "design-system", version = "" }
+
+# M
+msdk = { group = "com.backbase.android.sdk", name = "backbase", version = "" }
+
+## O
+observability = { group = "com.backbase.android.observability", name = "backbase-observability-android", version = "" }
+
+## S
+secureStorage = { module = "com.backbase.android.sdk:secure-storage", version = "" }
+
+[plugins]
+
+[bundles]
+## F
+foundation = [
+    "design-system",
+    "msdk",
+    "observability",
+    "secureStorage",
+]
