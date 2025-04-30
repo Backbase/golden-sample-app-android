@@ -5,6 +5,9 @@ plugins {
 
 android {
     namespace = "com.backbase.app_common"
+    compileOptions {
+        isCoreLibraryDesugaringEnabled = true
+    }
 }
 
 dependencies {
@@ -13,11 +16,13 @@ dependencies {
     implementation(projects.accountsUseCase)
     implementation(libs.bundles.navigation)
 
+    coreLibraryDesugaring(libs.coreLibraryDesugaring)
+
     // Backbase libraries
     implementation(platform(backbase.bom))
-    implementation(backbase.bundles.clients)
-    implementation(backbase.bundles.common)
-    implementation(backbase.bundles.foundation)
+    implementation(clients.bundles.clients)
+    implementation(midTier.bundles.common)
+    implementation(foundation.bundles.foundation)
     implementation(backbase.bundles.journeys)
-    implementation(backbase.bundles.use.cases)
+    implementation(backbase.bundles.useCases)
 }

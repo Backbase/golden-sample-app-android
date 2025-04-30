@@ -17,6 +17,7 @@ import com.backbase.accounts_journey.presentation.accountlist.model.AccountUiMod
 import com.backbase.accounts_journey.presentation.accountlist.model.AccountsUiModel
 import com.backbase.android.design.amount.AmountFormat
 import java.math.BigDecimal
+import java.util.Locale
 
 /**
  *  A AccountSummary mapper from domain models to UI models.
@@ -195,7 +196,8 @@ class AccountUiMapper(accountsJourneyConfiguration: AccountsJourneyConfiguration
 
     private fun formatCurrency(currency: String?, amount: BigDecimal?): String {
         return AmountFormat().apply {
-            enableAbbreviation = true
+            enableIsoFormat = true
+            locale = Locale.getDefault()
             currencyCode = currency
         }.format(amount ?: BigDecimal.ZERO)
     }

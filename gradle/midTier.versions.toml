@@ -1,0 +1,30 @@
+[versions]
+
+[libraries]
+## B
+business-journey-common = { group = "com.backbase.android.business.journey", name = "journey-common", version = "" }
+
+## C
+clients-common-coroutines = { group = "com.backbase.android.clients", name = "clients-common-coroutines", version = "" }
+
+## J
+journey-test = { group = "com.backbase.android.retail.journey", name = "journey-test", version = "" }
+
+## O
+opentelemetryConnector = { group = "com.backbase.android.sdk", name = "backbase-opentelemetry-connector", version = "1.0.0" }
+
+## R
+retail-journey-common = { group = "com.backbase.android.retail.journey", name = "journey-common", version = "" }
+retail-journey-common-koin = { group = "com.backbase.android.retail.journey", name = "journey-common-koin", version = "" }
+
+[plugins]
+
+[bundles]
+## C
+common = [
+    "business-journey-common",
+    "clients-common-coroutines",
+    "retail-journey-common",
+    "retail-journey-common-koin",
+    "journey-test",
+]

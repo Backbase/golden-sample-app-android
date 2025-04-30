@@ -4,11 +4,13 @@ plugins {
 }
 
 android {
-    namespace = "com.backbase.analytics"
+    namespace = "com.backbase.android.test_data"
 }
 
 dependencies {
     implementation(platform(backbase.bom))
-    implementation(foundation.observability)
-    implementation(midTier.opentelemetryConnector)
+
+    implementation(libs.coroutinesTest)
+    implementation(platform(libs.junit.bom))
+    implementation(libs.junit.jupiter)
 }
