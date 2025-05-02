@@ -11,13 +11,11 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactViewEffect.ToContactCreateResult
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.CreateContactIntent
 
 @Composable
@@ -26,15 +24,14 @@ fun CreateContactScreen(
     onNavigateAfterSuccess: () -> Unit
 ) {
 
-    val state by viewModel.state.collectAsState()
-    val effect by viewModel.effect.collectAsState(initial = null)
-
-    LaunchedEffect(effect) {
-        when (effect) {
-            is ToContactCreateResult -> onNavigateAfterSuccess()
-            null -> { /* no-op */ }
-        }
-    }
+    val state by viewModel.uiState.collectAsState()
+    // TODO val effect by viewModel.effect.collectAsState(initial = null)
+//    LaunchedEffect(effect) {
+//        when (effect) {
+//            is ToContactCreateResult -> onNavigateAfterSuccess()
+//            null -> { /* no-op */ }
+//        }
+//    }
 
     Column(
         modifier = Modifier
@@ -45,20 +42,20 @@ fun CreateContactScreen(
 
         TextField(
             value = state.name.value,
-            onValueChange = { viewModel.handleIntent(CreateContactIntent.UpdateName(it)) },
+            onValueChange = { viewModel.handle(intent = CreateContactIntent.UpdateName(it)) },
             label = { Text("Contact Name") },
             modifier = Modifier.fillMaxWidth()
         )
 
         TextField(
             value = state.accountNumber.value,
-            onValueChange = { viewModel.handleIntent(CreateContactIntent.UpdateAccountNumber(it)) },
+            onValueChange = { viewModel.handle(intent = CreateContactIntent.UpdateAccountNumber(it)) },
             label = { Text("Account Number") },
             modifier = Modifier.fillMaxWidth()
         )
         TextField(
             value = state.email.value,
-            onValueChange = { viewModel.handleIntent(CreateContactIntent.UpdateEmail(it)) },
+            onValueChange = { viewModel.handle(intent = CreateContactIntent.UpdateEmail(it)) },
             label = { Text("Email") },
             modifier = Modifier.fillMaxWidth()
         )
@@ -78,14 +75,9 @@ fun CreateContactScreen(
         }
 
         Button(
-            onClick = {
-                viewModel.handleIntent(
-                    CreateContactIntent.Submit
-                )
-            },
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Text("Save Contact")
-        }
+            onClick = { viewModel.handle(intent = CreateContactIntent.Submit) },
+            modifier = Modifier.fillMaxWidth(),
+            content = { Text("Save Contact") }
+        )
     }
 }

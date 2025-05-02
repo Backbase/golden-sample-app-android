@@ -1,48 +1,32 @@
 package com.backbase.android.journey.contacts.presentation.screens.create_contact
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
+import com.backbase.android.foundation.mvi.IntentHandlerCollection
+import com.backbase.android.foundation.mvi.ViewModel
 import com.backbase.android.journey.contacts.domain.usecase.SaveNewContactUseCase
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.CreateContactIntent
-import com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.handler.CreateContactIntentHandlers
-import kotlinx.coroutines.flow.MutableSharedFlow
+import com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.handler.createContactIntentHandlers
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-//Variation of the ViewModel where the Intent handlers are separated.
 class CreateContactViewModel<StateExtension>(
-    saveNewContactUseCase: SaveNewContactUseCase,
+    handlers: IntentHandlerCollection<CreateContactIntent, CreateContactState<StateExtension>>
+) : ViewModel<CreateContactIntent, CreateContactState<StateExtension>>(handlers) {
 
-    private val stateFlow: MutableStateFlow<CreateContactState<StateExtension>> = MutableStateFlow(CreateContactState<StateExtension>()),
-    private val effectFlow: MutableSharedFlow<CreateContactViewEffect> = MutableSharedFlow(),
+    private val _uiStateFlow = MutableStateFlow(CreateContactState<StateExtension>())
+    override val uiState: StateFlow<CreateContactState<StateExtension>> = _uiStateFlow.asStateFlow()
 
-    private val createContactIntentHandlers: CreateContactIntentHandlers<StateExtension> = CreateContactIntentHandlers<StateExtension>(
-        saveNewContactUseCase = saveNewContactUseCase
-    )
-) : ViewModel() {
-
-    val state: StateFlow<CreateContactState<StateExtension>> = stateFlow.asStateFlow()
-    val effect: SharedFlow<CreateContactViewEffect?> = effectFlow.asSharedFlow()
-
-    fun handleIntent(intent: CreateContactIntent) {
-        createContactIntentHandlers.handleIntent(
-            intent,
-            stateFlow,
-            effectFlow,
-            viewModelScope
-        )
+    override fun updateState(newState: CreateContactState<StateExtension>) {
+        _uiStateFlow.value = newState
     }
 }
 
-class CreateContactViewModelFactory<Extension>(
-    private val saveNewContactUseCase: SaveNewContactUseCase
-) : ViewModelProvider.Factory {
+class CreateContactViewModelFactory<Extension>(private val saveNewContactUseCase: SaveNewContactUseCase) : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return CreateContactViewModel<Extension>(saveNewContactUseCase) as T
+    override fun <T : androidx.lifecycle.ViewModel> create(modelClass: Class<T>): T {
+        val handlers = createContactIntentHandlers<Extension>(saveNewContactUseCase)
+
+        return CreateContactViewModel<Extension>(handlers) as T
     }
 }
