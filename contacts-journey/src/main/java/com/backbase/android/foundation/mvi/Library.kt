@@ -1,6 +1,8 @@
 package com.backbase.android.foundation.mvi
 
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 
 interface Intent
 
@@ -11,9 +13,16 @@ abstract class ViewModel<I : Intent, S>(
     abstract val uiState: StateFlow<S>
 
     fun handle(intent: I) {
-        val handler = intentHandlers[intent]
+        val handler = intentHandlers[intent] as IntentHandler<I, S>
+        val start = System.currentTimeMillis()
 
-        with(handler) { handle(intent) { newState -> updateState(newState) } }
+        try {
+            println("Handling intent: $intent with ${handler::class.simpleName}")
+            with(handler) { handle(intent) { newState -> updateState(newState) } }
+        } finally {
+            val duration = System.currentTimeMillis() - start
+            println("Intent ${intent::class.simpleName} handled in ${duration}ms")
+        }
     }
 
     protected abstract fun updateState(newState: S)
