@@ -6,21 +6,24 @@ import com.backbase.android.journey.contacts.domain.model.AccountModel
 import com.backbase.android.journey.contacts.domain.model.ContactModel
 import com.backbase.android.journey.contacts.domain.usecase.SaveNewContactUseCase
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactState
-import com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.CreateContactIntent.UpdateEmail
+import com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.CreateContactIntent.Submit
+import com.backbase.android.journey.contacts.presentation.screens.create_contact.showContactCreated
+import com.backbase.android.journey.contacts.presentation.screens.create_contact.showError
+import com.backbase.android.journey.contacts.presentation.screens.create_contact.showLoading
 import com.backbase.android.journey.contacts.presentation.util.FieldStatus
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import java.util.UUID
 
-fun <S> saveContactIntentHandler(saveNewContactUseCase: SaveNewContactUseCase) = IntentHandler<UpdateEmail, CreateContactState<S>> { intent ->
+fun <S> saveContactIntentHandler(
+    saveNewContactUseCase: SaveNewContactUseCase
+) = IntentHandler<Submit, CreateContactState<S>> { intent, uiState ->
     flow {
-        val uiState = uiState.value
         if (uiState.name.fieldStatus is FieldStatus.Invalid) return@flow
+        emit(value = showLoading())
 
         viewModelScope.launch(Dispatchers.IO) {
-            emit(uiState.copy(isLoading = true))
-
             try {
                 val account = AccountModel(
                     accountNumber = uiState.accountNumber.value
@@ -32,10 +35,10 @@ fun <S> saveContactIntentHandler(saveNewContactUseCase: SaveNewContactUseCase) =
                 )
                 saveNewContactUseCase(contact)
 
-                emit(uiState.copy(isLoading = false, isSaved = true))
+                emit(value = showContactCreated())
                 // TODO effectFlow.emit(CreateContactViewEffect.ToContactCreateResult)
             } catch (e: Exception) {
-                emit(uiState.copy(isLoading = false, error = e.message))
+                emit(value = showError(cause = e))
             }
         }
     }
