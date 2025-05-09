@@ -1,6 +1,5 @@
 package com.backbase.android.journey.contacts.presentation.screens.create_contact
 
-import com.backbase.android.journey.contacts.presentation.util.FieldStatus
 import com.backbase.android.journey.contacts.presentation.util.FieldValue
 
 data class CreateContactState<StateExtension>(
@@ -13,9 +12,4 @@ data class CreateContactState<StateExtension>(
     val email: FieldValue<String> = FieldValue(""),
 
     val extension: StateExtension? = null
-){
-    fun isValid() =
-        name.fieldStatus is FieldStatus.Valid &&
-                accountNumber.fieldStatus is FieldStatus.Valid &&
-                email.fieldStatus is FieldStatus.Valid //TODO move to a changeable spot
-}
+)

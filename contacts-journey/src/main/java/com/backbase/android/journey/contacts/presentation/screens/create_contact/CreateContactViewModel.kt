@@ -21,11 +21,11 @@ A journey dev has to follow the next step in order to create a new screen:
 5. Create a composable screen.
  */
 class CreateContactViewModel<StateExtension>(
-    intentHandlers: List<IntentHandler<out CreateContactIntent, CreateContactState<StateExtension>>>,
-) : ViewModel<CreateContactIntent, CreateContactState<StateExtension>>(initialState = CreateContactState(), intentHandlers) {
+    intentHandlers: List<IntentHandler<out CreateContactIntent, CreateContactState<StateExtension>, CreateContactViewEffect>>,
+) : ViewModel<CreateContactIntent, CreateContactState<StateExtension>, CreateContactViewEffect>(initialState = CreateContactState(), intentHandlers) {
 
     constructor(
-        vararg handlers: IntentHandler<out CreateContactIntent, CreateContactState<StateExtension>>
+        vararg handlers: IntentHandler<out CreateContactIntent, CreateContactState<StateExtension>, CreateContactViewEffect>
     ) : this(intentHandlers = handlers.toList())
 }
 

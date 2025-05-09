@@ -1,46 +1,56 @@
 package com.backbase.android.foundation.mvi
 
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
-import kotlin.collections.find
+import kotlin.reflect.KClass
 
 // TODO Review if we can remove this interface
 interface Intent
 
-abstract class ViewModel<I : Intent, S>(
+abstract class ViewModel<I : Intent, S, E>(
     initialState: S,
-    private val intentHandlers: List<IntentHandler<out I, S>>
+    intentHandlers: List<IntentHandler<out I, S, E>>
 ) : androidx.lifecycle.ViewModel() {
 
-    constructor(
-        initialState: S,
-        vararg handlers: IntentHandler<out I, S>
-    ) : this(initialState, intentHandlers = handlers.toList())
+    private val handlerMap: Map<KClass<out I>, IntentHandler<out I, S, E>> = intentHandlers.associateBy { it.intentClass }
 
     private val _uiState = MutableStateFlow(value = initialState)
     val uiState: StateFlow<S> = _uiState
 
+    private val _effects = MutableSharedFlow<E>(replay = 0, extraBufferCapacity = 1)
+    val effects: SharedFlow<E> = _effects.asSharedFlow()
+
     fun handle(intent: I) {
         viewModelScope.launch {
-            findHandler(intent)
-                .handleIntent(viewModel = this@ViewModel, intent, uiState.value)
-                .collect { _uiState.value = it.reduce(_uiState.value) }
+            val handler = handlerMap[intent::class] as? IntentHandler<I, S, E> ?: error("No handler for ${intent::class}")
+
+            handler.handleIntent(
+                viewModel = this@ViewModel,
+                intent = intent,
+                emitState = { _uiState.value = it.reduce(_uiState.value) },
+                emitEffect = { _effects.emit(it) }
+            )
         }
     }
-
-    private fun findHandler(intent: I): IntentHandler<I, S> = intentHandlers
-        .find { it.canHandle(intent) } as? IntentHandler<I, S>
-        ?: error("No handler for intent: $intent")
 }
 
-interface IntentHandler<I : Intent, S> {
+val <I : Intent, S, E> ViewModel<I, S, E>.uiStateSnapshot: S get() = uiState.value
 
-    fun canHandle(intent: Intent): Boolean
+interface IntentHandler<I : Intent, S, E> {
 
-    fun handleIntent(viewModel: androidx.lifecycle.ViewModel, intent: I, uiState: S): Flow<StateReducer<S>>
+    val intentClass: KClass<I>
+
+    fun handleIntent(
+        viewModel: ViewModel<I, S, E>,
+        intent: I,
+        emitState: (StateReducer<S>) -> Unit,
+        emitEffect: suspend (E) -> Unit
+    )
 }
 
 fun interface StateReducer<S> {
@@ -48,13 +58,19 @@ fun interface StateReducer<S> {
     fun reduce(currentState: S): S
 }
 
-inline fun <reified I : Intent, S> IntentHandler(
-    noinline block: androidx.lifecycle.ViewModel.(I, S) -> Flow<StateReducer<S>>
-): IntentHandler<I, S> = object : IntentHandler<I, S> {
+inline fun <reified I : Intent, S, E> IntentHandler(
+    noinline block: ViewModel<I, S, E>.(I, (StateReducer<S>) -> Unit, suspend (E) -> Unit) -> Unit
+): IntentHandler<I, S, E> = object : IntentHandler<I, S, E> {
 
-    override fun canHandle(intent: Intent): Boolean =
-        intent is I
+    override val intentClass: KClass<I>
+        get() = I::class
 
-    override fun handleIntent(viewModel: androidx.lifecycle.ViewModel, intent: I, uiState: S): Flow<StateReducer<S>> =
-        viewModel.block(intent, uiState)
+    override fun handleIntent(
+        viewModel: ViewModel<I, S, E>,
+        intent: I,
+        emitState: (StateReducer<S>) -> Unit,
+        emitEffect: suspend (E) -> Unit
+    ) {
+        viewModel.block(intent, emitState, emitEffect)
+    }
 }

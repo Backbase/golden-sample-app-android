@@ -11,11 +11,13 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactViewEffect.ToContactCreateResult
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.CreateContactIntent
 
 @Composable
@@ -25,13 +27,14 @@ fun CreateContactScreen(
 ) {
 
     val state by viewModel.uiState.collectAsState()
-    // TODO val effect by viewModel.effect.collectAsState(initial = null)
-//    LaunchedEffect(effect) {
-//        when (effect) {
-//            is ToContactCreateResult -> onNavigateAfterSuccess()
-//            null -> { /* no-op */ }
-//        }
-//    }
+    val effect by viewModel.effects.collectAsState(initial = null)
+
+    LaunchedEffect(effect) {
+        when (effect) {
+            is ToContactCreateResult -> onNavigateAfterSuccess()
+            null -> { /* no-op */ }
+        }
+    }
 
     Column(
         modifier = Modifier
