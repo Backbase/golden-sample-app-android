@@ -18,7 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactViewEffect.ToContactCreateResult
-import com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.CreateContactIntent
+import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactIntent
 
 @Composable
 fun CreateContactScreen(

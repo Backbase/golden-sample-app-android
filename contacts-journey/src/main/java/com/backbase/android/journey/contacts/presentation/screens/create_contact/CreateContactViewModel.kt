@@ -4,25 +4,20 @@ import androidx.lifecycle.ViewModelProvider
 import com.backbase.android.foundation.mvi.IntentHandler
 import com.backbase.android.foundation.mvi.ViewModel
 import com.backbase.android.journey.contacts.domain.usecase.SaveNewContactUseCase
-import com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.CreateContactIntent
-import com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.handler.saveContactIntentHandler
-import com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.handler.updateAccountNumberIntentHandler
-import com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.handler.updateEmailIntentHandler
-import com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.handler.updateNameIntentHandler
 
 /*
 A journey dev has to follow the next step in order to create a new screen:
 1. Define a `state` class representing the UI state.
 2. Define a set of `intents` that can modify the state.
-   Intents must by implemented a sealed classes. They implement the `Intent` interface.
 3. Create a set of `IntentHandlers` that can handle the intents defined in 2.
-   The intent handlers return a flow of `StateReducer`s, which update the UI state.
+   The intent handlers update the UI or launch a side effect based on the operation that the intent represents.
 4. Create a ViewModel defining a initial state of the UI and a set of intent handlers.
 5. Create a composable screen.
  */
 class CreateContactViewModel<StateExtension>(
+    initialState: CreateContactState<StateExtension> = CreateContactState(),
     intentHandlers: List<IntentHandler<out CreateContactIntent, CreateContactState<StateExtension>, CreateContactViewEffect>>,
-) : ViewModel<CreateContactIntent, CreateContactState<StateExtension>, CreateContactViewEffect>(initialState = CreateContactState(), intentHandlers) {
+) : ViewModel<CreateContactIntent, CreateContactState<StateExtension>, CreateContactViewEffect>(initialState, intentHandlers) {
 
     constructor(
         vararg handlers: IntentHandler<out CreateContactIntent, CreateContactState<StateExtension>, CreateContactViewEffect>

@@ -1,13 +1,9 @@
-package com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.handler
+package com.backbase.android.journey.contacts.presentation.screens.create_contact
 
 import com.backbase.android.foundation.mvi.IntentHandler
 import com.backbase.android.foundation.mvi.uiStateSnapshot
 import com.backbase.android.journey.contacts.R
-import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactState
-import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactViewEffect
-import com.backbase.android.journey.contacts.presentation.screens.create_contact.intent.CreateContactIntent.UpdateEmail
-import com.backbase.android.journey.contacts.presentation.screens.create_contact.showEmailUpdated
-import com.backbase.android.journey.contacts.presentation.screens.create_contact.showFieldValidationUpdated
+import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactIntent.UpdateEmail
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.validation.EmailValidator
 import com.backbase.android.journey.contacts.presentation.util.FieldStatus
 import com.backbase.android.journey.contacts.presentation.util.FieldStatus.Invalid
