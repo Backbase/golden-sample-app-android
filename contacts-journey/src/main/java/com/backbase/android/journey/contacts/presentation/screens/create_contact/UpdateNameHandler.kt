@@ -10,15 +10,21 @@ import com.backbase.android.journey.contacts.presentation.util.FieldStatus.Inval
 import com.backbase.android.journey.contacts.presentation.util.FieldStatus.Valid
 
 fun <S> updateNameIntentHandler() = IntentHandler<UpdateName, CreateContactState<S>, CreateContactViewEffect> {
-    updateUiState(showNameUpdated(name = intent.value))
+    updateUiState { currentState -> currentState.copy(name = currentState.name.copy(value = intent.value)) }
 
     if (uiStateSnapshot.name.fieldStatus is FieldStatus.Init) return@IntentHandler
     if (uiStateSnapshot.accountNumber.fieldStatus is FieldStatus.Init) return@IntentHandler
-
     val validateNameResult = AccountNameValidator.validate(uiStateSnapshot.name.value)
+
     when (validateNameResult) {
-        is NameValidationResult.Valid -> updateUiState(showFieldValidationUpdated(status = Valid))
-        is NameValidationResult.Empty -> updateUiState(showFieldValidationUpdated(status = Invalid(R.string.contacts_create_field_name_empty_error)))
-        NameValidationResult.IllegalCharacters -> updateUiState(showFieldValidationUpdated(status = Invalid(R.string.contacts_create_field_name_illegal_characters)))
+        is NameValidationResult.Valid -> updateUiState { currentState ->
+            currentState.copy(accountNumber = currentState.accountNumber.copy(fieldStatus = Valid))
+        }
+        is NameValidationResult.Empty -> updateUiState { currentState ->
+            currentState.copy(accountNumber = currentState.accountNumber.copy(fieldStatus = Invalid(R.string.contacts_create_field_name_empty_error)))
+        }
+        NameValidationResult.IllegalCharacters -> updateUiState { currentState ->
+            currentState.copy(accountNumber = currentState.accountNumber.copy(fieldStatus = Invalid(R.string.contacts_create_field_name_illegal_characters)))
+        }
     }
 }

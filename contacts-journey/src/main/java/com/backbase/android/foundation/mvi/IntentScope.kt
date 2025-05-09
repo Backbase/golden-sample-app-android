@@ -1,18 +1,16 @@
 package com.backbase.android.foundation.mvi
 
-import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CoroutineScope
+import kotlin.coroutines.CoroutineContext
 
 class IntentScope<I : Any, S, E>(
-    private val viewModel: ViewModel<I, S, E>,
+    override val coroutineContext: CoroutineContext,
     val intent: I,
+    val uiStateSnapshot: S,
     private val context: IntentContext<S, E>
-) {
-
-    val uiStateSnapshot: S get() = viewModel.uiState.value
-    val coroutineScope: CoroutineScope get() = viewModel.viewModelScope
+): CoroutineScope {
 
     suspend fun launchEffect(effect: E) = context.launchEffect(effect)
 
-    fun updateUiState(stateReducer: StateReducer<S>) = context.updateUiState(stateReducer)
+    fun updateUiState(reducer: (S) -> S) = context.updateUiState(reducer)
 }

@@ -1,7 +1,8 @@
 package com.backbase.android.foundation.mvi
 
 class IntentContext<S, E>(
-    private val emitState: (StateReducer<S>) -> Unit,
+    private val state: S,
+    private val emitState: (S) -> Unit,
     private val emitEffect: suspend (E) -> Unit
 ) {
 
@@ -9,7 +10,7 @@ class IntentContext<S, E>(
         emitEffect(effect)
     }
 
-    fun updateUiState(stateReducer: StateReducer<S>) {
-        emitState(stateReducer)
+    fun updateUiState(reducer: (S) -> S) {
+        emitState(reducer(state))
     }
 }

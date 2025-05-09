@@ -9,11 +9,19 @@ import com.backbase.android.journey.contacts.presentation.util.FieldStatus.Inval
 import com.backbase.android.journey.contacts.presentation.util.FieldStatus.Valid
 
 fun <S> updateEmailIntentHandler() = IntentHandler<UpdateEmail, CreateContactState<S>, CreateContactViewEffect> {
-    updateUiState(showEmailUpdated(email = intent.value))
+    updateUiState { currentState ->
+        currentState.copy(email = currentState.email.copy(value = intent.value))
+    }
 
     if (uiStateSnapshot.accountNumber.fieldStatus is FieldStatus.Init) return@IntentHandler
-
     val isValidEmail = EmailValidator.validateEmail(intent.value)
-    if (isValidEmail) updateUiState(showFieldValidationUpdated(status = Valid))
-    else updateUiState(showFieldValidationUpdated(status = Invalid(R.string.contacts_create_field_email_empty_error)))
+
+    when (isValidEmail) {
+        true -> updateUiState { currentState ->
+            currentState.copy(accountNumber = currentState.accountNumber.copy(fieldStatus = Valid))
+        }
+        false -> updateUiState { currentState ->
+            currentState.copy(accountNumber = currentState.accountNumber.copy(fieldStatus = Invalid(R.string.contacts_create_field_email_empty_error)))
+        }
+    }
 }

@@ -11,13 +11,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.UUID
 
-fun <S> saveContactIntentHandler(
-    saveNewContactUseCase: SaveNewContactUseCase
-) = IntentHandler<Submit, CreateContactState<S>, CreateContactViewEffect> {
+fun <S> saveContactIntentHandler(saveNewContactUseCase: SaveNewContactUseCase) = IntentHandler<Submit, CreateContactState<S>, CreateContactViewEffect> {
     if (uiStateSnapshot.name.fieldStatus is FieldStatus.Invalid) return@IntentHandler
-    updateUiState(showLoading())
+    updateUiState { currentState -> currentState.copy(isLoading = true) }
 
-    coroutineScope.launch(Dispatchers.IO) {
+    launch(Dispatchers.IO) {
         try {
             val account = AccountModel(
                 accountNumber = uiStateSnapshot.accountNumber.value
@@ -29,10 +27,10 @@ fun <S> saveContactIntentHandler(
             )
             saveNewContactUseCase(contact)
 
-            updateUiState(showContactCreated())
-            launchEffect(ToContactCreateResult)
+            updateUiState { currentState -> currentState.copy(isLoading = false, isSaved = true) }
+            launchEffect(effect = ToContactCreateResult)
         } catch (e: Exception) {
-            updateUiState(showError(cause = e))
+            updateUiState { currentState -> currentState.copy(isLoading = false, error = e.message) }
         }
     }
 }

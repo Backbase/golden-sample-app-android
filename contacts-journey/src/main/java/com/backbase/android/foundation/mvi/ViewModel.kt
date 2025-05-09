@@ -26,21 +26,25 @@ abstract class ViewModel<I : Any, S, E>(
     private val _effects = MutableSharedFlow<E>(replay = 0, extraBufferCapacity = 1)
     val effects: SharedFlow<E> = _effects.asSharedFlow()
 
-    private val intentContext = IntentContext<S, E>(
-        emitState = { _uiState.value = it.reduce(_uiState.value) },
-        emitEffect = { effect -> _effects.emit(effect) }
-    )
-
     fun handle(intent: I) {
         viewModelScope.launch {
-            val handler = handlerMap[intent::class] as? IntentHandler<I, S, E>
+            val intentHandler = handlerMap[intent::class] as? IntentHandler<I, S, E>
                 ?: error("No handler for ${intent::class}")
 
-            handler.handleIntent(
-                viewModel = this@ViewModel,
-                intent = intent,
-                context = intentContext,
+            val intentContext = IntentContext<S, E>(
+                state = _uiState.value,
+                emitState = { _uiState.value = it },
+                emitEffect = { effect -> _effects.emit(effect) }
             )
+
+            val intentScope = IntentScope(
+                coroutineContext = viewModelScope.coroutineContext,
+                intent = intent,
+                uiStateSnapshot = _uiState.value,
+                context = intentContext
+            )
+
+            intentHandler.runIn(intentScope)
         }
     }
 }

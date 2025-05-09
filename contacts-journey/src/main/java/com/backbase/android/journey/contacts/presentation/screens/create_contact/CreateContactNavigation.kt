@@ -5,11 +5,12 @@ import androidx.navigation.compose.composable
 import com.backbase.android.journey.contacts.ContactsRouting
 
 fun NavGraphBuilder.createContactNavigation(
-    createContactViewModel: CreateContactViewModel<*>,
     onNavigateAfterSuccess: () -> Unit,
     routePrefix: String = ""
 ){
     composable(routePrefix + ContactsRouting.Create.route(routePrefix)) {
+        val createContactViewModel: CreateContactViewModel<*> = TODO()
+
         CreateContactScreen(
             viewModel = createContactViewModel,
             onNavigateAfterSuccess = onNavigateAfterSuccess

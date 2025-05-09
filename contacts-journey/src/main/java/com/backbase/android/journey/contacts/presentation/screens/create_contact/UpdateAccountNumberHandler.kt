@@ -9,11 +9,19 @@ import com.backbase.android.journey.contacts.presentation.util.FieldStatus.Inval
 import com.backbase.android.journey.contacts.presentation.util.FieldStatus.Valid
 
 fun <S> updateAccountNumberIntentHandler() = IntentHandler<UpdateAccountNumber, CreateContactState<S>, CreateContactViewEffect> {
-    updateUiState(showAccountNumberUpdated(accountNumber = intent.value))
+    updateUiState { currentState->
+        currentState.copy(accountNumber = currentState.accountNumber.copy(value = intent.value))
+    }
 
     if (uiStateSnapshot.accountNumber.fieldStatus is FieldStatus.Init) return@IntentHandler
-
     val isValidBankAccount = BankAccountValidator.validateBankAccount(uiStateSnapshot.accountNumber.value)
-    if (isValidBankAccount) updateUiState(showFieldValidationUpdated(status = Valid))
-    else updateUiState(showFieldValidationUpdated(status = Invalid(R.string.contacts_account_create_field_wrong_format)))
+
+    when (isValidBankAccount) {
+        true -> updateUiState { currentState ->
+            currentState.copy(accountNumber = currentState.accountNumber.copy(fieldStatus = Valid))
+        }
+        false -> updateUiState { currentState->
+            currentState.copy(accountNumber = currentState.accountNumber.copy(fieldStatus = Invalid(R.string.contacts_account_create_field_wrong_format)))
+        }
+    }
 }

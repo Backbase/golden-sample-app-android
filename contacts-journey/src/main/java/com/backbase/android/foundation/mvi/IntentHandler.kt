@@ -12,11 +12,7 @@ interface IntentHandler<I : Any, S, E> {
 
     val intentClass: KClass<I>
 
-    fun handleIntent(
-        viewModel: ViewModel<I, S, E>,
-        intent: I,
-        context: IntentContext<S, E>
-    )
+    suspend fun runIn(scope: IntentScope<I, S, E>)
 }
 
 /**
@@ -32,12 +28,5 @@ inline fun <reified I : Any, S, E> IntentHandler(
     override val intentClass: KClass<I>
         get() = I::class
 
-    override fun handleIntent(
-        viewModel: ViewModel<I, S, E>,
-        intent: I,
-        context: IntentContext<S, E>
-    ) {
-        val scope = IntentScope(viewModel, intent, context)
-        scope.block()
-    }
+    override suspend fun runIn(scope: IntentScope<I, S, E>) = scope.block()
 }
