@@ -26,6 +26,11 @@ abstract class ViewModel<I : Any, S, E>(
     private val _effects = MutableSharedFlow<E>(replay = 0, extraBufferCapacity = 1)
     val effects: SharedFlow<E> = _effects.asSharedFlow()
 
+    private val intentContext = IntentContext<S, E>(
+        emitState = { _uiState.value = it.reduce(_uiState.value) },
+        emitEffect = { effect -> _effects.emit(effect) }
+    )
+
     fun handle(intent: I) {
         viewModelScope.launch {
             val handler = handlerMap[intent::class] as? IntentHandler<I, S, E>
@@ -34,14 +39,8 @@ abstract class ViewModel<I : Any, S, E>(
             handler.handleIntent(
                 viewModel = this@ViewModel,
                 intent = intent,
-                emitState = { _uiState.value = it.reduce(_uiState.value) },
-                emitEffect = { _effects.emit(it) }
+                context = intentContext,
             )
         }
     }
 }
-
-/**
- * Returns a snapshot of the current UI state.
- */
-val <I : Any, S, E> ViewModel<I, S, E>.uiStateSnapshot: S get() = uiState.value

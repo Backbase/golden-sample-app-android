@@ -2,7 +2,6 @@ package com.backbase.android.journey.contacts.presentation.screens.create_contac
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
 import com.backbase.android.foundation.mvi.IntentHandler
 import com.backbase.android.foundation.mvi.StateReducer
 import com.backbase.android.journey.contacts.data.repository.MockContactsRepository
@@ -31,14 +30,14 @@ class CustomCreateContactViewModelFactory() : ViewModelProvider.Factory {
         saveContactIntentHandler(saveNewContactUseCase = SaveNewContactUseCaseImpl(MockContactsRepository())),
 
         // If a client wants to override the default implementation
-        IntentHandler<UpdateAccountNumber, CreateContactState<CustomCreateContactStateExtension>, CreateContactViewEffect> { intent, emitState, _ ->
-            viewModelScope.launch(Dispatchers.IO) { delay(timeMillis = 1000L) }
-            emitState(showAccountNumberUpdated(accountNumber = intent.value))
+        IntentHandler<UpdateAccountNumber, CreateContactState<CustomCreateContactStateExtension>, CreateContactViewEffect> {
+            coroutineScope.launch(Dispatchers.IO) { delay(timeMillis = 1000L) }
+            updateUiState(showAccountNumberUpdated(accountNumber = intent.value))
         },
 
         // If a client wants to handle a custom intent
-        IntentHandler<UpdateAlias, CreateContactState<CustomCreateContactStateExtension>, CreateContactViewEffect> { intent, emitState, _ ->
-            emitState(showAccountAliasUpdated(accountAlias = intent.accountAlias))
+        IntentHandler<UpdateAlias, CreateContactState<CustomCreateContactStateExtension>, CreateContactViewEffect> {
+            updateUiState(showAccountAliasUpdated(accountAlias = intent.accountAlias))
         },
     ) as T
 }
@@ -49,6 +48,7 @@ fun showAccountAliasUpdated(accountAlias: String) = StateReducer<CreateContactSt
     currentState.copy(extension = updatedExtension)
 }
 
-// Since the ViewModel is changed, a new screen has to be created. Components from package
+// If the view model extends the default implementation adding more intent to handle, then
+// a new screen has to be created. Components from package
 // com.backbase.android.journey.contacts.presentation.components can be used to reuse as much
 // components as possible.

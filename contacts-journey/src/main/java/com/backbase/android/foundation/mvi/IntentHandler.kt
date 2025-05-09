@@ -15,8 +15,7 @@ interface IntentHandler<I : Any, S, E> {
     fun handleIntent(
         viewModel: ViewModel<I, S, E>,
         intent: I,
-        emitState: (StateReducer<S>) -> Unit,
-        emitEffect: suspend (E) -> Unit
+        context: IntentContext<S, E>
     )
 }
 
@@ -27,7 +26,7 @@ interface IntentHandler<I : Any, S, E> {
  * the [IntentHandler.intentClass] function.
  */
 inline fun <reified I : Any, S, E> IntentHandler(
-    noinline block: ViewModel<I, S, E>.(I, (StateReducer<S>) -> Unit, suspend (E) -> Unit) -> Unit
+    noinline block: IntentScope<I, S, E>.() -> Unit
 ): IntentHandler<I, S, E> = object : IntentHandler<I, S, E> {
 
     override val intentClass: KClass<I>
@@ -36,9 +35,9 @@ inline fun <reified I : Any, S, E> IntentHandler(
     override fun handleIntent(
         viewModel: ViewModel<I, S, E>,
         intent: I,
-        emitState: (StateReducer<S>) -> Unit,
-        emitEffect: suspend (E) -> Unit
+        context: IntentContext<S, E>
     ) {
-        viewModel.block(intent, emitState, emitEffect)
+        val scope = IntentScope(viewModel, intent, context)
+        scope.block()
     }
 }
