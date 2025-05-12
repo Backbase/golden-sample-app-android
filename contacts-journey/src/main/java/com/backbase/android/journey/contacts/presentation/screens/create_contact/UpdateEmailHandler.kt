@@ -18,10 +18,10 @@ fun <S> updateEmailIntentHandler() = IntentHandler<UpdateEmail, CreateContactSta
 
     when (isValidEmail) {
         true -> updateUiState { currentState ->
-            currentState.copy(accountNumber = currentState.accountNumber.copy(fieldStatus = Valid))
+            currentState.copy(email = currentState.email.copy(fieldStatus = Valid))
         }
         false -> updateUiState { currentState ->
-            currentState.copy(accountNumber = currentState.accountNumber.copy(fieldStatus = Invalid(R.string.contacts_create_field_email_empty_error)))
+            currentState.copy(email = currentState.email.copy(fieldStatus = Invalid(R.string.contacts_create_field_email_empty_error)))
         }
     }
 }
