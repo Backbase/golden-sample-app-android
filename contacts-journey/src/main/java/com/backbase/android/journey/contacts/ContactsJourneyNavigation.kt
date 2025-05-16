@@ -41,7 +41,6 @@ fun NavGraphBuilder.contactsJourneyNavigation(
     )
 
     createContactNavigation(
-        createContactViewModel = createContactViewModel,
         routePrefix = routePrefix,
         onNavigateAfterSuccess = {
             navController.navigate(

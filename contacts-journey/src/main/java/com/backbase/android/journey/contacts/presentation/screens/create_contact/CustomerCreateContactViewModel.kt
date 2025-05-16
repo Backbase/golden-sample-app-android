@@ -80,7 +80,7 @@ fun CustomCreateContactScreen(
     TextField(
         value = state.extension?.accountAlias?.value ?: "",
         onValueChange = { onIntent(UpdateAlias(it)) },
-        label = { Text("Contact Name") },
+        label = { Text("Account alias") },
         modifier = Modifier.fillMaxWidth()
     )
 

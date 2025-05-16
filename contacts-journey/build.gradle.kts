@@ -46,4 +46,5 @@ dependencies {
     androidTestImplementation(projects.fakeAccountsUseCase)
 
     testImplementation(libs.archCore)
+    testImplementation(libs.coroutinesTest)
 }

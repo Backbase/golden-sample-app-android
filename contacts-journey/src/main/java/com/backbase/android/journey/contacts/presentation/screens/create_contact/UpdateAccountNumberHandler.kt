@@ -1,6 +1,7 @@
 package com.backbase.android.journey.contacts.presentation.screens.create_contact
 
 import com.backbase.android.foundation.mvi.IntentHandler
+import com.backbase.android.foundation.mvi.IntentScope.Companion.uiStateSnapshot
 import com.backbase.android.journey.contacts.R
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactIntent.UpdateAccountNumber
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.validation.BankAccountValidator
@@ -13,9 +14,7 @@ fun <S> updateAccountNumberIntentHandler() = IntentHandler<UpdateAccountNumber, 
         currentState.copy(accountNumber = currentState.accountNumber.copy(value = intent.value))
     }
 
-    if (uiStateSnapshot.accountNumber.fieldStatus is FieldStatus.Init) return@IntentHandler
     val isValidBankAccount = BankAccountValidator.validateBankAccount(uiStateSnapshot.accountNumber.value)
-
     when (isValidBankAccount) {
         true -> updateUiState { currentState ->
             currentState.copy(accountNumber = currentState.accountNumber.copy(fieldStatus = Valid))
