@@ -36,6 +36,8 @@ dependencies {
     implementation(libs.bundles.navigation)
     implementation(libs.bundles.compose)
 
+    debugImplementation(libs.composeUiTooling)
+
     androidTestImplementation(projects.fakeAccountsUseCase)
     androidTestImplementation(libs.navigation.testing)
     androidTestImplementation(libs.archCore)

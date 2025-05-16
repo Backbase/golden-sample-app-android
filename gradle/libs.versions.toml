@@ -155,7 +155,6 @@ compose = [
     "composeMaterial",
     "composeNavigation",
     "composeUI",
-    "composeUiTooling",
     "composeUiToolingPreview",
     "composeViewModel"
 ]

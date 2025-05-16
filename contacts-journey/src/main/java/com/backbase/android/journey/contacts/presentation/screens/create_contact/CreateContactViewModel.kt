@@ -9,17 +9,6 @@ import com.backbase.android.journey.contacts.presentation.screens.create_contact
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactIntent.UpdateEmail
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactIntent.UpdateName
 
-/**
- * Journey devs have to follow the next steps to create a new screen:
- * 1. Define a `state` class representing the UI state.
- *    (Optional) Define a set of ViewEffects that can be launched from the UI.
- * 2. Define a set of `intents` that can modify the state.
- * 3. Create a set of `IntentHandlers` that can handle the intents defined in 2.
- *    The intent handlers update the UI or launch a side effect based on the operation that the intent represents.
- * 4. Create a ViewModel defining a initial state of the UI and a set of intent handlers.
- * 5. Create a composable screen.
- * 6. Define the navigation.
- */
 class CreateContactViewModel<StateExtension>(
     initialState: CreateContactState<StateExtension> = CreateContactState(),
     updateNameIntentHandler: IntentHandler<UpdateName, CreateContactState<StateExtension>, CreateContactViewEffect>,

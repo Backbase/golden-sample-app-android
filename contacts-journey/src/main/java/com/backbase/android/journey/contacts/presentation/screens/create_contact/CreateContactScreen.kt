@@ -13,6 +13,7 @@ import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -68,4 +69,13 @@ fun CreateContactScreen(
             content = { Text("Save Contact") }
         )
     }
+}
+
+@Preview
+@Composable
+fun CreateContactScreenPreview() {
+    CreateContactScreen(
+        state = CreateContactState<Unit>(),
+        onIntent = {}
+    )
 }
