@@ -20,6 +20,9 @@ android {
             enableAndroidTestCoverage = true
         }
     }
+    compileOptions {
+        isCoreLibraryDesugaringEnabled = true
+    }
     testOptions {
         execution = "ANDROIDX_TEST_ORCHESTRATOR"
     }
@@ -33,6 +36,8 @@ dependencies {
     implementation(platform(backbase.bom))
     implementation(midTier.bundles.common)
     implementation(libs.bundles.navigation)
+
+    coreLibraryDesugaring(libs.coreLibraryDesugaring)
 
     testImplementation(libs.archCore)
 
