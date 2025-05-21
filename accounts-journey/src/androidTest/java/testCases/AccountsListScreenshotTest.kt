@@ -6,7 +6,7 @@ import app_common.ScreenDirection
 import app_common.prepare
 import app_common.scenario.FragmentJourneyScenarioUtils.waitForFragment
 import com.backbase.accounts_journey.configuration.AccountsJourneyConfiguration
-import com.backbase.fake_accounts_use_case.FakeAccountsUseCase
+import com.backbase.accounts_use_case.SuccessAccountsUseCase
 import com.google.testing.junit.testparameterinjector.TestParameter
 import com.google.testing.junit.testparameterinjector.TestParameterInjector
 import com.karumi.shot.ScreenshotTest
@@ -14,8 +14,8 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import org.junit.runner.RunWith
-import resources.TEST_ACCOUNTS
 import screens.accountListScreen
+import testCases.AccountsListTests.Companion.TEST_ACCOUNTS
 
 @ExperimentalCoroutinesApi
 @RunWith(TestParameterInjector::class)
@@ -29,7 +29,7 @@ class AccountsListScreenshotTest : BaseTest(), ScreenshotTest {
     fun givenScenarioIsLaunched_whenProvidedWithDefaultConfig_thenAccountListDefaultStateIsDisplayed(): Unit = runBlocking {
         prepare {
             loadModule(
-                accountsUseCase = FakeAccountsUseCase(TEST_ACCOUNTS),
+                accountsUseCase = SuccessAccountsUseCase(TEST_ACCOUNTS),
                 journeyConfiguration = AccountsJourneyConfiguration { }
             )
         }
