@@ -31,6 +31,7 @@ android {
 dependencies {
     implementation(libs.bundles.navigation)
     testImplementation(projects.testData)
+    testImplementation(projects.fakeAccountsUseCase)
 
     // Backbase libraries
     implementation(platform(backbase.bom))

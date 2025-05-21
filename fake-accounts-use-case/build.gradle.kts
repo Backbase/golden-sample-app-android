@@ -4,9 +4,16 @@ plugins {
 }
 
 android {
-    namespace = "com.backbase.fake_accounts_use_case"
+    namespace = "com.backbase.accounts_use_case"
+
+    compileOptions {
+        isCoreLibraryDesugaringEnabled = true
+    }
 }
 
 dependencies {
-    implementation(project(":accounts-journey"))
+    implementation(projects.accountsJourney)
+    implementation(projects.testData)
+
+    coreLibraryDesugaring(libs.coreLibraryDesugaring)
 }

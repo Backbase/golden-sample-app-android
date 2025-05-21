@@ -32,3 +32,6 @@ fun ViewInteraction.shouldBeEnabled(): ViewInteraction = check(matches(isEnabled
 
 fun ViewInteraction.typeTextInInput(text: String): ViewInteraction =
     perform(typeText(text)).perform(closeSoftKeyboard())
+
+fun ViewInteraction.pullToRefresh(): ViewInteraction =
+    perform(androidx.test.espresso.action.ViewActions.swipeDown())
