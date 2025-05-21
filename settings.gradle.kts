@@ -36,6 +36,6 @@ rootProject.name = "Golden_Sample_App_Android"
 include(":app")
 include(":accounts-journey")
 include(":accounts-use-case")
-include(":fake-accounts-use-case")
+include(":accounts-test-data")
 include(":app-common")
 include(":test-data")
