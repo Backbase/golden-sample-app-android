@@ -1,19 +1,19 @@
 [versions]
 ## A
-accessControlEntitlements = "6.0.0"
-authentication = "7.2.0"
+accessControlEntitlements = "7.1.0"
+authentication = "8.1.0"
 
 ## B
-bom = "2024.09.01"
+bom = "2025.03.01"
 
 ## F
-featureFilter = "6.0.0"
+featureFilter = "7.1.0"
 
 ## M
-moreMenu = "6.1.0"
+moreMenu = "7.1.1"
 
 ## W
-workspaces = "7.1.0"
+workspaces = "8.1.0"
 
 [libraries]
 ## A
