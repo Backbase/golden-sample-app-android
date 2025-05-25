@@ -20,12 +20,22 @@ android {
         versionName = Version.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // The following argument makes the Android Test Orchestrator run its
+        // "pm clear" command after each test invocation. This command ensures
+        // that the app's state is completely cleared between tests.
+        testInstrumentationRunnerArguments["clearPackageData"] = "true"
+
         vectorDrawables {
             useSupportLibrary = true
         }
     }
 
     buildTypes {
+        debug {
+            buildConfigField("String", "TEST_ACCOUNT_USERNAME", "\"ADD USER NAME HERE\"")
+            buildConfigField("String", "TEST_ACCOUNT_PASSWORD", "\"ADD PASSWORD HERE\"")
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
@@ -46,6 +56,17 @@ android {
         viewBinding = true
         buildConfig = true
     }
+    testOptions {
+        execution = "ANDROIDX_TEST_ORCHESTRATOR"
+        animationsDisabled = true
+    }
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "META-INF/LICENSE.md"
+            excludes += "META-INF/LICENSE-notice.md"
+        }
+    }
 }
 
 dependencies {
@@ -64,6 +85,12 @@ dependencies {
     coreLibraryDesugaring(libs.coreLibraryDesugaring)
 
     testImplementation(libs.bundles.test)
+
+    androidTestImplementation(projects.accountsTestData)
+    androidTestImplementation(projects.testData)
+    androidTestImplementation(libs.bundles.test.instrumented)
+
+    androidTestUtil(libs.orchestrator)
 
     // Backbase libraries
     implementation(clients.bundles.clients)

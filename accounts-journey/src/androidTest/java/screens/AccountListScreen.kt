@@ -10,14 +10,14 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.ViewInteraction
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import app_common.BaseScreen
-import app_common.pullToRefresh
 import app_common.scenario.FragmentJourneyScenario
 import app_common.scenario.launchInJourneyContainer
-import app_common.shouldBeDisplayed
-import app_common.shouldMatchText
-import app_common.typeTextInInput
 import com.backbase.accounts_journey.R
 import com.backbase.accounts_journey.presentation.accountlist.ui.AccountListFragment
+import com.backbase.android.test_data.pullToRefresh
+import com.backbase.android.test_data.shouldBeDisplayed
+import com.backbase.android.test_data.shouldMatchText
+import com.backbase.android.test_data.typeTextInInput
 import screens.components.AccountComponent
 
 fun accountListScreen(func: AccountListScreen.() -> Unit): AccountListScreen {

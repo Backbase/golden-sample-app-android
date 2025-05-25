@@ -2,7 +2,6 @@ package com.backbase.accounts_demo.workspaces
 
 import android.os.Bundle
 import androidx.navigation.NavController
-import com.backbase.accounts_demo.R
 import com.backbase.android.business.journey.common.user.User
 import com.backbase.android.business.journey.workspaces.model.WorkspaceInfo
 import com.backbase.android.business.journey.workspaces.navigation.WorkspaceSelectorRouting
@@ -40,6 +39,6 @@ class WorkspaceSelectorRoutingImpl(
         user.userContext = workspaceInfo.workspace.name
         userEntitlementsRepository.entitlements = workspaceInfo.entitlements ?: emptyList()
 
-        return R.id.accountListFragment
+        return com.backbase.accounts_journey.R.id.account_journey_nav_graph
     }
 }

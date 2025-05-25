@@ -1,5 +1,7 @@
-package app_common
+package com.backbase.android.test_data
 
+import androidx.recyclerview.widget.RecyclerView
+import androidx.test.espresso.NoMatchingViewException
 import androidx.test.espresso.ViewInteraction
 import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
 import androidx.test.espresso.action.ViewActions.typeText
@@ -10,6 +12,47 @@ import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.isEnabled
 import androidx.test.espresso.matcher.ViewMatchers.withSubstring
 import androidx.test.espresso.matcher.ViewMatchers.withText
+
+@Suppress("SwallowedException")
+fun ViewInteraction.waitForView(timeoutMs: Long = 10_000, intervalMs: Long = 500) {
+    val endTime = System.currentTimeMillis() + timeoutMs
+    do {
+        try {
+            this.check(matches(isDisplayed()))
+            return // Success
+        } catch (e: NoMatchingViewException) {
+            // View not found yet
+        } catch (e: AssertionError) {
+            // View found but not displayed yet
+        }
+        Thread.sleep(intervalMs)
+    } while (System.currentTimeMillis() < endTime)
+    throw AssertionError("View $this not displayed after $timeoutMs ms")
+}
+
+@Suppress("SwallowedException")
+fun ViewInteraction.waitForRecyclerViewToHaveItems(
+    timeoutMs: Long = 10_000,
+    intervalMs: Long = 500
+) {
+    val endTime = System.currentTimeMillis() + timeoutMs
+    do {
+        try {
+            this.check { view, _ ->
+                val recyclerView = view as RecyclerView
+                if ((recyclerView.adapter?.itemCount ?: 0) > 0) {
+                    return@check
+                }
+                throw AssertionError("RecyclerView has no items yet")
+            }
+            return // Items are present
+        } catch (e: Throwable) {
+            Thread.sleep(intervalMs)
+        }
+    } while (System.currentTimeMillis() < endTime)
+
+    throw AssertionError("RecyclerView did not get items in $timeoutMs ms")
+}
 
 fun ViewInteraction.shouldBeDisplayed(): ViewInteraction = check(matches(isDisplayed()))
 
