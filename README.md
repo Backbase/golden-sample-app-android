@@ -22,26 +22,53 @@ In order to login you can find user credentials at [user-credentials page](https
 ## The Journey Architecture
 Backbase mobile is built with the journey architecture, where a journey is an independent set of screens that form a typical user journey. To learn more about the Backbase journey architecture read this [guide](https://backbase.io/developers/documentation/retail-banking-universal/latest/system-wide/architecture/mobile-journey-architecture-understand/).
 
-## Tests
+## Test Suites Overview
 The project includes testing, demonstrating how to test the journey through unit tests, instrumented tests, and screenshot tests. It also highlights how to generate code coverage reports by using Jacoco.
 
-Run Unit Tests
+### Run Unit Tests
 ```sh
 ./gradlew testDebug
 ```
 
-Run Instrumented and Screenshot tests
+### Run Instrumented and Screenshot tests
+
+`accounts-journey` </br>
+This module includes unit tests, UI tests, and screenshot tests. </br>
+All tests use mocks and are not connected to any external services.
+
 ```sh
 ./gradlew accounts-journey:cAT
 ```
 
-Run code coverage and root code coverage
+`accounts-demo` </br>
+This module contains End-to-End UI tests for the Accounts Journey, connected to the EBP Sandbox Environment.
+
+> [!IMPORTANT] 
+> A test account must be configured before running tests.
+> Provide credentials by editing [accounts-demo/build.gradle.kts](accounts-demo/build.gradle.kts) using the [EBP Sandbox user credentials](https://backbase.io/ebp-sandbox/user-credentials?experience=retail).
+
+```sh
+./gradlew accounts-demo:cAT
+```
+
+`app` </br>
+This module includes End-to-End UI tests of the app, connected to the EBP Sandbox Environment.
+
+> [!IMPORTANT] 
+> A test account must be configured before running tests.
+> Provide credentials by editing [app/build.gradle.kts](app/build.gradle.kts) using the [EBP Sandbox user credentials](https://backbase.io/ebp-sandbox/user-credentials?experience=retail).
+
+```sh
+./gradlew app:cAT
+```
+
+### Run code coverage and root code coverage
 ```sh
 ./gradlew codeCoverageReport
 ./gradlew rootCodeCoverageReport
 ```
 
-Run coverage verification and root coverage verification
+### Run coverage verification and root coverage verification
 ```sh
 ./gradlew coverageVerification
 ./gradlew rootCoverageVerification
