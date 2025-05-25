@@ -70,7 +70,6 @@ android {
 }
 
 dependencies {
-
     implementation(projects.appCommon)
     implementation(projects.accountsJourney)
     implementation(projects.accountsUseCase)
@@ -86,7 +85,6 @@ dependencies {
 
     testImplementation(libs.bundles.test)
 
-    androidTestImplementation(projects.accountsTestData)
     androidTestImplementation(projects.testData)
     androidTestImplementation(libs.bundles.test.instrumented)
 

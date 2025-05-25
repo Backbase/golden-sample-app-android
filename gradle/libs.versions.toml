@@ -45,7 +45,7 @@ testParameterInjector = "1.18"
 ## A
 androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version = "" }
 androidx-navigation-safe-args-gradle-plugin = { group = "androidx.navigation", name = "navigation-safe-args-gradle-plugin", version.ref = "navigation-component" }
-androidx-navigation-testing = { group = "androidx.navigation", name = "navigation-testing", version = "" }
+androidx-navigation-testing = { group = "androidx.navigation", name = "navigation-testing", version = "2.9.0" }
 androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version = "" }
 androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version = "" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version = "" }
