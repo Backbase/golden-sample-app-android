@@ -3,17 +3,21 @@ package com.backbase.android.journey.contacts.presentation.screens.create_contac
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.backbase.android.journey.contacts.ContactsRouting
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactViewEffect.ToContactCreateResult
 
 fun NavGraphBuilder.createContactNavigation(
+    createContactViewModelFactory: CreateContactViewModelFactory<*>,
     onNavigateAfterSuccess: () -> Unit,
     routePrefix: String = ""
 ){
     composable(routePrefix + ContactsRouting.Create.route(routePrefix)) {
-        val viewModel: CreateContactViewModel<*> = TODO()
+        val viewModel: CreateContactViewModel<*> = viewModel(
+            factory = createContactViewModelFactory
+        )
         val state by viewModel.uiState.collectAsState()
         val effect by viewModel.effects.collectAsState(initial = null)
 

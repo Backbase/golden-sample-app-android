@@ -2,7 +2,7 @@ package com.backbase.android.journey.contacts
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
-import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactViewModel
+import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactViewModelFactory
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.createContactNavigation
 import com.backbase.android.journey.contacts.presentation.screens.detail.ContactDetailsViewModel
 import com.backbase.android.journey.contacts.presentation.screens.detail.contactDetailsNavigation
@@ -10,9 +10,9 @@ import com.backbase.android.journey.contacts.presentation.screens.list.ContactsL
 import com.backbase.android.journey.contacts.presentation.screens.list.contactListNavigation
 
 fun NavGraphBuilder.contactsJourneyNavigation(
+    createContactViewModelFactory: CreateContactViewModelFactory<*>,
     navController: NavController,
     contactsListViewModel: ContactsListViewModel,
-    createContactViewModel: CreateContactViewModel<*>,
     contactDetailsViewModel: ContactDetailsViewModel,
     routePrefix: String = ""
 ) {
@@ -41,6 +41,7 @@ fun NavGraphBuilder.contactsJourneyNavigation(
     )
 
     createContactNavigation(
+        createContactViewModelFactory = createContactViewModelFactory,
         routePrefix = routePrefix,
         onNavigateAfterSuccess = {
             navController.navigate(
@@ -48,5 +49,4 @@ fun NavGraphBuilder.contactsJourneyNavigation(
             )
         }
     )
-
 }
