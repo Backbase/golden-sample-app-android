@@ -10,8 +10,8 @@ import androidx.navigation.compose.composable
 import com.backbase.android.journey.contacts.ContactsRouting
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactViewEffect.ToContactCreateResult
 
-fun NavGraphBuilder.createContactNavigation(
-    createContactViewModelFactory:  ViewModelProvider.Factory,
+fun <E> NavGraphBuilder.createContactNavigation(
+    createContactViewModelFactory:  CreateContactViewModelFactory<E>,
     onNavigateAfterSuccess: () -> Unit,
     routePrefix: String = ""
 ){

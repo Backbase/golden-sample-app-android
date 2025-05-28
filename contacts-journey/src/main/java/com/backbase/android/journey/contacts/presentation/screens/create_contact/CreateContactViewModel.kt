@@ -25,7 +25,7 @@ class CreateContactViewModelFactory<E>(
     private val updateEmailIntentHandler: IntentHandler<UpdateEmail, CreateContactState<E>, CreateContactViewEffect>,
     private val updateAccountNumberIntentHandler: IntentHandler<UpdateAccountNumber, CreateContactState<E>, CreateContactViewEffect>,
     private val saveContactIntentHandler: IntentHandler<Submit, CreateContactState<E>, CreateContactViewEffect>,
-    private val intentHandlers: List<IntentHandler<out CreateContactIntent, CreateContactState<E>, CreateContactViewEffect>>,
+    private val intentHandlers: List<IntentHandler<out CreateContactIntent, CreateContactState<E>, CreateContactViewEffect>> = emptyList(),
 ) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
