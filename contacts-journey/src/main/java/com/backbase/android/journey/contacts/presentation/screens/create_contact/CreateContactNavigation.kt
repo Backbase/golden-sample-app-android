@@ -3,6 +3,7 @@ package com.backbase.android.journey.contacts.presentation.screens.create_contac
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
@@ -10,7 +11,7 @@ import com.backbase.android.journey.contacts.ContactsRouting
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactViewEffect.ToContactCreateResult
 
 fun NavGraphBuilder.createContactNavigation(
-    createContactViewModelFactory: CreateContactViewModelFactory<*>,
+    createContactViewModelFactory:  ViewModelProvider.Factory,
     onNavigateAfterSuccess: () -> Unit,
     routePrefix: String = ""
 ){
