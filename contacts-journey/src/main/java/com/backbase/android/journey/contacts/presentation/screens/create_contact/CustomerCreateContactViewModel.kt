@@ -21,6 +21,7 @@ import com.backbase.android.journey.contacts.ContactsRouting
 import com.backbase.android.journey.contacts.data.repository.MockContactsRepository
 import com.backbase.android.journey.contacts.domain.usecase.SaveNewContactUseCaseImpl
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactIntent.UpdateAccountNumber
+import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactViewEffect.ToContactCreatedResult
 import com.backbase.android.journey.contacts.presentation.util.FieldValue
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -30,9 +31,14 @@ data class CustomCreateContactStateExtension (
     val accountAlias: FieldValue<String> = FieldValue("")
 )
 
-object CustomCreateContactViewEffect: CreateContactViewEffect
-
 class UpdateAlias(val accountAlias: String): CreateContactIntent
+
+val updateAliasIntentHandler = IntentHandler<UpdateAlias, CreateContactState<CustomCreateContactStateExtension>, CreateContactViewEffect> {
+    updateUiState { currentState ->
+        val stateExtension = currentState.extension?: CustomCreateContactStateExtension()
+        currentState.copy(extension = stateExtension.copy(accountAlias = FieldValue(intent.accountAlias)))
+    }
+}
 
 @Composable
 fun CustomCreateContactScreen(
@@ -75,32 +81,29 @@ class ExampleFragment : Fragment() {
                 startDestination = ContactsRouting.startDestination(routePrefix = "")
             ) {
                 createContactNavigation(
-                    createContactViewModelFactory = CreateContactViewModelFactory(
-                        // If a client wants to use the default implementation from backbase
+                    content = { state, onIntent -> CustomCreateContactScreen(state, onIntent) },
+                    viewModelFactory = CreateContactViewModelFactory(
+                        // Backbase out-of-the-box implementation
                         updateNameIntentHandler = updateNameIntentHandler(),
                         updateEmailIntentHandler = updateEmailIntentHandler(),
-                        // If a client wants to override the default implementation
+                        // Custom IntentHandler for handling a out-of-the-box intent
                         updateAccountNumberIntentHandler = IntentHandler<UpdateAccountNumber, CreateContactState<CustomCreateContactStateExtension>, CreateContactViewEffect> {
                             launch(Dispatchers.IO) {
                                 delay(timeMillis = 1000L)
                                 updateUiState { currentState -> currentState.copy(name = currentState.accountNumber.copy(value = intent.value)) }
                             }
                         },
-                        // If a client wants to keep the default implementation but override the async operation
+                        // Backbase out-of-the-box IntentHandler with a custom use case implementation
                         saveContactIntentHandler = saveContactIntentHandler(saveNewContactUseCase = saveNewContactUseCase),
-                        // If a client wants to handle a custom intent
-                        intentHandlers = listOf(
-                            IntentHandler<UpdateAlias, CreateContactState<CustomCreateContactStateExtension>, CreateContactViewEffect> {
-                                updateUiState { currentState ->
-                                    currentState.copy(extension = (currentState.extension?: CustomCreateContactStateExtension()).copy(accountAlias = FieldValue(intent.accountAlias)))
-                                }
-                                launch { launchEffect(effect = CustomCreateContactViewEffect) }
-                            }
-                        )
+                        // Custom IntentHandler for handling custom intents
+                        intentHandlers = listOf(updateAliasIntentHandler)
                     ),
-                    onNavigateAfterSuccess = {
-                        navController.navigate(ContactsRouting.Create.route(routePrefix = ""))
-                    }
+                    onEffect = { effect ->
+                        when (effect) {
+                            is ToContactCreatedResult -> navController.navigate(ContactsRouting.Create.route(routePrefix = ""))
+                            null -> { /* no-op */ }
+                        }
+                    },
                 )
             }
         }

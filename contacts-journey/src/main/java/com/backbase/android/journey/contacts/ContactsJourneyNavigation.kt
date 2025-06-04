@@ -2,6 +2,8 @@ package com.backbase.android.journey.contacts
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
+import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactScreen
+import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactViewEffect.ToContactCreatedResult
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactViewModelFactory
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.createContactNavigation
 import com.backbase.android.journey.contacts.presentation.screens.detail.ContactDetailsViewModel
@@ -41,12 +43,14 @@ fun <E> NavGraphBuilder.contactsJourneyNavigation(
     )
 
     createContactNavigation(
-        createContactViewModelFactory = createContactViewModelFactory,
-        routePrefix = routePrefix,
-        onNavigateAfterSuccess = {
-            navController.navigate(
-                ContactsRouting.Create.route(routePrefix)
-            )
-        }
+        content = { state, onIntent -> CreateContactScreen(state, onIntent) },
+        viewModelFactory = createContactViewModelFactory,
+        onEffect = { effect ->
+            when (effect) {
+                is ToContactCreatedResult -> navController.navigate(ContactsRouting.Create.route(routePrefix))
+                null -> { /* no-op */ }
+            }
+        },
+        routePrefix = routePrefix
     )
 }

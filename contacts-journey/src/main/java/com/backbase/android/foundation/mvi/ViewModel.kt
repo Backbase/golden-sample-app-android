@@ -67,7 +67,7 @@ abstract class ViewModel<I : Any, S, E>(
     fun handle(intent: I) {
         viewModelScope.launch {
             val intentHandler = handlerMap[intent::class] as? IntentHandler<I, S, E>
-                ?: error("No handler for ${intent::class}")
+                ?: error("No handler founded for ${intent::class}")
 
             val intentScope = IntentScope(
                 coroutineContext = viewModelScope.coroutineContext,
