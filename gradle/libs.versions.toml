@@ -19,7 +19,7 @@ gradle-versions-plugin = "0.51.0"
 ## J
 jacoco = "0.8.11"
 junit4 = "4.13.2"
-junit4-android = "1.2.1"
+junit4-android = "1.1.5"
 junit5 = "5.11.3"
 junit5-android = "1.10.0.0"
 
