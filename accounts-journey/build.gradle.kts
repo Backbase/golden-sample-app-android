@@ -25,6 +25,7 @@ android {
     }
     testOptions {
         execution = "ANDROIDX_TEST_ORCHESTRATOR"
+        animationsDisabled = true
     }
 }
 
@@ -43,6 +44,7 @@ dependencies {
     testImplementation(libs.archCore)
 
     androidTestImplementation(projects.accountsTestData)
+    androidTestImplementation(projects.testData)
     androidTestImplementation(libs.bundles.test.instrumented)
 
     androidTestUtil(libs.orchestrator)

@@ -6,7 +6,6 @@ import androidx.navigation.testing.TestNavHostController
 import androidx.test.core.app.ApplicationProvider
 import app_common.BaseTest
 import app_common.provideAccountsJourneyDependencies
-import app_common.shouldBeDisplayed
 import com.backbase.accounts_journey.R
 import com.backbase.accounts_journey.common.FailedGetDataException
 import com.backbase.accounts_journey.common.NoInternetException
@@ -16,6 +15,7 @@ import com.backbase.accounts_journey.generator.AccountSummaryGenerator
 import com.backbase.accounts_journey.presentation.accountlist.ui.AccountListFragment
 import com.backbase.accounts_use_case.ErrorAccountsUseCase
 import com.backbase.accounts_use_case.SuccessAccountsUseCase
+import com.backbase.android.test_data.shouldBeDisplayed
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Test
 import screens.accountListScreen

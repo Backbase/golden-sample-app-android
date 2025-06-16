@@ -13,4 +13,6 @@ dependencies {
     implementation(libs.coroutinesTest)
     implementation(platform(libs.junit.bom))
     implementation(libs.junit.jupiter)
+
+    implementation(libs.espresso)
 }
