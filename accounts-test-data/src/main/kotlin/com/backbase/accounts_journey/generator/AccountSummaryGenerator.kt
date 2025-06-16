@@ -23,7 +23,8 @@ object AccountSummaryGenerator {
 
     fun generateAccountSummary(
         id: String = randomString(),
-        displayName: String = randomString()
+        displayName: String = randomString(),
+        availableBalance: String = randomFloat(1, 100).toString(),
     ): AccountSummary {
         return AccountSummary {
             currentAccounts = CurrentAccounts {
@@ -31,7 +32,7 @@ object AccountSummaryGenerator {
                     CurrentAccount {
                         debitCardItems = emptySet()
                         bookedBalance = randomFloat().toString()
-                        availableBalance = randomFloat(1, 100).toString()
+                        this.availableBalance = availableBalance
                         creditLimit = randomFloat().toString()
                         BBAN = generateRandomBBAN()
                         BIC = generateRandomBIC()
