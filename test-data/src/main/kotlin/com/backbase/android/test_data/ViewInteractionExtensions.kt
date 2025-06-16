@@ -30,7 +30,7 @@ fun ViewInteraction.waitForView(timeoutMs: Long = 10_000, intervalMs: Long = 500
     throw AssertionError("View $this not displayed after $timeoutMs ms")
 }
 
-@Suppress("SwallowedException")
+@Suppress("SwallowedException", "TooGenericExceptionCaught")
 fun ViewInteraction.waitForRecyclerViewToHaveItems(
     timeoutMs: Long = 10_000,
     intervalMs: Long = 500
