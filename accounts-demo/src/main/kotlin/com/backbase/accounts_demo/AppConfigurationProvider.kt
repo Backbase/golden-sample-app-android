@@ -1,11 +1,11 @@
 package com.backbase.accounts_demo
 
-import com.backbase.android.configurations.Configuration
+import com.backbase.android.configurations.BBConfiguration
 import com.backbase.android.configurations.IdentityConfiguration
 import com.backbase.app_common.sdk.ConfigurationProvider
 
 class AppConfigurationProvider(
-    override val configuration: Configuration = Configuration {
+    override val configuration: BBConfiguration = BBConfiguration {
         serverUrl = "https://app.dev.sdbxaz.azure.backbaseservices.com"
         version = "6.1.5"
         identityConfiguration = IdentityConfiguration {

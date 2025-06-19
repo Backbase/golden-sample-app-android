@@ -89,6 +89,11 @@ android {
     }
 }
 
+configurations.all {
+    exclude(group = "com.backbase.android.clients", module = "clients-common")
+    exclude(group = "com.backbase.android.clients", module = "clients-common-coroutines")
+}
+
 dependencies {
     implementation(projects.appCommon)
     implementation(projects.accountsJourney)

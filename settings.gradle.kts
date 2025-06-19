@@ -4,6 +4,7 @@ pluginManagement {
     repositories {
         google()
         gradlePluginPortal()
+        mavenLocal()
         mavenCentral()
         maven {
             name = "backbaseRepo"
@@ -16,6 +17,7 @@ pluginManagement {
 dependencyResolutionManagement {
     repositories {
         google()
+        mavenLocal()
         mavenCentral()
         maven { setUrl("https://jitpack.io") }
         maven {
