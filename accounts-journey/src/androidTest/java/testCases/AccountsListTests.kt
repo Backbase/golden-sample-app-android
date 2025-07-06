@@ -15,12 +15,9 @@ import com.backbase.accounts_journey.generator.AccountSummaryGenerator
 import com.backbase.accounts_journey.presentation.accountlist.ui.AccountListFragment
 import com.backbase.accounts_use_case.ErrorAccountsUseCase
 import com.backbase.accounts_use_case.SuccessAccountsUseCase
-import com.backbase.android.test_data.shouldBeDisplayed
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Test
 import screens.accountListScreen
 
-@OptIn(ExperimentalCoroutinesApi::class)
 class AccountsListTests : BaseTest() {
 
     @Test
@@ -29,7 +26,10 @@ class AccountsListTests : BaseTest() {
 
         accountListScreen {
             headerWithTextIsDisplayed(R.string.accounts_screen_title)
-            currentAccountsTitle.shouldBeDisplayed()
+
+            accountHeaderWithName(ACCOUNT_HEADER) {
+                accountHeaderIsDisplayed()
+            }
 
             accountWithName(ACCOUNT_NAME) {
                 accountNameIsDisplayed()
@@ -90,7 +90,9 @@ class AccountsListTests : BaseTest() {
 
         accountListScreen {
             pullToRefresh()
-            currentAccountsTitle.shouldBeDisplayed()
+            accountHeaderWithName(ACCOUNT_HEADER) {
+                accountHeaderIsDisplayed()
+            }
         }
     }
 
@@ -100,7 +102,9 @@ class AccountsListTests : BaseTest() {
 
         accountListScreen {
             pullToRefresh()
-            currentAccountsTitle.shouldBeDisplayed()
+            accountHeaderWithName(ACCOUNT_HEADER) {
+                accountHeaderIsDisplayed()
+            }
             pullToRefresh()
             errorViewIsDisplayed(R.string.failed_unknown)
         }
@@ -123,11 +127,20 @@ class AccountsListTests : BaseTest() {
     }
 
     companion object {
+        const val ACCOUNT_HEADER = "Current Accounts"
         const val ACCOUNT_NAME = "Alpha"
         const val ACCOUNT_BALANCE = "45.89"
-        val TEST_ACCOUNTS = AccountSummaryGenerator.generateAccountSummary(
-            displayName = ACCOUNT_NAME,
-            availableBalance = ACCOUNT_BALANCE
-        )
+
+        val TEST_ACCOUNTS = AccountSummaryGenerator.randomAccountSummaryBuilder {
+            currentAccounts = AccountSummaryGenerator.randomCurrentAccounts {
+                this.name = ACCOUNT_HEADER
+                this.products = listOf(
+                    AccountSummaryGenerator.randomCurrentAccount {
+                        this.displayName = ACCOUNT_NAME
+                        this.availableBalance = ACCOUNT_BALANCE
+                    }.build()
+                )
+            }.build()
+        }.build()
     }
 }

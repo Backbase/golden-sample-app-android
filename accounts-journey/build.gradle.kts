@@ -24,6 +24,7 @@ android {
         isCoreLibraryDesugaringEnabled = true
     }
     testOptions {
+        targetSdk = Version.compileSdk
         execution = "ANDROIDX_TEST_ORCHESTRATOR"
         animationsDisabled = true
     }

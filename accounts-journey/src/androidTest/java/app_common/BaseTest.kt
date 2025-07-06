@@ -4,14 +4,12 @@ import android.content.Context
 import android.content.res.Configuration
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.platform.app.InstrumentationRegistry
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Before
 import org.junit.Rule
 import org.koin.core.context.stopKoin
 import org.koin.test.KoinTest
 import java.util.Locale
 
-@ExperimentalCoroutinesApi
 open class BaseTest : KoinTest {
 
     @get:Rule
@@ -25,8 +23,8 @@ open class BaseTest : KoinTest {
     }
 
     fun setLocale(language: String) {
-        val context: Context = InstrumentationRegistry.getInstrumentation().getTargetContext()
-        val config: Configuration = context.getResources().getConfiguration()
+        val context: Context = InstrumentationRegistry.getInstrumentation().targetContext
+        val config: Configuration = context.resources.configuration
         config.setLocale(Locale(language))
         context.createConfigurationContext(config)
     }
