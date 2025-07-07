@@ -3,7 +3,7 @@ package com.backbase.accounts_journey.presentation.accountdetail.ui
 import com.backbase.accounts_journey.common.FailedGetDataException
 import com.backbase.accounts_journey.data.usecase.AccountDetailUseCase
 import com.backbase.accounts_journey.data.usecase.Params
-import com.backbase.accounts_journey.generator.AccountDetailGenerator.generateAccountDetail
+import com.backbase.accounts_journey.generator.AccountDetailGenerator.randomAccountDetailBuilder
 import com.backbase.accounts_journey.presentation.accountdetail.mapper.AccountDetailUiMapper
 import com.backbase.android.test_data.CoroutineTest
 import com.backbase.android.test_data.StringGenerator
@@ -38,7 +38,7 @@ class AccountDetailViewModelTest : CoroutineTest {
         val params = Params({ this.id = id })
         coEvery {
             accountDetailUseCase.getAccountDetail(params)
-        } returns Result.success(generateAccountDetail(id = id))
+        } returns Result.success(randomAccountDetailBuilder {}.apply { this.id = id }.build())
 
         viewModel.onEvent(AccountDetailEvent.OnGetAccountDetail(id))
 
