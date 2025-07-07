@@ -33,7 +33,7 @@ android {
 dependencies {
     implementation(libs.bundles.navigation)
     testImplementation(projects.testData)
-    testImplementation(projects.accountsTestData)
+    testImplementation(projects.accountsJourneyFake)
 
     // Backbase libraries
     implementation(platform(backbase.bom))
@@ -44,7 +44,7 @@ dependencies {
 
     testImplementation(libs.archCore)
 
-    androidTestImplementation(projects.accountsTestData)
+    androidTestImplementation(projects.accountsJourneyFake)
     androidTestImplementation(projects.testData)
     androidTestImplementation(libs.bundles.test.instrumented)
 
