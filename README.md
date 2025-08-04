@@ -45,7 +45,10 @@ This module contains End-to-End UI tests for the Accounts Journey, connected to 
 
 > [!IMPORTANT] 
 > A test account must be configured before running tests.
-> Provide credentials by editing [accounts-demo/build.gradle.kts](accounts-demo/build.gradle.kts) using the [EBP Sandbox user credentials](https://backbase.io/ebp-sandbox/user-credentials?experience=retail).
+> Provide credentials by editing the global `./gradle/gradle.properties` using the [EBP Sandbox user credentials](https://backbase.io/ebp-sandbox/user-credentials?experience=retail):
+- `systemProp.TEST_ACCOUNT_USERNAME="username"`
+- `systemProp.TEST_ACCOUNT_PASSWORD="password"`
+
 
 ```sh
 ./gradlew accounts-demo:cAT

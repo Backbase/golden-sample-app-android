@@ -33,8 +33,10 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField("String", "TEST_ACCOUNT_USERNAME", "\"ADD USER NAME HERE\"")
-            buildConfigField("String", "TEST_ACCOUNT_PASSWORD", "\"ADD PASSWORD HERE\"")
+            val testAccountUserName = System.getProperty("TEST_ACCOUNT_USERNAME") ?: "unknown"
+            val testAccountPassword = System.getProperty("TEST_ACCOUNT_PASSWORD") ?: "unknown"
+            buildConfigField("String", "TEST_ACCOUNT_USERNAME", testAccountUserName)
+            buildConfigField("String", "TEST_ACCOUNT_PASSWORD", testAccountPassword)
         }
         release {
             isMinifyEnabled = false
