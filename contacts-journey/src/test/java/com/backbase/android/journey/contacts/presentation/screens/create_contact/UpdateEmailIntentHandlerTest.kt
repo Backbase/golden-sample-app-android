@@ -1,7 +1,5 @@
 package com.backbase.android.journey.contacts.presentation.screens.create_contact
 
-import com.backbase.android.foundation.mvi.IntentContext
-import com.backbase.android.foundation.mvi.IntentScope
 import com.backbase.android.journey.contacts.R
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactIntent.UpdateEmail
 import com.backbase.android.journey.contacts.presentation.util.FieldStatus.Invalid
@@ -30,10 +28,10 @@ class UpdateEmailIntentHandlerTest {
         val updateEmailIntentHandler = updateEmailIntentHandler<Unit>()
 
         updateEmailIntentHandler.runIn(
-            IntentScope<UpdateEmail, CreateContactState<Unit>, CreateContactViewEffect>(
+            IntentScope<UpdateEmail, CreateContactState<Unit>, CreateContactSideEffect>(
                 coroutineContext = coroutineContext,
                 currentUiState = { actualStates.lastOrNull() ?: CreateContactState() },
-                intent = UpdateEmail(value = "matiasb@"),
+                intent = UpdateEmail(email = "matiasb@"),
                 intentContext = IntentContext(
                     emitState = { actualStates.add(it) },
                     emitEffect = { fail("Should not emit effects") }

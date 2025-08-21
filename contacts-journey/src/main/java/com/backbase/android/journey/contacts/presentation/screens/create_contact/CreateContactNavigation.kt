@@ -11,7 +11,7 @@ import com.backbase.android.journey.contacts.ContactsRouting
 
 fun <E> NavGraphBuilder.createContactNavigation(
     viewModelFactory:  CreateContactViewModelFactory<E>,
-    onEffect: (CreateContactViewEffect?) -> Unit,
+    onEffect: (CreateContactSideEffect?) -> Unit,
     content: @Composable (state: CreateContactState<E>, onIntent: (CreateContactIntent) -> Unit) -> Unit,
     routePrefix: String = "",
 ){

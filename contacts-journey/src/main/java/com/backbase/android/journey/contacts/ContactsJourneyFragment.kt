@@ -14,11 +14,9 @@ import com.backbase.android.journey.contacts.data.service.MockContactsService
 import com.backbase.android.journey.contacts.domain.usecase.GetContactDetailsUseCaseImpl
 import com.backbase.android.journey.contacts.domain.usecase.GetContactsUseCaseImpl
 import com.backbase.android.journey.contacts.domain.usecase.SaveNewContactUseCaseImpl
+import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactReducer
+import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactSideEffectHandler
 import com.backbase.android.journey.contacts.presentation.screens.create_contact.CreateContactViewModelFactory
-import com.backbase.android.journey.contacts.presentation.screens.create_contact.saveContactIntentHandler
-import com.backbase.android.journey.contacts.presentation.screens.create_contact.updateAccountNumberIntentHandler
-import com.backbase.android.journey.contacts.presentation.screens.create_contact.updateEmailIntentHandler
-import com.backbase.android.journey.contacts.presentation.screens.create_contact.updateNameIntentHandler
 import com.backbase.android.journey.contacts.presentation.screens.detail.ContactDetailsViewModel
 import com.backbase.android.journey.contacts.presentation.screens.detail.ContactDetailsViewModelFactory
 import com.backbase.android.journey.contacts.presentation.screens.list.ContactsListViewModel
@@ -60,10 +58,8 @@ class ContactsJourneyFragment : Fragment() {
                     contactsJourneyNavigation(
                         navController = navController,
                         createContactViewModelFactory = CreateContactViewModelFactory<Nothing>(
-                            updateNameIntentHandler = updateNameIntentHandler(),
-                            updateEmailIntentHandler = updateEmailIntentHandler(),
-                            updateAccountNumberIntentHandler = updateAccountNumberIntentHandler(),
-                            saveContactIntentHandler = saveContactIntentHandler(saveNewContactUseCase = saveNewContactUseCase),
+                            reducer = CreateContactReducer(),
+                            sideEffectHandler = CreateContactSideEffectHandler(saveNewContactUseCase)
                         ),
                         contactsListViewModel = contactsListViewModel,
                         contactDetailsViewModel = contactDetailsViewModel
