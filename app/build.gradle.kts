@@ -93,6 +93,7 @@ dependencies {
     implementation(projects.appCommon)
     implementation(projects.accountsJourney)
     implementation(projects.accountsUseCase)
+    implementation(projects.customAuthenticationFlow)
 
     implementation(platform(backbase.bom))
 

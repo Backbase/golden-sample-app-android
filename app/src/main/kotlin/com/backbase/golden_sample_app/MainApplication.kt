@@ -9,6 +9,7 @@ import com.backbase.app_common.auth.CompositeSessionListener
 import com.backbase.app_common.sdk.initializeAuthClient
 import com.backbase.app_common.sdk.initializeBackbase
 import com.backbase.app_common.sdk.startKoinIfNotStarted
+import com.backbase.custom_authentication_flow.initCustomAuthenticator
 import com.backbase.golden_sample_app.common.TAG
 import com.backbase.golden_sample_app.journey.accounts.injectAccountsJourney
 import com.backbase.golden_sample_app.journey.workspaces.injectWorkspacesJourney
@@ -34,6 +35,7 @@ class MainApplication : Application() {
         setupDependencies()
 
         initAuthenticationJourney()
+        initCustomAuthenticator()
     }
 
     private fun setupDependencies() {

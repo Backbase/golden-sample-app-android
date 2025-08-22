@@ -5,6 +5,7 @@
 business-journey-common = { group = "com.backbase.android.business.journey", name = "journey-common", version = "" }
 
 ## C
+clients-common = { group = "com.backbase.android.clients", name = "clients-common", version = "" }
 clients-common-coroutines = { group = "com.backbase.android.clients", name = "clients-common-coroutines", version = "" }
 
 ## J
@@ -21,6 +22,7 @@ retail-journey-common-koin = { group = "com.backbase.android.retail.journey", na
 common = [
     "business-journey-common",
     "clients-common-coroutines",
+    "clients-common",
     "retail-journey-common",
     "retail-journey-common-koin",
     "journey-test",

@@ -55,4 +55,12 @@
         android:name="com.backbase.golden_sample_app.presentation.header.UpComingJourneyFragment"
         tools:layout="@layout/fragment_upcoming_journey" />
 
+    <fragment
+        android:id="@+id/termsAndConditionsScreen"
+        android:name="com.backbase.custom_authentication_flow.terms_and_conditions.presentation.TermsAndConditionsScreen" />
+
+    <action
+        android:id="@+id/action_to_termsAndConditionsScreen"
+        app:destination="@id/termsAndConditionsScreen" />
+
 </navigation>

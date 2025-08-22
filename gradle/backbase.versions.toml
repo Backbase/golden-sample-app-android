@@ -27,6 +27,9 @@ bom = { module = "com.backbase.android.platform:bom", version.ref = "bom" }
 ## F
 featureFilterUseCase = { group = "com.backbase.android.retail.feature_filter", name = "feature-filter-use-case", version.ref = "featureFilter" }
 
+## I
+identitySdk = { group = "com.backbase.android.identity", name = "identitysdk", version.ref = "authentication" }
+
 ## M
 moreMenuJourney = { group = "com.backbase.android.retail.journey", name = "more-journey", version.ref = "moreMenu" }
 

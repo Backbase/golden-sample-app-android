@@ -5,6 +5,7 @@ import com.backbase.app_common.AppRouting
 import com.backbase.app_common.appModule
 import com.backbase.app_common.auth.initIdentityAuthModule
 import com.backbase.app_common.storage.storageModule
+import com.backbase.custom_authentication_flow.core.di.customAuthFlowModule
 import com.backbase.golden_sample_app.auth.appAuthModule
 import com.backbase.golden_sample_app.feature_filter.featureFilterModule
 import com.backbase.golden_sample_app.journey.accounts.accountsModule
@@ -31,4 +32,5 @@ internal fun Application.getDependenciesDeclaration(): List<Module> =
         userProfileModule(),
         workspacesModule(),
         accountsModule(),
+        customAuthFlowModule()
     )
