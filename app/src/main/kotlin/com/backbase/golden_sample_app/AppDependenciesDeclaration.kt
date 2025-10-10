@@ -13,6 +13,7 @@ import com.backbase.golden_sample_app.journey.profile.userProfileModule
 import com.backbase.golden_sample_app.journey.workspaces.workspacesModule
 import com.backbase.golden_sample_app.menu.moreMenuModule
 import com.backbase.golden_sample_app.presentation.presentationModule
+import com.backbase.golden_sample_app.security.securityModule
 import com.backbase.golden_sample_app.user.userModule
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -33,4 +34,5 @@ internal fun Application.getDependenciesDeclaration(): List<Module> =
         workspacesModule(),
         accountsModule(),
         observabilityModule(),
+        securityModule(context = this)
     )

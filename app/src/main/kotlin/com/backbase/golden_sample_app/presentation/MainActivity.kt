@@ -1,9 +1,11 @@
 package com.backbase.golden_sample_app.presentation
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Lifecycle.State.CREATED
 import androidx.lifecycle.Lifecycle.State.STARTED
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -15,6 +17,7 @@ import com.backbase.android.design.header.TopBarConfiguration
 import com.backbase.app_common.AppRouting
 import com.backbase.golden_sample_app.R
 import com.backbase.golden_sample_app.databinding.ActivityMainBinding
+import com.backbase.golden_sample_app.presentation.MainViewModel.ViolationState
 import com.backbase.golden_sample_app.presentation.bottom.setupBottomBar
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -58,6 +61,39 @@ class MainActivity : AppCompatActivity() {
         setupBottomBar(isInRootScreen = tabHeaderViewModel.uiState.map { it.isInRootScreen })
 
         lifecycleScope.launch { repeatOnLifecycle(STARTED) { mainViewModel.uiState.collect(::update) } }
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(STARTED) {
+                mainViewModel.securityState.collect { securityState ->
+                    when (val state = securityState.state) {
+                        ViolationState.Debugged -> logIt(R.string.app_is_debugged)
+                        ViolationState.Rooted -> logIt(R.string.device_is_rooted)
+                        ViolationState.Tampered -> logIt(R.string.app_is_tampered)
+                        ViolationState.Good -> logIt(R.string.looks_good)
+                        ViolationState.Compromised -> logIt(R.string.is_violated)
+                        ViolationState.AdditionalCheck -> logIt(R.string.general_detectors_violated)
+                        ViolationState.Emulator -> logIt(R.string.device_is_an_emulator)
+                        ViolationState.Nothing -> {}
+                        is ViolationState.Error -> logIt(R.string.error, state.ex.toString())
+                    }
+                }
+            }
+        }
+
+        // Start periodic security checks when activity is started
+        lifecycleScope.launch {
+            repeatOnLifecycle(STARTED) {
+                // Start periodic checks every 30 seconds
+                mainViewModel.startPeriodicSecurityChecks()
+            }
+        }
+
+        // Stop periodic checks when activity is paused/destroyed
+        lifecycleScope.launch {
+            repeatOnLifecycle(CREATED) {
+                mainViewModel.stopPeriodicSecurityChecks()
+            }
+        }
     }
 
     /**
@@ -75,5 +111,9 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_container) as NavHostFragment
         return navHostFragment.navController
+    }
+
+    private fun logIt(msg: Int, ex: String = "") {
+        Log.d(this::class.java.name, getString(msg) + ex)
     }
 }

@@ -17,4 +17,26 @@
 
     <string name="upcoming_journey_stay_tuned">Soon a new journey will be added to this tab. Stay tuned!</string>
     <string name="upcoming_journey_under_construction">Journey under construction!</string>
+
+    <string name="device_is_rooted">Device is Rooted</string>
+    <string name="is_violated">Environment is not secure</string>
+    <string name="app_is_debugged">Application is Debugged</string>
+    <string name="app_is_tampered">Application is Tampered</string>
+    <string name="looks_good">Looks Good</string>
+    <string name="verifications">Verifications</string>
+    <string name="rooted_device_verification_description">A root checker library that uses RootBeer under the hood for the verification.</string>
+    <string name="rooted_device_verification">Rooted Device Verification</string>
+    <string name="app_tamper_verification_description">Verify if the application signature is the same as the hardcoded one.</string>
+    <string name="app_tamper_verification">Tamper Verification</string>
+    <string name="app_debug_verification_description">Verify if the application is being debugged</string>
+    <string name="app_debug_verification">Debug Verification</string>
+    <string name="app_emulator_description">Verify if the device is an emulator</string>
+    <string name="app_emulator_verification">Emulator Verification</string>
+    <string name="device_is_an_emulator">Device is an Emulator</string>
+    <string name="integrity_verification">Integrity Verification</string>
+    <string name="integrity_verification_description">Run All the checks</string>
+    <string name="general_detectors">Additional Detectors</string>
+    <string name="general_detectors_description">Additional Custom Detectors</string>
+    <string name="general_detectors_violated">Environment is not secure (General Detectors)</string>
+    <string name="error">Something went wrong</string>
 </resources>

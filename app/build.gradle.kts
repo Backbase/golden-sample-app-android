@@ -97,6 +97,7 @@ dependencies {
     // Backbase libraries
     implementation(clients.bundles.clients)
     implementation(midTier.bundles.common)
+    implementation(midTier.security)
     implementation(foundation.bundles.foundation)
     implementation(backbase.bundles.journeys)
     implementation(backbase.bundles.useCases)

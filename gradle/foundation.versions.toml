@@ -5,7 +5,7 @@
 design-system = { group = "com.backbase.android.design", name = "design-system", version = "" }
 
 # M
-msdk = { group = "com.backbase.android.sdk", name = "backbase", version = "" }
+msdk = { group = "com.backbase.android.sdk", name = "backbase", version = "13.3.0" }
 
 ## O
 observability = { group = "com.backbase.android.observability", name = "backbase-observability-android", version = "" }

@@ -12,5 +12,5 @@ import org.koin.dsl.module
  */
 internal fun presentationModule(context: Context) = module {
     factory { TabListConfigurationProvider(context = context) }
-    viewModel { MainViewModel(profileRepository = get(), userRepository = get()) }
+    viewModel { MainViewModel(profileRepository = get(), userRepository = get(), security = get()) }
 }

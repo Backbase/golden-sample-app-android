@@ -14,6 +14,9 @@ journey-test = { group = "com.backbase.android.retail.journey", name = "journey-
 retail-journey-common = { group = "com.backbase.android.retail.journey", name = "journey-common", version = "" }
 retail-journey-common-koin = { group = "com.backbase.android.retail.journey", name = "journey-common-koin", version = "" }
 
+## S
+security = { module = "com.backbase.android.sdk.security:backbase-security", version = "" }
+
 [plugins]
 
 [bundles]

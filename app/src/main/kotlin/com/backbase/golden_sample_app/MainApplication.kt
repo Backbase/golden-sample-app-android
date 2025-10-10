@@ -1,7 +1,10 @@
 package com.backbase.golden_sample_app
 
 import android.app.Application
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
+import android.widget.Toast
 import com.backbase.android.core.utils.BBLogger
 import com.backbase.android.identity.fido.FidoUafFacetUtils
 import com.backbase.android.identity.journey.authentication.initAuthenticationJourney
@@ -9,6 +12,7 @@ import com.backbase.android.identity.journey.authentication.stopAuthenticationJo
 import com.backbase.android.observability.Tracker
 import com.backbase.android.observability.event.ScreenViewEvent
 import com.backbase.android.observability.event.UserActionEvent
+import com.backbase.android.sdk.security.violation.ViolationEvent
 import com.backbase.app_common.auth.CompositeSessionListener
 import com.backbase.app_common.sdk.initializeAuthClient
 import com.backbase.app_common.sdk.initializeBackbase
@@ -71,6 +75,17 @@ class MainApplication : Application() {
         tracker.subscribe(this, UserActionEvent::class, scope) { event ->
             // Same can be done with the User Action Events.
             Log.d("Tracker", "Tracked user action: ${event.name}")
+        }
+        tracker.subscribe(this, ViolationEvent::class, scope) { allViolation ->
+            val message = "[ALL] Security Violation\nname: ${allViolation.name}"
+            Log.d("Tracker", message)
+            // toast(message)
+        }
+    }
+
+    private fun toast(message: String) {
+        Handler(Looper.getMainLooper()).post {
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
         }
     }
 
