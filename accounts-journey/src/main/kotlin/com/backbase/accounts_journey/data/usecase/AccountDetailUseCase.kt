@@ -1,10 +1,10 @@
 package com.backbase.accounts_journey.data.usecase
 
-import com.backbase.accounts_journey.domain.model.account_detail.AccountDetail
+import com.backbase.android.client.gen2.arrangementclient2.model.AccountArrangementItem
 import dev.drewhamilton.poko.Poko
 
 interface AccountDetailUseCase {
-    suspend fun getAccountDetail(params: Params): Result<AccountDetail>
+    suspend fun getAccountDetail(params: Params): Result<AccountArrangementItem>
 
     @Poko
     class Params private constructor(val id: String) {

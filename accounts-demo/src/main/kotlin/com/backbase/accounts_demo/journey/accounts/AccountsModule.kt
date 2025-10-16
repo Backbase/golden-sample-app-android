@@ -3,8 +3,8 @@ package com.backbase.accounts_demo.journey.accounts
 import android.app.Application
 import com.backbase.accounts_journey.AccountsJourney
 import com.backbase.accounts_journey.routing.AccountsRoutingImpl
-import com.backbase.accounts_use_case.AccountDetailUseCaseImpl
-import com.backbase.accounts_use_case.AccountSummaryUseCaseImpl
+import com.backbase.accounts_journey.data.usecase.AccountDetailUseCaseImpl
+import com.backbase.accounts_journey.data.usecase.AccountSummaryUseCaseImpl
 import com.backbase.android.client.gen2.arrangementclient2.api.ArrangementsApi
 import com.backbase.android.client.gen2.arrangementclient2.api.ProductSummaryApi
 import com.backbase.app_common.accounts.accountsModule

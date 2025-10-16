@@ -14,6 +14,7 @@ android {
 dependencies {
     implementation(projects.accountsJourney)
     implementation(projects.testData)
+    implementation(clients.arrangements)
 
     coreLibraryDesugaring(libs.coreLibraryDesugaring)
 }

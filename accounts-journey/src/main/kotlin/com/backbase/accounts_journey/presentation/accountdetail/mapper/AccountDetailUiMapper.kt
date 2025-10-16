@@ -3,15 +3,15 @@ package com.backbase.accounts_journey.presentation.accountdetail.mapper
 import com.backbase.accounts_journey.configuration.AccountsJourneyConfiguration
 import com.backbase.accounts_journey.configuration.icon.IconsConfiguration
 import com.backbase.accounts_journey.domain.model.AccountType
-import com.backbase.accounts_journey.domain.model.account_detail.AccountDetail
 import com.backbase.accounts_journey.presentation.accountdetail.model.AccountDetailUiModel
+import com.backbase.android.client.gen2.arrangementclient2.model.AccountArrangementItem
 import com.backbase.android.design.amount.AmountFormat
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.time.format.DateTimeFormatter
 
 /**
- *  A AccountDetail mapper from domain models to UI model.
+ *  A AccountDetail mapper from DTO models to UI model.
  *
  *  Created by Backbase R&D B.V on 16/11/2023.
  */
@@ -21,23 +21,23 @@ class AccountDetailUiMapper(accountsJourneyConfiguration: AccountsJourneyConfigu
         accountsJourneyConfiguration.iconsConfiguration
     }
 
-    fun mapToUi(domain: AccountDetail): AccountDetailUiModel {
+    fun mapToUi(dto: AccountArrangementItem): AccountDetailUiModel {
         return AccountDetailUiModel(
-            id = domain.id,
-            name = domain.name,
-            BBAN = domain.BBAN ?: domain.BIC,
-            availableBalance = formatCurrency(domain.currency, domain.availableBalance),
-            accountHolderNames = domain.accountHolderNames,
-            productKindName = domain.product?.productKind?.kindName,
-            bankBranchCode = domain.bankBranchCode,
-            lastUpdateDate = domain.lastUpdateDate?.format(DateTimeFormatter.ofPattern("M/d/yy h:mma")),
-            accountInterestRate = domain.accountInterestRate?.let { rate ->
+            id = dto.id,
+            name = dto.name,
+            BBAN = dto.BBAN ?: dto.BIC,
+            availableBalance = formatCurrency(dto.currency, dto.availableBalance),
+            accountHolderNames = dto.accountHolderNames,
+            productKindName = dto.product?.productKind?.kindName,
+            bankBranchCode = dto.bankBranchCode,
+            lastUpdateDate = dto.lastUpdateDate?.format(DateTimeFormatter.ofPattern("M/d/yy h:mma")),
+            accountInterestRate = dto.accountInterestRate?.let { rate ->
                 rate.setScale(2, RoundingMode.CEILING).let { "$it%" }
             },
-            accruedInterest = formatCurrency(domain.currency, domain.accruedInterest),
-            creditLimit = formatCurrency(domain.currency, domain.creditLimit),
-            accountOpeningDate = domain.accountOpeningDate?.format(DateTimeFormatter.ofPattern("MMMM d, yyyy")),
-            icon = getIcon(domain.product?.externalId)
+            accruedInterest = formatCurrency(dto.currency, dto.accruedInterest),
+            creditLimit = formatCurrency(dto.currency, dto.creditLimit),
+            accountOpeningDate = dto.accountOpeningDate?.format(DateTimeFormatter.ofPattern("MMMM d, yyyy")),
+            icon = getIcon(dto.product?.externalId)
         )
     }
 

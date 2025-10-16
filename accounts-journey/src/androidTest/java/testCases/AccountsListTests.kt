@@ -15,10 +15,12 @@ import com.backbase.accounts_journey.generator.AccountSummaryGenerator
 import com.backbase.accounts_journey.presentation.accountlist.ui.AccountListFragment
 import com.backbase.accounts_use_case.ErrorAccountsUseCase
 import com.backbase.accounts_use_case.SuccessAccountsUseCase
+import com.backbase.android.test_data.NumberGenerator.randomFloat
 import com.backbase.android.test_data.shouldBeDisplayed
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Test
 import screens.accountListScreen
+import java.math.BigDecimal
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class AccountsListTests : BaseTest() {
@@ -33,7 +35,7 @@ class AccountsListTests : BaseTest() {
 
             accountWithName(ACCOUNT_NAME) {
                 accountNameIsDisplayed()
-                accountBalanceIsDisplayed(ACCOUNT_BALANCE)
+                accountBalanceIsDisplayed(ACCOUNT_BALANCE.toString())
             }
         }
     }
@@ -124,7 +126,7 @@ class AccountsListTests : BaseTest() {
 
     companion object {
         const val ACCOUNT_NAME = "Alpha"
-        const val ACCOUNT_BALANCE = "45.89"
+        val ACCOUNT_BALANCE = BigDecimal.valueOf(45.89)
         val TEST_ACCOUNTS = AccountSummaryGenerator.generateAccountSummary(
             displayName = ACCOUNT_NAME,
             availableBalance = ACCOUNT_BALANCE

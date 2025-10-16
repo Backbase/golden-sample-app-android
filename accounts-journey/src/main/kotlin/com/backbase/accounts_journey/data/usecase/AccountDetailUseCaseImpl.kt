@@ -1,13 +1,11 @@
-package com.backbase.accounts_use_case
+package com.backbase.accounts_journey.data.usecase
 
 import com.backbase.accounts_journey.common.FailedGetDataException
 import com.backbase.accounts_journey.common.NoInternetException
 import com.backbase.accounts_journey.common.NoResponseException
-import com.backbase.accounts_journey.data.usecase.AccountDetailUseCase
-import com.backbase.accounts_journey.domain.model.account_detail.AccountDetail
-import com.backbase.accounts_use_case.mapper.mapToDomain
 import com.backbase.android.client.gen2.arrangementclient2.api.ArrangementsApi
 import com.backbase.android.client.gen2.arrangementclient2.api.ArrangementsApiParams
+import com.backbase.android.client.gen2.arrangementclient2.model.AccountArrangementItem
 import com.backbase.android.clients.common.CallResult
 import com.backbase.android.core.errorhandling.ErrorCodes
 import kotlinx.coroutines.CoroutineDispatcher
@@ -24,7 +22,7 @@ class AccountDetailUseCaseImpl(
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : AccountDetailUseCase {
 
-    override suspend fun getAccountDetail(params: AccountDetailUseCase.Params): Result<AccountDetail> {
+    override suspend fun getAccountDetail(params: AccountDetailUseCase.Params): Result<AccountArrangementItem> {
         val callResult = withContext(dispatcher) {
             arrangementsApi.getArrangementById(
                 ArrangementsApiParams.GetArrangementById {
@@ -35,9 +33,7 @@ class AccountDetailUseCaseImpl(
 
         return when (callResult) {
             is CallResult.Success -> {
-                val dataModel = callResult.data
-                val domainModel = dataModel.mapToDomain()
-                Result.success(domainModel)
+                Result.success(callResult.data)
             }
 
             is CallResult.Error -> {

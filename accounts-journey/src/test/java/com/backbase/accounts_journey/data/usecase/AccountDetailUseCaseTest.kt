@@ -1,10 +1,9 @@
-package com.backbase.accounts_use_case
+package com.backbase.accounts_journey.data.usecase
 
 import com.backbase.accounts_journey.common.FailedGetDataException
 import com.backbase.accounts_journey.common.NoInternetException
 import com.backbase.accounts_journey.common.NoResponseException
-import com.backbase.accounts_journey.data.usecase.Params
-import com.backbase.accounts_use_case.generator.AccountArrangementItemGenerator
+import com.backbase.accounts_journey.data.usecase.generator.AccountArrangementItemGenerator
 import com.backbase.android.client.gen2.arrangementclient2.api.ArrangementsApi
 import com.backbase.android.client.gen2.arrangementclient2.api.ArrangementsApiParams
 import com.backbase.android.client.gen2.arrangementclient2.model.AccountArrangementItem

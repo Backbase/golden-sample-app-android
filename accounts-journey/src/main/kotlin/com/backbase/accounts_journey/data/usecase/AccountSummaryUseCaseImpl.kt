@@ -1,13 +1,11 @@
-package com.backbase.accounts_use_case
+package com.backbase.accounts_journey.data.usecase
 
 import com.backbase.accounts_journey.common.FailedGetDataException
 import com.backbase.accounts_journey.common.NoInternetException
 import com.backbase.accounts_journey.common.NoResponseException
-import com.backbase.accounts_journey.data.usecase.AccountsUseCase
-import com.backbase.accounts_journey.domain.model.account_summary.AccountSummary
-import com.backbase.accounts_use_case.mapper.mapToDomain
 import com.backbase.android.client.gen2.arrangementclient2.api.ProductSummaryApi
 import com.backbase.android.client.gen2.arrangementclient2.api.ProductSummaryApiParams
+import com.backbase.android.client.gen2.arrangementclient2.model.ProductSummary
 import com.backbase.android.clients.common.CallResult
 import com.backbase.android.core.errorhandling.ErrorCodes
 import kotlinx.coroutines.CoroutineDispatcher
@@ -24,9 +22,9 @@ class AccountSummaryUseCaseImpl(
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : AccountsUseCase {
 
-    private var cache: AccountSummary? = null
+    private var cache: ProductSummary? = null
 
-    override suspend fun getAccountSummary(useCache: Boolean): Result<AccountSummary> {
+    override suspend fun getAccountSummary(useCache: Boolean): Result<ProductSummary> {
         if (useCache && cache != null) {
             return Result.success(cache!!)
         }
@@ -39,10 +37,9 @@ class AccountSummaryUseCaseImpl(
 
         return when (callResult) {
             is CallResult.Success -> {
-                val dataModel = callResult.data
-                val domainModel = dataModel.mapToDomain()
-                cache = domainModel
-                Result.success(domainModel)
+                val data = callResult.data
+                cache = data
+                Result.success(data)
             }
 
             is CallResult.Error -> {
