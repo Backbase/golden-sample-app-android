@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
                     object: AuthFlowCompleteRouter {
                         override fun sendEvent(navigationEvent: NavigationEvent) {
                             lifecycleScope.launch {
-                                delay(1000)
+                                delay(100)
                                 get<NavigationEventEmitter>().sendEvent(navigationEvent)
                             }
                         }
@@ -100,6 +100,9 @@ class MainActivity : AppCompatActivity() {
         when (event) {
             is CustomNavigationEvent.ToTermsAndConditions -> {
                 findNavController().navigate(R.id.action_to_termsAndConditionsScreen)
+            }
+            is CustomNavigationEvent.ToOtpInput -> {
+                findNavController().navigate(R.id.action_to_otpInputScreen)
             }
         }
     }

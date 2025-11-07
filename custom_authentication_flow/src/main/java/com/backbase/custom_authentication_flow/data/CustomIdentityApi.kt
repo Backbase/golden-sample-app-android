@@ -12,6 +12,8 @@ import com.backbase.android.utils.net.request.RequestMethods
 import com.backbase.custom_authentication_flow.core.util.FLOW_ID_HEADER
 import com.google.gson.Gson
 import java.net.URI
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 
 internal class CustomIdentityApi(
     // if you have moshi generated adapters you can use Moshi instead of Gson
@@ -57,6 +59,37 @@ internal class CustomIdentityApi(
         }
     }
 
+    fun postStateless(
+        originalRequestBody: String,
+        additionalRequestBody: Map<String, String>,
+        flowId: String,
+    ): Call<Any> {
+        return buildRequest(
+            RequestMethods.POST,
+            serverUri,
+            IDENTITY_STATELESS_PATH,
+            emptyMap(),
+            backbase
+        ).apply {
+            headers = headers?.appendHeaders(flowId, FORM_ENCODED_CONTENT)
+            body = originalRequestBody.appendParams(additionalRequestBody)
+        }.let {
+            Call(it, provider, parser, Any::class.java)
+        }
+    }
+
+    private fun String.appendParams(additionalRequestBody: Map<String, String>): String {
+        return StringBuilder().apply {
+            append(this@appendParams)
+            additionalRequestBody.forEach { (key, value) ->
+                append("&")
+                    .append(key)
+                    .append("=")
+                    .append(URLEncoder.encode(value, StandardCharsets.UTF_8.name()))
+            }
+        }.toString()
+    }
+
     private fun Uri.getQueryParamMap(): Map<String, List<String>> {
         return mutableMapOf<String, List<String>>().apply {
             queryParameterNames.forEach { name ->
@@ -67,10 +100,18 @@ internal class CustomIdentityApi(
         }
     }
 
-    private fun Map<String, String>.appendHeaders(flowId: String): Map<String, String> {
+    private fun Map<String, String>.appendHeaders(flowId: String, contentType: String = JSON_CONTENT): Map<String, String> {
         return toMutableMap().apply {
             put(FLOW_ID_HEADER, flowId)
-            put("Content-Type", "application/json")
+            put(CONTENT_TYPE, contentType)
         }
+    }
+
+    companion object {
+        private const val IDENTITY_STATELESS_PATH =
+            "/auth/realms/retail/protocol/openid-connect/token"
+        private const val CONTENT_TYPE = "Content-Type"
+        private const val JSON_CONTENT = "application/json"
+        private const val FORM_ENCODED_CONTENT = "application/x-www-form-urlencoded"
     }
 }
