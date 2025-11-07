@@ -63,7 +63,11 @@ class MainActivity : AppCompatActivity() {
                     object: AuthFlowCompleteRouter {
                         override fun sendEvent(navigationEvent: NavigationEvent) {
                             lifecycleScope.launch {
-                                delay(1000)
+                                /**
+                                 * Delays the sending of the event to ensure that the NavController has
+                                 * completed any ongoing pop back navigation operations.
+                                 */
+                                delay(100)
                                 get<NavigationEventEmitter>().sendEvent(navigationEvent)
                             }
                         }
@@ -100,6 +104,9 @@ class MainActivity : AppCompatActivity() {
         when (event) {
             is CustomNavigationEvent.ToTermsAndConditions -> {
                 findNavController().navigate(R.id.action_to_termsAndConditionsScreen)
+            }
+            is CustomNavigationEvent.ToOtpInput -> {
+                findNavController().navigate(R.id.action_to_otpInputScreen)
             }
         }
     }
