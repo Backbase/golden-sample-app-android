@@ -59,8 +59,17 @@
         android:id="@+id/termsAndConditionsScreen"
         android:name="com.backbase.custom_authentication_flow.terms_and_conditions.presentation.TermsAndConditionsScreen" />
 
+    <fragment
+        android:id="@+id/otpInputScreen"
+        android:name="com.backbase.custom_authentication_flow.otp_verify.presentation.OtpInputScreen" />
+
+
     <action
         android:id="@+id/action_to_termsAndConditionsScreen"
         app:destination="@id/termsAndConditionsScreen" />
+
+    <action
+        android:id="@+id/action_to_otpInputScreen"
+        app:destination="@id/otpInputScreen" />
 
 </navigation>

@@ -6,6 +6,7 @@ import com.backbase.android.core.networking.error.BBChainErrorResponseResolver
 import com.backbase.android.identity.client.BBIdentityAuthClient
 import com.backbase.android.identity.journey.authentication.use_case.api.AuthenticationFlowsUseCase
 import com.backbase.custom_authentication_flow.core.util.AuthFlowUseCaseManager
+import com.backbase.custom_authentication_flow.otp_verify.challenge.OtpInputResolver
 import com.backbase.custom_authentication_flow.terms_and_conditions.challenge.TermsAndConditionsResolver
 import org.koin.core.context.GlobalContext
 import java.net.HttpURLConnection
@@ -25,6 +26,9 @@ fun initCustomAuthenticator() {
             with(authUseCase) {
                 removeRouter(allRoutersUseCase.tncDpaRouterUseCase.javaClass)
                 addRouter(allRoutersUseCase.tncDpaRouterUseCase)
+
+                removeRouter(allRoutersUseCase.otpInputRouterUseCase.javaClass)
+                addRouter(allRoutersUseCase.otpInputRouterUseCase)
             }
         }
 
@@ -42,6 +46,7 @@ private fun initErrorResolvers() {
     backbase.registerErrorResponseResolver(
         HttpURLConnection.HTTP_UNAUTHORIZED,
         BBChainErrorResponseResolver(
+            OtpInputResolver(context, routerProvider),
             TermsAndConditionsResolver(context, routerProvider),
             authErrorResponseResolvers
         )

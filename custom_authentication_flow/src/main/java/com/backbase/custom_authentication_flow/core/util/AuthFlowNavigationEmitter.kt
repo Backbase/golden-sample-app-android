@@ -21,4 +21,5 @@ public class CustomNavigationEmitter {
 
 public sealed class CustomNavigationEvent {
     public object ToTermsAndConditions : CustomNavigationEvent()
+    public object ToOtpInput : CustomNavigationEvent()
 }
