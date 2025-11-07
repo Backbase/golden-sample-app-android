@@ -18,6 +18,13 @@ The minimal sample that includes all the required Backbase SDKs to get started t
 \
 LTS 25.03
 
+## [sample/cs/custom-authentication-flow](https://github.com/Backbase/golden-sample-app-android/tree/sample/cs/custom-authentication-flow)
+A sample implementation demonstrating a custom authentication flow for device registration, supporting both stateful and stateless authentication in an authentication journey.
+\
+**Status**: Maintained
+\
+LTS 25.03
+
 ## [sample/devs/extending-a-journey](https://github.com/Backbase/golden-sample-app-android/tree/sample/devs/extending-a-journey)
 This example explains how to extend a journey.
 \
