@@ -2,25 +2,25 @@ package com.backbase.accounts_journey.presentation.accountlist.mapper
 
 import com.backbase.accounts_journey.configuration.AccountsJourneyConfiguration
 import com.backbase.accounts_journey.configuration.icon.IconsConfiguration
-import com.backbase.accounts_journey.domain.model.account_summary.AccountSummary
-import com.backbase.accounts_journey.domain.model.account_summary.credit_card.CreditCards
-import com.backbase.accounts_journey.domain.model.account_summary.current_accounts.CurrentAccounts
-import com.backbase.accounts_journey.domain.model.account_summary.custom_products.CustomProducts
-import com.backbase.accounts_journey.domain.model.account_summary.debit_card.DebitCards
-import com.backbase.accounts_journey.domain.model.account_summary.investment_accounts.InvestmentAccounts
-import com.backbase.accounts_journey.domain.model.account_summary.loan.Loans
-import com.backbase.accounts_journey.domain.model.account_summary.savings_accounts.SavingsAccounts
-import com.backbase.accounts_journey.domain.model.account_summary.term_deposits.TermDeposits
 import com.backbase.accounts_journey.presentation.accountlist.model.AccountHeaderUiModel
 import com.backbase.accounts_journey.presentation.accountlist.model.AccountSummaryUiModel
 import com.backbase.accounts_journey.presentation.accountlist.model.AccountUiModel
 import com.backbase.accounts_journey.presentation.accountlist.model.AccountsUiModel
+import com.backbase.android.client.gen2.arrangementclient2.model.CreditCardProductKinds
+import com.backbase.android.client.gen2.arrangementclient2.model.CurrentAccountProductKinds
+import com.backbase.android.client.gen2.arrangementclient2.model.CustomProductKind
+import com.backbase.android.client.gen2.arrangementclient2.model.DebitCardProductKinds
+import com.backbase.android.client.gen2.arrangementclient2.model.InvestmentAccountProductKinds
+import com.backbase.android.client.gen2.arrangementclient2.model.LoanProductKinds
+import com.backbase.android.client.gen2.arrangementclient2.model.ProductSummary
+import com.backbase.android.client.gen2.arrangementclient2.model.SavingsAccountProductKinds
+import com.backbase.android.client.gen2.arrangementclient2.model.TermDepositProductKinds
 import com.backbase.android.design.amount.AmountFormat
 import java.math.BigDecimal
 import java.util.Locale
 
 /**
- *  A AccountSummary mapper from domain models to UI models.
+ *  A AccountSummary mapper from DTO models to UI models.
  *
  *  Created by Backbase R&D B.V on 04/10/2023.
  */
@@ -30,165 +30,165 @@ class AccountUiMapper(accountsJourneyConfiguration: AccountsJourneyConfiguration
         accountsJourneyConfiguration.iconsConfiguration
     }
 
-    fun mapToUi(domain: AccountSummary): AccountSummaryUiModel {
+    fun mapToUi(dto: ProductSummary): AccountSummaryUiModel {
         return AccountSummaryUiModel(
-            customProducts = domain.customProducts.mapToUi(),
-            currentAccounts = domain.currentAccounts?.mapToUi(),
-            savingAccounts = domain.savingsAccounts?.mapToUi(),
-            termDeposits = domain.termDeposits?.mapToUi(),
-            loans = domain.loans?.mapToUi(),
-            creditCards = domain.creditCards?.mapToUi(),
-            debitCards = domain.debitCards?.mapToUi(),
-            investmentAccounts = domain.investmentAccounts?.mapToUi()
+            customProducts = dto.customProductKinds.mapToUi(),
+            currentAccounts = dto.currentAccounts?.mapToUi(),
+            savingAccounts = dto.savingsAccounts?.mapToUi(),
+            termDeposits = dto.termDeposits?.mapToUi(),
+            loans = dto.loans?.mapToUi(),
+            creditCards = dto.creditCards?.mapToUi(),
+            debitCards = dto.debitCards?.mapToUi(),
+            investmentAccounts = dto.investmentAccounts?.mapToUi()
         )
     }
 
     /**
-     * An AccountSummary mapper from domain models to UI models.
+     * An AccountSummary mapper from DTO models to UI models.
      *
      * Created by Backbase R&D B.V on 04/10/2023.
      */
-    internal fun List<CustomProducts>.mapToUi(): List<AccountsUiModel> {
+    internal fun List<CustomProductKind>.mapToUi(): List<AccountsUiModel> {
         if (this.isEmpty()) return emptyList()
 
         return this.map { customProducts ->
             AccountsUiModel(
                 AccountHeaderUiModel(name = customProducts.name),
-                products = customProducts.products.map { domain ->
+                products = customProducts.products.map { dto ->
                     AccountUiModel(
-                        id = domain.id,
-                        name = domain.displayName,
-                        balance = formatCurrency(domain.currency, domain.availableBalance?.toBigDecimalOrNull()),
-                        state = formatState(domain.state?.state, domain.BBAN),
+                        id = dto.id,
+                        name = dto.displayName,
+                        balance = formatCurrency(dto.currency, dto.availableBalance?.toBigDecimalOrNull()),
+                        state = formatState(dto.state?.state, dto.BBAN),
                         icon = iconsConfiguration.iconCustomProduct,
-                        isVisible = domain.userPreferences?.visible
+                        isVisible = dto.userPreferences?.visible
                     )
                 }
             )
         }
     }
 
-    internal fun CurrentAccounts.mapToUi(): AccountsUiModel? {
+    internal fun CurrentAccountProductKinds.mapToUi(): AccountsUiModel? {
         if (this.products.isEmpty()) return null
 
         return AccountsUiModel(
             AccountHeaderUiModel(name = this.name),
-            products = this.products.map { domain ->
+            products = this.products.map { dto ->
                 AccountUiModel(
-                    id = domain.id,
-                    name = domain.displayName,
-                    balance = formatCurrency(domain.currency, domain.availableBalance?.toBigDecimalOrNull()),
-                    state = formatState(domain.state?.state, domain.BBAN),
+                    id = dto.id,
+                    name = dto.displayName,
+                    balance = formatCurrency(dto.currency, dto.availableBalance?.toBigDecimalOrNull()),
+                    state = formatState(dto.state?.state, dto.BBAN),
                     icon = iconsConfiguration.iconCurrentAccount,
-                    isVisible = domain.userPreferences?.visible
+                    isVisible = dto.userPreferences?.visible
                 )
             }
         )
     }
 
-    internal fun SavingsAccounts.mapToUi(): AccountsUiModel? {
+    internal fun SavingsAccountProductKinds.mapToUi(): AccountsUiModel? {
         if (this.products.isEmpty()) return null
 
         return AccountsUiModel(
             AccountHeaderUiModel(name = this.name),
-            products = this.products.map { domain ->
+            products = this.products.map { dto ->
                 AccountUiModel(
-                    id = domain.id,
-                    name = domain.displayName,
-                    balance = formatCurrency(domain.currency, domain.availableBalance?.toBigDecimalOrNull()),
-                    state = formatState(domain.state?.state, domain.BBAN),
+                    id = dto.id,
+                    name = dto.displayName,
+                    balance = formatCurrency(dto.currency, dto.availableBalance?.toBigDecimalOrNull()),
+                    state = formatState(dto.state?.state, dto.BBAN),
                     icon = iconsConfiguration.iconSavingsAccount,
-                    isVisible = domain.userPreferences?.visible
+                    isVisible = dto.userPreferences?.visible
                 )
             }
         )
     }
 
-    internal fun TermDeposits.mapToUi(): AccountsUiModel? {
+    internal fun TermDepositProductKinds.mapToUi(): AccountsUiModel? {
         if (this.products.isEmpty()) return null
 
         return AccountsUiModel(
             AccountHeaderUiModel(name = this.name),
-            products = this.products.map { domain ->
+            products = this.products.map { dto ->
                 AccountUiModel(
-                    id = domain.id,
-                    name = domain.displayName,
-                    balance = formatCurrency(domain.currency, domain.availableBalance?.toBigDecimalOrNull()),
-                    state = formatState(domain.state?.state, domain.BBAN),
+                    id = dto.id,
+                    name = dto.displayName,
+                    balance = formatCurrency(dto.currency, dto.principalAmount),
+                    state = formatState(dto.state?.state, dto.BBAN),
                     icon = iconsConfiguration.iconTermDeposit,
-                    isVisible = domain.userPreferences?.visible
+                    isVisible = dto.userPreferences?.visible
                 )
             }
         )
     }
 
-    internal fun Loans.mapToUi(): AccountsUiModel? {
+    internal fun LoanProductKinds.mapToUi(): AccountsUiModel? {
         if (this.products.isEmpty()) return null
 
         return AccountsUiModel(
             AccountHeaderUiModel(name = this.name),
-            products = this.products.map { domain ->
+            products = this.products.map { dto ->
                 AccountUiModel(
-                    id = domain.id,
-                    name = domain.displayName,
-                    balance = formatCurrency(domain.currency, domain.availableBalance?.toBigDecimalOrNull()),
-                    state = formatState(domain.state?.state, domain.BBAN),
+                    id = dto.id,
+                    name = dto.displayName,
+                    balance = formatCurrency(dto.currency, dto.principalAmount),
+                    state = formatState(dto.state?.state, dto.BBAN),
                     icon = iconsConfiguration.iconLoan,
-                    isVisible = domain.userPreferences?.visible
+                    isVisible = dto.userPreferences?.visible
                 )
             }
         )
     }
 
-    internal fun CreditCards.mapToUi(): AccountsUiModel? {
+    internal fun CreditCardProductKinds.mapToUi(): AccountsUiModel? {
         if (this.products.isEmpty()) return null
 
         return AccountsUiModel(
             AccountHeaderUiModel(name = this.name),
-            products = this.products.map { domain ->
+            products = this.products.map { dto ->
                 AccountUiModel(
-                    id = domain.id,
-                    name = domain.displayName,
-                    balance = formatCurrency(domain.currency, domain.availableBalance?.toBigDecimalOrNull()),
-                    state = formatState(domain.state?.state, domain.creditCardAccountNumber),
+                    id = dto.id,
+                    name = dto.displayName,
+                    balance = formatCurrency(dto.currency, dto.availableBalance?.toBigDecimalOrNull()),
+                    state = formatState(dto.state?.state, dto.creditCardAccountNumber),
                     icon = iconsConfiguration.iconCreditCard,
-                    isVisible = domain.userPreferences?.visible
+                    isVisible = dto.userPreferences?.visible
                 )
             }
         )
     }
 
-    internal fun DebitCards.mapToUi(): AccountsUiModel? {
+    internal fun DebitCardProductKinds.mapToUi(): AccountsUiModel? {
         if (this.products.isEmpty()) return null
 
         return AccountsUiModel(
             AccountHeaderUiModel(name = this.name),
-            products = this.products.map { domain ->
+            products = this.products.map { dto ->
                 AccountUiModel(
-                    id = domain.id,
-                    name = domain.displayName,
+                    id = dto.id,
+                    name = dto.displayName,
                     balance = "",
-                    state = formatState(domain.state?.state, domain.cardNumber.toString()),
+                    state = formatState(dto.state?.state, dto.cardNumber.toString()),
                     icon = iconsConfiguration.iconDebitCard,
-                    isVisible = domain.userPreferences?.visible
+                    isVisible = dto.userPreferences?.visible
                 )
             }
         )
     }
 
-    internal fun InvestmentAccounts.mapToUi(): AccountsUiModel? {
+    internal fun InvestmentAccountProductKinds.mapToUi(): AccountsUiModel? {
         if (this.products.isEmpty()) return null
 
         return AccountsUiModel(
             AccountHeaderUiModel(name = this.name),
-            products = this.products.map { domain ->
+            products = this.products.map { dto ->
                 AccountUiModel(
-                    id = domain.id,
-                    name = domain.displayName,
-                    balance = formatCurrency(domain.currency, domain.currentInvestmentValue?.toBigDecimalOrNull()),
-                    state = formatState(domain.state?.state, domain.BBAN),
+                    id = dto.id,
+                    name = dto.displayName,
+                    balance = formatCurrency(dto.currency, dto.currentInvestmentValue?.toBigDecimalOrNull()),
+                    state = formatState(dto.state?.state, dto.BBAN),
                     icon = iconsConfiguration.iconInvestmentAccount,
-                    isVisible = domain.userPreferences?.visible
+                    isVisible = dto.userPreferences?.visible
                 )
             }
         )

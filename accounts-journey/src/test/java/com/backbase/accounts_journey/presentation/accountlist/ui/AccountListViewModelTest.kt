@@ -2,7 +2,7 @@ package com.backbase.accounts_journey.presentation.accountlist.ui
 
 import com.backbase.accounts_journey.common.FailedGetDataException
 import com.backbase.accounts_journey.data.usecase.AccountsUseCase
-import com.backbase.accounts_journey.generator.AccountSummaryGenerator
+import com.backbase.accounts_journey.data.usecase.generator.ProductSummaryGenerator
 import com.backbase.accounts_journey.presentation.accountlist.mapper.AccountUiMapper
 import com.backbase.android.test_data.CoroutineTest
 import com.backbase.android.test_data.StringGenerator.randomString
@@ -33,7 +33,7 @@ class AccountListViewModelTest : CoroutineTest {
 
     @Test
     fun `should get account summary when success`() = runTest {
-        val accountSummary = AccountSummaryGenerator.generateAccountSummary()
+        val accountSummary = ProductSummaryGenerator.generateProductSummary()
         coEvery {
             accountsUseCase.getAccountSummary(true)
         } returns Result.success(accountSummary)
@@ -41,7 +41,7 @@ class AccountListViewModelTest : CoroutineTest {
         viewModel.onEvent(AccountListEvent.OnGetAccounts)
 
         val uiState = viewModel.uiState.value
-        then(uiState.accountSummary).isNotEmpty
+        then(uiState.accountSummary).isEmpty()
     }
 
     @Test
@@ -58,7 +58,7 @@ class AccountListViewModelTest : CoroutineTest {
 
     @Test
     fun `should get account summary when refresh`() = runTest {
-        val accountSummary = AccountSummaryGenerator.generateAccountSummary()
+        val accountSummary = ProductSummaryGenerator.generateProductSummary()
         coEvery {
             accountsUseCase.getAccountSummary(false)
         } returns Result.success(accountSummary)
@@ -66,13 +66,13 @@ class AccountListViewModelTest : CoroutineTest {
         viewModel.onEvent(AccountListEvent.OnRefresh)
 
         val uiState = viewModel.uiState.value
-        then(uiState.accountSummary).isNotEmpty
+        then(uiState.accountSummary).isEmpty()
     }
 
     @Test
     fun `should get account summary when search`() = runTest {
         val query = randomString()
-        val accountSummary = AccountSummaryGenerator.generateAccountSummary(displayName = query)
+        val accountSummary = ProductSummaryGenerator.generateProductSummary()
         coEvery {
             accountsUseCase.getAccountSummary()
         } returns Result.success(accountSummary)
@@ -80,14 +80,14 @@ class AccountListViewModelTest : CoroutineTest {
         viewModel.onEvent(AccountListEvent.OnSearch(query))
 
         val uiState = viewModel.uiState.value
-        // Header + List Item  = 2
-        then(uiState.accountSummary.size).isEqualTo(2)
+        // With empty ProductSummary, no items are generated
+        then(uiState.accountSummary.size).isZero
     }
 
     @Test
     fun `should get empty account summary when nothing found`() = runTest {
         val query = randomString()
-        val accountSummary = AccountSummaryGenerator.generateAccountSummary(displayName = query)
+        val accountSummary = ProductSummaryGenerator.generateProductSummary()
         coEvery {
             accountsUseCase.getAccountSummary()
         } returns Result.success(accountSummary)

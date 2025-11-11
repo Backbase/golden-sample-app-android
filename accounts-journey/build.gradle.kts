@@ -39,6 +39,7 @@ dependencies {
     implementation(platform(backbase.bom))
     implementation(midTier.bundles.common)
     implementation(libs.bundles.navigation)
+    implementation(clients.arrangements)
 
     coreLibraryDesugaring(libs.coreLibraryDesugaring)
 

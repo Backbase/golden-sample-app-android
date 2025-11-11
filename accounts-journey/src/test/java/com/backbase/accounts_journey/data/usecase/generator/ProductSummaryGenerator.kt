@@ -1,4 +1,4 @@
-package com.backbase.accounts_use_case.generator
+package com.backbase.accounts_journey.data.usecase.generator
 
 import com.backbase.android.client.gen2.arrangementclient2.model.ProductSummary
 

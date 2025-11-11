@@ -1,6 +1,6 @@
 package com.backbase.accounts_journey.generator
 
-import com.backbase.accounts_journey.domain.model.account_detail.AccountDetail
+import com.backbase.android.client.gen2.arrangementclient2.model.AccountArrangementItem
 import com.backbase.android.test_data.StringGenerator
 
 /**
@@ -12,8 +12,8 @@ object AccountDetailGenerator {
         id: String = StringGenerator.randomString(),
         productId: String = StringGenerator.randomString(),
         currency: String = StringGenerator.generateRandomCurrency()
-    ): AccountDetail {
-        return AccountDetail {
+    ): AccountArrangementItem {
+        return AccountArrangementItem {
             this.id = id
             this.productId = productId
             this.currency = currency
