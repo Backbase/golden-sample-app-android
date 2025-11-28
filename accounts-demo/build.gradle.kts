@@ -74,7 +74,7 @@ dependencies {
     implementation(projects.accountsJourney)
     implementation(projects.accountsUseCase)
 
-    implementation(platform(backbase.bom))
+//    implementation(platform(backbase.bom))
 
     implementation(platform(libs.kotlin.bom))
     implementation(libs.bundles.android.core)
@@ -91,9 +91,12 @@ dependencies {
     androidTestUtil(libs.orchestrator)
 
     // Backbase libraries
-    implementation(clients.bundles.clients)
-    implementation(midTier.bundles.common)
-    implementation(foundation.bundles.foundation)
+    implementation(clientLibs.bundles.bomOutput)
+    implementation(midTierLibs.bundles.bomOutput)
+    implementation(foundationLibs.bundles.bomOutput)
+//    implementation(clients.bundles.clients)
+//    implementation(midTier.bundles.common)
+//    implementation(foundation.bundles.foundation)
     implementation(backbase.bundles.journeys)
     implementation(backbase.bundles.useCases)
 }

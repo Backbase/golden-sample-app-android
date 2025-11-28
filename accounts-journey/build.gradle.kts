@@ -36,9 +36,9 @@ dependencies {
     testImplementation(projects.accountsTestData)
 
     // Backbase libraries
-    implementation(platform(backbase.bom))
-    implementation(midTier.bundles.common)
-    implementation(libs.bundles.navigation)
+//    implementation(platform(backbase.bom))
+//    implementation(midTier.bundles.common)
+    implementation(midTierLibs.bundles.bomOutput)
 
     coreLibraryDesugaring(libs.coreLibraryDesugaring)
 

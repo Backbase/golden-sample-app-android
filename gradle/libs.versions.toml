@@ -1,6 +1,6 @@
 [versions]
 ## A
-agp = "8.6.1"
+agp = "8.9.1"
 archCore = "2.2.0"
 assertJ = "3.26.3"
 
@@ -25,8 +25,8 @@ junit5-android = "1.10.0.0"
 
 ## K
 karumi = "6.1.0"
-koin = "3.5.6"
-kotlin = "1.9.24"
+kotlin = "2.1.10"
+koin = "4.0.2"
 
 ## N
 mockk = "1.13.17"
@@ -36,7 +36,7 @@ navigation-component = "2.7.7"
 orchestrator = "1.5.1"
 
 ## P
-poko = "0.15.3"
+poko = "0.18.2"
 
 ## T
 testParameterInjector = "1.18"
