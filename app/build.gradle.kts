@@ -95,7 +95,7 @@ dependencies {
     implementation(projects.accountsJourney)
     implementation(projects.accountsUseCase)
 
-//    implementation(platform(backbase.bom))
+    implementation(platform(backbase.bom))
 
     implementation(platform(libs.kotlin.bom))
     implementation(libs.bundles.android.core)

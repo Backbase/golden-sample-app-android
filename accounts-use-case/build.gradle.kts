@@ -19,7 +19,7 @@ dependencies {
     coreLibraryDesugaring(libs.coreLibraryDesugaring)
 
     // Backbase libraries
-//    implementation(platform(backbase.bom))
+    implementation(platform(backbase.bom))
 //    implementation(clients.arrangements)
     implementation(clientLibs.bundles.bomOutput)
 }

@@ -4,7 +4,7 @@ accessControlEntitlements = "8.0.0"
 authentication = "9.0.0"
 
 ## B
-bom = "2025.03.01"
+bom = "2025.09.9-LTS"
 
 ## F
 featureFilter = "8.0.0"
@@ -23,6 +23,7 @@ authentication-use-case = { group = "com.backbase.android.identity.journey", nam
 
 ## B
 #bom = { module = "com.backbase.android.platform:bom", version.ref = "bom" }
+bom = { module = "com.backbase:backbase-bom", version.ref = "bom" }
 
 ## F
 featureFilterUseCase = { group = "com.backbase.android.retail.feature_filter", name = "feature-filter-use-case", version.ref = "featureFilter" }

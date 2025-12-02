@@ -8,7 +8,7 @@ android {
 }
 
 dependencies {
-//    implementation(platform(backbase.bom))
+    implementation(platform(backbase.bom))
 
     implementation(libs.coroutinesTest)
     implementation(platform(libs.junit.bom))

@@ -36,7 +36,7 @@ dependencies {
     testImplementation(projects.accountsTestData)
 
     // Backbase libraries
-//    implementation(platform(backbase.bom))
+    implementation(platform(backbase.bom))
 //    implementation(midTier.bundles.common)
     implementation(midTierLibs.bundles.bomOutput)
 
