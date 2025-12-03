@@ -65,6 +65,7 @@ detekt-formatting = { group = "io.gitlab.arturbosch.detekt", name = "detekt-form
 
 ## E
 espresso = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
+espressoContrib = { module = "androidx.test.espresso:espresso-contrib", version.ref = "espresso" }
 
 ## G
 gradle = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
@@ -171,6 +172,7 @@ test-instrumented = [
     "coroutines",
     "coroutinesTest",
     "espresso",
+    "espressoContrib",
     "junit4-android",
     "koinTest",
     "testParameterInjector",

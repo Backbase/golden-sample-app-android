@@ -42,8 +42,9 @@ class AccountsJourneyE2ETest : BaseE2ETest() {
     @Test
     fun accountListShouldBeDisplayed() {
         accountHeader.shouldBeDisplayed()
-        accountList.shouldBeDisplayed()
-        accountList.check(hasItems())
+        accountList
+            .shouldBeDisplayed()
+            .hasItems()
     }
 
     @Test

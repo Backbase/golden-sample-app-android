@@ -15,4 +15,5 @@ dependencies {
     implementation(libs.junit.jupiter)
 
     implementation(libs.espresso)
+    implementation(libs.espressoContrib)
 }
