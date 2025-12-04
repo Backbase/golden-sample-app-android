@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="white">#FFFFFF</color>
+    
+    <!-- Backbase Design System compatibility color -->
+    <!-- This color is referenced by dependencies that expect it -->
+    <!-- Maps to the text support color - using default light theme value -->
+    <color name="bds_textSupport">#ff3a495d</color>
 </resources>

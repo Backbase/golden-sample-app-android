@@ -21,7 +21,7 @@ class MainApplication : Application() {
 //            BBLogger.debug(TAG, "Facet ID: <${FidoUafFacetUtils.getFacetID(this)}>")
         }
         startKoinIfNotStarted()
-        initializeBackbase()
+        initializeBackbase(AppConfigurationProvider())
         initializeAuthClient(CompositeSessionListener)
 
         setupDependencies()
