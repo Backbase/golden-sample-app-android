@@ -27,9 +27,14 @@ dependencyResolutionManagement {
 
     versionCatalogs {
         create("backbase") { from(files("gradle/backbase.versions.toml")) }
-        create("clients") { from(files("gradle/clients.versions.toml")) }
-        create("foundation") { from(files("gradle/foundation.versions.toml")) }
-        create("midTier") { from(files("gradle/midTier.versions.toml")) }
+//        create("clients") { from(files("gradle/clients.versions.toml")) }
+//        create("foundation") { from(files("gradle/foundation.versions.toml")) }
+//        create("midTier") { from(files("gradle/midTier.versions.toml")) }
+
+        create("thirdPartyLibs") { from("com.backbase.android.platform:catalog-third-parties:2025.09.03") }
+        create("foundationLibs") { from("com.backbase.android.platform:catalog-foundation:2025.09.01") }
+        create("midTierLibs") { from("com.backbase.android.platform:catalog-mid-tier:2025.09.01") }
+        create("clientLibs") { from("com.backbase.android.platform:catalog-clients:2025.09.03") }
     }
 }
 rootProject.name = "Golden_Sample_App_Android"

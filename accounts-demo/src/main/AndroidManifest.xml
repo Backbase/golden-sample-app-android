@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:replace="android:theme">
+        tools:replace="android:theme,android:allowBackup">
         <activity
             android:name=".presentation.MainActivity"
             android:exported="true">

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Backbase Design System compatibility attributes -->
+    <!-- These attributes are used by dependencies that expect them to be defined -->
+    
+    <!-- Text color attributes -->
+    <attr name="colorTextSupport" format="color" />
+    <attr name="colorTextDisabled" format="color" />
+    <attr name="colorTextDefault" format="color" />
+    
+    <!-- Surface color attributes -->
+    <attr name="colorSurfacePrimary" format="color" />
+    <attr name="colorSurfaceSecondary" format="color" />
+    <attr name="colorSurfaceDisabled" format="color" />
+    <attr name="colorOnSurfacePrimary" format="color" />
+    <attr name="colorOnSurfaceSecondary" format="color" />
+    
+    <!-- Input color attributes -->
+    <attr name="colorInputBorder" format="color" />
+    <attr name="colorInputBackground" format="color" />
+    
+    <!-- UI element color attributes -->
+    <attr name="colorSelected" format="color" />
+    <attr name="colorSeparator" format="color" />
+    <attr name="colorShimmer" format="color" />
+    
+    <!-- Foundation color attributes -->
+    <attr name="colorFoundation" format="color" />
+    <attr name="colorFoundationSecondary" format="color" />
+    <attr name="colorFoundationHighlight" format="color" />
+    <attr name="colorOnFoundationHighlight" format="color" />
+    
+    <!-- Neutral color scale attributes -->
+    <attr name="colorNeutral_00" format="color" />
+    <attr name="colorNeutral_10" format="color" />
+    <attr name="colorNeutral_20" format="color" />
+    <attr name="colorNeutral_30" format="color" />
+    <attr name="colorNeutral_40" format="color" />
+    <attr name="colorNeutral_50" format="color" />
+    <attr name="colorNeutral_60" format="color" />
+    <attr name="colorNeutral_70" format="color" />
+    <attr name="colorNeutral_80" format="color" />
+    <attr name="colorNeutral_90" format="color" />
+    <attr name="colorNeutral_100" format="color" />
+    
+    <!-- Primary color attributes -->
+    <attr name="colorPrimaryLightest" format="color" />
+    <attr name="colorPrimaryLighter" format="color" />
+    <attr name="colorPrimaryDarker" format="color" />
+    <attr name="colorPrimaryDarkest" format="color" />
+    
+    <!-- Secondary color attributes -->
+    <attr name="colorSecondaryLightest" format="color" />
+    <attr name="colorSecondaryLighter" format="color" />
+    <attr name="colorSecondaryDarker" format="color" />
+    <attr name="colorSecondaryDarkest" format="color" />
+    
+    <!-- Accent color attributes -->
+    <attr name="colorAccentLightest" format="color" />
+    <attr name="colorAccentLighter" format="color" />
+    <attr name="colorAccentDarker" format="color" />
+    <attr name="colorAccentDarkest" format="color" />
+    <attr name="colorOnAccent" format="color" />
+    
+    <!-- Info color attributes -->
+    <attr name="colorInfoLightest" format="color" />
+    <attr name="colorInfoLighter" format="color" />
+    <attr name="colorInfo" format="color" />
+    <attr name="colorInfoDarker" format="color" />
+    <attr name="colorInfoDarkest" format="color" />
+    <attr name="colorOnInfo" format="color" />
+    
+    <!-- Success color attributes -->
+    <attr name="colorSuccessLightest" format="color" />
+    <attr name="colorSuccessLighter" format="color" />
+    <attr name="colorSuccess" format="color" />
+    <attr name="colorSuccessDarker" format="color" />
+    <attr name="colorSuccessDarkest" format="color" />
+    <attr name="colorOnSuccess" format="color" />
+    
+    <!-- Warning color attributes -->
+    <attr name="colorWarningLightest" format="color" />
+    <attr name="colorWarningLighter" format="color" />
+    <attr name="colorWarning" format="color" />
+    <attr name="colorWarningDarker" format="color" />
+    <attr name="colorWarningDarkest" format="color" />
+    <attr name="colorOnWarning" format="color" />
+    
+    <!-- Danger color attributes -->
+    <attr name="colorDangerLightest" format="color" />
+    <attr name="colorDangerLighter" format="color" />
+    <attr name="colorDanger" format="color" />
+    <attr name="colorDangerDarker" format="color" />
+    <attr name="colorDangerDarkest" format="color" />
+    <attr name="colorOnDanger" format="color" />
+    
+    <!-- Chart color attributes -->
+    <attr name="colorCharts1Lightest" format="color" />
+    <attr name="colorCharts1Lighter" format="color" />
+    <attr name="colorCharts1" format="color" />
+    <attr name="colorCharts1Darker" format="color" />
+    <attr name="colorCharts1Darkest" format="color" />
+    <attr name="colorCharts2Lightest" format="color" />
+    <attr name="colorCharts2Lighter" format="color" />
+    <attr name="colorCharts2" format="color" />
+    <attr name="colorCharts2Darker" format="color" />
+    <attr name="colorCharts2Darkest" format="color" />
+    <attr name="colorCharts3Lightest" format="color" />
+    <attr name="colorCharts3Lighter" format="color" />
+    <attr name="colorCharts3" format="color" />
+    <attr name="colorCharts3Darker" format="color" />
+    <attr name="colorCharts3Darkest" format="color" />
+    <attr name="colorCharts4Lightest" format="color" />
+    <attr name="colorCharts4Lighter" format="color" />
+    <attr name="colorCharts4" format="color" />
+    <attr name="colorCharts4Darker" format="color" />
+    <attr name="colorCharts4Darkest" format="color" />
+    <attr name="colorCharts5Lightest" format="color" />
+    <attr name="colorCharts5Lighter" format="color" />
+    <attr name="colorCharts5" format="color" />
+    <attr name="colorCharts5Darker" format="color" />
+    <attr name="colorCharts5Darkest" format="color" />
+    <attr name="colorCharts6Lightest" format="color" />
+    <attr name="colorCharts6Lighter" format="color" />
+    <attr name="colorCharts6" format="color" />
+    <attr name="colorCharts6Darker" format="color" />
+    <attr name="colorCharts6Darkest" format="color" />
+    <attr name="colorCharts7Lightest" format="color" />
+    <attr name="colorCharts7Lighter" format="color" />
+    <attr name="colorCharts7" format="color" />
+    <attr name="colorCharts7Darker" format="color" />
+    <attr name="colorCharts7Darkest" format="color" />
+    <attr name="colorCharts8Lightest" format="color" />
+    <attr name="colorCharts8Lighter" format="color" />
+    <attr name="colorCharts8" format="color" />
+    <attr name="colorCharts8Darker" format="color" />
+    <attr name="colorCharts8Darkest" format="color" />
+    <attr name="colorCharts9Lightest" format="color" />
+    <attr name="colorCharts9Lighter" format="color" />
+    <attr name="colorCharts9" format="color" />
+    <attr name="colorCharts9Darker" format="color" />
+    <attr name="colorCharts9Darkest" format="color" />
+    
+    <!-- Badge type attribute -->
+    <attr name="badgeType" format="enum">
+        <enum name="none" value="0" />
+        <enum name="dot" value="1" />
+        <enum name="number" value="2" />
+        <enum name="warning" value="3" />
+    </attr>
+</resources>
