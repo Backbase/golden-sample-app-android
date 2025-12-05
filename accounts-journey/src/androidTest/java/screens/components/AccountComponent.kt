@@ -6,9 +6,9 @@ import androidx.test.espresso.ViewInteraction
 import androidx.test.espresso.matcher.ViewMatchers.hasSibling
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
-import app_common.shouldBeDisplayed
-import app_common.shouldContainText
 import com.backbase.accounts_journey.R
+import com.backbase.android.test_data.shouldBeDisplayed
+import com.backbase.android.test_data.shouldContainText
 import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.Matcher
 
