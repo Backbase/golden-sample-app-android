@@ -1,6 +1,6 @@
 [versions]
 ## A
-agp = "8.6.1"
+agp = "8.9.1"
 archCore = "2.2.0"
 assertJ = "3.26.3"
 
@@ -19,14 +19,14 @@ gradle-versions-plugin = "0.51.0"
 ## J
 jacoco = "0.8.11"
 junit4 = "4.13.2"
-junit4-android = "1.2.1"
+junit4-android = "1.1.5"
 junit5 = "5.11.3"
 junit5-android = "1.10.0.0"
 
 ## K
 karumi = "6.1.0"
-koin = "3.5.6"
-kotlin = "1.9.24"
+kotlin = "2.1.10"
+koin = "4.0.2"
 
 ## N
 mockk = "1.13.17"
@@ -36,7 +36,7 @@ navigation-component = "2.7.7"
 orchestrator = "1.5.1"
 
 ## P
-poko = "0.15.3"
+poko = "0.18.2"
 
 ## T
 testParameterInjector = "1.18"
@@ -45,7 +45,7 @@ testParameterInjector = "1.18"
 ## A
 androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version = "" }
 androidx-navigation-safe-args-gradle-plugin = { group = "androidx.navigation", name = "navigation-safe-args-gradle-plugin", version.ref = "navigation-component" }
-androidx-navigation-testing = { group = "androidx.navigation", name = "navigation-testing", version = "" }
+androidx-navigation-testing = { group = "androidx.navigation", name = "navigation-testing", version = "2.9.0" }
 androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version = "" }
 androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version = "" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version = "" }

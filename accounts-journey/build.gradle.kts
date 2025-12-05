@@ -19,24 +19,33 @@ android {
             enableAndroidTestCoverage = true
         }
     }
+    compileOptions {
+        isCoreLibraryDesugaringEnabled = true
+    }
     testOptions {
+        targetSdk = Version.compileSdk
         execution = "ANDROIDX_TEST_ORCHESTRATOR"
+        animationsDisabled = true
     }
 }
 dependencies {
     implementation(project(":analytics"))
     implementation(libs.bundles.navigation)
     testImplementation(projects.testData)
+    testImplementation(projects.accountsTestData)
 
     // Backbase libraries
     implementation(platform(backbase.bom))
-    implementation(foundation.observability)
-    implementation(midTier.bundles.common)
-    implementation(libs.bundles.navigation)
+//    implementation(midTier.bundles.common)
+    implementation(foundationLibs.observability)
+    implementation(midTierLibs.bundles.bomOutput)
+
+    coreLibraryDesugaring(libs.coreLibraryDesugaring)
 
     testImplementation(libs.archCore)
 
-    androidTestImplementation(projects.fakeAccountsUseCase)
+    androidTestImplementation(projects.accountsTestData)
+    androidTestImplementation(projects.testData)
     androidTestImplementation(libs.bundles.test.instrumented)
 
     androidTestUtil(libs.orchestrator)

@@ -12,7 +12,7 @@ fun AppCompatActivity.updateStatusBarColor(isInRootScreen: Flow<Boolean>) = repe
         val context = this@updateStatusBarColor
 
         window.statusBarColor = MaterialColors
-            .getColorOrNull(context, if (isInRootScreen) R.attr.tabHeaderStatusBarColor else R.attr.colorFoundation)
+            .getColorOrNull(context,  R.attr.tabHeaderStatusBarColor)
             ?: run {
                 BBLogger.warning("", "Cannot update status bar color, please check that your theme is extending from Theme.Backbase.")
                 return@collect

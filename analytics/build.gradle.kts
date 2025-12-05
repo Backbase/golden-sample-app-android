@@ -9,6 +9,11 @@ android {
 
 dependencies {
     implementation(platform(backbase.bom))
-    implementation(foundation.observability)
-    implementation(midTier.opentelemetryConnector)
+    implementation(foundationLibs.observability)
+    implementation(midTierLibs.openTelemetryConnector)
+    implementation(thirdPartyLibs.androidx.constraintLayout)
+    implementation(thirdPartyLibs.androidx.swipeRefreshLayout)
+    implementation(thirdPartyLibs.koin.android)
+    implementation(thirdPartyLibs.koin.core)
+    implementation(thirdPartyLibs.material)
 }

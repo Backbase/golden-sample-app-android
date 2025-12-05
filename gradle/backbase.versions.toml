@@ -1,19 +1,19 @@
 [versions]
 ## A
-accessControlEntitlements = "7.1.0"
-authentication = "8.1.0"
+accessControlEntitlements = "8.0.0"
+authentication = "9.0.0"
 
 ## B
-bom = "2025.03.01"
+bom = "2025.09.9-LTS"
 
 ## F
-featureFilter = "7.1.0"
+featureFilter = "8.0.0"
 
 ## M
-moreMenu = "7.1.1"
+moreMenu = "8.1.0"
 
 ## W
-workspaces = "8.1.0"
+workspaces = "9.1.0"
 
 [libraries]
 ## A
@@ -22,7 +22,8 @@ authentication-journey = { group = "com.backbase.android.identity.journey", name
 authentication-use-case = { group = "com.backbase.android.identity.journey", name = "identity-auth-client-1-authentication-use-case", version.ref = "authentication" }
 
 ## B
-bom = { module = "com.backbase.android.platform:bom", version.ref = "bom" }
+#bom = { module = "com.backbase.android.platform:bom", version.ref = "bom" }
+bom = { module = "com.backbase:backbase-bom", version.ref = "bom" }
 
 ## F
 featureFilterUseCase = { group = "com.backbase.android.retail.feature_filter", name = "feature-filter-use-case", version.ref = "featureFilter" }

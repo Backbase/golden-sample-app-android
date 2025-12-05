@@ -33,6 +33,12 @@ android {
         versionName = Version.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // The following argument makes the Android Test Orchestrator run its
+        // "pm clear" command after each test invocation. This command ensures
+        // that the app's state is completely cleared between tests.
+        testInstrumentationRunnerArguments["clearPackageData"] = "true"
+
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -54,6 +60,8 @@ android {
             isMinifyEnabled = false
             isShrinkResources = false
             buildConfigField(type = "Boolean", name = "DEBUG_MODE", value = "true")
+            buildConfigField("String", "TEST_ACCOUNT_USERNAME", "\"ADD USER NAME HERE\"")
+            buildConfigField("String", "TEST_ACCOUNT_PASSWORD", "\"ADD PASSWORD HERE\"")
         }
     }
     compileOptions {
@@ -67,6 +75,10 @@ android {
     buildFeatures {
         viewBinding = true
         buildConfig = true
+    }
+    testOptions {
+        execution = "ANDROIDX_TEST_ORCHESTRATOR"
+        animationsDisabled = true
     }
     packaging {
         resources {
@@ -94,10 +106,18 @@ dependencies {
 
     testImplementation(libs.bundles.test)
 
+    androidTestImplementation(projects.testData)
+    androidTestImplementation(libs.bundles.test.instrumented)
+
+    androidTestUtil(libs.orchestrator)
+
     // Backbase libraries
-    implementation(clients.bundles.clients)
-    implementation(midTier.bundles.common)
-    implementation(foundation.bundles.foundation)
+//    implementation(clients.bundles.clients)
+//    implementation(midTier.bundles.common)
+//    implementation(foundation.bundles.foundation)
+    implementation(clientLibs.bundles.bomOutput)
+    implementation(midTierLibs.bundles.bomOutput)
+    implementation(foundationLibs.bundles.bomOutput)
     implementation(backbase.bundles.journeys)
     implementation(backbase.bundles.useCases)
 }

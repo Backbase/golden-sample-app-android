@@ -1,5 +1,6 @@
 package screens
 
+import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModelStore
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -11,11 +12,12 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import app_common.BaseScreen
 import app_common.scenario.FragmentJourneyScenario
 import app_common.scenario.launchInJourneyContainer
-import app_common.shouldBeDisplayed
-import app_common.shouldMatchText
-import app_common.typeTextInInput
 import com.backbase.accounts_journey.R
 import com.backbase.accounts_journey.presentation.accountlist.ui.AccountListFragment
+import com.backbase.android.test_data.pullToRefresh
+import com.backbase.android.test_data.shouldBeDisplayed
+import com.backbase.android.test_data.shouldMatchText
+import com.backbase.android.test_data.typeTextInInput
 import screens.components.AccountComponent
 
 fun accountListScreen(func: AccountListScreen.() -> Unit): AccountListScreen {
@@ -27,6 +29,7 @@ class AccountListScreen : BaseScreen() {
     val searchInput: ViewInteraction = onView(withId(R.id.searchTextInput))
     val noAccountImg: ViewInteraction = onView(withId(R.id.no_account_image))
     val accountsSearchResultTxt: ViewInteraction = onView(withId(R.id.accounts_result_text))
+    val accountListSwipeContainer: ViewInteraction = onView(withId(R.id.accountlist_swipe_container))
 
     fun launch(
         navController: NavController? = null,
@@ -67,5 +70,14 @@ class AccountListScreen : BaseScreen() {
     fun emptySearchResultViewIsDisplayed() {
         noAccountImg.shouldBeDisplayed()
         accountsSearchResultTxt.shouldMatchText(R.string.no_accounts)
+    }
+
+    fun pullToRefresh() {
+        accountListSwipeContainer.pullToRefresh()
+    }
+
+    fun errorViewIsDisplayed(@StringRes error: Int) {
+        noAccountImg.shouldBeDisplayed()
+        accountsSearchResultTxt.shouldMatchText(error)
     }
 }
