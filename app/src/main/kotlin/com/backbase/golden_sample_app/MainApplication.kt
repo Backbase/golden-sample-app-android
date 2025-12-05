@@ -34,8 +34,6 @@ class MainApplication : Application() {
         setupDependencies()
 
         initAuthenticationJourney()
-
-//        BackbaseDeveloperMode.enable(this)
     }
 
     private fun setupDependencies() {

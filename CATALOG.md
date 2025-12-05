@@ -34,18 +34,18 @@ This example explains how to extend a journey.
 \
 **Maintainer**: Mobile-Foundation
 \
-**Status**: Maintained
+**Status**: Not maintained
 \
-LTS 25.09
+LTS 25.03
 
 ## [sample/devs/feature-flag](https://github.com/Backbase/golden-sample-app-android/tree/sample/devs/feature-flag)
 This example explains how to use feature flag.
 \
 **Maintainer**: Mobile-Foundation
 \
-**Status**: Maintained
+**Status**: Not maintained
 \
-LTS 25.09
+LTS 25.03
 
 ## [sample/devs/O11Y](https://github.com/Backbase/golden-sample-app-android/tree/sample/devs/O11Y)
 An implementation of Backbase Observability that makes it easy to add 3rd party tracking libraries to your project.
@@ -61,9 +61,9 @@ Extending Backbase Observability to capture API responses.
 \
 **Maintainer**: Mobile-Foundation
 \
-**Status**: Maintained
+**Status**: Not maintained
 \
-LTS 25.09
+LTS 25.03
 
 ## [sample/devs/open-telemetry](https://github.com/Backbase/golden-sample-app-android/tree/sample/devs/open-telemetry)
 An implementation of Backbase OpenTelemetry Connector to track screen views and user actions.
