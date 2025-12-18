@@ -2,11 +2,15 @@ package com.backbase.android.test_data
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.NoMatchingViewException
+import androidx.test.espresso.ViewAssertion
 import androidx.test.espresso.ViewInteraction
 import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
+import androidx.test.espresso.action.ViewActions.swipeDown
 import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions
+import androidx.test.espresso.matcher.ViewMatchers.hasDescendant
 import androidx.test.espresso.matcher.ViewMatchers.isClickable
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.isEnabled
@@ -77,4 +81,30 @@ fun ViewInteraction.typeTextInInput(text: String): ViewInteraction =
     perform(typeText(text)).perform(closeSoftKeyboard())
 
 fun ViewInteraction.pullToRefresh(): ViewInteraction =
-    perform(androidx.test.espresso.action.ViewActions.swipeDown())
+    perform(swipeDown())
+
+fun ViewInteraction.click(): ViewInteraction =
+    perform(androidx.test.espresso.action.ViewActions.click())
+
+fun ViewInteraction.shouldHaveDescendant(text: String): ViewInteraction =
+    check(matches(hasDescendant(withText(text))))
+
+fun ViewInteraction.clickOnRecyclerViewItem(position: Int): ViewInteraction =
+    perform(
+        RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
+            position,
+            androidx.test.espresso.action.ViewActions.click()
+        )
+    )
+
+fun ViewInteraction.hasItems(): ViewInteraction {
+    ViewAssertion { view, noViewFoundException ->
+        if (noViewFoundException != null) throw noViewFoundException
+        val recyclerView = view as RecyclerView
+        val itemCount = recyclerView.adapter?.itemCount ?: 0
+        assert(itemCount > 0) {
+            "RecyclerView has no items. Item count = $itemCount"
+        }
+    }
+    return this
+}

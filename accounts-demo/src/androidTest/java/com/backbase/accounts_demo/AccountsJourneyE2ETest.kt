@@ -1,20 +1,17 @@
 package com.backbase.accounts_demo
 
-import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.ViewInteraction
-import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.contrib.RecyclerViewActions
-import androidx.test.espresso.matcher.ViewMatchers.hasDescendant
 import androidx.test.espresso.matcher.ViewMatchers.withId
-import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.backbase.accounts_demo.presentation.MainActivity
 import com.backbase.accounts_journey.R
+import com.backbase.android.test_data.click
+import com.backbase.android.test_data.clickOnRecyclerViewItem
 import com.backbase.android.test_data.hasItems
 import com.backbase.android.test_data.shouldBeDisplayed
+import com.backbase.android.test_data.shouldHaveDescendant
 import com.backbase.android.test_data.shouldMatchText
 import com.backbase.android.test_data.typeTextInInput
 import com.backbase.android.test_data.waitForRecyclerViewToHaveItems
@@ -72,15 +69,16 @@ class AccountsJourneyE2ETest {
     @Test
     fun accountListShouldBeDisplayed() {
         accountHeader.shouldBeDisplayed()
-        accountList.shouldBeDisplayed()
-        accountList.check(hasItems())
+        accountList
+            .shouldBeDisplayed()
+            .hasItems()
     }
 
     @Test
     fun successfulSearchAccountsAreDisplayed() {
-        searchInput.typeTextInInput("Sara")
+        searchInput.typeTextInInput("John")
 
-        accountList.check(matches(hasDescendant(withText("Sara's Current Account 1"))))
+        accountList.shouldHaveDescendant("John's Current Account 1")
     }
 
     @Test
@@ -93,9 +91,7 @@ class AccountsJourneyE2ETest {
 
     @Test
     fun accountDetailShouldBeDisplayed() {
-        accountList.perform(
-            RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(1, click())
-        )
+        accountList.clickOnRecyclerViewItem(1)
         accountDetailHeader.waitForView()
 
         accountDetailHeader.shouldBeDisplayed()
@@ -104,20 +100,20 @@ class AccountsJourneyE2ETest {
     private fun login() {
         usernameInput.typeTextInInput(BuildConfig.TEST_ACCOUNT_USERNAME)
         passwordInput.typeTextInInput(BuildConfig.TEST_ACCOUNT_PASSWORD)
-        loginButton.perform(click())
+        loginButton.click()
     }
 
     private fun setupPasscode() {
         enterPasscode() // Enter the passcode
         enterPasscode() // Confirm the passcode
-        confirmButton.perform(click())
+        confirmButton.click()
     }
 
     private fun enterPasscode() {
-        keyboard1Button.perform(click())
-        keyboard4Button.perform(click())
-        keyboard7Button.perform(click())
-        keyboard8Button.perform(click())
-        keyboard9Button.perform(click())
+        keyboard1Button.click()
+        keyboard4Button.click()
+        keyboard7Button.click()
+        keyboard8Button.click()
+        keyboard9Button.click()
     }
 }
