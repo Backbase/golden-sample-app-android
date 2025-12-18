@@ -19,6 +19,7 @@ import com.backbase.android.test_data.shouldBeDisplayed
 import com.backbase.android.test_data.shouldMatchText
 import com.backbase.android.test_data.typeTextInInput
 import screens.components.AccountComponent
+import screens.components.AccountHeaderComponent
 
 fun accountListScreen(func: AccountListScreen.() -> Unit): AccountListScreen {
     return AccountListScreen().apply(func)
@@ -58,6 +59,10 @@ class AccountListScreen : BaseScreen() {
                 // If you need to perform any additional configuration, you can do it here
             }
         }
+    }
+
+    fun accountHeaderWithName(accountHeaderName: String, func: AccountHeaderComponent.() -> Unit): AccountHeaderComponent {
+        return AccountHeaderComponent(accountHeaderName).apply(func)
     }
 
     fun accountWithName(accountName: String, func: AccountComponent.() -> Unit): AccountComponent {

@@ -33,7 +33,7 @@ class AccountListViewModelTest : CoroutineTest {
 
     @Test
     fun `should get account summary when success`() = runTest {
-        val accountSummary = AccountSummaryGenerator.generateAccountSummary()
+        val accountSummary = AccountSummaryGenerator.randomAccountSummaryBuilder().build()
         coEvery {
             accountsUseCase.getAccountSummary(true)
         } returns Result.success(accountSummary)
@@ -58,7 +58,8 @@ class AccountListViewModelTest : CoroutineTest {
 
     @Test
     fun `should get account summary when refresh`() = runTest {
-        val accountSummary = AccountSummaryGenerator.generateAccountSummary()
+        val accountSummary = AccountSummaryGenerator.randomAccountSummaryBuilder().build()
+
         coEvery {
             accountsUseCase.getAccountSummary(false)
         } returns Result.success(accountSummary)
@@ -72,7 +73,13 @@ class AccountListViewModelTest : CoroutineTest {
     @Test
     fun `should get account summary when search`() = runTest {
         val query = randomString()
-        val accountSummary = AccountSummaryGenerator.generateAccountSummary(displayName = query)
+
+        val accountSummary = AccountSummaryGenerator.randomAccountSummaryBuilder {
+            currentAccounts = AccountSummaryGenerator.randomCurrentAccounts {
+                this.products = listOf(AccountSummaryGenerator.randomCurrentAccount { this.displayName = query }.build())
+            }.build()
+        }.build()
+
         coEvery {
             accountsUseCase.getAccountSummary()
         } returns Result.success(accountSummary)
@@ -87,10 +94,18 @@ class AccountListViewModelTest : CoroutineTest {
     @Test
     fun `should get empty account summary when nothing found`() = runTest {
         val query = randomString()
-        val accountSummary = AccountSummaryGenerator.generateAccountSummary(displayName = query)
+        val accountSummary = AccountSummaryGenerator.randomAccountSummaryBuilder {
+            currentAccounts = AccountSummaryGenerator.randomCurrentAccounts {
+                this.products = listOf(AccountSummaryGenerator.randomCurrentAccount { this.displayName = query }.build())
+            }.build()
+        }.build()
         coEvery {
             accountsUseCase.getAccountSummary()
         } returns Result.success(accountSummary)
+
+        accountSummary.currentAccounts?.products?.forEach {
+            println(it.displayName)
+        }
 
         viewModel.onEvent(AccountListEvent.OnSearch(randomString()))
 
