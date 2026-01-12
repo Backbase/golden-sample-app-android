@@ -6,6 +6,9 @@ authentication = "9.0.0"
 ## B
 bom = "2025.09.9-LTS"
 
+## D
+developermode = "1.0.0"
+
 ## F
 featureFilter = "8.0.0"
 
@@ -24,6 +27,9 @@ authentication-use-case = { group = "com.backbase.android.identity.journey", nam
 ## B
 #bom = { module = "com.backbase.android.platform:bom", version.ref = "bom" }
 bom = { module = "com.backbase:backbase-bom", version.ref = "bom" }
+
+## D
+developermode = { module = "com.backbase.android:developermode", version.ref = "developermode" }
 
 ## F
 featureFilterUseCase = { group = "com.backbase.android.retail.feature_filter", name = "feature-filter-use-case", version.ref = "featureFilter" }

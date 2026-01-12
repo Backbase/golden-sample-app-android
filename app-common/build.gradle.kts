@@ -28,4 +28,5 @@ dependencies {
     implementation(foundationLibs.bundles.bomOutput)
     implementation(backbase.bundles.journeys)
     implementation(backbase.bundles.useCases)
+    implementation(backbase.developermode)
 }
