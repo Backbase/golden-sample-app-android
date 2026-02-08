@@ -13,18 +13,6 @@
         android:text="Tenant registration"/>
 
     <Button
-        android:id="@+id/passkeyRegistrationButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Passkey registeration" />
-
-    <Button
-        android:id="@+id/passkeyAuthenticationButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Passkey authentication" />
-
-    <Button
         android:id="@+id/encryptButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

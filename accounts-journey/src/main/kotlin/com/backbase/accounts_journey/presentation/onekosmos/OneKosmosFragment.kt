@@ -18,9 +18,6 @@ import com.backbase.onekosmos.SecureStorage
 import com.onekosmos.blockid.sdk.BIDAPIs.APIManager.ErrorManager
 import com.onekosmos.blockid.sdk.BlockIDSDK
 import com.onekosmos.blockid.sdk.datamodel.BIDTenant
-import com.onekosmos.blockid.sdk.passKey.PasskeyCallback
-import com.onekosmos.blockid.sdk.passKey.PasskeyRequest
-import com.onekosmos.blockid.sdk.passKey.PasskeyResponse
 import java.nio.charset.StandardCharsets
 import java.security.Security
 import java.util.concurrent.Executor
@@ -37,10 +34,6 @@ class OneKosmosFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         executor = ContextCompat.getMainExecutor(requireContext())
-
-        Security.getProviders().forEach {
-            println(it)
-        }
     }
 
     override fun onCreateView(
@@ -55,18 +48,8 @@ class OneKosmosFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        enableButtons()
-
         binding.tentantRegisterButton.setOnClickListener {
             tenantRegister()
-        }
-
-        binding.passkeyRegistrationButton.setOnClickListener {
-            passKeyRegister()
-        }
-
-        binding.passkeyAuthenticationButton.setOnClickListener {
-            passkeyAuthenticate()
         }
 
         binding.encryptButton.setOnClickListener {
@@ -87,12 +70,11 @@ class OneKosmosFragment : Fragment() {
                 BlockIDSDK.b { status: Boolean, errorResponse: ErrorManager.ErrorResponse?, tenant: BIDTenant? ->
                     Log.e("tenantRegister", "tenant register status: $status")
                     if (status) {
-                        println("After register tenant:\n" + printProvider())
+                        Log.d("tenantRegister","After register tenant:\n" + printProvider())
                         BlockIDSDK.getInstance().commitApplicationWallet()
                         Toast.makeText(context, "Tenant register success", Toast.LENGTH_SHORT)
                             .show()
                         Log.d("tenantRegister", "ready!")
-                        enableButtons()
                     } else {
                         Log.e(
                             "tenantRegister",
@@ -106,71 +88,12 @@ class OneKosmosFragment : Fragment() {
         }
     }
 
-    private fun passkeyAuthenticate() {
-        val userName = "bhavesh"
-
-        if (userName.isEmpty() || userName.length <= 3) {
-            Toast.makeText(context, "Please enter correct user name", Toast.LENGTH_SHORT).show()
-            return
-        }
-        Log.d("passkeyAuthenticate", "Passkey authenticate in progress...")
-        val request = PasskeyRequest(AppConstant.defaultTenant, userName, null, null)
-        BlockIDSDK.getInstance().issueJWTOnPasskeyAuthentication(
-            requireActivity(),
-            request,
-            PasskeyCallback { status: Boolean, passkeyResponse: PasskeyResponse?, errorResponse: ErrorManager.ErrorResponse? ->
-
-                Log.e("passkeyAuthenticate", "passkey authenticate status: $status")
-                if (status) {
-                    BlockIDSDK.getInstance().commitApplicationWallet()
-                    Toast.makeText(context, "passkey authenticate success", Toast.LENGTH_SHORT)
-                        .show()
-                    println("JWT: " + passkeyResponse?.jwt)
-                } else {
-                    Log.e(
-                        "passkeyAuthenticate",
-                        "passkey register error: " + errorResponse?.code + " : " + errorResponse?.message
-                    )
-                    Toast.makeText(
-                        context,
-                        "passkey authenticate failed: " + errorResponse?.code + " : " + errorResponse?.message,
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            })
-    }
-
-    private fun passKeyRegister() {
-        val request = PasskeyRequest(AppConstant.defaultTenant, "username", null, null)
-        BlockIDSDK.getInstance().registerPasskeyWithAccountLinking(
-            this.requireActivity(), request,
-            PasskeyCallback { status: Boolean, passkeyResponse: PasskeyResponse?, errorResponse: ErrorManager.ErrorResponse? ->
-                Log.e("passKeyRegister", "passkey register status: " + status)
-                if (status) {
-                    BlockIDSDK.getInstance().commitApplicationWallet()
-                    Toast.makeText(context, "passkey register success", Toast.LENGTH_SHORT)
-                        .show()
-                } else {
-                    Log.e(
-                        "passKeyRegister",
-                        "passkey register error: " + errorResponse!!.code + " : " + errorResponse.message
-                    )
-                    Toast.makeText(
-                        context,
-                        "passkey register failed: " + errorResponse.code + " : " + errorResponse.message,
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            })
-    }
-
     private fun encrypt() {
         try {
             val cipher = BiometricCryptoManager.getEncryptCipher()
             authenticate(cipher, true)
         } catch (e: KeyPermanentlyInvalidatedException) {
             Log.d("encrypt", "encrypt: KeyPermanentlyInvalidatedException$e")
-//            recoverFromBiometricChange()
         } catch (e: Exception) {
             e.printStackTrace()
             Log.e("encrypt", e.message ?: "")
@@ -264,8 +187,8 @@ class OneKosmosFragment : Fragment() {
         for (i in providers.indices) {
             val provider = providers[i]
             val line = "Position " + (i + 1) +
-                    ": " + provider.getName() +
-                    " (Version: " + provider.getVersion() + ")"
+                    ": " + provider.name +
+                    " (Version: " + provider.version + ")"
             Log.e(TAG, line)
             sb.append(line).append("\n")
         }
@@ -282,19 +205,9 @@ class OneKosmosFragment : Fragment() {
         // 3. Recreate key
         try {
             BiometricCryptoManager.generateKeyIfNeeded()
-            //txtResult.setText("Biometrics changed. Please re-enroll.")
+            Log.d("recoverFromBiometricChange", "Biometrics changed. Key recreated.")
         } catch (e: java.lang.Exception) {
-            //txtResult.setText("Re-enrollment failed")
-        }
-    }
-
-    private fun enableButtons() {
-        if (BlockIDSDK.getInstance().isReady) {
-            binding.passkeyRegistrationButton.setEnabled(true)
-            binding.passkeyAuthenticationButton.setEnabled(true)
-        } else {
-            binding.passkeyRegistrationButton.setEnabled(false)
-            binding.passkeyAuthenticationButton.setEnabled(false)
+            Log.d("recoverFromBiometricChange", "Failed to recover from biometric change: ${e.message}")
         }
     }
 }
