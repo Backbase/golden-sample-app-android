@@ -90,11 +90,10 @@ internal class UserRepositoryImpl(
     private fun getItemWithSanityCheck(key: String): String? {
         var value: String? = null
         coroutineScope.launch(dispatcher) {
-            println(key)
             when (val result = secureStorage.readValue(key)) {
                 is ReadValueResult.Found -> value = result.value
-                ReadValueResult.EmptyKey -> println("key is empty")
-                ReadValueResult.NotFound -> println("$key not found")
+                ReadValueResult.EmptyKey -> {}
+                ReadValueResult.NotFound -> {}
                 is ReadValueResult.Error -> {
                     clearUserInfo()
                     throw UserRepository.CorruptedUserDataException()

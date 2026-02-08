@@ -16,6 +16,7 @@ class TabListConfigurationProvider(private val context: Context) {
 
     fun dashboardTabList() = TabListConfiguration {
         +accountsTab(context)
+        +oneKosmosTab(context)
         +emptyTabTwo(context)
         +emptyTabThree(context)
     }
@@ -25,6 +26,14 @@ class TabListConfigurationProvider(private val context: Context) {
         navigation = NavigationConfiguration {
             navGraphId = R.navigation.navigation_main
             destination = DestinationByIdConfiguration { id = com.backbase.accounts_journey.R.id.account_journey_nav_graph }
+        }
+    }
+
+    private fun oneKosmosTab(context: Context) = TabConfiguration {
+        name = context.getString(R.string.top_bar_tab_onekosmos)
+        navigation = NavigationConfiguration {
+            navGraphId = R.navigation.navigation_main
+            destination = DestinationByIdConfiguration { id = R.id.onekosmos_fragment }
         }
     }
 

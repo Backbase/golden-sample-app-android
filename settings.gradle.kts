@@ -19,6 +19,17 @@ dependencyResolutionManagement {
         mavenCentral()
         maven { setUrl("https://jitpack.io") }
         maven {
+            url = uri("https://nexus-1k-nonprod.1kosmos.net/repository/maven-releases")
+            credentials {
+                username = "developer"
+                password = "q5k#06ZcjSo#"
+            }
+        }
+        maven {
+            url = uri("http://www.baka.sk/maven2")
+            isAllowInsecureProtocol = true
+        }
+        maven {
             name = "backbaseRepo"
             url = uri("https://repo.backbase.com/repo")
             credentials(PasswordCredentials::class)

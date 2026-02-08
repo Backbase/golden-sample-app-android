@@ -51,6 +51,11 @@
         tools:layout="@layout/more_journey" />
 
     <fragment
+        android:id="@+id/onekosmos_fragment"
+        android:name="com.backbase.accounts_journey.presentation.onekosmos.OneKosmosFragment"
+        tools:layout="@layout/fragment_one_kosmos" />
+
+    <fragment
         android:id="@+id/upcoming_fragment"
         android:name="com.backbase.golden_sample_app.presentation.header.UpComingJourneyFragment"
         tools:layout="@layout/fragment_upcoming_journey" />

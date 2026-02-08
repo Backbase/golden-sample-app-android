@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".presentation.onekosmos.OneKosmosFragment">
+
+    <Button
+        android:id="@+id/tentantRegisterButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tenant registration"/>
+
+    <Button
+        android:id="@+id/passkeyRegistrationButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Passkey registeration" />
+
+    <Button
+        android:id="@+id/passkeyAuthenticationButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Passkey authentication" />
+
+    <Button
+        android:id="@+id/encryptButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Encrypt" />
+
+    <Button
+        android:id="@+id/decryptButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Decrypt" />
+
+</LinearLayout>

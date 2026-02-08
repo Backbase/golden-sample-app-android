@@ -49,4 +49,14 @@ dependencies {
     androidTestImplementation(libs.bundles.test.instrumented)
 
     androidTestUtil(libs.orchestrator)
+
+    implementation("com.onekosmos.blockid.sdk:blockidsdk:1.20.55.68CBE323")
+
+    implementation("androidx.security:security-crypto:1.1.0")
+    // Fingerprint and biometric
+    implementation("androidx.biometric:biometric:1.1.0")
+    // Network call
+    implementation("com.github.amitshekhariitbhu.Fast-Android-Networking:android-networking:1.0.4")
+    // LiveID
+    implementation("com.google.guava:guava:32.0.1-jre")
 }

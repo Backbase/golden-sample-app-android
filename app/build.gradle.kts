@@ -26,7 +26,8 @@ android {
     compileSdk = Version.compileSdk
 
     defaultConfig {
-        applicationId = "com.backbase.golden_sample_app"
+//        applicationId = "com.backbase.golden_sample_app"
+        applicationId = "com.onekosmos.blockid.poc"
         minSdk = Version.minSdk
         targetSdk = Version.compileSdk
         versionCode = Version.versionCode
@@ -89,6 +90,17 @@ android {
     }
 }
 
+configurations.configureEach {
+    resolutionStrategy.eachDependency {
+        if (requested.group == "org.bouncycastle") {
+            useTarget("org.bouncycastle:bcprov-jdk15on:1.70")
+        }
+        if (requested.group == "com.google.protobuf") {
+            useTarget("com.google.protobuf:protobuf-javalite:3.18.0")
+        }
+    }
+}
+
 dependencies {
     implementation(fileTree(mapOf("dir" to "../libs", "include" to listOf("*.jar", "*.aar"))))
     implementation(projects.appCommon)
@@ -120,4 +132,14 @@ dependencies {
     implementation(foundationLibs.bundles.bomOutput)
     implementation(backbase.bundles.journeys)
     implementation(backbase.bundles.useCases)
+
+    implementation("com.onekosmos.blockid.sdk:blockidsdk:1.20.55.68CBE323")
+
+    implementation("androidx.security:security-crypto:1.1.0")
+    // Fingerprint and biometric
+    implementation("androidx.biometric:biometric:1.1.0")
+    // Network call
+    implementation("com.github.amitshekhariitbhu.Fast-Android-Networking:android-networking:1.0.4")
+    // LiveID
+    implementation("com.google.guava:guava:32.0.1-jre")
 }
