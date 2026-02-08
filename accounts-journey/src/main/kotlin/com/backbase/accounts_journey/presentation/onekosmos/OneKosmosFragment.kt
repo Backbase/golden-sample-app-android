@@ -2,7 +2,6 @@ package com.backbase.accounts_journey.presentation.onekosmos
 
 import android.os.Bundle
 import android.security.keystore.KeyPermanentlyInvalidatedException
-import android.util.Base64
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,8 +14,6 @@ import androidx.fragment.app.Fragment
 import com.backbase.accounts_journey.databinding.FragmentOneKosmosBinding
 import com.backbase.onekosmos.BiometricCryptoManager
 import com.backbase.onekosmos.BiometricCryptoManager.deleteKey
-import com.backbase.onekosmos.BiometricCryptoManager.getSignatureForDecrypt
-import com.backbase.onekosmos.BiometricCryptoManager.getSignatureForEncrypt
 import com.backbase.onekosmos.SecureStorage
 import com.onekosmos.blockid.sdk.BIDAPIs.APIManager.ErrorManager
 import com.onekosmos.blockid.sdk.BlockIDSDK
@@ -26,8 +23,8 @@ import com.onekosmos.blockid.sdk.passKey.PasskeyRequest
 import com.onekosmos.blockid.sdk.passKey.PasskeyResponse
 import java.nio.charset.StandardCharsets
 import java.security.Security
-import java.security.Signature
 import java.util.concurrent.Executor
+import javax.crypto.Cipher
 
 class OneKosmosFragment : Fragment() {
 
@@ -169,8 +166,7 @@ class OneKosmosFragment : Fragment() {
 
     private fun encrypt() {
         try {
-//            Cipher cipher = BiometricCryptoManager.getEncryptCipher();
-            val cipher: Signature = getSignatureForEncrypt()
+            val cipher = BiometricCryptoManager.getEncryptCipher()
             authenticate(cipher, true)
         } catch (e: KeyPermanentlyInvalidatedException) {
             Log.d("encrypt", "encrypt: KeyPermanentlyInvalidatedException$e")
@@ -188,8 +184,7 @@ class OneKosmosFragment : Fragment() {
                 Log.e("decrypt","No encrypted data found")
                 return
             }
-            //            Cipher cipher = BiometricCryptoManager.getDecryptCipher(iv);
-            val cipher: Signature = getSignatureForDecrypt()
+            val cipher = BiometricCryptoManager.getDecryptCipher(iv)
             authenticate(cipher, false)
         } catch (e: KeyPermanentlyInvalidatedException) {
             Log.d("decrypt", "decrypt: KeyPermanentlyInvalidatedException$e")
@@ -200,7 +195,7 @@ class OneKosmosFragment : Fragment() {
         }
     }
 
-    private fun authenticate(cipher: Signature, encrypt: Boolean) {
+    private fun authenticate(cipher: Cipher, encrypt: Boolean) {
         val biometricPrompt =
             BiometricPrompt(
                 this, executor,
@@ -210,28 +205,24 @@ class OneKosmosFragment : Fragment() {
                     ) {
                         try {
                             val c = result.cryptoObject?.cipher
+                                ?: throw IllegalStateException("Cipher is null after authentication")
 
-                            val cryptoObject = result.cryptoObject
-                            if (cryptoObject != null && cryptoObject.signature != null) {
-                                val signature = cryptoObject.signature
-                                signDataWithAuthenticatedSignature(signature!!)
-                            }
                             if (encrypt) {
                                 val secret = "USER_SESSION_TOKEN"
-                                val encrypted = c!!.doFinal(
+                                val encrypted = c.doFinal(
                                     secret.toByteArray(StandardCharsets.UTF_8)
                                 )
 
                                 SecureStorage.save(
                                     requireContext(),
                                     encrypted,
-                                    c.getIV()
+                                    c.iv
                                 )
                             } else {
-                                val decrypted = c!!.doFinal(
+                                val decrypted = c.doFinal(
                                     SecureStorage.getEncrypted(requireContext())
                                 )
-                                Log.e("authenticate", "Decrypted: " + kotlin.text.String(decrypted))
+                                Log.d("authenticate", "Decrypted: " + String(decrypted))
                             }
                         } catch (e: java.lang.Exception) {
                             e.printStackTrace()
@@ -259,29 +250,11 @@ class OneKosmosFragment : Fragment() {
                 .setNegativeButtonText("Cancel")
                 .build()
 
-        //        final Signature signature = Signature.getInstance(SIGNATURE_ALG);
-//        signature.initSign(cipher);
         biometricPrompt.authenticate(
             promptInfo,
             BiometricPrompt.CryptoObject(cipher)
         )
     }
-
-    private fun signDataWithAuthenticatedSignature(signature: Signature) {
-        try {
-            val dataToSign: ByteArray = "Sensitive data".toByteArray()
-            signature.update(dataToSign)
-            val signedData = signature.sign()
-
-            val signedBase64 = Base64.encodeToString(
-                signedData, Base64.DEFAULT
-            )
-            Log.d("BiometricAuth", "Signed data: $signedBase64")
-        } catch (e: java.lang.Exception) {
-            Log.e("BiometricAuth", "Signing failed: " + e.message)
-        }
-    }
-
 
     private fun printProvider(): String {
         val TAG = "printProvider"

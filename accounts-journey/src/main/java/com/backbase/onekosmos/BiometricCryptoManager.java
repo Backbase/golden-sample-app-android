@@ -11,11 +11,14 @@ import java.security.Signature;
 import java.security.spec.ECGenParameterSpec;
 
 import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
 import javax.crypto.spec.GCMParameterSpec;
 
 public class BiometricCryptoManager {
 
     private static final String KEY_ALIAS = "biometric_secure_key";
+    private static final String AES_KEY_ALIAS = "biometric_aes_key";
     private static final String ANDROID_KEYSTORE = "AndroidKeyStore";
     private static final int GCM_TAG_LENGTH = 128;
     private static final String KEY_PAIR_ALG = "EC";
@@ -30,30 +33,7 @@ public class BiometricCryptoManager {
         KeyStore keyStore = KeyStore.getInstance(ANDROID_KEYSTORE);
         keyStore.load(null);
 
-        if (keyStore.containsAlias(KEY_ALIAS)) return;
-
-//        KeyGenerator keyGenerator = KeyGenerator.getInstance(
-//                KEY_PAIR_ALG,
-//                ANDROID_KEYSTORE
-//        );
-//
-//        KeyGenParameterSpec.Builder builder =
-//                new KeyGenParameterSpec.Builder(
-//                        KEY_ALIAS,
-//                        KEY_PAIR_PURPOSES)
-//                        .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
-//                        .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
-//                        .setUserAuthenticationRequired(true)
-//                        .setUserAuthenticationValidityDurationSeconds(-1);
-//
-////        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//            builder.setInvalidatedByBiometricEnrollment(true);
-////        }
-//
-//        keyGenerator.init(builder.build());
-//        keyGenerator.generateKey();
-
-//        try {
+        if (!keyStore.containsAlias(KEY_ALIAS)) {
             final KeyPairGenerator generator = KeyPairGenerator.getInstance(KEY_PAIR_ALG, ANDROID_KEYSTORE); // mobsf-ignore: hardcoded_api_key
             generator.initialize(new KeyGenParameterSpec.Builder(KEY_ALIAS, KEY_PAIR_PURPOSES)
                     .setDigests(KeyProperties.DIGEST_SHA256)
@@ -63,22 +43,47 @@ public class BiometricCryptoManager {
                     .build());
 
             generator.generateKeyPair();
+        }
 
-//        } catch (final GeneralSecurityException e) {
-//            Log.d("Bhavesh", "Unable to generate the KeyPair"+e);
-//        }
+        generateAesKeyIfNeeded();
+    }
+
+    private static void generateAesKeyIfNeeded() throws Exception {
+        KeyStore keyStore = KeyStore.getInstance(ANDROID_KEYSTORE);
+        keyStore.load(null);
+
+        if (keyStore.containsAlias(AES_KEY_ALIAS)) return;
+
+        KeyGenerator keyGenerator = KeyGenerator.getInstance(
+                KeyProperties.KEY_ALGORITHM_AES,
+                ANDROID_KEYSTORE
+        );
+
+        keyGenerator.init(new KeyGenParameterSpec.Builder(
+                AES_KEY_ALIAS,
+                KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT)
+                .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
+                .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
+                .setKeySize(256)
+                .setUserAuthenticationRequired(true)
+                .setInvalidatedByBiometricEnrollment(true)
+                .build());
+
+        keyGenerator.generateKey();
     }
 
     public static Cipher getEncryptCipher() throws Exception {
+        Security.removeProvider("SC");
         Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
-        cipher.init(Cipher.ENCRYPT_MODE, getSecretKey());
+        cipher.init(Cipher.ENCRYPT_MODE, getAesSecretKey());
         return cipher;
     }
 
     public static Cipher getDecryptCipher(byte[] iv) throws Exception {
+        Security.removeProvider("SC");
         Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
         GCMParameterSpec spec = new GCMParameterSpec(GCM_TAG_LENGTH, iv);
-        cipher.init(Cipher.DECRYPT_MODE, getSecretKey(), spec);
+        cipher.init(Cipher.DECRYPT_MODE, getAesSecretKey(), spec);
         return cipher;
     }
 
@@ -107,17 +112,18 @@ public class BiometricCryptoManager {
         keyStore.load(null);
         return keyStore.getCertificate(KEY_ALIAS).getPublicKey();
     }
-    private static PrivateKey getSecretKey() throws Exception {
+    private static SecretKey getAesSecretKey() throws Exception {
         KeyStore keyStore = KeyStore.getInstance(ANDROID_KEYSTORE);
         keyStore.load(null);
-        return (PrivateKey) keyStore.getKey(KEY_ALIAS, null);
+        return (SecretKey) keyStore.getKey(AES_KEY_ALIAS, null);
     }
 
     public static void deleteKey() {
         try {
-            KeyStore keyStore = KeyStore.getInstance("AndroidKeyStore");
+            KeyStore keyStore = KeyStore.getInstance(ANDROID_KEYSTORE);
             keyStore.load(null);
             keyStore.deleteEntry(KEY_ALIAS);
+            keyStore.deleteEntry(AES_KEY_ALIAS);
         } catch (Exception ignored) {}
     }
 
