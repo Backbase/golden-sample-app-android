@@ -73,14 +73,14 @@ public class BiometricCryptoManager {
     }
 
     public static Cipher getEncryptCipher() throws Exception {
-        Security.removeProvider("SC");
+        generateAesKeyIfNeeded();
         Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
         cipher.init(Cipher.ENCRYPT_MODE, getAesSecretKey());
         return cipher;
     }
 
     public static Cipher getDecryptCipher(byte[] iv) throws Exception {
-        Security.removeProvider("SC");
+        generateAesKeyIfNeeded();
         Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
         GCMParameterSpec spec = new GCMParameterSpec(GCM_TAG_LENGTH, iv);
         cipher.init(Cipher.DECRYPT_MODE, getAesSecretKey(), spec);
