@@ -49,7 +49,7 @@
         android:ellipsize="end"
         android:gravity="start"
         android:maxLines="1"
-        android:textColor="?colorOnSurfaceSecondary"
+        android:textColor="?colorTextSupport"
         app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toStartOf="@id/account_balance"
         app:layout_constraintHorizontal_bias="0.0"

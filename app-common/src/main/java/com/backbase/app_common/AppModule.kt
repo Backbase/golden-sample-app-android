@@ -73,7 +73,7 @@ fun appModule() = module {
     }
 
     single(qualifier = COMMON_API_ROOT_QUALIFIER) {
-        Backbase.requireInstance().configuration.serverUrl
+        "${Backbase.requireInstance().configuration.serverUrl.trimEnd('/')}/api"
     }
 
     single<DBSDataProvider> {
