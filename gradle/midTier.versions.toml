@@ -2,17 +2,17 @@
 
 [libraries]
 ## B
-business-journey-common = { group = "com.backbase.android.business.journey", name = "journey-common", version = "" }
+business-journey-common = { group = "com.backbase.android.business.journey", name = "journey-common", version = "9.0.2" }
 
 ## C
-clients-common-coroutines = { group = "com.backbase.android.clients", name = "clients-common-coroutines", version = "" }
+clients-common-coroutines = { group = "com.backbase.android.clients", name = "clients-common-coroutines", version = "2.0.0" }
 
 ## J
-journey-test = { group = "com.backbase.android.retail.journey", name = "journey-test", version = "" }
+journey-test = { group = "com.backbase.android.retail.journey", name = "journey-test", version = "9.0.0" }
 
 ## R
-retail-journey-common = { group = "com.backbase.android.retail.journey", name = "journey-common", version = "" }
-retail-journey-common-koin = { group = "com.backbase.android.retail.journey", name = "journey-common-koin", version = "" }
+retail-journey-common = { group = "com.backbase.android.retail.journey", name = "journey-common", version = "9.0.0" }
+retail-journey-common-koin = { group = "com.backbase.android.retail.journey", name = "journey-common-koin", version = "9.0.0" }
 
 [plugins]
 

@@ -1,22 +1,22 @@
 [versions]
 ## A
-accessControlEntitlements = "7.1.0"
-authentication = "8.1.0"
+accessControlEntitlements = "10.0.0"
+authentication = "10.0.0"
 
 ## B
-bom = "2025.03.01"
+bom = "2026.03.1-LTS"
 
 ## C
-contacts = "7.4.0"
+contacts-manager-journey = "9.1.0"
 
 ## F
-featureFilter = "7.1.0"
+featureFilter = "10.0.0"
 
 ## M
-moreMenu = "7.1.1"
+moreMenu = "9.0.0"
 
 ## W
-workspaces = "8.1.0"
+workspaces = "10.1.0"
 
 [libraries]
 ## A
@@ -25,13 +25,13 @@ authentication-journey = { group = "com.backbase.android.identity.journey", name
 authentication-use-case = { group = "com.backbase.android.identity.journey", name = "identity-auth-client-1-authentication-use-case", version.ref = "authentication" }
 
 ## B
-bom = { module = "com.backbase.android.platform:bom", version.ref = "bom" }
+bom = { module = "com.backbase:backbase-bom", version.ref = "bom" }
 business-journey-common = { group = "com.backbase.android.business.journey", name = "journey-common", version = "" }
 
 ## C
 clients-common-coroutines = { group = "com.backbase.android.clients", name = "clients-common-coroutines", version = "" }
-contacts-journey = { group = "com.backbase.android.retail.journey", name = "contacts-journey", version.ref = "contacts" }
-contacts-journey-usecase = { group = "com.backbase.android.retail.journey", name = "gen-contactmanager-client-2-contacts-use-case", version.ref = "contacts" }
+contacts-manager-journey = { group = "com.backbase.android.business.journey", name = "contacts-manager-journey", version.ref = "contacts-manager-journey" }
+contacts-manager-use-case = { group = "com.backbase.android.business.journey.contacts-manager-journey", name = "contactsmanager-client-2-contacts-use-case", version.ref = "contacts-manager-journey" }
 
 ## F
 featureFilterUseCase = { group = "com.backbase.android.retail.feature_filter", name = "feature-filter-use-case", version.ref = "featureFilter" }
@@ -68,7 +68,7 @@ jacoco-codecoverage = { id = "jacoco-codecoverage" }
 jacoco-root-codecoverage = { id = "jacoco-root-codecoverage" }
 
 ## V
-visualiser = { id = "com.backbase.android.visualizer", version = "1.0.0" }
+visualiser = { id = "com.backbase.android.visualizer", version = "2.1.0" }
 
 [bundles]
 ## C
@@ -84,7 +84,7 @@ common = [
 journeys = [
     "authentication-journey",
     "moreMenuJourney",
-    "contacts-journey",
+    "contacts-manager-journey",
     "workspaces-journey",
 ]
 
@@ -92,7 +92,7 @@ journeys = [
 useCases = [
     "accessControlEntitlementsUseCase",
     "authentication-use-case",
-    "contacts-journey-usecase",
+    "contacts-manager-use-case",
     "featureFilterUseCase",
     "workspaces-use-case",
 ]

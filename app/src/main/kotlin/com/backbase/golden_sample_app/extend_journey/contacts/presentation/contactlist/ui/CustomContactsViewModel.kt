@@ -2,10 +2,9 @@ package com.backbase.golden_sample_app.extend_journey.contacts.presentation.cont
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.backbase.android.retail.journey.contacts.ContactsPageCursor
-import com.backbase.android.retail.journey.contacts.ContactsPageFirstCursor
-import com.backbase.android.retail.journey.contacts.ContactsPageRequestParameters
-import com.backbase.android.retail.journey.contacts.ContactsUseCase
+import com.backbase.android.business.journey.contacts.model.request.GetContactsRequest
+import com.backbase.android.business.journey.contacts.state.CallState
+import com.backbase.android.business.journey.contacts.usecase.ContactsUseCase
 import com.backbase.golden_sample_app.extend_journey.contacts.presentation.contactlist.mapper.CustomContactUiMapper
 import com.backbase.golden_sample_app.extend_journey.contacts.presentation.contactlist.model.ContactUiModel
 import kotlinx.coroutines.CoroutineDispatcher
@@ -26,7 +25,6 @@ class CustomContactsViewModel(
     private val _uiState = MutableStateFlow(CustomContactsScreenState())
     val uiState: StateFlow<CustomContactsScreenState> = _uiState
 
-    private var nextPageCursor: ContactsPageCursor = ContactsPageFirstCursor
     private val loadedContacts = mutableSetOf<ContactUiModel>()
 
     fun onEvent(event: CustomContactsEvent) {
@@ -38,20 +36,21 @@ class CustomContactsViewModel(
     private fun getContacts(query: String = "") {
         viewModelScope.launch {
             withContext(defaultDispatcher) {
-                val result = useCase.getContactsPage(
-                    ContactsPageRequestParameters {
-                        searchQuery = query.trimStart()
-                        cursor = nextPageCursor
+                val result = useCase.getContacts(
+                    GetContactsRequest {
+                        from = 0
+                        size = 100
+                        this.query = query.trimStart().ifEmpty { null }
                     }
                 )
                 when (result) {
-                    is ContactsUseCase.Result.Success -> {
-                        nextPageCursor = result.value.nextPageCursor ?: ContactsPageFirstCursor
-                        val data = result.value.contacts.map { data -> mapper.mapToUi(data) }
+                    is CallState.Success -> {
+                        val data = result.data.map { contact -> mapper.mapToUi(contact) }
+                        loadedContacts.clear()
                         loadedContacts += data
 
                         val filteredContacts = loadedContacts.filter { model ->
-                            model.name.lowercase().contains(query)
+                            model.name.lowercase().contains(query.lowercase())
                         }.sortedBy { it.name.uppercase(Locale.US) }
 
                         _uiState.update {
@@ -63,7 +62,8 @@ class CustomContactsViewModel(
                         }
                     }
 
-                    is ContactsUseCase.Result.Failure -> {
+                    is CallState.Empty,
+                    is CallState.Error -> {
                         _uiState.update {
                             it.copy(
                                 isLoading = false

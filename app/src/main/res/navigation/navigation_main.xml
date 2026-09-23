@@ -46,8 +46,7 @@
 
     <fragment
         android:id="@+id/contactsJourney"
-        android:name="com.backbase.android.retail.journey.contacts.ContactsJourney"
-        tools:layout="@layout/rcj_contacts_journey" />
+        android:name="com.backbase.android.business.journey.contacts.BusinessContactsManagerJourney" />
 
     <fragment
         android:id="@+id/customContactsFragment"

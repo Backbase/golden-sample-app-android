@@ -38,7 +38,7 @@ android {
 
     testOptions {
         unitTests {
-            isIncludeAndroidResources = true
+            isIncludeAndroidResources = false
             isReturnDefaultValues = true
         }
         compileOptions {

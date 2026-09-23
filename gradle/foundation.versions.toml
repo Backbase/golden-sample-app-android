@@ -2,13 +2,13 @@
 
 [libraries]
 ## D
-design-system = { group = "com.backbase.android.design", name = "design-system", version = "" }
+design-system = { group = "com.backbase.android.design", name = "design-system", version = "9.2.4" }
 
 # M
-msdk = { group = "com.backbase.android.sdk", name = "backbase", version = "" }
+msdk = { group = "com.backbase.android.sdk", name = "backbase", version = "15.0.2" }
 
 ## S
-secureStorage = { module = "com.backbase.android.sdk:secure-storage", version = "" }
+secureStorage = { module = "com.backbase.android.sdk:secure-storage", version = "2.0.3" }
 
 [plugins]
 

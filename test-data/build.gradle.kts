@@ -5,6 +5,11 @@ plugins {
 
 android {
     namespace = "com.backbase.android.test_data"
+    testOptions {
+        unitTests.all {
+            it.failOnNoDiscoveredTests = false
+        }
+    }
 }
 
 dependencies {

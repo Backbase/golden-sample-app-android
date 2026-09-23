@@ -23,7 +23,7 @@ This example explains how to extend a journey.
 \
 **Status**: Maintained
 \
-LTS 25.03
+LTS 26.03
 
 ## [sample/devs/feature-flag](https://github.com/Backbase/golden-sample-app-android/tree/sample/devs/feature-flag)
 This example explains how to use feature flag.
